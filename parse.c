@@ -616,6 +616,7 @@ static TwmKeyword keytable[] = {
     { "windowring",		WINDOW_RING, 0 },
     { "xorvalue",		NKEYWORD, kwn_XorValue },
     { "zoom",			ZOOM, 0 },
+    { "f.quadzoom_left_up",		FKEYWORD, F_QZOOM_1 },
 };
 
 static int numkeywords = (sizeof(keytable)/sizeof(keytable[0]));
@@ -994,7 +995,7 @@ put_pixel_on_root(pixel)
 
   for (i=0; i< nPixels; i++)                             
       if (pixel == retProp[i]) addPixel = 0;             
-                                                         
+
   if (addPixel)                                          
       XChangeProperty (dpy, Scr->Root, _XA_MIT_PRIORITY_COLORS,
 		       XA_CARDINAL, 32, PropModeAppend,  

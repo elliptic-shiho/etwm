@@ -95,7 +95,7 @@ int ConstMoveXL;
 int ConstMoveXR;
 int ConstMoveYT;
 int ConstMoveYB;
- 
+
 /* Globals used to keep track of whether the mouse has moved during
    a resize function. */
 int ResizeOrigX;
@@ -466,7 +466,7 @@ int exposure;
 	    text_y, mi->item, mi->strlen);
     }
 }
-    
+
 
 
 PaintMenu(mr, e)
@@ -1031,7 +1031,7 @@ Bool PopUpMenu (menu, x, y, center)
 	menu->width = 0;
 	menu->mapped = NEVER_MAPPED;
   	AddToMenu(menu, "TWM Windows", NULLSTR, NULL, F_TITLE,NULLSTR,NULLSTR);
-  
+
         WindowNameOffset=(char *)Scr->TwmRoot.next->name -
                                (char *)Scr->TwmRoot.next;
         for(tmp_win = Scr->TwmRoot.next , WindowNameCount=0;
@@ -1206,7 +1206,7 @@ static Bool belongs_to_twm_window (t, w)
 
     if (w == t->frame || w == t->title_w || w == t->hilite_w ||
 	w == t->icon_w || w == t->icon_bm_w) return True;
-    
+
     if (t && t->titlebuttons) {
 	register TBWindow *tbw;
 	register int nb = Scr->TBInfo.nleft + Scr->TBInfo.nright;
@@ -1282,7 +1282,7 @@ void resizeFromCenter(w, tmp_win)
     {
       XMaskEvent(dpy,
 		 ButtonPressMask | PointerMotionMask, &event);
-      
+
       if (event.type == MotionNotify) {
 	/* discard any extra motion events before a release */
 	while(XCheckMaskEvent(dpy,
@@ -1290,20 +1290,20 @@ void resizeFromCenter(w, tmp_win)
 	  if (event.type == ButtonPress)
 	    break;
       }
-      
+
       if (event.type == ButtonPress)
 	{
 	  MenuEndResize(tmp_win);
 	  XMoveResizeWindow(dpy, w, AddingX, AddingY, AddingW, AddingH);
 	  break;
 	}
-      
+
 /*    if (!DispatchEvent ()) continue; */
 
       if (event.type != MotionNotify) {
 	continue;
       }
-      
+
       /*
        * XXX - if we are going to do a loop, we ought to consider
        * using multiple GXxor lines so that we don't need to 
@@ -1311,15 +1311,15 @@ void resizeFromCenter(w, tmp_win)
        */
       XQueryPointer(dpy, Scr->Root, &JunkRoot, &JunkChild,
 		    &JunkX, &JunkY, &AddingX, &AddingY, &JunkMask);
-      
+
       if (lastx != AddingX || lasty != AddingY)
 	{
 	  MenuDoResize(AddingX, AddingY, tmp_win);
-	  
+
 	  lastx = AddingX;
 	  lasty = AddingY;
 	}
-      
+
     }
 } 
 
@@ -1551,25 +1551,25 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
 	     */
 	    fromtitlebar = 
 	      belongs_to_twm_window (tmp_win, eventp->xbutton.window);
-	    
+
 	    /* Save pointer position so we can tell if it was moved or
 	       not during the resize. */
 	    ResizeOrigX = eventp->xbutton.x_root;
 	    ResizeOrigY = eventp->xbutton.y_root;
-	    
+
 	    StartResize (eventp, tmp_win, fromtitlebar);
-	    
+
 	    do {
 	      XMaskEvent(dpy,
 			   ButtonPressMask | ButtonReleaseMask |
 			   EnterWindowMask | LeaveWindowMask |
 			   ButtonMotionMask, &Event);
-		
+
 		if (fromtitlebar && Event.type == ButtonPress) {
 		  fromtitlebar = False;
 		    continue;
 		  }
-		
+
 	    	if (Event.type == MotionNotify) {
 		  /* discard any extra motion events before a release */
 		  while
@@ -1578,9 +1578,9 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
 		      if (Event.type == ButtonRelease)
 			break;
 		}
-	      
+
 	      if (!DispatchEvent ()) continue;
-	      
+
 	    } while (!(Event.type == ButtonRelease || Cancel));
 	    return TRUE;
 	  }
@@ -1595,6 +1595,10 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
     case F_RIGHTZOOM:
     case F_TOPZOOM:
     case F_BOTTOMZOOM:
+    case F_QZOOM_1:
+    case F_QZOOM_2:
+    case F_QZOOM_3:
+    case F_QZOOM_4:
 	if (DeferExecution(context, func, Scr->SelectCursor))
 	    return TRUE;
 	fullzoom(tmp_win, func);
@@ -1722,7 +1726,7 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
 		       origDragY + DragHeight / 2);
 	  XFlush(dpy);
 	}
-	
+
 	while (TRUE)
 	{
 	    long releaseEvent = menuFromFrameOrWindowOrTitlebar ? 
@@ -1974,7 +1978,7 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
 	    XConfigureWindow (dpy, w, CWStackMode, &xwc);
 	}
 	break;
-	
+
     case F_RAISE:
 	if (DeferExecution(context, func, Scr->SelectCursor))
 	    return TRUE;
@@ -2202,7 +2206,7 @@ ExecuteFunction(func, action, w, tmp_win, eventp, context, pulldown)
 	    }
 	}
 	break;
-	
+
     case F_WARPRING:
 	switch (action[0]) {
 	  case 'n':
@@ -2324,7 +2328,7 @@ Cursor cursor;
 
 	return (TRUE);
     }
-    
+
     return (FALSE);
 }
 
@@ -2388,6 +2392,10 @@ MenuRoot *root;
         case F_LEFTZOOM:
         case F_TOPZOOM:
         case F_BOTTOMZOOM:
+  case F_QZOOM_1:
+  case F_QZOOM_2:
+  case F_QZOOM_3:
+  case F_QZOOM_4:
 	case F_AUTORAISE:
 	    return TRUE;
 	}
@@ -2543,7 +2551,7 @@ TwmWindow *tmp_win;
 		Zoom(t->icon_w, t->frame);
 	      else
 		Zoom(tmp_win->icon_w, t->frame);
-	      
+
 	      XMapWindow(dpy, t->w);
 	      t->mapped = TRUE;
 	      if (Scr->NoRaiseDeicon)
@@ -2551,7 +2559,7 @@ TwmWindow *tmp_win;
 	      else
 		XMapRaised(dpy, t->frame);
 	      SetMapStateProp(t, NormalState);
-	      
+
 	      if (t->icon_w) {
 		XUnmapWindow(dpy, t->icon_w);
 		IconDown (t);
@@ -2561,7 +2569,7 @@ TwmWindow *tmp_win;
 	      t->icon_on = FALSE;
 	    }
 	}
-    
+
     XSync (dpy, 0);
 }
 
@@ -2603,7 +2611,7 @@ int def_x, def_y;
 		else
 		  Zoom(t->frame, tmp_win->icon_w);
 	      }
-	    
+
 	    /*
 	     * Prevent the receipt of an UnmapNotify, since that would
 	     * cause a transition to the Withdrawn state.
@@ -2628,7 +2636,7 @@ int def_x, def_y;
 	    t->icon_on = FALSE;
 	  }
       } 
-    
+
     if (iconify)
 	Zoom(tmp_win->frame, tmp_win->icon_w);
 
@@ -2736,7 +2744,7 @@ TwmWindow *tmp_win;
 int state;
 {
     unsigned long data[2];		/* "suggested" by ICCCM version 1 */
-  
+
     data[0] = (unsigned long) state;
     data[1] = (unsigned long) (tmp_win->iconify_by_unmapping ? None : 
 			   tmp_win->icon_w);

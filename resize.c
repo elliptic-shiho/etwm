@@ -119,7 +119,7 @@ static void do_auto_clamp (tmp_win, evp)
     h = ((x - dragx) / (dragWidth < 3 ? 1 : (dragWidth / 3)));
     v = ((y - dragy - tmp_win->title_height) / 
 	 (dragHeight < 3 ? 1 : (dragHeight / 3)));
-	
+
     if (h <= 0) {
 	clampLeft = 1;
 	clampDX = (x - dragx);
@@ -750,7 +750,7 @@ ConstrainSize (tmp_win, widthp, heightp)
      * maxAspectX * dheight < maxAspectY * dwidth
      * 
      */
-    
+
     if (tmp_win->hints.flags & PAspect)
     {
         if (minAspectX * dheight > minAspectY * dwidth)
@@ -897,7 +897,7 @@ void SetupFrame (tmp_win, x, y, w, h, bw, sendEvent)
 	    tmp_win->title_y = xwc.y = -bw;
 	    xwcm |= (CWX | CWY | CWBorderWidth);
 	}
-	
+
 	XConfigureWindow(dpy, tmp_win->title_w, xwcm, &xwc);
     }
 
@@ -1070,6 +1070,11 @@ int flag;
             dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
             dragWidth = Scr->MyDisplayWidth - frame_bw_times_2;
             break;
+        case F_QZOOM_1:
+            dragx = basex;
+            dragx = basex;
+            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
+            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
          }
       }
 
