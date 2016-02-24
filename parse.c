@@ -484,6 +484,10 @@ static TwmKeyword keytable[] = {
     { "f.nop",			FKEYWORD, F_NOP },
     { "f.previconmgr",		FKEYWORD, F_PREVICONMGR },
     { "f.priority",		FSKEYWORD, F_PRIORITY },
+    { "f.quadzoomlb",		FKEYWORD, F_QZOOM_2 },
+    { "f.quadzoomlt",		FKEYWORD, F_QZOOM_1 },
+    { "f.quadzoomrb",		FKEYWORD, F_QZOOM_4 },
+    { "f.quadzoomrt",		FKEYWORD, F_QZOOM_3 },
     { "f.quit",			FKEYWORD, F_QUIT },
     { "f.raise",		FKEYWORD, F_RAISE },
     { "f.raiselower",		FKEYWORD, F_RAISELOWER },
@@ -616,7 +620,6 @@ static TwmKeyword keytable[] = {
     { "windowring",		WINDOW_RING, 0 },
     { "xorvalue",		NKEYWORD, kwn_XorValue },
     { "zoom",			ZOOM, 0 },
-    { "f.quadzoom_left_up",		FKEYWORD, F_QZOOM_1 },
 };
 
 static int numkeywords = (sizeof(keytable)/sizeof(keytable[0]));

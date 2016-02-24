@@ -1072,9 +1072,28 @@ int flag;
             break;
         case F_QZOOM_1:
             dragx = basex;
-            dragx = basex;
+            dragy = basey;
             dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
             dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            break;
+        case F_QZOOM_2:
+            dragx = basex;
+            dragy = basey + Scr->MyDisplayHeight/2;
+            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
+            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            break;
+        case F_QZOOM_3:
+            dragx = basex + Scr->MyDisplayWidth/2;
+            dragy = basey;
+            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
+            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            break;
+        case F_QZOOM_4:
+            dragx = basex + Scr->MyDisplayWidth/2;
+            dragy = basey + Scr->MyDisplayHeight/2;
+            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
+            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            break;
          }
       }
 
