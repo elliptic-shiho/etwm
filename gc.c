@@ -76,8 +76,7 @@ in this Software without prior written authorization from the X Consortium.
  */
 
 void
-CreateGCs()
-{
+CreateGCs() {
     static ScreenInfo *prevScr = NULL;
     XGCValues	    gcv;
     unsigned long   gcm;
