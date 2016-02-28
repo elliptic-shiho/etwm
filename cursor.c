@@ -125,16 +125,11 @@ static struct _CursorName {
     {"xterm",		XC_xterm,		None},
 };
 
-void NewFontCursor (cp, str)
-Cursor *cp;
-char *str;
-{
+void NewFontCursor (Cursor *cp, char *str) {
     int i;
 
-    for (i = 0; i < sizeof(cursor_names)/sizeof(struct _CursorName); i++)
-    {
-        if (strcmp(str, cursor_names[i].name) == 0)
-        {
+    for (i = 0; i < sizeof(cursor_names)/sizeof(struct _CursorName); i++) {
+        if (strcmp(str, cursor_names[i].name) == 0) {
             if (cursor_names[i].cursor == None)
                 cursor_names[i].cursor = XCreateFontCursor(dpy,
                                          cursor_names[i].shape);
@@ -146,10 +141,7 @@ char *str;
              ProgramName, str);
 }
 
-NewBitmapCursor(cp, source, mask)
-Cursor *cp;
-char *source, *mask;
-{
+void NewBitmapCursor(Cursor *cp, char *source, char *mask) {
     XColor fore, back;
     int hotx, hoty;
     int sx, sy, mx, my;
@@ -165,8 +157,7 @@ char *source, *mask;
 
     XGetGeometry(dpy, spm, &JunkRoot, &sx, &sy, &sw, &sh, &JunkBW,&JunkDepth);
     XGetGeometry(dpy, mpm, &JunkRoot, &mx, &my, &mw, &mh, &JunkBW,&JunkDepth);
-    if (sw != mw || sh != mh)
-    {
+    if (sw != mw || sh != mh) {
         fprintf (stderr,
                  "%s:  cursor bitmaps \"%s\" and \"%s\" not the same size\n",
                  ProgramName, source, mask);
