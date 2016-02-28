@@ -95,8 +95,8 @@ int HotX, HotY;
 
 /* ARGSUSED */
 void MoveOutline(root, x, y, width, height, bw, th)
-    Window root;
-    int x, y, width, height, bw, th;
+Window root;
+int x, y, width, height, bw, th;
 {
     static int	lastx = 0;
     static int	lasty = 0;
@@ -110,9 +110,9 @@ void MoveOutline(root, x, y, width, height, bw, th)
     register XSegment	*r;
 
     if (x == lastx && y == lasty && width == lastWidth && height == lastHeight
-	&& lastBW == bw && th == lastTH)
-	return;
-    
+            && lastBW == bw && th == lastTH)
+        return;
+
     r = outline;
 
 #define DRAWIT() \
@@ -204,7 +204,7 @@ void MoveOutline(root, x, y, width, height, bw, th)
 
     if (r != outline)
     {
-	XDrawSegments(dpy, root, Scr->DrawGC, outline, r - outline);
+        XDrawSegments(dpy, root, Scr->DrawGC, outline, r - outline);
     }
 }
 
@@ -222,7 +222,7 @@ void MoveOutline(root, x, y, width, height, bw, th)
 
 void
 Zoom(wf, wt)
-    Window wf, wt;
+Window wf, wt;
 {
     int fx, fy, tx, ty;			/* from, to */
     unsigned int fw, fh, tw, th;	/* from, to */
@@ -244,19 +244,19 @@ Zoom(wf, wt)
     z = (long) (Scr->ZoomCount + 1);
 
     for (j = 0; j < 2; j++) {
-	long i;
+        long i;
 
-	XDrawRectangle (dpy, Scr->Root, Scr->DrawGC, fx, fy, fw, fh);
-	for (i = 1; i < z; i++) {
-	    int x = fx + (int) ((dx * i) / z);
-	    int y = fy + (int) ((dy * i) / z);
-	    unsigned width = (unsigned) (((long) fw) + (dw * i) / z);
-	    unsigned height = (unsigned) (((long) fh) + (dh * i) / z);
-	
-	    XDrawRectangle (dpy, Scr->Root, Scr->DrawGC,
-			    x, y, width, height);
-	}
-	XDrawRectangle (dpy, Scr->Root, Scr->DrawGC, tx, ty, tw, th);
+        XDrawRectangle (dpy, Scr->Root, Scr->DrawGC, fx, fy, fw, fh);
+        for (i = 1; i < z; i++) {
+            int x = fx + (int) ((dx * i) / z);
+            int y = fy + (int) ((dy * i) / z);
+            unsigned width = (unsigned) (((long) fw) + (dw * i) / z);
+            unsigned height = (unsigned) (((long) fh) + (dh * i) / z);
+
+            XDrawRectangle (dpy, Scr->Root, Scr->DrawGC,
+                            x, y, width, height);
+        }
+        XDrawRectangle (dpy, Scr->Root, Scr->DrawGC, tx, ty, tw, th);
     }
 }
 
@@ -286,11 +286,11 @@ char *name;
 
     newname = (char *) malloc (HomeLen + strlen(name) + 2);
     if (!newname) {
-	fprintf (stderr, 
-		 "%s:  unable to allocate %d bytes to expand filename %s/%s\n",
-		 ProgramName, HomeLen + strlen(name) + 2, Home, &name[1]);
+        fprintf (stderr,
+                 "%s:  unable to allocate %d bytes to expand filename %s/%s\n",
+                 ProgramName, HomeLen + strlen(name) + 2, Home, &name[1]);
     } else {
-	(void) sprintf (newname, "%s/%s", Home, &name[1]);
+        (void) sprintf (newname, "%s/%s", Home, &name[1]);
     }
 
     return newname;
@@ -313,8 +313,8 @@ char *name;
 {
     if ((Scr->UnknownPm = GetBitmap(name)) != None)
     {
-	XGetGeometry(dpy, Scr->UnknownPm, &JunkRoot, &JunkX, &JunkY,
-	    (unsigned int *)&Scr->UnknownWidth, (unsigned int *)&Scr->UnknownHeight, &JunkBW, &JunkDepth);
+        XGetGeometry(dpy, Scr->UnknownPm, &JunkRoot, &JunkX, &JunkY,
+                     (unsigned int *)&Scr->UnknownWidth, (unsigned int *)&Scr->UnknownHeight, &JunkBW, &JunkDepth);
     }
 }
 
@@ -335,8 +335,8 @@ char *name;
  */
 
 Pixmap FindBitmap (name, widthp, heightp)
-    char *name;
-    unsigned int *widthp, *heightp;
+char *name;
+unsigned int *widthp, *heightp;
 {
     char *bigname;
     Pixmap pm;
@@ -349,27 +349,27 @@ Pixmap FindBitmap (name, widthp, heightp)
      * menu symbol as well....
      */
     if (name[0] == ':') {
-	int i;
-	static struct {
-	    char *name;
-	    Pixmap (*proc)();
-	} pmtab[] = {
-	    { TBPM_DOT,		CreateDotPixmap },
-	    { TBPM_ICONIFY,	CreateDotPixmap },
-	    { TBPM_RESIZE,	CreateResizePixmap },
-	    { TBPM_XLOGO,	CreateXLogoPixmap },
-	    { TBPM_DELETE,	CreateXLogoPixmap },
-	    { TBPM_MENU,	CreateMenuPixmap },
-	    { TBPM_QUESTION,	CreateQuestionPixmap },
-	};
-	
-	for (i = 0; i < (sizeof pmtab)/(sizeof pmtab[0]); i++) {
-	    if (XmuCompareISOLatin1 (pmtab[i].name, name) == 0)
-	      return (*pmtab[i].proc) (widthp, heightp);
-	}
-	fprintf (stderr, "%s:  no such built-in bitmap \"%s\"\n",
-		 ProgramName, name);
-	return None;
+        int i;
+        static struct {
+            char *name;
+            Pixmap (*proc)();
+        } pmtab[] = {
+            { TBPM_DOT,		CreateDotPixmap },
+            { TBPM_ICONIFY,	CreateDotPixmap },
+            { TBPM_RESIZE,	CreateResizePixmap },
+            { TBPM_XLOGO,	CreateXLogoPixmap },
+            { TBPM_DELETE,	CreateXLogoPixmap },
+            { TBPM_MENU,	CreateMenuPixmap },
+            { TBPM_QUESTION,	CreateQuestionPixmap },
+        };
+
+        for (i = 0; i < (sizeof pmtab)/(sizeof pmtab[0]); i++) {
+            if (XmuCompareISOLatin1 (pmtab[i].name, name) == 0)
+                return (*pmtab[i].proc) (widthp, heightp);
+        }
+        fprintf (stderr, "%s:  no such built-in bitmap \"%s\"\n",
+                 ProgramName, name);
+        return None;
     }
 
     /*
@@ -384,77 +384,77 @@ Pixmap FindBitmap (name, widthp, heightp)
      * look along bitmapFilePath resource same as toolkit clients
      */
     pm = XmuLocateBitmapFile (ScreenOfDisplay(dpy, Scr->screen), bigname, NULL,
-			      0, (int *)widthp, (int *)heightp, &HotX, &HotY);
+                              0, (int *)widthp, (int *)heightp, &HotX, &HotY);
     if (pm == None && Scr->IconDirectory && bigname[0] != '/') {
-	if (bigname != name) free (bigname);
-	/*
-	 * Attempt to find icon in old IconDirectory (now obsolete)
-	 */
-	bigname = (char *) malloc (strlen(name) + strlen(Scr->IconDirectory) +
-				   2);
-	if (!bigname) {
-	    fprintf (stderr,
-		     "%s:  unable to allocate memory for \"%s/%s\"\n",
-		     ProgramName, Scr->IconDirectory, name);
-	    return None;
-	}
-	(void) sprintf (bigname, "%s/%s", Scr->IconDirectory, name);
-	if (XReadBitmapFile (dpy, Scr->Root, bigname, widthp, heightp, &pm,
-			     &HotX, &HotY) != BitmapSuccess) {
-	    pm = None;
-	}
+        if (bigname != name) free (bigname);
+        /*
+         * Attempt to find icon in old IconDirectory (now obsolete)
+         */
+        bigname = (char *) malloc (strlen(name) + strlen(Scr->IconDirectory) +
+                                   2);
+        if (!bigname) {
+            fprintf (stderr,
+                     "%s:  unable to allocate memory for \"%s/%s\"\n",
+                     ProgramName, Scr->IconDirectory, name);
+            return None;
+        }
+        (void) sprintf (bigname, "%s/%s", Scr->IconDirectory, name);
+        if (XReadBitmapFile (dpy, Scr->Root, bigname, widthp, heightp, &pm,
+                             &HotX, &HotY) != BitmapSuccess) {
+            pm = None;
+        }
     }
     if (bigname != name) free (bigname);
     if (pm == None) {
-	fprintf (stderr, "%s:  unable to find bitmap \"%s\"\n", 
-		 ProgramName, name);
+        fprintf (stderr, "%s:  unable to find bitmap \"%s\"\n",
+                 ProgramName, name);
     }
 
     return pm;
 }
 
 Pixmap GetBitmap (name)
-    char *name;
+char *name;
 {
     return FindBitmap (name, &JunkWidth, &JunkHeight);
 }
 
 
 InsertRGBColormap (a, maps, nmaps, replace)
-    Atom a;
-    XStandardColormap *maps;
-    int nmaps;
-    Bool replace;
+Atom a;
+XStandardColormap *maps;
+int nmaps;
+Bool replace;
 {
     StdCmap *sc = NULL;
 
     if (replace) {			/* locate existing entry */
-	for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
-	    if (sc->atom == a) break;
-	}
+        for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
+            if (sc->atom == a) break;
+        }
     }
 
     if (!sc) {				/* no existing, allocate new */
-	sc = (StdCmap *) malloc (sizeof (StdCmap));
-	if (!sc) {
-	    fprintf (stderr, "%s:  unable to allocate %d bytes for StdCmap\n",
-		     ProgramName, sizeof (StdCmap));
-	    return;
-	}
+        sc = (StdCmap *) malloc (sizeof (StdCmap));
+        if (!sc) {
+            fprintf (stderr, "%s:  unable to allocate %d bytes for StdCmap\n",
+                     ProgramName, sizeof (StdCmap));
+            return;
+        }
     }
 
     if (replace) {			/* just update contents */
-	if (sc->maps) XFree ((char *) maps);
-	if (sc == Scr->StdCmapInfo.mru) Scr->StdCmapInfo.mru = NULL;
+        if (sc->maps) XFree ((char *) maps);
+        if (sc == Scr->StdCmapInfo.mru) Scr->StdCmapInfo.mru = NULL;
     } else {				/* else appending */
-	sc->next = NULL;
-	sc->atom = a;
-	if (Scr->StdCmapInfo.tail) {
-	    Scr->StdCmapInfo.tail->next = sc;
-	} else {
-	    Scr->StdCmapInfo.head = sc;
-	}
-	Scr->StdCmapInfo.tail = sc;
+        sc->next = NULL;
+        sc->atom = a;
+        if (Scr->StdCmapInfo.tail) {
+            Scr->StdCmapInfo.tail->next = sc;
+        } else {
+            Scr->StdCmapInfo.head = sc;
+        }
+        Scr->StdCmapInfo.tail = sc;
     }
     sc->nmaps = nmaps;
     sc->maps = maps;
@@ -463,21 +463,21 @@ InsertRGBColormap (a, maps, nmaps, replace)
 }
 
 RemoveRGBColormap (a)
-    Atom a;
+Atom a;
 {
     StdCmap *sc, *prev;
 
     prev = NULL;
-    for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {  
-	if (sc->atom == a) break;
-	prev = sc;
+    for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
+        if (sc->atom == a) break;
+        prev = sc;
     }
     if (sc) {				/* found one */
-	if (sc->maps) XFree ((char *) sc->maps);
-	if (prev) prev->next = sc->next;
-	if (Scr->StdCmapInfo.head == sc) Scr->StdCmapInfo.head = sc->next;
-	if (Scr->StdCmapInfo.tail == sc) Scr->StdCmapInfo.tail = prev;
-	if (Scr->StdCmapInfo.mru == sc) Scr->StdCmapInfo.mru = NULL;
+        if (sc->maps) XFree ((char *) sc->maps);
+        if (prev) prev->next = sc->next;
+        if (Scr->StdCmapInfo.head == sc) Scr->StdCmapInfo.head = sc->next;
+        if (Scr->StdCmapInfo.tail == sc) Scr->StdCmapInfo.tail = prev;
+        if (Scr->StdCmapInfo.mru == sc) Scr->StdCmapInfo.mru = NULL;
     }
     return;
 }
@@ -490,13 +490,13 @@ LocateStandardColormaps()
 
     atoms = XListProperties (dpy, Scr->Root, &natoms);
     for (i = 0; i < natoms; i++) {
-	XStandardColormap *maps = NULL;
-	int nmaps;
+        XStandardColormap *maps = NULL;
+        int nmaps;
 
-	if (XGetRGBColormaps (dpy, Scr->Root, &maps, &nmaps, atoms[i])) {
-	    /* if got one, then append to current list */
-	    InsertRGBColormap (atoms[i], maps, nmaps, False);
-	}
+        if (XGetRGBColormaps (dpy, Scr->Root, &maps, &nmaps, atoms[i])) {
+            /* if got one, then append to current list */
+            InsertRGBColormap (atoms[i], maps, nmaps, False);
+        }
     }
     if (atoms) XFree ((char *) atoms);
     return;
@@ -513,70 +513,70 @@ char *name;
 
 #ifndef TOM
     if (!Scr->FirstTime)
-	return;
+        return;
 #endif
 
     if (Scr->Monochrome != kind)
-	return;
+        return;
 
     if (!XAllocNamedColor (dpy, cmap, name, &color, &junkcolor))
     {
-	/* if we could not allocate the color, let's see if this is a
-	 * standard colormap
-	 */
-	XStandardColormap *stdcmap = NULL;
+        /* if we could not allocate the color, let's see if this is a
+         * standard colormap
+         */
+        XStandardColormap *stdcmap = NULL;
 
-	/* parse the named color */
-	if (name[0] != '#')
-	    stat = XParseColor (dpy, cmap, name, &color);
-	if (!stat)
-	{
-	    fprintf (stderr, "%s:  invalid color name \"%s\"\n", 
-		     ProgramName, name);
-	    return;
-	}
+        /* parse the named color */
+        if (name[0] != '#')
+            stat = XParseColor (dpy, cmap, name, &color);
+        if (!stat)
+        {
+            fprintf (stderr, "%s:  invalid color name \"%s\"\n",
+                     ProgramName, name);
+            return;
+        }
 
-	/*
-	 * look through the list of standard colormaps (check cache first)
-	 */
-	if (Scr->StdCmapInfo.mru && Scr->StdCmapInfo.mru->maps &&
-	    (Scr->StdCmapInfo.mru->maps[Scr->StdCmapInfo.mruindex].colormap ==
-	     cmap)) {
-	    stdcmap = &(Scr->StdCmapInfo.mru->maps[Scr->StdCmapInfo.mruindex]);
-	} else {
-	    StdCmap *sc;
-
-	    for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
-		int i;
-
-		for (i = 0; i < sc->nmaps; i++) {
-		    if (sc->maps[i].colormap == cmap) {
-			Scr->StdCmapInfo.mru = sc;
-			Scr->StdCmapInfo.mruindex = i;
-			stdcmap = &(sc->maps[i]);
-			goto gotit;
-		    }
-		}
-	    }
-	}
-
-      gotit:
-	if (stdcmap) {
-            color.pixel = (stdcmap->base_pixel +
-			   ((Pixel)(((float)color.red / 65535.0) *
-				    stdcmap->red_max + 0.5) *
-			    stdcmap->red_mult) +
-			   ((Pixel)(((float)color.green /65535.0) *
-				    stdcmap->green_max + 0.5) *
-			    stdcmap->green_mult) +
-			   ((Pixel)(((float)color.blue  / 65535.0) *
-				    stdcmap->blue_max + 0.5) *
-			    stdcmap->blue_mult));
+        /*
+         * look through the list of standard colormaps (check cache first)
+         */
+        if (Scr->StdCmapInfo.mru && Scr->StdCmapInfo.mru->maps &&
+                (Scr->StdCmapInfo.mru->maps[Scr->StdCmapInfo.mruindex].colormap ==
+                 cmap)) {
+            stdcmap = &(Scr->StdCmapInfo.mru->maps[Scr->StdCmapInfo.mruindex]);
         } else {
-	    fprintf (stderr, "%s:  unable to allocate color \"%s\"\n", 
-		     ProgramName, name);
-	    return;
-	}
+            StdCmap *sc;
+
+            for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
+                int i;
+
+                for (i = 0; i < sc->nmaps; i++) {
+                    if (sc->maps[i].colormap == cmap) {
+                        Scr->StdCmapInfo.mru = sc;
+                        Scr->StdCmapInfo.mruindex = i;
+                        stdcmap = &(sc->maps[i]);
+                        goto gotit;
+                    }
+                }
+            }
+        }
+
+gotit:
+        if (stdcmap) {
+            color.pixel = (stdcmap->base_pixel +
+                           ((Pixel)(((float)color.red / 65535.0) *
+                                    stdcmap->red_max + 0.5) *
+                            stdcmap->red_mult) +
+                           ((Pixel)(((float)color.green /65535.0) *
+                                    stdcmap->green_max + 0.5) *
+                            stdcmap->green_mult) +
+                           ((Pixel)(((float)color.blue  / 65535.0) *
+                                    stdcmap->blue_max + 0.5) *
+                            stdcmap->blue_mult));
+        } else {
+            fprintf (stderr, "%s:  unable to allocate color \"%s\"\n",
+                     ProgramName, name);
+            return;
+        }
     }
 
     *what = color.pixel;
@@ -592,20 +592,20 @@ char *name;
 
 #ifndef TOM
     if (!Scr->FirstTime)
-	return;
+        return;
 #endif
 
     if (Scr->Monochrome != kind)
-	return;
+        return;
 
     if (!XLookupColor (dpy, cmap, name, what, &junkcolor))
     {
-	fprintf (stderr, "%s:  invalid color name \"%s\"\n", 
-		 ProgramName, name);
+        fprintf (stderr, "%s:  invalid color name \"%s\"\n",
+                 ProgramName, name);
     }
     else
     {
-	what->pixel = AllPlanes;
+        what->pixel = AllPlanes;
     }
 }
 
@@ -615,19 +615,19 @@ MyFont *font;
     char *deffontname = "fixed";
 
     if (font->font != NULL)
-	XFreeFont(dpy, font->font);
+        XFreeFont(dpy, font->font);
 
     if ((font->font = XLoadQueryFont(dpy, font->name)) == NULL)
     {
-	if (Scr->DefaultFont.name) {
-	    deffontname = Scr->DefaultFont.name;
-	}
-	if ((font->font = XLoadQueryFont(dpy, deffontname)) == NULL)
-	{
-	    fprintf (stderr, "%s:  unable to open fonts \"%s\" or \"%s\"\n",
-		     ProgramName, font->name, deffontname);
-	    exit(1);
-	}
+        if (Scr->DefaultFont.name) {
+            deffontname = Scr->DefaultFont.name;
+        }
+        if ((font->font = XLoadQueryFont(dpy, deffontname)) == NULL)
+        {
+            fprintf (stderr, "%s:  unable to open fonts \"%s\" or \"%s\"\n",
+                     ProgramName, font->name, deffontname);
+            exit(1);
+        }
 
     }
     font->height = font->font->ascent + font->font->descent;
@@ -640,17 +640,17 @@ MyFont *font;
  * and easier to debug
  */
 SetFocus (tmp_win, time)
-    TwmWindow *tmp_win;
-    Time	time;
+TwmWindow *tmp_win;
+Time	time;
 {
     Window w = (tmp_win ? tmp_win->w : PointerRoot);
 
 #ifdef TRACE
     if (tmp_win) {
-	printf ("Focusing on window \"%s\"\n", tmp_win->full_name);
+        printf ("Focusing on window \"%s\"\n", tmp_win->full_name);
     } else {
-	printf ("Unfocusing; Scr->Focus was \"%s\"\n",
-		Scr->Focus ? Scr->Focus->full_name : "(nil)");
+        printf ("Unfocusing; Scr->Focus was \"%s\"\n",
+                Scr->Focus ? Scr->Focus->full_name : "(nil)");
     }
 #endif
 
@@ -669,7 +669,7 @@ SetFocus (tmp_win, time)
  */
 int
 putenv(s)
-    char *s;
+char *s;
 {
     char *v;
     int varlen, idx;
@@ -679,163 +679,163 @@ putenv(s)
 
     v = index(s, '=');
     if(v == 0)
-	return 0; /* punt if it's not of the right form */
+        return 0; /* punt if it's not of the right form */
     varlen = (v + 1) - s;
 
     for (idx = 0; environ[idx] != 0; idx++) {
-	if (strncmp(environ[idx], s, varlen) == 0) {
-	    if(v[1] != 0) { /* true if there's a value */
-		environ[idx] = s;
-		return 0;
-	    } else {
-		do {
-		    environ[idx] = environ[idx+1];
-		} while(environ[++idx] != 0);
-		return 0;
-	    }
-	}
+        if (strncmp(environ[idx], s, varlen) == 0) {
+            if(v[1] != 0) { /* true if there's a value */
+                environ[idx] = s;
+                return 0;
+            } else {
+                do {
+                    environ[idx] = environ[idx+1];
+                } while(environ[++idx] != 0);
+                return 0;
+            }
+        }
     }
-    
+
     /* add to environment (unless no value; then just return) */
     if(v[1] == 0)
-	return 0;
+        return 0;
     if(virgin) {
-	register i;
+        register i;
 
-	newenv = (char **) malloc((unsigned) ((idx + 2) * sizeof(char*)));
-	if(newenv == 0)
-	    return -1;
-	for(i = idx-1; i >= 0; --i)
-	    newenv[i] = environ[i];
-	virgin = 0;     /* you're not a virgin anymore, sweety */
+        newenv = (char **) malloc((unsigned) ((idx + 2) * sizeof(char*)));
+        if(newenv == 0)
+            return -1;
+        for(i = idx-1; i >= 0; --i)
+            newenv[i] = environ[i];
+        virgin = 0;     /* you're not a virgin anymore, sweety */
     } else {
-	newenv = (char **) realloc((char *) environ,
-				   (unsigned) ((idx + 2) * sizeof(char*)));
-	if (newenv == 0)
-	    return -1;
+        newenv = (char **) realloc((char *) environ,
+                                   (unsigned) ((idx + 2) * sizeof(char*)));
+        if (newenv == 0)
+            return -1;
     }
 
     environ = newenv;
     environ[idx] = s;
     environ[idx+1] = 0;
-    
+
     return 0;
 }
 #endif /* NOPUTENV */
 
 
 static Pixmap CreateXLogoPixmap (widthp, heightp)
-    unsigned int *widthp, *heightp;
+unsigned int *widthp, *heightp;
 {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
     if (h < 0) h = 0;
 
     *widthp = *heightp = (unsigned int) h;
     if (Scr->tbpm.xlogo == None) {
-	GC gc, gcBack;
+        GC gc, gcBack;
 
-	Scr->tbpm.xlogo = XCreatePixmap (dpy, Scr->Root, h, h, 1);
-	gc = XCreateGC (dpy, Scr->tbpm.xlogo, 0L, NULL);
-	XSetForeground (dpy, gc, 0);
-	XFillRectangle (dpy, Scr->tbpm.xlogo, gc, 0, 0, h, h);
-	XSetForeground (dpy, gc, 1);
-	gcBack = XCreateGC (dpy, Scr->tbpm.xlogo, 0L, NULL);
-	XSetForeground (dpy, gcBack, 0);
+        Scr->tbpm.xlogo = XCreatePixmap (dpy, Scr->Root, h, h, 1);
+        gc = XCreateGC (dpy, Scr->tbpm.xlogo, 0L, NULL);
+        XSetForeground (dpy, gc, 0);
+        XFillRectangle (dpy, Scr->tbpm.xlogo, gc, 0, 0, h, h);
+        XSetForeground (dpy, gc, 1);
+        gcBack = XCreateGC (dpy, Scr->tbpm.xlogo, 0L, NULL);
+        XSetForeground (dpy, gcBack, 0);
 
-	/*
-	 * draw the logo large so that it gets as dense as possible; then white
-	 * out the edges so that they look crisp
-	 */
-	XmuDrawLogo (dpy, Scr->tbpm.xlogo, gc, gcBack, -1, -1, h + 2, h + 2);
-	XDrawRectangle (dpy, Scr->tbpm.xlogo, gcBack, 0, 0, h - 1, h - 1);
+        /*
+         * draw the logo large so that it gets as dense as possible; then white
+         * out the edges so that they look crisp
+         */
+        XmuDrawLogo (dpy, Scr->tbpm.xlogo, gc, gcBack, -1, -1, h + 2, h + 2);
+        XDrawRectangle (dpy, Scr->tbpm.xlogo, gcBack, 0, 0, h - 1, h - 1);
 
-	/*
-	 * done drawing
-	 */
-	XFreeGC (dpy, gc);
-	XFreeGC (dpy, gcBack);
+        /*
+         * done drawing
+         */
+        XFreeGC (dpy, gc);
+        XFreeGC (dpy, gcBack);
     }
     return Scr->tbpm.xlogo;
 }
 
 
 static Pixmap CreateResizePixmap (widthp, heightp)
-    unsigned int *widthp, *heightp;
+unsigned int *widthp, *heightp;
 {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
     if (h < 1) h = 1;
 
     *widthp = *heightp = (unsigned int) h;
     if (Scr->tbpm.resize == None) {
-	XPoint	points[3];
-	GC gc;
-	int w;
-	int lw;
+        XPoint	points[3];
+        GC gc;
+        int w;
+        int lw;
 
-	/*
-	 * create the pixmap
-	 */
-	Scr->tbpm.resize = XCreatePixmap (dpy, Scr->Root, h, h, 1);
-	gc = XCreateGC (dpy, Scr->tbpm.resize, 0L, NULL);
-	XSetForeground (dpy, gc, 0);
-	XFillRectangle (dpy, Scr->tbpm.resize, gc, 0, 0, h, h);
-	XSetForeground (dpy, gc, 1);
-	lw = h / 16;
-	if (lw == 1)
-	    lw = 0;
-	XSetLineAttributes (dpy, gc, lw, LineSolid, CapButt, JoinMiter);
+        /*
+         * create the pixmap
+         */
+        Scr->tbpm.resize = XCreatePixmap (dpy, Scr->Root, h, h, 1);
+        gc = XCreateGC (dpy, Scr->tbpm.resize, 0L, NULL);
+        XSetForeground (dpy, gc, 0);
+        XFillRectangle (dpy, Scr->tbpm.resize, gc, 0, 0, h, h);
+        XSetForeground (dpy, gc, 1);
+        lw = h / 16;
+        if (lw == 1)
+            lw = 0;
+        XSetLineAttributes (dpy, gc, lw, LineSolid, CapButt, JoinMiter);
 
-	/*
-	 * draw the resize button, 
-	 */
-	w = (h * 2) / 3;
-	points[0].x = w;
-	points[0].y = 0;
-	points[1].x = w;
-	points[1].y = w;
-	points[2].x = 0;
-	points[2].y = w;
-	XDrawLines (dpy, Scr->tbpm.resize, gc, points, 3, CoordModeOrigin);
-	w = w / 2;
-	points[0].x = w;
-	points[0].y = 0;
-	points[1].x = w;
-	points[1].y = w;
-	points[2].x = 0;
-	points[2].y = w;
-	XDrawLines (dpy, Scr->tbpm.resize, gc, points, 3, CoordModeOrigin);
+        /*
+         * draw the resize button,
+         */
+        w = (h * 2) / 3;
+        points[0].x = w;
+        points[0].y = 0;
+        points[1].x = w;
+        points[1].y = w;
+        points[2].x = 0;
+        points[2].y = w;
+        XDrawLines (dpy, Scr->tbpm.resize, gc, points, 3, CoordModeOrigin);
+        w = w / 2;
+        points[0].x = w;
+        points[0].y = 0;
+        points[1].x = w;
+        points[1].y = w;
+        points[2].x = 0;
+        points[2].y = w;
+        XDrawLines (dpy, Scr->tbpm.resize, gc, points, 3, CoordModeOrigin);
 
-	/*
-	 * done drawing
-	 */
-	XFreeGC(dpy, gc);
+        /*
+         * done drawing
+         */
+        XFreeGC(dpy, gc);
     }
     return Scr->tbpm.resize;
 }
 
 
 static Pixmap CreateDotPixmap (widthp, heightp)
-    unsigned int *widthp, *heightp;
+unsigned int *widthp, *heightp;
 {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
 
     h = h * 3 / 4;
     if (h < 1) h = 1;
     if (!(h & 1))
-	h--;
+        h--;
     *widthp = *heightp = (unsigned int) h;
     if (Scr->tbpm.delete == None) {
-	GC  gc;
-	Pixmap pix;
+        GC  gc;
+        Pixmap pix;
 
-	pix = Scr->tbpm.delete = XCreatePixmap (dpy, Scr->Root, h, h, 1);
-	gc = XCreateGC (dpy, pix, 0L, NULL);
-	XSetLineAttributes (dpy, gc, h, LineSolid, CapRound, JoinRound);
-	XSetForeground (dpy, gc, 0L);
-	XFillRectangle (dpy, pix, gc, 0, 0, h, h);
-	XSetForeground (dpy, gc, 1L);
-	XDrawLine (dpy, pix, gc, h/2, h/2, h/2, h/2);
-	XFreeGC (dpy, gc);
+        pix = Scr->tbpm.delete = XCreatePixmap (dpy, Scr->Root, h, h, 1);
+        gc = XCreateGC (dpy, pix, 0L, NULL);
+        XSetLineAttributes (dpy, gc, h, LineSolid, CapRound, JoinRound);
+        XSetForeground (dpy, gc, 0L);
+        XFillRectangle (dpy, pix, gc, 0, 0, h, h);
+        XSetForeground (dpy, gc, 1L);
+        XDrawLine (dpy, pix, gc, h/2, h/2, h/2, h/2);
+        XFreeGC (dpy, gc);
     }
     return Scr->tbpm.delete;
 }
@@ -843,18 +843,19 @@ static Pixmap CreateDotPixmap (widthp, heightp)
 #define questionmark_width 8
 #define questionmark_height 8
 static char questionmark_bits[] = {
-   0x38, 0x7c, 0x64, 0x30, 0x18, 0x00, 0x18, 0x18};
+    0x38, 0x7c, 0x64, 0x30, 0x18, 0x00, 0x18, 0x18
+};
 
 static Pixmap CreateQuestionPixmap (widthp, heightp)
-    unsigned int *widthp, *heightp;
+unsigned int *widthp, *heightp;
 {
     *widthp = questionmark_width;
     *heightp = questionmark_height;
     if (Scr->tbpm.question == None) {
-	Scr->tbpm.question = XCreateBitmapFromData (dpy, Scr->Root,
-						    questionmark_bits,
-						    questionmark_width,
-						    questionmark_height);
+        Scr->tbpm.question = XCreateBitmapFromData (dpy, Scr->Root,
+                             questionmark_bits,
+                             questionmark_width,
+                             questionmark_height);
     }
     /*
      * this must succeed or else we are in deep trouble elsewhere
@@ -864,14 +865,14 @@ static Pixmap CreateQuestionPixmap (widthp, heightp)
 
 
 static Pixmap CreateMenuPixmap (widthp, heightp)
-    int *widthp, *heightp;
+int *widthp, *heightp;
 {
     CreateMenuIcon (Scr->TBInfo.width - Scr->TBInfo.border * 2,widthp,heightp);
 }
 
 Pixmap CreateMenuIcon (height, widthp, heightp)
-    int	height;
-    int	*widthp, *heightp;
+int	height;
+int	*widthp, *heightp;
 {
     int h, w;
     int ih, iw;
@@ -887,59 +888,59 @@ Pixmap CreateMenuIcon (height, widthp, heightp)
     h = height;
     w = h * 7 / 8;
     if (h < 1)
-	h = 1;
+        h = 1;
     if (w < 1)
-	w = 1;
+        w = 1;
     *widthp = w;
     *heightp = h;
     if (Scr->tbpm.menu == None) {
-	Pixmap  pix;
-	GC	gc;
+        Pixmap  pix;
+        GC	gc;
 
-	pix = Scr->tbpm.menu = XCreatePixmap (dpy, Scr->Root, w, h, 1);
-	gc = XCreateGC (dpy, pix, 0L, NULL);
-	XSetForeground (dpy, gc, 0L);
-	XFillRectangle (dpy, pix, gc, 0, 0, w, h);
-	XSetForeground (dpy, gc, 1L);
-	ix = 1;
-	iy = 1;
-	ih = h - iy * 2;
-	iw = w - ix * 2;
-	off = ih / 8;
-	mh = ih - off;
-	mw = iw - off;
-	bw = mh / 16;
-	if (bw == 0 && mw > 2)
-	    bw = 1;
-	tw = mw - bw * 2;
-	th = mh - bw * 2;
-	XFillRectangle (dpy, pix, gc, ix, iy, mw, mh);
-	XFillRectangle (dpy, pix, gc, ix + iw - mw, iy + ih - mh, mw, mh);
-	XSetForeground (dpy, gc, 0L);
-	XFillRectangle (dpy, pix, gc, ix+bw, iy+bw, tw, th);
-	XSetForeground (dpy, gc, 1L);
-	lw = tw / 2;
-	if ((tw & 1) ^ (lw & 1))
-	    lw++;
-	lx = ix + bw + (tw - lw) / 2;
+        pix = Scr->tbpm.menu = XCreatePixmap (dpy, Scr->Root, w, h, 1);
+        gc = XCreateGC (dpy, pix, 0L, NULL);
+        XSetForeground (dpy, gc, 0L);
+        XFillRectangle (dpy, pix, gc, 0, 0, w, h);
+        XSetForeground (dpy, gc, 1L);
+        ix = 1;
+        iy = 1;
+        ih = h - iy * 2;
+        iw = w - ix * 2;
+        off = ih / 8;
+        mh = ih - off;
+        mw = iw - off;
+        bw = mh / 16;
+        if (bw == 0 && mw > 2)
+            bw = 1;
+        tw = mw - bw * 2;
+        th = mh - bw * 2;
+        XFillRectangle (dpy, pix, gc, ix, iy, mw, mh);
+        XFillRectangle (dpy, pix, gc, ix + iw - mw, iy + ih - mh, mw, mh);
+        XSetForeground (dpy, gc, 0L);
+        XFillRectangle (dpy, pix, gc, ix+bw, iy+bw, tw, th);
+        XSetForeground (dpy, gc, 1L);
+        lw = tw / 2;
+        if ((tw & 1) ^ (lw & 1))
+            lw++;
+        lx = ix + bw + (tw - lw) / 2;
 
-	lh = th / 2 - bw;
-	if ((lh & 1) ^ ((th - bw) & 1))
-	    lh++;
-	ly = iy + bw + (th - bw - lh) / 2;
+        lh = th / 2 - bw;
+        if ((lh & 1) ^ ((th - bw) & 1))
+            lh++;
+        ly = iy + bw + (th - bw - lh) / 2;
 
-	lines = 3;
-	if ((lh & 1) && lh < 6)
-	{
-	    lines--;
-	}
-	dly = lh / (lines - 1);
-	while (lines--)
-	{
-	    XFillRectangle (dpy, pix, gc, lx, ly, lw, bw);
-	    ly += dly;
-	}
-	XFreeGC (dpy, gc);
+        lines = 3;
+        if ((lh & 1) && lh < 6)
+        {
+            lines--;
+        }
+        dly = lh / (lines - 1);
+        while (lines--)
+        {
+            XFillRectangle (dpy, pix, gc, lx, ly, lw, bw);
+            ly += dly;
+        }
+        XFreeGC (dpy, gc);
     }
     return Scr->tbpm.menu;
 }

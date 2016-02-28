@@ -70,7 +70,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "util.h"
 #include "gram.h"
 #include "parse.h"
-#include <X11/Xatom.h> 
+#include <X11/Xatom.h>
 #include <X11/extensions/sync.h>
 
 #ifndef SYSTEM_INIT_FILE
@@ -111,9 +111,9 @@ extern char *defTwmrc[];		/* default bindings */
  */
 
 static int doparse (ifunc, srctypename, srcname)
-    int (*ifunc)();
-    char *srctypename;
-    char *srcname;
+int (*ifunc)();
+char *srctypename;
+char *srcname;
 {
     mods = 0;
     ptr = 0;
@@ -126,51 +126,51 @@ static int doparse (ifunc, srctypename, srcname)
     yyparse();
 
     if (Scr->PointerForeground.pixel != Scr->Black ||
-	Scr->PointerBackground.pixel != Scr->White)
+            Scr->PointerBackground.pixel != Scr->White)
     {
-	XRecolorCursor(dpy, UpperLeftCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, RightButt,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, LeftButt,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, MiddleButt,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->FrameCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->TitleCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->IconCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->IconMgrCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->MoveCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->ResizeCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->MenuCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->ButtonCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->WaitCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->SelectCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
-	XRecolorCursor(dpy, Scr->DestroyCursor,
-		       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, UpperLeftCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, RightButt,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, LeftButt,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, MiddleButt,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->FrameCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->TitleCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->IconCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->IconMgrCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->MoveCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->ResizeCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->MenuCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->ButtonCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->WaitCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->SelectCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
+        XRecolorCursor(dpy, Scr->DestroyCursor,
+                       &Scr->PointerForeground, &Scr->PointerBackground);
     }
     if (ParseError) {
-	fprintf (stderr, "%s:  errors found in twm %s",
-		 ProgramName, srctypename);
-	if (srcname) fprintf (stderr, " \"%s\"", srcname);
-	fprintf (stderr, "\n");
+        fprintf (stderr, "%s:  errors found in twm %s",
+                 ProgramName, srctypename);
+        if (srcname) fprintf (stderr, " \"%s\"", srcname);
+        fprintf (stderr, "\n");
     }
     return (ParseError ? 0 : 1);
 }
 
 
 int ParseTwmrc (filename)
-    char *filename;
+char *filename;
 {
     int i;
     char *home = NULL;
@@ -183,61 +183,61 @@ int ParseTwmrc (filename)
      * try system.twmrc; finally using built-in defaults.
      */
     for (twmrc = NULL, i = 0; !twmrc && i < 4; i++) {
-	switch (i) {
-	  case 0:			/* -f filename */
-	    cp = filename;
-	    break;
+        switch (i) {
+        case 0:			/* -f filename */
+            cp = filename;
+            break;
 
-	  case 1:			/* ~/.twmrc.screennum */
-	    if (!filename) {
-		home = getenv ("HOME");
-		if (home) {
-		    homelen = strlen (home);
-		    cp = tmpfilename;
-		    (void) sprintf (tmpfilename, "%s/.twmrc.%d",
-				    home, Scr->screen);
-		    break;
-		}
-	    }
-	    continue;
+        case 1:			/* ~/.twmrc.screennum */
+            if (!filename) {
+                home = getenv ("HOME");
+                if (home) {
+                    homelen = strlen (home);
+                    cp = tmpfilename;
+                    (void) sprintf (tmpfilename, "%s/.twmrc.%d",
+                                    home, Scr->screen);
+                    break;
+                }
+            }
+            continue;
 
-	  case 2:			/* ~/.twmrc */
-	    if (home) {
-		tmpfilename[homelen + 7] = '\0';
-	    }
-	    break;
+        case 2:			/* ~/.twmrc */
+            if (home) {
+                tmpfilename[homelen + 7] = '\0';
+            }
+            break;
 
-	  case 3:			/* system.twmrc */
-	    cp = SYSTEM_INIT_FILE;
-	    break;
-	}
+        case 3:			/* system.twmrc */
+            cp = SYSTEM_INIT_FILE;
+            break;
+        }
 
-	if (cp) twmrc = fopen (cp, "r");
+        if (cp) twmrc = fopen (cp, "r");
     }
 
     if (twmrc) {
-	int status;
+        int status;
 
-	if (filename && cp != filename) {
-	    fprintf (stderr,
-		     "%s:  unable to open twmrc file %s, using %s instead\n",
-		     ProgramName, filename, cp);
-	}
-	status = doparse (twmFileInput, "file", cp);
-	fclose (twmrc);
-	return status;
+        if (filename && cp != filename) {
+            fprintf (stderr,
+                     "%s:  unable to open twmrc file %s, using %s instead\n",
+                     ProgramName, filename, cp);
+        }
+        status = doparse (twmFileInput, "file", cp);
+        fclose (twmrc);
+        return status;
     } else {
-	if (filename) {
-	    fprintf (stderr,
-	"%s:  unable to open twmrc file %s, using built-in defaults instead\n",
-		     ProgramName, filename);
-	}
-	return ParseStringList (defTwmrc);
+        if (filename) {
+            fprintf (stderr,
+                     "%s:  unable to open twmrc file %s, using built-in defaults instead\n",
+                     ProgramName, filename);
+        }
+        return ParseStringList (defTwmrc);
     }
 }
 
 int ParseStringList (sl)
-    char **sl;
+char **sl;
 {
     stringListSource = sl;
     currentString = *sl;
@@ -262,13 +262,13 @@ static int twmFileInput()
 
     while (ptr == len)
     {
-	if (fgets(buff, BUF_LEN, twmrc) == NULL)
-	    return 0;
+        if (fgets(buff, BUF_LEN, twmrc) == NULL)
+            return 0;
 
-	yylineno++;
+        yylineno++;
 
-	ptr = 0;
-	len = strlen(buff);
+        ptr = 0;
+        len = strlen(buff);
     }
     return ((int)buff[ptr++]);
 }
@@ -281,11 +281,11 @@ static int twmStringListInput()
      * return the character currently pointed to
      */
     if (currentString) {
-	unsigned int c = (unsigned int) *currentString++;
+        unsigned int c = (unsigned int) *currentString++;
 
-	if (c) return c;		/* if non-nul char */
-	currentString = *++stringListSource;  /* advance to next bol */
-	return '\n';			/* but say that we hit last eol */
+        if (c) return c;		/* if non-nul char */
+        currentString = *++stringListSource;  /* advance to next bol */
+        return '\n';			/* but say that we hit last eol */
     }
     return 0;				/* eof */
 }
@@ -303,14 +303,14 @@ static int twmStringListInput()
  */
 
 void twmUnput (c)
-    int c;
+int c;
 {
     if (overflowlen < sizeof overflowbuff) {
-	overflowbuff[overflowlen++] = (char) c;
+        overflowbuff[overflowlen++] = (char) c;
     } else {
-	twmrc_error_prefix ();
-	fprintf (stderr, "unable to unput character (%d)\n",
-		 c);
+        twmrc_error_prefix ();
+        fprintf (stderr, "unable to unput character (%d)\n",
+                 c);
     }
 }
 
@@ -336,7 +336,7 @@ TwmOutput(c)
 /**********************************************************************
  *
  *  Parsing table and routines
- * 
+ *
  ***********************************************************************/
 
 typedef struct _TwmKeyword {
@@ -420,7 +420,7 @@ typedef struct _TwmKeyword {
  * in lowercase and only contain the letters a-z).  It is fed to a binary
  * search to parse keywords.
  */
-static TwmKeyword keytable[] = { 
+static TwmKeyword keytable[] = {
     { "all",			ALL, 0 },
     { "autoraise",		AUTO_RAISE, 0 },
     { "autorelativeresize",	KEYWORD, kw0_AutoRelativeResize },
@@ -625,21 +625,21 @@ static TwmKeyword keytable[] = {
 static int numkeywords = (sizeof(keytable)/sizeof(keytable[0]));
 
 int parse_keyword (s, nump)
-    char *s;
-    int *nump;
+char *s;
+int *nump;
 {
     register int lower = 0, upper = numkeywords - 1;
 
     XmuCopyISOLatin1Lowered (s, s);
     while (lower <= upper) {
         int middle = (lower + upper) / 2;
-	TwmKeyword *p = &keytable[middle];
+        TwmKeyword *p = &keytable[middle];
         int res = strcmp (p->name, s);
 
         if (res < 0) {
             lower = middle + 1;
         } else if (res == 0) {
-	    *nump = p->subnum;
+            *nump = p->subnum;
             return p->value;
         } else {
             upper = middle - 1;
@@ -655,108 +655,108 @@ int parse_keyword (s, nump)
  */
 
 int do_single_keyword (keyword)
-    int keyword;
+int keyword;
 {
     switch (keyword) {
-      case kw0_NoDefaults:
-	Scr->NoDefaults = TRUE;
-	return 1;
+    case kw0_NoDefaults:
+        Scr->NoDefaults = TRUE;
+        return 1;
 
-      case kw0_AutoRelativeResize:
-	Scr->AutoRelativeResize = TRUE;
-	return 1;
+    case kw0_AutoRelativeResize:
+        Scr->AutoRelativeResize = TRUE;
+        return 1;
 
-      case kw0_ForceIcons:
-	if (Scr->FirstTime) Scr->ForceIcon = TRUE;
-	return 1;
+    case kw0_ForceIcons:
+        if (Scr->FirstTime) Scr->ForceIcon = TRUE;
+        return 1;
 
-      case kw0_NoIconManagers:
-	Scr->NoIconManagers = TRUE;
-	return 1;
+    case kw0_NoIconManagers:
+        Scr->NoIconManagers = TRUE;
+        return 1;
 
-      case kw0_OpaqueMove:
-	Scr->OpaqueMove = TRUE;
-	return 1;
+    case kw0_OpaqueMove:
+        Scr->OpaqueMove = TRUE;
+        return 1;
 
-      case kw0_InterpolateMenuColors:
-	if (Scr->FirstTime) Scr->InterpolateMenuColors = TRUE;
-	return 1;
+    case kw0_InterpolateMenuColors:
+        if (Scr->FirstTime) Scr->InterpolateMenuColors = TRUE;
+        return 1;
 
-      case kw0_NoVersion:
-	/* obsolete */
-	return 1;
+    case kw0_NoVersion:
+        /* obsolete */
+        return 1;
 
-      case kw0_SortIconManager:
-	if (Scr->FirstTime) Scr->SortIconMgr = TRUE;
-	return 1;
+    case kw0_SortIconManager:
+        if (Scr->FirstTime) Scr->SortIconMgr = TRUE;
+        return 1;
 
-      case kw0_NoGrabServer:
-	Scr->NoGrabServer = TRUE;
-	return 1;
+    case kw0_NoGrabServer:
+        Scr->NoGrabServer = TRUE;
+        return 1;
 
-      case kw0_NoMenuShadows:
-	if (Scr->FirstTime) Scr->Shadow = FALSE;
-	return 1;
+    case kw0_NoMenuShadows:
+        if (Scr->FirstTime) Scr->Shadow = FALSE;
+        return 1;
 
-      case kw0_NoRaiseOnMove:
-	if (Scr->FirstTime) Scr->NoRaiseMove = TRUE;
-	return 1;
+    case kw0_NoRaiseOnMove:
+        if (Scr->FirstTime) Scr->NoRaiseMove = TRUE;
+        return 1;
 
-      case kw0_NoRaiseOnResize:
-	if (Scr->FirstTime) Scr->NoRaiseResize = TRUE;
-	return 1;
+    case kw0_NoRaiseOnResize:
+        if (Scr->FirstTime) Scr->NoRaiseResize = TRUE;
+        return 1;
 
-      case kw0_NoRaiseOnDeiconify:
-	if (Scr->FirstTime) Scr->NoRaiseDeicon = TRUE;
-	return 1;
+    case kw0_NoRaiseOnDeiconify:
+        if (Scr->FirstTime) Scr->NoRaiseDeicon = TRUE;
+        return 1;
 
-      case kw0_DontMoveOff:
-	Scr->DontMoveOff = TRUE;
-	return 1;
+    case kw0_DontMoveOff:
+        Scr->DontMoveOff = TRUE;
+        return 1;
 
-      case kw0_NoBackingStore:
-	Scr->BackingStore = FALSE;
-	return 1;
+    case kw0_NoBackingStore:
+        Scr->BackingStore = FALSE;
+        return 1;
 
-      case kw0_NoSaveUnders:
-	Scr->SaveUnder = FALSE;
-	return 1;
+    case kw0_NoSaveUnders:
+        Scr->SaveUnder = FALSE;
+        return 1;
 
-      case kw0_RestartPreviousState:
-	RestartPreviousState = True;
-	return 1;
+    case kw0_RestartPreviousState:
+        RestartPreviousState = True;
+        return 1;
 
-      case kw0_ClientBorderWidth:
-	if (Scr->FirstTime) Scr->ClientBorderWidth = TRUE;
-	return 1;
+    case kw0_ClientBorderWidth:
+        if (Scr->FirstTime) Scr->ClientBorderWidth = TRUE;
+        return 1;
 
-      case kw0_NoTitleFocus:
-	Scr->TitleFocus = FALSE;
-	return 1;
+    case kw0_NoTitleFocus:
+        Scr->TitleFocus = FALSE;
+        return 1;
 
-      case kw0_RandomPlacement:
-	Scr->RandomPlacement = TRUE;
-	return 1;
+    case kw0_RandomPlacement:
+        Scr->RandomPlacement = TRUE;
+        return 1;
 
-      case kw0_DecorateTransients:
-	Scr->DecorateTransients = TRUE;
-	return 1;
+    case kw0_DecorateTransients:
+        Scr->DecorateTransients = TRUE;
+        return 1;
 
-      case kw0_ShowIconManager:
-	Scr->ShowIconManager = TRUE;
-	return 1;
+    case kw0_ShowIconManager:
+        Scr->ShowIconManager = TRUE;
+        return 1;
 
-      case kw0_NoCaseSensitive:
-	Scr->CaseSensitive = FALSE;
-	return 1;
+    case kw0_NoCaseSensitive:
+        Scr->CaseSensitive = FALSE;
+        return 1;
 
-      case kw0_NoRaiseOnWarp:
-	Scr->NoRaiseWarp = TRUE;
-	return 1;
+    case kw0_NoRaiseOnWarp:
+        Scr->NoRaiseWarp = TRUE;
+        return 1;
 
-      case kw0_WarpUnmapped:
-	Scr->WarpUnmapped = TRUE;
-	return 1;
+    case kw0_WarpUnmapped:
+        Scr->WarpUnmapped = TRUE;
+        return 1;
     }
 
     return 0;
@@ -764,67 +764,67 @@ int do_single_keyword (keyword)
 
 
 int do_string_keyword (keyword, s)
-    int keyword;
-    char *s;
+int keyword;
+char *s;
 {
     switch (keyword) {
-      case kws_UsePPosition:
-	{ 
-	    int ppos = ParseUsePPosition (s);
-	    if (ppos < 0) {
-		twmrc_error_prefix();
-		fprintf (stderr,
-			 "ignoring invalid UsePPosition argument \"%s\"\n", s);
-	    } else {
-		Scr->UsePPosition = ppos;
-	    }
-	    return 1;
-	}
+    case kws_UsePPosition:
+    {
+        int ppos = ParseUsePPosition (s);
+        if (ppos < 0) {
+            twmrc_error_prefix();
+            fprintf (stderr,
+                     "ignoring invalid UsePPosition argument \"%s\"\n", s);
+        } else {
+            Scr->UsePPosition = ppos;
+        }
+        return 1;
+    }
 
-      case kws_IconFont:
-	if (!Scr->HaveFonts) Scr->IconFont.name = s;
-	return 1;
+    case kws_IconFont:
+        if (!Scr->HaveFonts) Scr->IconFont.name = s;
+        return 1;
 
-      case kws_ResizeFont:
-	if (!Scr->HaveFonts) Scr->SizeFont.name = s;
-	return 1;
+    case kws_ResizeFont:
+        if (!Scr->HaveFonts) Scr->SizeFont.name = s;
+        return 1;
 
-      case kws_MenuFont:
-	if (!Scr->HaveFonts) Scr->MenuFont.name = s;
-	return 1;
+    case kws_MenuFont:
+        if (!Scr->HaveFonts) Scr->MenuFont.name = s;
+        return 1;
 
-      case kws_TitleFont:
-	if (!Scr->HaveFonts) Scr->TitleBarFont.name = s;
-	return 1;
+    case kws_TitleFont:
+        if (!Scr->HaveFonts) Scr->TitleBarFont.name = s;
+        return 1;
 
-      case kws_IconManagerFont:
-	if (!Scr->HaveFonts) Scr->IconManagerFont.name = s;
-	return 1;
+    case kws_IconManagerFont:
+        if (!Scr->HaveFonts) Scr->IconManagerFont.name = s;
+        return 1;
 
-      case kws_UnknownIcon:
-	if (Scr->FirstTime) GetUnknownIcon (s);
-	return 1;
+    case kws_UnknownIcon:
+        if (Scr->FirstTime) GetUnknownIcon (s);
+        return 1;
 
-      case kws_IconDirectory:
-	if (Scr->FirstTime) Scr->IconDirectory = ExpandFilename (s);
-	return 1;
+    case kws_IconDirectory:
+        if (Scr->FirstTime) Scr->IconDirectory = ExpandFilename (s);
+        return 1;
 
-      case kws_MaxWindowSize:
-	JunkMask = XParseGeometry (s, &JunkX, &JunkY, &JunkWidth, &JunkHeight);
-	if ((JunkMask & (WidthValue | HeightValue)) != 
-	    (WidthValue | HeightValue)) {
-	    twmrc_error_prefix();
-	    fprintf (stderr, "bad MaxWindowSize \"%s\"\n", s);
-	    return 0;
-	}
-	if (JunkWidth <= 0 || JunkHeight <= 0) {
-	    twmrc_error_prefix();
-	    fprintf (stderr, "MaxWindowSize \"%s\" must be positive\n", s);
-	    return 0;
-	}
-	Scr->MaxWindowWidth = JunkWidth;
-	Scr->MaxWindowHeight = JunkHeight;
-	return 1;
+    case kws_MaxWindowSize:
+        JunkMask = XParseGeometry (s, &JunkX, &JunkY, &JunkWidth, &JunkHeight);
+        if ((JunkMask & (WidthValue | HeightValue)) !=
+                (WidthValue | HeightValue)) {
+            twmrc_error_prefix();
+            fprintf (stderr, "bad MaxWindowSize \"%s\"\n", s);
+            return 0;
+        }
+        if (JunkWidth <= 0 || JunkHeight <= 0) {
+            twmrc_error_prefix();
+            fprintf (stderr, "MaxWindowSize \"%s\" must be positive\n", s);
+            return 0;
+        }
+        Scr->MaxWindowWidth = JunkWidth;
+        Scr->MaxWindowHeight = JunkHeight;
+        return 1;
     }
 
     return 0;
@@ -832,148 +832,148 @@ int do_string_keyword (keyword, s)
 
 
 int do_number_keyword (keyword, num)
-    int keyword;
-    int num;
+int keyword;
+int num;
 {
     switch (keyword) {
-      case kwn_ConstrainedMoveTime:
-	ConstrainedMoveTime = num;
-	return 1;
+    case kwn_ConstrainedMoveTime:
+        ConstrainedMoveTime = num;
+        return 1;
 
-      case kwn_MoveDelta:
-	Scr->MoveDelta = num;
-	return 1;
+    case kwn_MoveDelta:
+        Scr->MoveDelta = num;
+        return 1;
 
-      case kwn_XorValue:
-	if (Scr->FirstTime) Scr->XORvalue = num;
-	return 1;
+    case kwn_XorValue:
+        if (Scr->FirstTime) Scr->XORvalue = num;
+        return 1;
 
-      case kwn_FramePadding:
-	if (Scr->FirstTime) Scr->FramePadding = num;
-	return 1;
+    case kwn_FramePadding:
+        if (Scr->FirstTime) Scr->FramePadding = num;
+        return 1;
 
-      case kwn_TitlePadding:
-	if (Scr->FirstTime) Scr->TitlePadding = num;
-	return 1;
+    case kwn_TitlePadding:
+        if (Scr->FirstTime) Scr->TitlePadding = num;
+        return 1;
 
-      case kwn_ButtonIndent:
-	if (Scr->FirstTime) Scr->ButtonIndent = num;
-	return 1;
+    case kwn_ButtonIndent:
+        if (Scr->FirstTime) Scr->ButtonIndent = num;
+        return 1;
 
-      case kwn_BorderWidth:
-	if (Scr->FirstTime) Scr->BorderWidth = num;
-	return 1;
+    case kwn_BorderWidth:
+        if (Scr->FirstTime) Scr->BorderWidth = num;
+        return 1;
 
-      case kwn_IconBorderWidth:
-	if (Scr->FirstTime) Scr->IconBorderWidth = num;
-	return 1;
+    case kwn_IconBorderWidth:
+        if (Scr->FirstTime) Scr->IconBorderWidth = num;
+        return 1;
 
-      case kwn_TitleButtonBorderWidth:
-	if (Scr->FirstTime) Scr->TBInfo.border = num;
-	return 1;
+    case kwn_TitleButtonBorderWidth:
+        if (Scr->FirstTime) Scr->TBInfo.border = num;
+        return 1;
 
-      case kwn_Priority:
-	if (HasSync) XSyncSetPriority(dpy, /*self*/ None, num);
-	return 1;
+    case kwn_Priority:
+        if (HasSync) XSyncSetPriority(dpy, /*self*/ None, num);
+        return 1;
     }
 
     return 0;
 }
 
 name_list **do_colorlist_keyword (keyword, colormode, s)
-    int keyword;
-    int colormode;
-    char *s;
+int keyword;
+int colormode;
+char *s;
 {
     switch (keyword) {
-      case kwcl_BorderColor:
-	GetColor (colormode, &Scr->BorderColor, s);
-	return &Scr->BorderColorL;
+    case kwcl_BorderColor:
+        GetColor (colormode, &Scr->BorderColor, s);
+        return &Scr->BorderColorL;
 
-      case kwcl_IconManagerHighlight:
-	GetColor (colormode, &Scr->IconManagerHighlight, s);
-	return &Scr->IconManagerHighlightL;
+    case kwcl_IconManagerHighlight:
+        GetColor (colormode, &Scr->IconManagerHighlight, s);
+        return &Scr->IconManagerHighlightL;
 
-      case kwcl_BorderTileForeground:
-	GetColor (colormode, &Scr->BorderTileC.fore, s);
-	return &Scr->BorderTileForegroundL;
+    case kwcl_BorderTileForeground:
+        GetColor (colormode, &Scr->BorderTileC.fore, s);
+        return &Scr->BorderTileForegroundL;
 
-      case kwcl_BorderTileBackground:
-	GetColor (colormode, &Scr->BorderTileC.back, s);
-	return &Scr->BorderTileBackgroundL;
+    case kwcl_BorderTileBackground:
+        GetColor (colormode, &Scr->BorderTileC.back, s);
+        return &Scr->BorderTileBackgroundL;
 
-      case kwcl_TitleForeground:
-	GetColor (colormode, &Scr->TitleC.fore, s);
-	return &Scr->TitleForegroundL;
+    case kwcl_TitleForeground:
+        GetColor (colormode, &Scr->TitleC.fore, s);
+        return &Scr->TitleForegroundL;
 
-      case kwcl_TitleBackground:
-	GetColor (colormode, &Scr->TitleC.back, s);
-	return &Scr->TitleBackgroundL;
+    case kwcl_TitleBackground:
+        GetColor (colormode, &Scr->TitleC.back, s);
+        return &Scr->TitleBackgroundL;
 
-      case kwcl_IconForeground:
-	GetColor (colormode, &Scr->IconC.fore, s);
-	return &Scr->IconForegroundL;
+    case kwcl_IconForeground:
+        GetColor (colormode, &Scr->IconC.fore, s);
+        return &Scr->IconForegroundL;
 
-      case kwcl_IconBackground:
-	GetColor (colormode, &Scr->IconC.back, s);
-	return &Scr->IconBackgroundL;
+    case kwcl_IconBackground:
+        GetColor (colormode, &Scr->IconC.back, s);
+        return &Scr->IconBackgroundL;
 
-      case kwcl_IconBorderColor:
-	GetColor (colormode, &Scr->IconBorderColor, s);
-	return &Scr->IconBorderColorL;
+    case kwcl_IconBorderColor:
+        GetColor (colormode, &Scr->IconBorderColor, s);
+        return &Scr->IconBorderColorL;
 
-      case kwcl_IconManagerForeground:
-	GetColor (colormode, &Scr->IconManagerC.fore, s);
-	return &Scr->IconManagerFL;
+    case kwcl_IconManagerForeground:
+        GetColor (colormode, &Scr->IconManagerC.fore, s);
+        return &Scr->IconManagerFL;
 
-      case kwcl_IconManagerBackground:
-	GetColor (colormode, &Scr->IconManagerC.back, s);
-	return &Scr->IconManagerBL;
+    case kwcl_IconManagerBackground:
+        GetColor (colormode, &Scr->IconManagerC.back, s);
+        return &Scr->IconManagerBL;
     }
     return NULL;
 }
 
 int do_color_keyword (keyword, colormode, s)
-    int keyword;
-    int colormode;
-    char *s;
+int keyword;
+int colormode;
+char *s;
 {
     switch (keyword) {
-      case kwc_DefaultForeground:
-	GetColor (colormode, &Scr->DefaultC.fore, s);
-	return 1;
+    case kwc_DefaultForeground:
+        GetColor (colormode, &Scr->DefaultC.fore, s);
+        return 1;
 
-      case kwc_DefaultBackground:
-	GetColor (colormode, &Scr->DefaultC.back, s);
-	return 1;
+    case kwc_DefaultBackground:
+        GetColor (colormode, &Scr->DefaultC.back, s);
+        return 1;
 
-      case kwc_MenuForeground:
-	GetColor (colormode, &Scr->MenuC.fore, s);
-	return 1;
+    case kwc_MenuForeground:
+        GetColor (colormode, &Scr->MenuC.fore, s);
+        return 1;
 
-      case kwc_MenuBackground:
-	GetColor (colormode, &Scr->MenuC.back, s);
-	return 1;
+    case kwc_MenuBackground:
+        GetColor (colormode, &Scr->MenuC.back, s);
+        return 1;
 
-      case kwc_MenuTitleForeground:
-	GetColor (colormode, &Scr->MenuTitleC.fore, s);
-	return 1;
+    case kwc_MenuTitleForeground:
+        GetColor (colormode, &Scr->MenuTitleC.fore, s);
+        return 1;
 
-      case kwc_MenuTitleBackground:
-	GetColor (colormode, &Scr->MenuTitleC.back, s);
-	return 1;
+    case kwc_MenuTitleBackground:
+        GetColor (colormode, &Scr->MenuTitleC.back, s);
+        return 1;
 
-      case kwc_MenuShadowColor:
-	GetColor (colormode, &Scr->MenuShadowColor, s);
-	return 1;
+    case kwc_MenuShadowColor:
+        GetColor (colormode, &Scr->MenuShadowColor, s);
+        return 1;
 
-      case kwc_PointerForeground:
-	GetColorValue (colormode, &Scr->PointerForeground, s);
-	return 1;
+    case kwc_PointerForeground:
+        GetColorValue (colormode, &Scr->PointerForeground, s);
+        return 1;
 
-      case kwc_PointerBackground:
-	GetColorValue (colormode, &Scr->PointerBackground, s);
-	return 1;
+    case kwc_PointerBackground:
+        GetColorValue (colormode, &Scr->PointerBackground, s);
+        return 1;
     }
 
     return 0;
@@ -982,61 +982,69 @@ int do_color_keyword (keyword, colormode, s)
 /*
  * put_pixel_on_root() Save a pixel value in twm root window color property.
  */
-put_pixel_on_root(pixel)                                 
-    Pixel pixel;                                         
-{                                                        
-  int           i, addPixel = 1;
-  Atom          pixelAtom, retAtom;	                 
-  int           retFormat;
-  unsigned long nPixels, retAfter;                     
-  Pixel        *retProp;
-  pixelAtom = XInternAtom(dpy, "_MIT_PRIORITY_COLORS", True);        
-  XGetWindowProperty(dpy, Scr->Root, pixelAtom, 0, 8192, 
-		     False, XA_CARDINAL, &retAtom,       
-		     &retFormat, &nPixels, &retAfter,    
-		     (unsigned char **)&retProp);
+put_pixel_on_root(pixel)
+Pixel pixel;
+{
+    int           i, addPixel = 1;
+    Atom          pixelAtom, retAtom;
+    int           retFormat;
+    unsigned long nPixels, retAfter;
+    Pixel        *retProp;
+    pixelAtom = XInternAtom(dpy, "_MIT_PRIORITY_COLORS", True);
+    XGetWindowProperty(dpy, Scr->Root, pixelAtom, 0, 8192,
+                       False, XA_CARDINAL, &retAtom,
+                       &retFormat, &nPixels, &retAfter,
+                       (unsigned char **)&retProp);
 
-  for (i=0; i< nPixels; i++)                             
-      if (pixel == retProp[i]) addPixel = 0;             
+    for (i=0; i< nPixels; i++)
+        if (pixel == retProp[i]) addPixel = 0;
 
-  if (addPixel)                                          
-      XChangeProperty (dpy, Scr->Root, _XA_MIT_PRIORITY_COLORS,
-		       XA_CARDINAL, 32, PropModeAppend,  
-		       (unsigned char *)&pixel, 1);                       
-}                                                        
+    if (addPixel)
+        XChangeProperty (dpy, Scr->Root, _XA_MIT_PRIORITY_COLORS,
+                         XA_CARDINAL, 32, PropModeAppend,
+                         (unsigned char *)&pixel, 1);
+}
 
 /*
  * do_string_savecolor() save a color from a string in the twmrc file.
  */
 int do_string_savecolor(colormode, s)
-     int colormode;
-     char *s;
+int colormode;
+char *s;
 {
-  Pixel p;
-  GetColor(colormode, &p, s);
-  put_pixel_on_root(p);
+    Pixel p;
+    GetColor(colormode, &p, s);
+    put_pixel_on_root(p);
 }
 
 /*
  * do_var_savecolor() save a color from a var in the twmrc file.
  */
-typedef struct _cnode {int i; struct _cnode *next;} Cnode, *Cptr;
+typedef struct _cnode {
+    int i;
+    struct _cnode *next;
+} Cnode, *Cptr;
 Cptr chead = NULL;
 
 int do_var_savecolor(key)
 int key;
 {
-  Cptr cptrav, cpnew;
-  if (!chead) {
-    chead = (Cptr)malloc(sizeof(Cnode));
-    chead->i = key; chead->next = NULL;
-  }
-  else {
-    cptrav = chead;
-    while (cptrav->next != NULL) { cptrav = cptrav->next; }
-    cpnew = (Cptr)malloc(sizeof(Cnode));
-    cpnew->i = key; cpnew->next = NULL; cptrav->next = cpnew;
-  }
+    Cptr cptrav, cpnew;
+    if (!chead) {
+        chead = (Cptr)malloc(sizeof(Cnode));
+        chead->i = key;
+        chead->next = NULL;
+    }
+    else {
+        cptrav = chead;
+        while (cptrav->next != NULL) {
+            cptrav = cptrav->next;
+        }
+        cpnew = (Cptr)malloc(sizeof(Cnode));
+        cpnew->i = key;
+        cpnew->next = NULL;
+        cptrav->next = cpnew;
+    }
 }
 
 /*
@@ -1045,63 +1053,63 @@ int key;
  */
 void assign_var_savecolor()
 {
-  Cptr cp = chead;
-  while (cp != NULL) {
-    switch (cp->i) {
-    case kwcl_BorderColor:
-      put_pixel_on_root(Scr->BorderColor);
-      break;
-    case kwcl_IconManagerHighlight:
-      put_pixel_on_root(Scr->IconManagerHighlight);
-      break;
-    case kwcl_BorderTileForeground:
-      put_pixel_on_root(Scr->BorderTileC.fore);
-      break;
-    case kwcl_BorderTileBackground:
-      put_pixel_on_root(Scr->BorderTileC.back);
-      break;
-    case kwcl_TitleForeground:
-      put_pixel_on_root(Scr->TitleC.fore);
-      break;
-    case kwcl_TitleBackground:
-      put_pixel_on_root(Scr->TitleC.back);
-      break;
-    case kwcl_IconForeground:
-      put_pixel_on_root(Scr->IconC.fore);
-      break;
-    case kwcl_IconBackground:
-      put_pixel_on_root(Scr->IconC.back);
-      break;
-    case kwcl_IconBorderColor:
-      put_pixel_on_root(Scr->IconBorderColor);
-      break;
-    case kwcl_IconManagerForeground:
-      put_pixel_on_root(Scr->IconManagerC.fore);
-      break;
-    case kwcl_IconManagerBackground:
-      put_pixel_on_root(Scr->IconManagerC.back);
-      break;
+    Cptr cp = chead;
+    while (cp != NULL) {
+        switch (cp->i) {
+        case kwcl_BorderColor:
+            put_pixel_on_root(Scr->BorderColor);
+            break;
+        case kwcl_IconManagerHighlight:
+            put_pixel_on_root(Scr->IconManagerHighlight);
+            break;
+        case kwcl_BorderTileForeground:
+            put_pixel_on_root(Scr->BorderTileC.fore);
+            break;
+        case kwcl_BorderTileBackground:
+            put_pixel_on_root(Scr->BorderTileC.back);
+            break;
+        case kwcl_TitleForeground:
+            put_pixel_on_root(Scr->TitleC.fore);
+            break;
+        case kwcl_TitleBackground:
+            put_pixel_on_root(Scr->TitleC.back);
+            break;
+        case kwcl_IconForeground:
+            put_pixel_on_root(Scr->IconC.fore);
+            break;
+        case kwcl_IconBackground:
+            put_pixel_on_root(Scr->IconC.back);
+            break;
+        case kwcl_IconBorderColor:
+            put_pixel_on_root(Scr->IconBorderColor);
+            break;
+        case kwcl_IconManagerForeground:
+            put_pixel_on_root(Scr->IconManagerC.fore);
+            break;
+        case kwcl_IconManagerBackground:
+            put_pixel_on_root(Scr->IconManagerC.back);
+            break;
+        }
+        cp = cp->next;
     }
-    cp = cp->next;
-  }
-  if (chead) {
-    free(chead);
-    chead = NULL;
-  }
+    if (chead) {
+        free(chead);
+        chead = NULL;
+    }
 }
 
 static int ParseUsePPosition (s)
-    register char *s;
+register char *s;
 {
     XmuCopyISOLatin1Lowered (s, s);
 
     if (strcmp (s, "off") == 0) {
-	return PPOS_OFF;
+        return PPOS_OFF;
     } else if (strcmp (s, "on") == 0) {
-	return PPOS_ON;
+        return PPOS_ON;
     } else if (strcmp (s, "non-zero") == 0 ||
-	       strcmp (s, "nonzero") == 0) {
-	return PPOS_NON_ZERO;
+               strcmp (s, "nonzero") == 0) {
+        return PPOS_NON_ZERO;
     }
 
     return -1;
@@ -1109,46 +1117,46 @@ static int ParseUsePPosition (s)
 
 
 do_squeeze_entry (list, name, justify, num, denom)
-    name_list **list;			/* squeeze or dont-squeeze list */
-    char *name;				/* window name */
-    int justify;			/* left, center, right */
-    int num;				/* signed num */
-    int denom;				/* 0 or indicates fraction denom */
+name_list **list;			/* squeeze or dont-squeeze list */
+char *name;				/* window name */
+int justify;			/* left, center, right */
+int num;				/* signed num */
+int denom;				/* 0 or indicates fraction denom */
 {
     int absnum = (num < 0 ? -num : num);
 
     if (denom < 0) {
-	twmrc_error_prefix();
-	fprintf (stderr, "negative SqueezeTitle denominator %d\n", denom);
-	return;
+        twmrc_error_prefix();
+        fprintf (stderr, "negative SqueezeTitle denominator %d\n", denom);
+        return;
     }
     if (absnum > denom && denom != 0) {
-	twmrc_error_prefix();
-	fprintf (stderr, "SqueezeTitle fraction %d/%d outside window\n",
-		 num, denom);
-	return;
+        twmrc_error_prefix();
+        fprintf (stderr, "SqueezeTitle fraction %d/%d outside window\n",
+                 num, denom);
+        return;
     }
     if (denom == 1) {
-	twmrc_error_prefix();
-	fprintf (stderr, "useless SqueezeTitle faction %d/%d, assuming 0/0\n",
-		 num, denom);
-	num = 0;
-	denom = 0;
+        twmrc_error_prefix();
+        fprintf (stderr, "useless SqueezeTitle faction %d/%d, assuming 0/0\n",
+                 num, denom);
+        num = 0;
+        denom = 0;
     }
 
     if (HasShape) {
-	SqueezeInfo *sinfo;
-	sinfo = (SqueezeInfo *) malloc (sizeof(SqueezeInfo));
+        SqueezeInfo *sinfo;
+        sinfo = (SqueezeInfo *) malloc (sizeof(SqueezeInfo));
 
-	if (!sinfo) {
-	    twmrc_error_prefix();
-	    fprintf (stderr, "unable to allocate %d bytes for squeeze info\n",
-		     sizeof(SqueezeInfo));
-	    return;
-	}
-	sinfo->justify = justify;
-	sinfo->num = num;
-	sinfo->denom = denom;
-	AddToList (list, name, (char *) sinfo);
+        if (!sinfo) {
+            twmrc_error_prefix();
+            fprintf (stderr, "unable to allocate %d bytes for squeeze info\n",
+                     sizeof(SqueezeInfo));
+            return;
+        }
+        sinfo->justify = justify;
+        sinfo->num = num;
+        sinfo->denom = denom;
+        AddToList (list, name, (char *) sinfo);
     }
 }

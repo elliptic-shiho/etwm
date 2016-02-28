@@ -83,36 +83,46 @@ CreateGCs()
     unsigned long   gcm;
 
     if (!Scr->FirstTime || prevScr == Scr)
-	return;
+        return;
 
     prevScr = Scr;
 
     /* create GC's */
 
     gcm = 0;
-    gcm |= GCFunction;	    gcv.function = GXxor;
-    gcm |= GCLineWidth;	    gcv.line_width = 0;
-    gcm |= GCForeground;    gcv.foreground = Scr->XORvalue;
-    gcm |= GCSubwindowMode; gcv.subwindow_mode = IncludeInferiors;
+    gcm |= GCFunction;
+    gcv.function = GXxor;
+    gcm |= GCLineWidth;
+    gcv.line_width = 0;
+    gcm |= GCForeground;
+    gcv.foreground = Scr->XORvalue;
+    gcm |= GCSubwindowMode;
+    gcv.subwindow_mode = IncludeInferiors;
 
     Scr->DrawGC = XCreateGC(dpy, Scr->Root, gcm, &gcv);
 
     gcm = 0;
-    gcm |= GCForeground;    gcv.foreground = Scr->MenuC.fore;
-    gcm |= GCBackground;    gcv.background = Scr->MenuC.back;
-    gcm |= GCFont;	    gcv.font =  Scr->MenuFont.font->fid;
+    gcm |= GCForeground;
+    gcv.foreground = Scr->MenuC.fore;
+    gcm |= GCBackground;
+    gcv.background = Scr->MenuC.back;
+    gcm |= GCFont;
+    gcv.font =  Scr->MenuFont.font->fid;
 
     Scr->MenuGC = XCreateGC(dpy, Scr->Root, gcm, &gcv);
 
     gcm = 0;
-    gcm |= GCPlaneMask;	    gcv.plane_mask = AllPlanes;
+    gcm |= GCPlaneMask;
+    gcv.plane_mask = AllPlanes;
     /*
      * Prevent GraphicsExpose and NoExpose events.  We'd only get NoExpose
      * events anyway;  they cause BadWindow errors from XGetWindowAttributes
      * call in FindScreenInfo (events.c) (since drawable is a pixmap).
      */
-    gcm |= GCGraphicsExposures;  gcv.graphics_exposures = False;
-    gcm |= GCLineWidth;	    gcv.line_width = 0;
+    gcm |= GCGraphicsExposures;
+    gcv.graphics_exposures = False;
+    gcm |= GCLineWidth;
+    gcv.line_width = 0;
 
     Scr->NormalGC = XCreateGC(dpy, Scr->Root, gcm, &gcv);
 }

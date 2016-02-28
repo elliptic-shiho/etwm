@@ -81,13 +81,13 @@ struct name_list_struct
  *
  *  Inputs:
  *	list	- the address of the pointer to the head of a list
- *	name	- a pointer to the name of the window 
+ *	name	- a pointer to the name of the window
  *	ptr	- pointer to list dependent data
  *
  *  Special Considerations
- *	If the list does not use the ptr value, a non-null value 
+ *	If the list does not use the ptr value, a non-null value
  *	should be placed in it.  LookInList returns this ptr value
- *	and procedures calling LookInList will check for a non-null 
+ *	and procedures calling LookInList will check for a non-null
  *	return value as an indication of success.
  *
  ***********************************************************************
@@ -106,17 +106,17 @@ char *ptr;
     nptr = (name_list *)malloc(sizeof(name_list));
     if (nptr == NULL)
     {
-	twmrc_error_prefix();
-	fprintf (stderr, "unable to allocate %d bytes for name_list\n",
-		 sizeof(name_list));
-	Done();
+        twmrc_error_prefix();
+        fprintf (stderr, "unable to allocate %d bytes for name_list\n",
+                 sizeof(name_list));
+        Done();
     }
 
     nptr->next = *list_head;
     nptr->name = name;
     nptr->ptr = (ptr == NULL) ? (char *)TRUE : ptr;
     *list_head = nptr;
-}    
+}
 
 /***********************************************************************
  *
@@ -124,7 +124,7 @@ char *ptr;
  *	LookInList - look through a list for a window name, or class
  *
  *  Returned Value:
- *	the ptr field of the list structure or NULL if the name 
+ *	the ptr field of the list structure or NULL if the name
  *	or class was not found in the list
  *
  *  Inputs:
@@ -145,20 +145,20 @@ XClassHint *class;
 
     /* look for the name first */
     for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	if (strcmp(name, nptr->name) == 0)
-	    return (nptr->ptr);
+        if (strcmp(name, nptr->name) == 0)
+            return (nptr->ptr);
 
     if (class)
     {
-	/* look for the res_name next */
-	for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	    if (strcmp(class->res_name, nptr->name) == 0)
-		return (nptr->ptr);
+        /* look for the res_name next */
+        for (nptr = list_head; nptr != NULL; nptr = nptr->next)
+            if (strcmp(class->res_name, nptr->name) == 0)
+                return (nptr->ptr);
 
-	/* finally look for the res_class */
-	for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	    if (strcmp(class->res_class, nptr->name) == 0)
-		return (nptr->ptr);
+        /* finally look for the res_class */
+        for (nptr = list_head; nptr != NULL; nptr = nptr->next)
+            if (strcmp(class->res_class, nptr->name) == 0)
+                return (nptr->ptr);
     }
     return (NULL);
 }
@@ -201,36 +201,36 @@ Pixel *ptr;
     name_list *nptr;
 
     for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	if (strcmp(name, nptr->name) == 0)
-	{
-	    save = Scr->FirstTime;
-	    Scr->FirstTime = TRUE;
-	    GetColor(Scr->Monochrome, ptr, nptr->ptr);
-	    Scr->FirstTime = save;
-	    return (TRUE);
-	}
+        if (strcmp(name, nptr->name) == 0)
+        {
+            save = Scr->FirstTime;
+            Scr->FirstTime = TRUE;
+            GetColor(Scr->Monochrome, ptr, nptr->ptr);
+            Scr->FirstTime = save;
+            return (TRUE);
+        }
 
     if (class)
     {
-	for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	    if (strcmp(class->res_name, nptr->name) == 0)
-	    {
-		save = Scr->FirstTime;
-		Scr->FirstTime = TRUE;
-		GetColor(Scr->Monochrome, ptr, nptr->ptr);
-		Scr->FirstTime = save;
-		return (TRUE);
-	    }
+        for (nptr = list_head; nptr != NULL; nptr = nptr->next)
+            if (strcmp(class->res_name, nptr->name) == 0)
+            {
+                save = Scr->FirstTime;
+                Scr->FirstTime = TRUE;
+                GetColor(Scr->Monochrome, ptr, nptr->ptr);
+                Scr->FirstTime = save;
+                return (TRUE);
+            }
 
-	for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-	    if (strcmp(class->res_class, nptr->name) == 0)
-	    {
-		save = Scr->FirstTime;
-		Scr->FirstTime = TRUE;
-		GetColor(Scr->Monochrome, ptr, nptr->ptr);
-		Scr->FirstTime = save;
-		return (TRUE);
-	    }
+        for (nptr = list_head; nptr != NULL; nptr = nptr->next)
+            if (strcmp(class->res_class, nptr->name) == 0)
+            {
+                save = Scr->FirstTime;
+                Scr->FirstTime = TRUE;
+                GetColor(Scr->Monochrome, ptr, nptr->ptr);
+                Scr->FirstTime = save;
+                return (TRUE);
+            }
     }
     return (FALSE);
 }
@@ -251,9 +251,9 @@ name_list **list;
 
     for (nptr = *list; nptr != NULL; )
     {
-	tmp = nptr->next;
-	free((char *) nptr);
-	nptr = tmp;
+        tmp = nptr->next;
+        free((char *) nptr);
+        nptr = tmp;
     }
     *list = NULL;
 }
