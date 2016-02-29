@@ -8,11 +8,12 @@ LOCAL_LIBRARIES = $(XMULIB) $(XTOOLLIB) $(XLIB)
 
            SRCS = gram.c lex.c deftwmrc.c add_window.c gc.c list.c twm.c \
 		parse.c menus.c events.c resize.c util.c version.c iconmgr.c \
-		cursor.c icons.c session.c
+		cursor.c icons.c session.c accessible_addr.c
 
            OBJS = gram.o lex.o deftwmrc.o add_window.o gc.o list.o twm.o \
 		parse.o menus.o events.o resize.o util.o version.o iconmgr.o \
-		cursor.o icons.o session.o
+		cursor.o icons.o session.o accessible_addr.o
+           CFLAGS += -std=c11
 
 all::
 
