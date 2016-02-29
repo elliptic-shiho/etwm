@@ -94,10 +94,7 @@ int HotX, HotY;
  */
 
 /* ARGSUSED */
-void MoveOutline(root, x, y, width, height, bw, th)
-Window root;
-int x, y, width, height, bw, th;
-{
+void MoveOutline(Window root, int x, int y, int width, int height, int bw, int th) {
     static int	lastx = 0;
     static int	lasty = 0;
     static int	lastWidth = 0;
@@ -202,8 +199,7 @@ int x, y, width, height, bw, th;
 #undef DRAWIT
 
 
-    if (r != outline)
-    {
+    if (r != outline) {
         XDrawSegments(dpy, root, Scr->DrawGC, outline, r - outline);
     }
 }
@@ -221,9 +217,7 @@ int x, y, width, height, bw, th;
  */
 
 void
-Zoom(wf, wt)
-Window wf, wt;
-{
+Zoom(Window wf, Window wt) {
     int fx, fy, tx, ty;			/* from, to */
     unsigned int fw, fh, tw, th;	/* from, to */
     long dx, dy, dw, dh;
@@ -277,9 +271,7 @@ Window wf, wt;
  */
 
 char *
-ExpandFilename(name)
-char *name;
-{
+ExpandFilename(char *name) {
     char *newname;
 
     if (name[0] != '~') return name;
@@ -288,7 +280,7 @@ char *name;
     if (!newname) {
         fprintf (stderr,
                  "%s:  unable to allocate %d bytes to expand filename %s/%s\n",
-                 ProgramName, HomeLen + strlen(name) + 2, Home, &name[1]);
+                 ProgramName, HomeLen + (int) strlen(name) + 2, Home, &name[1]);
     } else {
         (void) sprintf (newname, "%s/%s", Home, &name[1]);
     }
@@ -308,11 +300,8 @@ char *name;
  */
 
 void
-GetUnknownIcon(name)
-char *name;
-{
-    if ((Scr->UnknownPm = GetBitmap(name)) != None)
-    {
+GetUnknownIcon(char *name) {
+    if ((Scr->UnknownPm = GetBitmap(name)) != None) {
         XGetGeometry(dpy, Scr->UnknownPm, &JunkRoot, &JunkX, &JunkY,
                      (unsigned int *)&Scr->UnknownWidth, (unsigned int *)&Scr->UnknownHeight, &JunkBW, &JunkDepth);
     }
@@ -334,10 +323,7 @@ char *name;
  ***********************************************************************
  */
 
-Pixmap FindBitmap (name, widthp, heightp)
-char *name;
-unsigned int *widthp, *heightp;
-{
+Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
     char *bigname;
     Pixmap pm;
 
@@ -413,19 +399,12 @@ unsigned int *widthp, *heightp;
     return pm;
 }
 
-Pixmap GetBitmap (name)
-char *name;
-{
+Pixmap GetBitmap (char *name) {
     return FindBitmap (name, &JunkWidth, &JunkHeight);
 }
 
 
-InsertRGBColormap (a, maps, nmaps, replace)
-Atom a;
-XStandardColormap *maps;
-int nmaps;
-Bool replace;
-{
+int InsertRGBColormap (Atom a, XStandardColormap *maps, int nmaps, Bool replace) {
     StdCmap *sc = NULL;
 
     if (replace) {			/* locate existing entry */
@@ -438,8 +417,8 @@ Bool replace;
         sc = (StdCmap *) malloc (sizeof (StdCmap));
         if (!sc) {
             fprintf (stderr, "%s:  unable to allocate %d bytes for StdCmap\n",
-                     ProgramName, sizeof (StdCmap));
-            return;
+                     ProgramName, (int)sizeof (StdCmap));
+            return 0;
         }
     }
 
@@ -459,12 +438,10 @@ Bool replace;
     sc->nmaps = nmaps;
     sc->maps = maps;
 
-    return;
+    return 0;
 }
 
-RemoveRGBColormap (a)
-Atom a;
-{
+int RemoveRGBColormap (Atom a) {
     StdCmap *sc, *prev;
 
     prev = NULL;
@@ -479,11 +456,10 @@ Atom a;
         if (Scr->StdCmapInfo.tail == sc) Scr->StdCmapInfo.tail = prev;
         if (Scr->StdCmapInfo.mru == sc) Scr->StdCmapInfo.mru = NULL;
     }
-    return;
+    return 0;
 }
 
-LocateStandardColormaps()
-{
+int LocateStandardColormaps() {
     Atom *atoms;
     int natoms;
     int i;
@@ -499,28 +475,23 @@ LocateStandardColormaps()
         }
     }
     if (atoms) XFree ((char *) atoms);
-    return;
+    return 0;
 }
 
-GetColor(kind, what, name)
-int kind;
-Pixel *what;
-char *name;
-{
+int GetColor(int kind, Pixel *what, char *name) {
     XColor color, junkcolor;
     Status stat = 0;
     Colormap cmap = Scr->TwmRoot.cmaps.cwins[0]->colormap->c;
 
 #ifndef TOM
     if (!Scr->FirstTime)
-        return;
+        return 0;
 #endif
 
     if (Scr->Monochrome != kind)
-        return;
+        return 0;
 
-    if (!XAllocNamedColor (dpy, cmap, name, &color, &junkcolor))
-    {
+    if (!XAllocNamedColor (dpy, cmap, name, &color, &junkcolor)) {
         /* if we could not allocate the color, let's see if this is a
          * standard colormap
          */
@@ -529,11 +500,10 @@ char *name;
         /* parse the named color */
         if (name[0] != '#')
             stat = XParseColor (dpy, cmap, name, &color);
-        if (!stat)
-        {
+        if (!stat) {
             fprintf (stderr, "%s:  invalid color name \"%s\"\n",
                      ProgramName, name);
-            return;
+            return 0;
         }
 
         /*
@@ -575,55 +545,44 @@ gotit:
         } else {
             fprintf (stderr, "%s:  unable to allocate color \"%s\"\n",
                      ProgramName, name);
-            return;
+            return 0;
         }
     }
 
     *what = color.pixel;
 }
 
-GetColorValue(kind, what, name)
-int kind;
-XColor *what;
-char *name;
-{
+int GetColorValue(int kind, XColor *what, char *name) {
     XColor junkcolor;
     Colormap cmap = Scr->TwmRoot.cmaps.cwins[0]->colormap->c;
 
 #ifndef TOM
     if (!Scr->FirstTime)
-        return;
+        return 0;
 #endif
 
     if (Scr->Monochrome != kind)
-        return;
+        return 0;
 
-    if (!XLookupColor (dpy, cmap, name, what, &junkcolor))
-    {
+    if (!XLookupColor (dpy, cmap, name, what, &junkcolor)) {
         fprintf (stderr, "%s:  invalid color name \"%s\"\n",
                  ProgramName, name);
-    }
-    else
-    {
+    } else {
         what->pixel = AllPlanes;
     }
 }
 
-GetFont(font)
-MyFont *font;
-{
+int GetFont(MyFont *font) {
     char *deffontname = "fixed";
 
     if (font->font != NULL)
         XFreeFont(dpy, font->font);
 
-    if ((font->font = XLoadQueryFont(dpy, font->name)) == NULL)
-    {
+    if ((font->font = XLoadQueryFont(dpy, font->name)) == NULL) {
         if (Scr->DefaultFont.name) {
             deffontname = Scr->DefaultFont.name;
         }
-        if ((font->font = XLoadQueryFont(dpy, deffontname)) == NULL)
-        {
+        if ((font->font = XLoadQueryFont(dpy, deffontname)) == NULL) {
             fprintf (stderr, "%s:  unable to open fonts \"%s\" or \"%s\"\n",
                      ProgramName, font->name, deffontname);
             exit(1);
@@ -639,10 +598,7 @@ MyFont *font;
  * SetFocus - separate routine to set focus to make things more understandable
  * and easier to debug
  */
-SetFocus (tmp_win, time)
-TwmWindow *tmp_win;
-Time	time;
-{
+int SetFocus (TwmWindow *tmp_win, Time time) {
     Window w = (tmp_win ? tmp_win->w : PointerRoot);
 
 #ifdef TRACE
@@ -667,10 +623,7 @@ Time	time;
  * putenv on a sun).  Binding removed if you putenv something else
  * called NAME.
  */
-int
-putenv(s)
-char *s;
-{
+int putenv(char *s) {
     char *v;
     int varlen, idx;
     extern char **environ;
@@ -724,9 +677,7 @@ char *s;
 #endif /* NOPUTENV */
 
 
-static Pixmap CreateXLogoPixmap (widthp, heightp)
-unsigned int *widthp, *heightp;
-{
+static Pixmap CreateXLogoPixmap (unsigned int *widthp, unsigned int *heightp) {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
     if (h < 0) h = 0;
 
@@ -759,9 +710,7 @@ unsigned int *widthp, *heightp;
 }
 
 
-static Pixmap CreateResizePixmap (widthp, heightp)
-unsigned int *widthp, *heightp;
-{
+static Pixmap CreateResizePixmap (unsigned int *widthp, unsigned int *heightp) {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
     if (h < 1) h = 1;
 
@@ -814,9 +763,7 @@ unsigned int *widthp, *heightp;
 }
 
 
-static Pixmap CreateDotPixmap (widthp, heightp)
-unsigned int *widthp, *heightp;
-{
+static Pixmap CreateDotPixmap (unsigned int *widthp, unsigned int *heightp) {
     int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
 
     h = h * 3 / 4;
@@ -846,9 +793,7 @@ static char questionmark_bits[] = {
     0x38, 0x7c, 0x64, 0x30, 0x18, 0x00, 0x18, 0x18
 };
 
-static Pixmap CreateQuestionPixmap (widthp, heightp)
-unsigned int *widthp, *heightp;
-{
+static Pixmap CreateQuestionPixmap (unsigned int *widthp, unsigned int *heightp) {
     *widthp = questionmark_width;
     *heightp = questionmark_height;
     if (Scr->tbpm.question == None) {
@@ -864,16 +809,11 @@ unsigned int *widthp, *heightp;
 }
 
 
-static Pixmap CreateMenuPixmap (widthp, heightp)
-int *widthp, *heightp;
-{
+static Pixmap CreateMenuPixmap (unsigned int *widthp, unsigned int *heightp) {
     CreateMenuIcon (Scr->TBInfo.width - Scr->TBInfo.border * 2,widthp,heightp);
 }
 
-Pixmap CreateMenuIcon (height, widthp, heightp)
-int	height;
-int	*widthp, *heightp;
-{
+Pixmap CreateMenuIcon (unsigned int height, unsigned int *widthp, unsigned int *heightp) {
     int h, w;
     int ih, iw;
     int	ix, iy;
@@ -930,13 +870,11 @@ int	*widthp, *heightp;
         ly = iy + bw + (th - bw - lh) / 2;
 
         lines = 3;
-        if ((lh & 1) && lh < 6)
-        {
+        if ((lh & 1) && lh < 6) {
             lines--;
         }
         dly = lh / (lines - 1);
-        while (lines--)
-        {
+        while (lines--) {
             XFillRectangle (dpy, pix, gc, lx, ly, lw, bw);
             ly += dly;
         }

@@ -165,11 +165,7 @@ static char* atom_names[11] = {
  ***********************************************************************
  */
 
-main(argc, argv, environ)
-int argc;
-char **argv;
-char **environ;
-{
+int main(int argc, char **argv, char **environ) {
     Window root, parent, *children;
     unsigned int nchildren;
     int i, j;
@@ -278,13 +274,10 @@ usage:
 
     NumScreens = ScreenCount(dpy);
 
-    if (MultiScreen)
-    {
+    if (MultiScreen) {
         firstscrn = 0;
         lastscrn = NumScreens - 1;
-    }
-    else
-    {
+    } else {
         firstscrn = lastscrn = DefaultScreen(dpy);
     }
 
@@ -292,8 +285,7 @@ usage:
 
     /* for simplicity, always allocate NumScreens ScreenInfo struct pointers */
     ScreenList = (ScreenInfo **) calloc (NumScreens, sizeof (ScreenInfo *));
-    if (ScreenList == NULL)
-    {
+    if (ScreenList == NULL) {
         fprintf (stderr, "%s: Unable to allocate memory for screen list, exiting.\n",
                  ProgramName);
         exit (1);
@@ -301,8 +293,7 @@ usage:
     numManaged = 0;
     PreviousScreen = DefaultScreen(dpy);
     FirstScreen = TRUE;
-    for (scrnum = firstscrn ; scrnum <= lastscrn; scrnum++)
-    {
+    for (scrnum = firstscrn ; scrnum <= lastscrn; scrnum++) {
         /* Make sure property priority colors is empty */
         XChangeProperty (dpy, RootWindow(dpy, scrnum), _XA_MIT_PRIORITY_COLORS,
                          XA_CARDINAL, 32, PropModeReplace, NULL, 0);
@@ -315,8 +306,7 @@ usage:
         XSync(dpy, 0);
         XSetErrorHandler(TwmErrorHandler);
 
-        if (RedirectError)
-        {
+        if (RedirectError) {
             fprintf (stderr, "%s:  another window manager is already running",
                      ProgramName);
             if (MultiScreen && NumScreens > 0)
@@ -331,8 +321,7 @@ usage:
         /* Note:  ScreenInfo struct is calloc'ed to initialize to zero. */
         Scr = ScreenList[scrnum] =
                   (ScreenInfo *) calloc(1, sizeof(ScreenInfo));
-        if (Scr == NULL)
-        {
+        if (Scr == NULL) {
             fprintf (stderr, "%s: unable to allocate memory for ScreenInfo structure for screen %d.\n",
                      ProgramName, scrnum);
             continue;
@@ -423,8 +412,7 @@ usage:
         GetColor(Scr->Monochrome, &white, "white");
         Scr->White = white;
 
-        if (FirstScreen)
-        {
+        if (FirstScreen) {
             SetFocus ((TwmWindow *)NULL, CurrentTime);
 
             /* define cursors */
@@ -515,20 +503,16 @@ usage:
         /*
          * map all of the non-override windows
          */
-        for (i = 0; i < nchildren; i++)
-        {
-            if (children[i] && MappedNotOverride(children[i]))
-            {
+        for (i = 0; i < nchildren; i++) {
+            if (children[i] && MappedNotOverride(children[i])) {
                 XUnmapWindow(dpy, children[i]);
                 SimulateMapRequest(children[i]);
             }
         }
 
-        if (Scr->ShowIconManager && !Scr->NoIconManagers)
-        {
+        if (Scr->ShowIconManager && !Scr->NoIconManagers) {
             Scr->iconmgr.twm_win->icon = FALSE;
-            if (Scr->iconmgr.count)
-            {
+            if (Scr->iconmgr.count) {
                 SetMapStateProp (Scr->iconmgr.twm_win, NormalState);
                 XMapWindow(dpy, Scr->iconmgr.w);
                 XMapWindow(dpy, Scr->iconmgr.twm_win->frame);
@@ -593,8 +577,7 @@ usage:
  ***********************************************************************
  */
 
-InitVariables()
-{
+int InitVariables() {
     FreeList(&Scr->BorderColorL);
     FreeList(&Scr->IconBorderColorL);
     FreeList(&Scr->BorderTileForegroundL);
@@ -734,8 +717,7 @@ InitVariables()
 }
 
 
-CreateFonts ()
-{
+int CreateFonts () {
     GetFont(&Scr->TitleBarFont);
     GetFont(&Scr->MenuFont);
     GetFont(&Scr->IconFont);
@@ -746,9 +728,7 @@ CreateFonts ()
 }
 
 
-RestoreWithdrawnLocation (tmp)
-TwmWindow *tmp;
-{
+int RestoreWithdrawnLocation (TwmWindow *tmp) {
     int gravx, gravy;
     unsigned int bw, mask;
     XWindowChanges xwc;
@@ -814,23 +794,19 @@ TwmWindow *tmp;
  ***********************************************************************
  */
 
-void Reborder (time)
-Time time;
-{
+void Reborder (Time time) {
     TwmWindow *tmp;			/* temp twm window structure */
     int scrnum;
 
     /* put a border back around all windows */
 
     XGrabServer (dpy);
-    for (scrnum = 0; scrnum < NumScreens; scrnum++)
-    {
+    for (scrnum = 0; scrnum < NumScreens; scrnum++) {
         if ((Scr = ScreenList[scrnum]) == NULL)
             continue;
 
         InstallWindowColormaps (0, &Scr->TwmRoot);	/* force reinstall */
-        for (tmp = Scr->TwmRoot.next; tmp != NULL; tmp = tmp->next)
-        {
+        for (tmp = Scr->TwmRoot.next; tmp != NULL; tmp = tmp->next) {
             RestoreWithdrawnLocation (tmp);
             XMapWindow (dpy, tmp->w);
         }
@@ -840,8 +816,7 @@ Time time;
     SetFocus ((TwmWindow*)NULL, time);
 }
 
-SIGNAL_T Done()
-{
+SIGNAL_T Done() {
     Reborder (CurrentTime);
     XCloseDisplay(dpy);
     exit(0);
@@ -858,10 +833,7 @@ SIGNAL_T Done()
 Bool ErrorOccurred = False;
 XErrorEvent LastErrorEvent;
 
-static int TwmErrorHandler(dpy, event)
-Display *dpy;
-XErrorEvent *event;
-{
+static int TwmErrorHandler(Display *dpy, XErrorEvent *event) {
     LastErrorEvent = *event;
     ErrorOccurred = True;
 
@@ -875,10 +847,7 @@ XErrorEvent *event;
 
 
 /* ARGSUSED*/
-static int CatchRedirectError(dpy, event)
-Display *dpy;
-XErrorEvent *event;
-{
+static int CatchRedirectError(Display *dpy, XErrorEvent *event) {
     RedirectError = TRUE;
     LastErrorEvent = *event;
     ErrorOccurred = True;

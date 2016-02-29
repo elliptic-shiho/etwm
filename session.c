@@ -68,11 +68,7 @@ Bool sent_save_done = 0;
 
 
 char *
-GetClientID (window)
-
-Window window;
-
-{
+GetClientID (Window window) {
     char *client_id = NULL;
     Window client_leader;
     XTextProperty tp;
@@ -85,15 +81,12 @@ Window window;
 
     if (XGetWindowProperty (dpy, window, _XA_WM_CLIENT_LEADER,
                             0L, 1L, False, AnyPropertyType,	&actual_type, &actual_format,
-                            &nitems, &bytes_after, &prop) == Success)
-    {
+                            &nitems, &bytes_after, &prop) == Success) {
         if (actual_type == XA_WINDOW && actual_format == 32 &&
-                nitems == 1 && bytes_after == 0)
-        {
+                nitems == 1 && bytes_after == 0) {
             client_leader = *((Window *) prop);
 
-            if (XGetTextProperty (dpy, client_leader, &tp, _XA_SM_CLIENT_ID))
-            {
+            if (XGetTextProperty (dpy, client_leader, &tp, _XA_SM_CLIENT_ID)) {
                 if (tp.encoding == XA_STRING &&
                         tp.format == 8 && tp.nitems != 0)
                     client_id = (char *) tp.value;
@@ -110,15 +103,10 @@ Window window;
 
 
 char *
-GetWindowRole (window)
-
-Window window;
-
-{
+GetWindowRole (Window window) {
     XTextProperty tp;
 
-    if (XGetTextProperty (dpy, window, &tp, _XA_WM_WINDOW_ROLE))
-    {
+    if (XGetTextProperty (dpy, window, &tp, _XA_WM_WINDOW_ROLE)) {
         if (tp.encoding == XA_STRING && tp.format == 8 && tp.nitems != 0)
             return ((char *) tp.value);
     }
@@ -129,12 +117,7 @@ Window window;
 
 
 int
-write_byte (file, b)
-
-FILE		*file;
-unsigned char   b;
-
-{
+write_byte (FILE *file, unsigned char b) {
     if (fwrite ((char *) &b, 1, 1, file) != 1)
         return 0;
     return 1;
@@ -142,12 +125,7 @@ unsigned char   b;
 
 
 int
-write_ushort (file, s)
-
-FILE		*file;
-unsigned short	s;
-
-{
+write_ushort (FILE *file, unsigned short s) {
     unsigned char   file_short[2];
 
     file_short[0] = (s & (unsigned)0xff00) >> 8;
@@ -159,12 +137,7 @@ unsigned short	s;
 
 
 int
-write_short (file, s)
-
-FILE	*file;
-short	s;
-
-{
+write_short (FILE *file, short s) {
     unsigned char   file_short[2];
 
     file_short[0] = (s & (unsigned)0xff00) >> 8;
@@ -176,23 +149,15 @@ short	s;
 
 
 int
-write_counted_string (file, string)
-
-FILE	*file;
-char	*string;
-
-{
-    if (string)
-    {
+write_counted_string (FILE *file, char *string) {
+    if (string) {
         unsigned char count = strlen (string);
 
         if (write_byte (file, count) == 0)
             return 0;
         if (fwrite (string, (int) sizeof (char), (int) count, file) != count)
             return 0;
-    }
-    else
-    {
+    } else {
         if (write_byte (file, 0) == 0)
             return 0;
     }
@@ -203,12 +168,7 @@ char	*string;
 
 
 int
-read_byte (file, bp)
-
-FILE		*file;
-unsigned char	*bp;
-
-{
+read_byte (FILE *file, unsigned char *bp) {
     if (fread ((char *) bp, 1, 1, file) != 1)
         return 0;
     return 1;
@@ -216,12 +176,7 @@ unsigned char	*bp;
 
 
 int
-read_ushort (file, shortp)
-
-FILE		*file;
-unsigned short	*shortp;
-
-{
+read_ushort (FILE *file, unsigned short *shortp) {
     unsigned char   file_short[2];
 
     if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
@@ -232,12 +187,7 @@ unsigned short	*shortp;
 
 
 int
-read_short (file, shortp)
-
-FILE	*file;
-short	*shortp;
-
-{
+read_short (FILE *file, short *shortp) {
     unsigned char   file_short[2];
 
     if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
@@ -248,12 +198,7 @@ short	*shortp;
 
 
 int
-read_counted_string (file, stringp)
-
-FILE	*file;
-char	**stringp;
-
-{
+read_counted_string (FILE *file, char **stringp) {
     unsigned char  len;
     char	   *data;
 
@@ -318,14 +263,7 @@ char	**stringp;
  */
 
 int
-WriteWinConfigEntry (configFile, theWindow, clientId, windowRole)
-
-FILE *configFile;
-TwmWindow *theWindow;
-char *clientId;
-char *windowRole;
-
-{
+WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId, char *windowRole) {
     char **wm_command;
     int wm_command_count, i;
 
@@ -335,14 +273,12 @@ char *windowRole;
     if (!write_counted_string (configFile, windowRole))
         return 0;
 
-    if (!windowRole)
-    {
+    if (!windowRole) {
         if (!write_counted_string (configFile, theWindow->class.res_name))
             return 0;
         if (!write_counted_string (configFile, theWindow->class.res_class))
             return 0;
-        if (theWindow->nameChanged)
-        {
+        if (theWindow->nameChanged) {
             /*
              * If WM_NAME changed on this window, we can't use it as
              * a criteria for looking up window configurations.  See the
@@ -351,9 +287,7 @@ char *windowRole;
 
             if (!write_counted_string (configFile, NULL))
                 return 0;
-        }
-        else
-        {
+        } else {
             if (!write_counted_string (configFile, theWindow->name))
                 return 0;
         }
@@ -362,13 +296,10 @@ char *windowRole;
         wm_command_count = 0;
         XGetCommand (dpy, theWindow->w, &wm_command, &wm_command_count);
 
-        if (clientId || !wm_command || wm_command_count == 0)
-        {
+        if (clientId || !wm_command || wm_command_count == 0) {
             if (!write_byte (configFile, 0))
                 return 0;
-        }
-        else
-        {
+        } else {
             if (!write_byte (configFile, (char) wm_command_count))
                 return 0;
             for (i = 0; i < wm_command_count; i++)
@@ -384,8 +315,7 @@ char *windowRole;
     if (!write_byte (configFile, theWindow->icon_w ? 1 : 0))  /* icon exists */
         return 0;
 
-    if (theWindow->icon_w)
-    {
+    if (theWindow->icon_w) {
         int icon_x, icon_y;
 
         XGetGeometry (dpy, theWindow->icon_w, &JunkRoot, &icon_x,
@@ -417,13 +347,7 @@ char *windowRole;
 
 
 int
-ReadWinConfigEntry (configFile, version, pentry)
-
-FILE *configFile;
-unsigned short version;
-TWMWinConfigEntry **pentry;
-
-{
+ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEntry **pentry) {
     TWMWinConfigEntry *entry;
     unsigned char byte;
     int i;
@@ -448,8 +372,7 @@ TWMWinConfigEntry **pentry;
     if (!read_counted_string (configFile, &entry->window_role))
         goto give_up;
 
-    if (!entry->window_role)
-    {
+    if (!entry->window_role) {
         if (!read_counted_string (configFile, &entry->class.res_name))
             goto give_up;
         if (!read_counted_string (configFile, &entry->class.res_class))
@@ -463,8 +386,7 @@ TWMWinConfigEntry **pentry;
 
         if (entry->wm_command_count == 0)
             entry->wm_command = NULL;
-        else
-        {
+        else {
             entry->wm_command = (char **) malloc (entry->wm_command_count *
                                                   sizeof (char *));
 
@@ -485,8 +407,7 @@ TWMWinConfigEntry **pentry;
         goto give_up;
     entry->icon_info_present = byte;
 
-    if (entry->icon_info_present)
-    {
+    if (entry->icon_info_present) {
         if (!read_short (configFile, (short *) &entry->icon_x))
             goto give_up;
         if (!read_short (configFile, (short *) &entry->icon_y))
@@ -502,8 +423,7 @@ TWMWinConfigEntry **pentry;
     if (!read_ushort (configFile, &entry->height))
         goto give_up;
 
-    if (version > 1)
-    {
+    if (version > 1) {
         if (!read_byte (configFile, &byte))
             goto give_up;
         entry->width_ever_changed_by_user = byte;
@@ -511,9 +431,7 @@ TWMWinConfigEntry **pentry;
         if (!read_byte (configFile, &byte))
             goto give_up;
         entry->height_ever_changed_by_user = byte;
-    }
-    else
-    {
+    } else {
         entry->width_ever_changed_by_user = False;
         entry->height_ever_changed_by_user = False;
     }
@@ -532,8 +450,7 @@ give_up:
         free (entry->class.res_class);
     if (entry->wm_name)
         free (entry->wm_name);
-    if (entry->wm_command_count)
-    {
+    if (entry->wm_command_count) {
         for (i = 0; i < entry->wm_command_count; i++)
             if (entry->wm_command[i])
                 free (entry->wm_command[i]);
@@ -549,11 +466,7 @@ give_up:
 
 
 void
-ReadWinConfigFile (filename)
-
-char *filename;
-
-{
+ReadWinConfigFile (char *filename) {
     FILE *configFile;
     TWMWinConfigEntry *entry;
     int done = 0;
@@ -564,19 +477,15 @@ char *filename;
         return;
 
     if (!read_ushort (configFile, &version) ||
-            version > SAVEFILE_VERSION)
-    {
+            version > SAVEFILE_VERSION) {
         done = 1;
     }
 
-    while (!done)
-    {
-        if (ReadWinConfigEntry (configFile, version, &entry))
-        {
+    while (!done) {
+        if (ReadWinConfigEntry (configFile, version, &entry)) {
             entry->next = winConfigHead;
             winConfigHead = entry;
-        }
-        else
+        } else
             done = 1;
     }
 
@@ -586,20 +495,9 @@ char *filename;
 
 
 int
-GetWindowConfig (theWindow, x, y, width, height,
-                 iconified, icon_info_present, icon_x, icon_y,
-                 width_ever_changed_by_user, height_ever_changed_by_user)
-
-TwmWindow *theWindow;
-short *x, *y;
-unsigned short *width, *height;
-Bool *iconified;
-Bool *icon_info_present;
-short *icon_x, *icon_y;
-Bool *width_ever_changed_by_user;
-Bool *height_ever_changed_by_user;
-
-{
+GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width, unsigned short *height,
+                 Bool *iconified, Bool *icon_info_present, short *icon_x, short *icon_y,
+                 Bool *width_ever_changed_by_user, Bool *height_ever_changed_by_user) {
     char *clientId, *windowRole;
     TWMWinConfigEntry *ptr;
     int found = 0;
@@ -612,21 +510,16 @@ Bool *height_ever_changed_by_user;
     clientId = GetClientID (theWindow->w);
     windowRole = GetWindowRole (theWindow->w);
 
-    while (ptr && !found)
-    {
+    while (ptr && !found) {
         int client_id_match = (!clientId && !ptr->client_id) ||
                               (clientId && ptr->client_id &&
                                strcmp (clientId, ptr->client_id) == 0);
 
-        if (!ptr->tag && client_id_match)
-        {
-            if (windowRole || ptr->window_role)
-            {
+        if (!ptr->tag && client_id_match) {
+            if (windowRole || ptr->window_role) {
                 found = (windowRole && ptr->window_role &&
                          strcmp (windowRole, ptr->window_role) == 0);
-            }
-            else
-            {
+            } else {
                 /*
                  * Compare WM_CLASS + only compare WM_NAME if the
                  * WM_NAME in the saved file is non-NULL.  If the
@@ -648,10 +541,8 @@ Bool *height_ever_changed_by_user;
                         strcmp (theWindow->class.res_class,
                                 ptr->class.res_class) == 0 &&
                         (ptr->wm_name == NULL ||
-                         strcmp (theWindow->name, ptr->wm_name) == 0))
-                {
-                    if (clientId)
-                    {
+                         strcmp (theWindow->name, ptr->wm_name) == 0)) {
+                    if (clientId) {
                         /*
                          * If a client ID was present, we should not check
                          * WM_COMMAND because Xt will put a -xtsessionID arg
@@ -659,9 +550,7 @@ Bool *height_ever_changed_by_user;
                          */
 
                         found = 1;
-                    }
-                    else
-                    {
+                    } else {
                         /*
                          * For non-XSMP clients, also check WM_COMMAND.
                          */
@@ -672,8 +561,7 @@ Bool *height_ever_changed_by_user;
                         XGetCommand (dpy, theWindow->w,
                                      &wm_command, &wm_command_count);
 
-                        if (wm_command_count == ptr->wm_command_count)
-                        {
+                        if (wm_command_count == ptr->wm_command_count) {
                             for (i = 0; i < wm_command_count; i++)
                                 if (strcmp (wm_command[i],
                                             ptr->wm_command[i]) != 0)
@@ -691,8 +579,7 @@ Bool *height_ever_changed_by_user;
             ptr = ptr->next;
     }
 
-    if (found)
-    {
+    if (found) {
         *x = ptr->x;
         *y = ptr->y;
         *width = ptr->width;
@@ -702,14 +589,12 @@ Bool *height_ever_changed_by_user;
         *width_ever_changed_by_user = ptr->width_ever_changed_by_user;
         *height_ever_changed_by_user = ptr->height_ever_changed_by_user;
 
-        if (*icon_info_present)
-        {
+        if (*icon_info_present) {
             *icon_x = ptr->icon_x;
             *icon_y = ptr->icon_y;
         }
         ptr->tag = 1;
-    }
-    else
+    } else
         *iconified = 0;
 
     if (clientId)
@@ -724,36 +609,24 @@ Bool *height_ever_changed_by_user;
 
 
 static char *
-unique_filename (path, prefix)
-
-char *path;
-char *prefix;
-
-{
+unique_filename (char *path, char *prefix) {
     char tempFile[PATH_MAX];
     char *tmp;
 
     sprintf (tempFile, "%s/%sXXXXXX", path, prefix);
     tmp = (char *) mkdtemp (tempFile);
-    if (tmp)
-    {
+    if (tmp) {
         char *ptr = (char *) malloc (strlen (tmp) + 1);
         strcpy (ptr, tmp);
         return (ptr);
-    }
-    else
+    } else
         return (NULL);
 }
 
 
 
 void
-SaveYourselfPhase2CB (smcConn, clientData)
-
-SmcConn smcConn;
-SmPointer clientData;
-
-{
+SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
     int scrnum;
     ScreenInfo *theScreen;
     TwmWindow *theWindow;
@@ -769,8 +642,7 @@ SmPointer clientData;
     char yes = 1;
     static int first_time = 1;
 
-    if (first_time)
-    {
+    if (first_time) {
         char userId[20];
         char hint = SmRestartIfRunning;
 
@@ -806,8 +678,7 @@ SmPointer clientData;
     }
 
     path = getenv ("SM_SAVE_DIR");
-    if (!path)
-    {
+    if (!path) {
         path = getenv ("HOME");
         if (!path)
             path = ".";
@@ -824,15 +695,12 @@ SmPointer clientData;
 
     success = True;
 
-    for (scrnum = 0; scrnum < NumScreens && success; scrnum++)
-    {
-        if (ScreenList[scrnum] != NULL)
-        {
+    for (scrnum = 0; scrnum < NumScreens && success; scrnum++) {
+        if (ScreenList[scrnum] != NULL) {
             theScreen = ScreenList[scrnum];
             theWindow = theScreen->TwmRoot.next;
 
-            while (theWindow && success)
-            {
+            while (theWindow && success) {
                 clientId = GetClientID (theWindow->w);
                 windowRole = GetWindowRole (theWindow->w);
 
@@ -857,23 +725,18 @@ SmPointer clientData;
     prop1.vals = (SmPropValue *) malloc (
                      (Argc + 4) * sizeof (SmPropValue));
 
-    if (!prop1.vals)
-    {
+    if (!prop1.vals) {
         success = False;
         goto bad;
     }
 
     numVals = 0;
 
-    for (i = 0; i < Argc; i++)
-    {
+    for (i = 0; i < Argc; i++) {
         if (strcmp (Argv[i], "-clientId") == 0 ||
-                strcmp (Argv[i], "-restore") == 0)
-        {
+                strcmp (Argv[i], "-restore") == 0) {
             i++;
-        }
-        else
-        {
+        } else {
             prop1.vals[numVals].value = (SmPointer) Argv[i];
             prop1.vals[numVals++].length = strlen (Argv[i]);
         }
@@ -921,34 +784,18 @@ bad:
 
 
 void
-SaveYourselfCB (smcConn, clientData, saveType, shutdown, interactStyle, fast)
-
-SmcConn smcConn;
-SmPointer clientData;
-int saveType;
-Bool shutdown;
-int interactStyle;
-Bool fast;
-
-{
-    if (!SmcRequestSaveYourselfPhase2 (smcConn, SaveYourselfPhase2CB, NULL))
-    {
+SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdown, int interactStyle, Bool fast) {
+    if (!SmcRequestSaveYourselfPhase2 (smcConn, SaveYourselfPhase2CB, NULL)) {
         SmcSaveYourselfDone (smcConn, False);
         sent_save_done = 1;
-    }
-    else
+    } else
         sent_save_done = 0;
 }
 
 
 
 void
-DieCB (smcConn, clientData)
-
-SmcConn smcConn;
-SmPointer clientData;
-
-{
+DieCB (SmcConn smcConn, SmPointer clientData) {
     SmcCloseConnection (smcConn, 0, NULL);
     XtRemoveInput (iceInputId);
     Done();
@@ -957,26 +804,15 @@ SmPointer clientData;
 
 
 void
-SaveCompleteCB (smcConn, clientData)
-
-SmcConn smcConn;
-SmPointer clientData;
-
-{
+SaveCompleteCB (SmcConn smcConn, SmPointer clientData) {
     ;
 }
 
 
 
 void
-ShutdownCancelledCB (smcConn, clientData)
-
-SmcConn smcConn;
-SmPointer clientData;
-
-{
-    if (!sent_save_done)
-    {
+ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
+    if (!sent_save_done) {
         SmcSaveYourselfDone (smcConn, False);
         sent_save_done = 1;
     }
@@ -985,13 +821,7 @@ SmPointer clientData;
 
 
 void
-ProcessIceMsgProc (client_data, source, id)
-
-XtPointer	client_data;
-int 		*source;
-XtInputId	*id;
-
-{
+ProcessIceMsgProc (XtPointer client_data, int *source, XtInputId *id) {
     IceConn	ice_conn = (IceConn) client_data;
 
     IceProcessMessages (ice_conn, NULL, NULL);
@@ -1000,11 +830,7 @@ XtInputId	*id;
 
 
 void
-ConnectToSessionManager (previous_id)
-
-char *previous_id;
-
-{
+ConnectToSessionManager (char *previous_id) {
     char errorMsg[256];
     unsigned long mask;
     SmcCallbacks callbacks;
