@@ -67,8 +67,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "screen.h"
 #include "gram.h"
 
-struct name_list_struct
-{
+struct name_list_struct {
     name_list *next;		/* pointer to the next name */
     char *name;			/* the name of the window */
     char *ptr;			/* list dependent data */
@@ -94,21 +93,16 @@ struct name_list_struct
  */
 
 void
-AddToList(list_head, name, ptr)
-name_list **list_head;
-char *name;
-char *ptr;
-{
+AddToList(name_list **list_head, char *name, char *ptr) {
     name_list *nptr;
 
     if (!list_head) return;	/* ignore empty inserts */
 
     nptr = (name_list *)malloc(sizeof(name_list));
-    if (nptr == NULL)
-    {
+    if (nptr == NULL) {
         twmrc_error_prefix();
         fprintf (stderr, "unable to allocate %d bytes for name_list\n",
-                 sizeof(name_list));
+                 (int)sizeof(name_list));
         Done();
     }
 
@@ -136,11 +130,7 @@ char *ptr;
  */
 
 char *
-LookInList(list_head, name, class)
-name_list *list_head;
-char *name;
-XClassHint *class;
-{
+LookInList(name_list *list_head, char *name, XClassHint *class) {
     name_list *nptr;
 
     /* look for the name first */
@@ -148,8 +138,7 @@ XClassHint *class;
         if (strcmp(name, nptr->name) == 0)
             return (nptr->ptr);
 
-    if (class)
-    {
+    if (class) {
         /* look for the res_name next */
         for (nptr = list_head; nptr != NULL; nptr = nptr->next)
             if (strcmp(class->res_name, nptr->name) == 0)
@@ -164,10 +153,7 @@ XClassHint *class;
 }
 
 char *
-LookInNameList(list_head, name)
-name_list *list_head;
-char *name;
-{
+LookInNameList(name_list *list_head, char *name) {
     return (LookInList(list_head, name, NULL));
 }
 
@@ -191,18 +177,12 @@ char *name;
  ***********************************************************************
  */
 
-int GetColorFromList(list_head, name, class, ptr)
-name_list *list_head;
-char *name;
-XClassHint *class;
-Pixel *ptr;
-{
+int GetColorFromList(name_list *list_head, char *name, XClassHint *class, Pixel *ptr) {
     int save;
     name_list *nptr;
 
     for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-        if (strcmp(name, nptr->name) == 0)
-        {
+        if (strcmp(name, nptr->name) == 0) {
             save = Scr->FirstTime;
             Scr->FirstTime = TRUE;
             GetColor(Scr->Monochrome, ptr, nptr->ptr);
@@ -210,11 +190,9 @@ Pixel *ptr;
             return (TRUE);
         }
 
-    if (class)
-    {
+    if (class) {
         for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-            if (strcmp(class->res_name, nptr->name) == 0)
-            {
+            if (strcmp(class->res_name, nptr->name) == 0) {
                 save = Scr->FirstTime;
                 Scr->FirstTime = TRUE;
                 GetColor(Scr->Monochrome, ptr, nptr->ptr);
@@ -223,8 +201,7 @@ Pixel *ptr;
             }
 
         for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-            if (strcmp(class->res_class, nptr->name) == 0)
-            {
+            if (strcmp(class->res_class, nptr->name) == 0) {
                 save = Scr->FirstTime;
                 Scr->FirstTime = TRUE;
                 GetColor(Scr->Monochrome, ptr, nptr->ptr);
@@ -243,14 +220,12 @@ Pixel *ptr;
  ***********************************************************************
  */
 
-void FreeList(list)
-name_list **list;
-{
+void
+FreeList (name_list **list) {
     name_list *nptr;
     name_list *tmp;
 
-    for (nptr = *list; nptr != NULL; )
-    {
+    for (nptr = *list; nptr != NULL; ) {
         tmp = nptr->next;
         free((char *) nptr);
         nptr = tmp;

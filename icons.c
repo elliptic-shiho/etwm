@@ -45,12 +45,7 @@ in this Software without prior written authorization from the X Consortium.
 #define iconWidth(w)	(Scr->IconBorderWidth * 2 + w->icon_w_width)
 #define iconHeight(w)	(Scr->IconBorderWidth * 2 + w->icon_w_height)
 
-static
-splitEntry (ie, grav1, grav2, w, h)
-IconEntry	*ie;
-int		grav1, grav2;
-int		w, h;
-{
+static int splitEntry (IconEntry	*ie, int grav1, int grav2, int w, int h) {
     IconEntry	*new;
 
     switch (grav1) {
@@ -99,16 +94,11 @@ int		w, h;
     }
 }
 
-roundUp (v, multiple)
-{
+int roundUp (int v, int multiple) {
     return ((v + multiple - 1) / multiple) * multiple;
 }
 
-PlaceIcon(tmp_win, def_x, def_y, final_x, final_y)
-TwmWindow *tmp_win;
-int def_x, def_y;
-int *final_x, *final_y;
-{
+void PlaceIcon(TwmWindow *tmp_win, int def_x, int def_y, int *final_x, int *final_y) {
     IconRegion	*ir;
     IconEntry	*ie;
     int		w = 0, h = 0;
@@ -139,11 +129,7 @@ int *final_x, *final_y;
     return;
 }
 
-static IconEntry *
-FindIconEntry (tmp_win, irp)
-TwmWindow   *tmp_win;
-IconRegion	**irp;
-{
+static IconEntry * FindIconEntry (TwmWindow   *tmp_win, IconRegion	**irp) {
     IconRegion	*ir;
     IconEntry	*ie;
 
@@ -158,9 +144,7 @@ IconRegion	**irp;
     return 0;
 }
 
-IconUp (tmp_win)
-TwmWindow   *tmp_win;
-{
+void IconUp (TwmWindow   *tmp_win) {
     int		x, y;
     int		defx, defy;
     struct IconRegion *ir;
@@ -198,11 +182,7 @@ TwmWindow   *tmp_win;
     }
 }
 
-static IconEntry *
-prevIconEntry (ie, ir)
-IconEntry	*ie;
-IconRegion	*ir;
-{
+static IconEntry *prevIconEntry (IconEntry	*ie, IconRegion	*ir) {
     IconEntry	*ip;
 
     if (ie == ir->entries)
@@ -216,10 +196,7 @@ IconRegion	*ir;
  * regions together
  */
 
-static
-mergeEntries (old, ie)
-IconEntry	*old, *ie;
-{
+static void mergeEntries (IconEntry	*old, IconEntry *ie) {
     if (old->y == ie->y) {
         ie->w = old->w + ie->w;
         if (old->x < ie->x)
@@ -231,9 +208,7 @@ IconEntry	*old, *ie;
     }
 }
 
-IconDown (tmp_win)
-TwmWindow   *tmp_win;
-{
+void IconDown (TwmWindow *tmp_win) {
     IconEntry	*ie, *ip, *in;
     IconRegion	*ir;
 
@@ -246,8 +221,7 @@ TwmWindow   *tmp_win;
         for (;;) {
             if (ip && ip->used == 0 &&
                     ((ip->x == ie->x && ip->w == ie->w) ||
-                     (ip->y == ie->y && ip->h == ie->h)))
-            {
+                     (ip->y == ie->y && ip->h == ie->h))) {
                 ip->next = ie->next;
                 mergeEntries (ie, ip);
                 free ((char *) ie);
@@ -255,8 +229,7 @@ TwmWindow   *tmp_win;
                 ip = prevIconEntry (ip, ir);
             } else if (in && in->used == 0 &&
                        ((in->x == ie->x && in->w == ie->w) ||
-                        (in->y == ie->y && in->h == ie->h)))
-            {
+                        (in->y == ie->y && in->h == ie->h))) {
                 ie->next = in->next;
                 mergeEntries (in, ie);
                 free ((char *) in);
@@ -267,10 +240,7 @@ TwmWindow   *tmp_win;
     }
 }
 
-AddIconRegion(geom, grav1, grav2, stepx, stepy)
-char *geom;
-int grav1, grav2;
-{
+void AddIconRegion(char *geom, int grav1, int grav2, int stepx, int stepy) {
     IconRegion *ir;
     int mask;
 
@@ -311,23 +281,18 @@ int grav1, grav2;
 }
 
 #ifdef comment
-FreeIconEntries (ir)
-IconRegion	*ir;
-{
+void FreeIconEntries (IconRegion	*ir) {
     IconEntry	*ie, *tmp;
 
-    for (ie = ir->entries; ie; ie=tmp)
-    {
+    for (ie = ir->entries; ie; ie=tmp) {
         tmp = ie->next;
         free ((char *) ie);
     }
 }
-FreeIconRegions()
-{
+FreeIconRegions() {
     IconRegion *ir, *tmp;
 
-    for (ir = Scr->FirstRegion; ir != NULL;)
-    {
+    for (ir = Scr->FirstRegion; ir != NULL;) {
         tmp = ir;
         FreeIconEntries (ir);
         ir = ir->next;
@@ -338,10 +303,7 @@ FreeIconRegions()
 }
 #endif
 
-CreateIconWindow(tmp_win, def_x, def_y)
-TwmWindow *tmp_win;
-int def_x, def_y;
-{
+void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {
     unsigned long event_mask;
     unsigned long valuemask;		/* mask for create windows */
     XSetWindowAttributes attributes;	/* attributes for create windows */
@@ -359,8 +321,7 @@ int def_x, def_y;
      * set, then no matter what else is defined, the bitmap from the
      * .twmrc file is used
      */
-    if (Scr->ForceIcon)
-    {
+    if (Scr->ForceIcon) {
         char *icon_name;
         Pixmap bm;
 
@@ -370,17 +331,14 @@ int def_x, def_y;
                                    &tmp_win->class);
 
         bm = None;
-        if (icon_name != NULL)
-        {
-            if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None)
-            {
+        if (icon_name != NULL) {
+            if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None) {
                 if ((bm = GetBitmap (icon_name)) != None)
                     AddToList(&Scr->Icons, icon_name, (char *)bm);
             }
         }
 
-        if (bm != None)
-        {
+        if (bm != None) {
             XGetGeometry(dpy, bm, &JunkRoot, &JunkX, &JunkY,
                          (unsigned int *) &tmp_win->icon_width, (unsigned int *)&tmp_win->icon_height,
                          &JunkBW, &JunkDepth);
@@ -401,8 +359,7 @@ int def_x, def_y;
      * was not in the Icons list, now check the WM hints for an icon
      */
     if (pm == None && tmp_win->wmhints &&
-            tmp_win->wmhints->flags & IconPixmapHint)
-    {
+            tmp_win->wmhints->flags & IconPixmapHint) {
 
         XGetGeometry(dpy,   tmp_win->wmhints->icon_pixmap,
                      &JunkRoot, &JunkX, &JunkY,
@@ -419,8 +376,7 @@ int def_x, def_y;
     /* if we still haven't got an icon, let's look in the Icon list
      * if ForceIcon is not set
      */
-    if (pm == None && !Scr->ForceIcon)
-    {
+    if (pm == None && !Scr->ForceIcon) {
         char *icon_name;
         Pixmap bm;
 
@@ -430,17 +386,14 @@ int def_x, def_y;
                                    &tmp_win->class);
 
         bm = None;
-        if (icon_name != NULL)
-        {
-            if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None)
-            {
+        if (icon_name != NULL) {
+            if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None) {
                 if ((bm = GetBitmap (icon_name)) != None)
                     AddToList(&Scr->Icons, icon_name, (char *)bm);
             }
         }
 
-        if (bm != None)
-        {
+        if (bm != None) {
             XGetGeometry(dpy, bm, &JunkRoot, &JunkX, &JunkY,
                          (unsigned int *)&tmp_win->icon_width, (unsigned int *)&tmp_win->icon_height,
                          &JunkBW, &JunkDepth);
@@ -456,8 +409,7 @@ int def_x, def_y;
 
     /* if we still don't have an icon, assign the UnknownIcon */
 
-    if (pm == None && Scr->UnknownPm != None)
-    {
+    if (pm == None && Scr->UnknownPm != None) {
         tmp_win->icon_width = Scr->UnknownWidth;
         tmp_win->icon_height = Scr->UnknownHeight;
 
@@ -469,14 +421,11 @@ int def_x, def_y;
                    0,0, tmp_win->icon_width, tmp_win->icon_height, 0, 0, 1 );
     }
 
-    if (pm == None)
-    {
+    if (pm == None) {
         tmp_win->icon_height = 0;
         tmp_win->icon_width = 0;
         valuemask = 0;
-    }
-    else
-    {
+    } else {
         valuemask = CWBackPixmap;
         attributes.background_pixmap = pm;
     }
@@ -485,44 +434,34 @@ int def_x, def_y;
                                        tmp_win->icon_name, strlen(tmp_win->icon_name));
 
     tmp_win->icon_w_width += 6;
-    if (tmp_win->icon_w_width < tmp_win->icon_width)
-    {
+    if (tmp_win->icon_w_width < tmp_win->icon_width) {
         tmp_win->icon_x = (tmp_win->icon_width - tmp_win->icon_w_width)/2;
         tmp_win->icon_x += 3;
         tmp_win->icon_w_width = tmp_win->icon_width;
-    }
-    else
-    {
+    } else {
         tmp_win->icon_x = 3;
     }
     tmp_win->icon_y = tmp_win->icon_height + Scr->IconFont.height;
     tmp_win->icon_w_height = tmp_win->icon_height + Scr->IconFont.height + 4;
 
     event_mask = 0;
-    if (tmp_win->wmhints && tmp_win->wmhints->flags & IconWindowHint)
-    {
+    if (tmp_win->wmhints && tmp_win->wmhints->flags & IconWindowHint) {
         tmp_win->icon_w = tmp_win->wmhints->icon_window;
         if (tmp_win->forced ||
                 XGetGeometry(dpy, tmp_win->icon_w, &JunkRoot, &JunkX, &JunkY,
                              (unsigned int *)&tmp_win->icon_w_width, (unsigned int *)&tmp_win->icon_w_height,
-                             &JunkBW, &JunkDepth) == 0)
-        {
+                             &JunkBW, &JunkDepth) == 0) {
             tmp_win->icon_w = None;
             tmp_win->wmhints->flags &= ~IconWindowHint;
-        }
-        else
-        {
+        } else {
             tmp_win->icon_not_ours = TRUE;
             event_mask = EnterWindowMask | LeaveWindowMask;
         }
-    }
-    else
-    {
+    } else {
         tmp_win->icon_w = None;
     }
 
-    if (tmp_win->icon_w == None)
-    {
+    if (tmp_win->icon_w == None) {
         tmp_win->icon_w = XCreateSimpleWindow(dpy, Scr->Root,
                                               0,0,
                                               tmp_win->icon_w_width, tmp_win->icon_w_height,
@@ -536,8 +475,7 @@ int def_x, def_y;
 
     tmp_win->icon_bm_w = None;
     if (pm != None &&
-            (! (tmp_win->wmhints && tmp_win->wmhints->flags & IconWindowHint)))
-    {
+            (! (tmp_win->wmhints && tmp_win->wmhints->flags & IconWindowHint))) {
         int y;
 
         y = 0;
@@ -559,13 +497,10 @@ int def_x, def_y;
      * getting here means that I am going to make the icon visible
      */
     if (tmp_win->wmhints &&
-            tmp_win->wmhints->flags & IconPositionHint)
-    {
+            tmp_win->wmhints->flags & IconPositionHint) {
         final_x = tmp_win->wmhints->icon_x;
         final_y = tmp_win->wmhints->icon_y;
-    }
-    else
-    {
+    } else {
         PlaceIcon(tmp_win, def_x, def_y, &final_x, &final_y);
     }
 
