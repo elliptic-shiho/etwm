@@ -110,11 +110,7 @@ extern char *defTwmrc[];		/* default bindings */
  ***********************************************************************
  */
 
-static int doparse (ifunc, srctypename, srcname)
-int (*ifunc)();
-char *srctypename;
-char *srcname;
-{
+static int doparse (int (*ifunc)(), char *srctypename, char *srcname) {
     mods = 0;
     ptr = 0;
     len = 0;
@@ -126,8 +122,7 @@ char *srcname;
     yyparse();
 
     if (Scr->PointerForeground.pixel != Scr->Black ||
-            Scr->PointerBackground.pixel != Scr->White)
-    {
+            Scr->PointerBackground.pixel != Scr->White) {
         XRecolorCursor(dpy, UpperLeftCursor,
                        &Scr->PointerForeground, &Scr->PointerBackground);
         XRecolorCursor(dpy, RightButt,
@@ -169,9 +164,7 @@ char *srcname;
 }
 
 
-int ParseTwmrc (filename)
-char *filename;
-{
+int ParseTwmrc (char *filename) {
     int i;
     char *home = NULL;
     int homelen = 0;
@@ -236,9 +229,7 @@ char *filename;
     }
 }
 
-int ParseStringList (sl)
-char **sl;
-{
+int ParseStringList (char **sl) {
     stringListSource = sl;
     currentString = *sl;
     return doparse (twmStringListInput, "string list", (char *)NULL);
@@ -256,12 +247,10 @@ char **sl;
  ***********************************************************************
  */
 
-static int twmFileInput()
-{
+static int twmFileInput() {
     if (overflowlen) return (int) overflowbuff[--overflowlen];
 
-    while (ptr == len)
-    {
+    while (ptr == len) {
         if (fgets(buff, BUF_LEN, twmrc) == NULL)
             return 0;
 
@@ -273,8 +262,7 @@ static int twmFileInput()
     return ((int)buff[ptr++]);
 }
 
-static int twmStringListInput()
-{
+static int twmStringListInput() {
     if (overflowlen) return (int) overflowbuff[--overflowlen];
 
     /*
@@ -302,9 +290,7 @@ static int twmStringListInput()
  ***********************************************************************
  */
 
-void twmUnput (c)
-int c;
-{
+void twmUnput (int c) {
     if (overflowlen < sizeof overflowbuff) {
         overflowbuff[overflowlen++] = (char) c;
     } else {
@@ -327,8 +313,7 @@ int c;
  */
 
 void
-TwmOutput(c)
-{
+TwmOutput(int c) {
     putchar(c);
 }
 
@@ -624,10 +609,7 @@ static TwmKeyword keytable[] = {
 
 static int numkeywords = (sizeof(keytable)/sizeof(keytable[0]));
 
-int parse_keyword (s, nump)
-char *s;
-int *nump;
-{
+int parse_keyword (char *s, int *nump) {
     register int lower = 0, upper = numkeywords - 1;
 
     XmuCopyISOLatin1Lowered (s, s);
@@ -654,9 +636,7 @@ int *nump;
  * action routines called by grammar
  */
 
-int do_single_keyword (keyword)
-int keyword;
-{
+int do_single_keyword (int keyword) {
     switch (keyword) {
     case kw0_NoDefaults:
         Scr->NoDefaults = TRUE;
@@ -763,13 +743,9 @@ int keyword;
 }
 
 
-int do_string_keyword (keyword, s)
-int keyword;
-char *s;
-{
+int do_string_keyword (int keyword, char *s) {
     switch (keyword) {
-    case kws_UsePPosition:
-    {
+    case kws_UsePPosition: {
         int ppos = ParseUsePPosition (s);
         if (ppos < 0) {
             twmrc_error_prefix();
@@ -831,10 +807,7 @@ char *s;
 }
 
 
-int do_number_keyword (keyword, num)
-int keyword;
-int num;
-{
+int do_number_keyword (int keyword, int num) {
     switch (keyword) {
     case kwn_ConstrainedMoveTime:
         ConstrainedMoveTime = num;
@@ -880,11 +853,7 @@ int num;
     return 0;
 }
 
-name_list **do_colorlist_keyword (keyword, colormode, s)
-int keyword;
-int colormode;
-char *s;
-{
+name_list **do_colorlist_keyword (int keyword, int colormode, char *s) {
     switch (keyword) {
     case kwcl_BorderColor:
         GetColor (colormode, &Scr->BorderColor, s);
@@ -933,11 +902,7 @@ char *s;
     return NULL;
 }
 
-int do_color_keyword (keyword, colormode, s)
-int keyword;
-int colormode;
-char *s;
-{
+int do_color_keyword (int keyword, int colormode, char *s) {
     switch (keyword) {
     case kwc_DefaultForeground:
         GetColor (colormode, &Scr->DefaultC.fore, s);
@@ -982,9 +947,7 @@ char *s;
 /*
  * put_pixel_on_root() Save a pixel value in twm root window color property.
  */
-put_pixel_on_root(pixel)
-Pixel pixel;
-{
+void put_pixel_on_root(Pixel pixel) {
     int           i, addPixel = 1;
     Atom          pixelAtom, retAtom;
     int           retFormat;
@@ -1008,10 +971,7 @@ Pixel pixel;
 /*
  * do_string_savecolor() save a color from a string in the twmrc file.
  */
-int do_string_savecolor(colormode, s)
-int colormode;
-char *s;
-{
+int do_string_savecolor(int colormode, char *s) {
     Pixel p;
     GetColor(colormode, &p, s);
     put_pixel_on_root(p);
@@ -1026,16 +986,13 @@ typedef struct _cnode {
 } Cnode, *Cptr;
 Cptr chead = NULL;
 
-int do_var_savecolor(key)
-int key;
-{
+int do_var_savecolor(int key) {
     Cptr cptrav, cpnew;
     if (!chead) {
         chead = (Cptr)malloc(sizeof(Cnode));
         chead->i = key;
         chead->next = NULL;
-    }
-    else {
+    } else {
         cptrav = chead;
         while (cptrav->next != NULL) {
             cptrav = cptrav->next;
@@ -1051,8 +1008,7 @@ int key;
  * assign_var_savecolor() traverse the var save color list placeing the pixels
  *                        in the root window property.
  */
-void assign_var_savecolor()
-{
+void assign_var_savecolor() {
     Cptr cp = chead;
     while (cp != NULL) {
         switch (cp->i) {
@@ -1098,9 +1054,7 @@ void assign_var_savecolor()
     }
 }
 
-static int ParseUsePPosition (s)
-register char *s;
-{
+static int ParseUsePPosition (register char *s) {
     XmuCopyISOLatin1Lowered (s, s);
 
     if (strcmp (s, "off") == 0) {
@@ -1116,13 +1070,7 @@ register char *s;
 }
 
 
-do_squeeze_entry (list, name, justify, num, denom)
-name_list **list;			/* squeeze or dont-squeeze list */
-char *name;				/* window name */
-int justify;			/* left, center, right */
-int num;				/* signed num */
-int denom;				/* 0 or indicates fraction denom */
-{
+int do_squeeze_entry (name_list **list, char *name, int justify, int num, int denom) {
     int absnum = (num < 0 ? -num : num);
 
     if (denom < 0) {

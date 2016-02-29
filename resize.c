@@ -93,10 +93,7 @@ static int last_width;
 static int last_height;
 
 
-static void do_auto_clamp (tmp_win, evp)
-TwmWindow *tmp_win;
-XEvent *evp;
-{
+static void do_auto_clamp (TwmWindow *tmp_win, XEvent *evp) {
     Window junkRoot;
     int x, y, h, v, junkbw;
     unsigned int junkMask;
@@ -152,11 +149,7 @@ XEvent *evp;
  */
 
 void
-StartResize(evp, tmp_win, fromtitlebar)
-XEvent *evp;
-TwmWindow *tmp_win;
-Bool fromtitlebar;
-{
+StartResize(XEvent *evp, TwmWindow *tmp_win, Bool fromtitlebar) {
     Window      junkRoot;
     unsigned int junkbw, junkDepth;
 
@@ -200,10 +193,7 @@ Bool fromtitlebar;
 
 
 void
-MenuStartResize(tmp_win, x, y, w, h)
-TwmWindow *tmp_win;
-int x, y, w, h;
-{
+MenuStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {
     Window junkRoot;
     unsigned int junkbw, junkDepth;
     XGrabServer(dpy);
@@ -245,10 +235,7 @@ int x, y, w, h;
  */
 
 void
-AddStartResize(tmp_win, x, y, w, h)
-TwmWindow *tmp_win;
-int x, y, w, h;
-{
+AddStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {
     XGrabServer(dpy);
     XGrabPointer(dpy, Scr->Root, True,
                  ButtonReleaseMask | ButtonMotionMask | PointerMotionHintMask,
@@ -275,11 +262,7 @@ int x, y, w, h;
 
 
 void
-MenuDoResize(x_root, y_root, tmp_win)
-int x_root;
-int y_root;
-TwmWindow *tmp_win;
-{
+MenuDoResize(int x_root, int y_root, TwmWindow *tmp_win) {
     int action;
 
     action = 0;
@@ -296,8 +279,7 @@ TwmWindow *tmp_win;
         dragy += delta;
         dragHeight -= delta;
         action = 1;
-    }
-    else if (y_root <= dragy/* ||
+    } else if (y_root <= dragy/* ||
              y_root == findRootInfo(root)->rooty*/) {
         dragy = y_root;
         dragHeight = origy + origHeight -
@@ -316,8 +298,7 @@ TwmWindow *tmp_win;
         dragx += delta;
         dragWidth -= delta;
         action = 1;
-    }
-    else if (x_root <= dragx/* ||
+    } else if (x_root <= dragx/* ||
              x_root == findRootInfo(root)->rootx*/) {
         dragx = x_root;
         dragWidth = origx + origWidth -
@@ -335,8 +316,7 @@ TwmWindow *tmp_win;
         }
         dragHeight += delta;
         action = 1;
-    }
-    else if (y_root >= dragy + dragHeight) {
+    } else if (y_root >= dragy + dragHeight) {
         dragy = origy;
         dragHeight = 1 + y_root - dragy;
         clampTop = 0;
@@ -352,8 +332,7 @@ TwmWindow *tmp_win;
         }
         dragWidth += delta;
         action = 1;
-    }
-    else if (x_root >= dragx + dragWidth) {
+    } else if (x_root >= dragx + dragWidth) {
         dragx = origx;
         dragWidth = 1 + x_root - origx;
         clampLeft = 0;
@@ -394,11 +373,7 @@ TwmWindow *tmp_win;
  */
 
 void
-DoResize(x_root, y_root, tmp_win)
-int x_root;
-int y_root;
-TwmWindow *tmp_win;
-{
+DoResize(int x_root, int y_root, TwmWindow *tmp_win) {
     int action;
 
     action = 0;
@@ -415,8 +390,7 @@ TwmWindow *tmp_win;
         dragy += delta;
         dragHeight -= delta;
         action = 1;
-    }
-    else if (y_root <= dragy/* ||
+    } else if (y_root <= dragy/* ||
              y_root == findRootInfo(root)->rooty*/) {
         dragy = y_root;
         dragHeight = origy + origHeight -
@@ -435,8 +409,7 @@ TwmWindow *tmp_win;
         dragx += delta;
         dragWidth -= delta;
         action = 1;
-    }
-    else if (x_root <= dragx/* ||
+    } else if (x_root <= dragx/* ||
              x_root == findRootInfo(root)->rootx*/) {
         dragx = x_root;
         dragWidth = origx + origWidth -
@@ -454,8 +427,7 @@ TwmWindow *tmp_win;
         }
         dragHeight += delta;
         action = 1;
-    }
-    else if (y_root >= dragy + dragHeight - 1/* ||
+    } else if (y_root >= dragy + dragHeight - 1/* ||
            y_root == findRootInfo(root)->rooty
            + findRootInfo(root)->rootheight - 1*/) {
         dragy = origy;
@@ -473,8 +445,7 @@ TwmWindow *tmp_win;
         }
         dragWidth += delta;
         action = 1;
-    }
-    else if (x_root >= dragx + dragWidth - 1/* ||
+    } else if (x_root >= dragx + dragWidth - 1/* ||
              x_root == findRootInfo(root)->rootx +
              findRootInfo(root)->rootwidth - 1*/) {
         dragx = origx;
@@ -516,11 +487,7 @@ TwmWindow *tmp_win;
  */
 
 void
-DisplaySize(tmp_win, width, height)
-TwmWindow *tmp_win;
-int width;
-int height;
-{
+DisplaySize(TwmWindow *tmp_win, int width, int height) {
     char str[100];
     int dwidth;
     int dheight;
@@ -538,8 +505,7 @@ int height;
      * ICCCM says that PMinSize is the default is no PBaseSize is given,
      * and vice-versa.
      */
-    if (tmp_win->hints.flags&(PMinSize|PBaseSize) && tmp_win->hints.flags & PResizeInc)
-    {
+    if (tmp_win->hints.flags&(PMinSize|PBaseSize) && tmp_win->hints.flags & PResizeInc) {
         if (tmp_win->hints.flags & PBaseSize) {
             dwidth -= tmp_win->hints.base_width;
             dheight -= tmp_win->hints.base_height;
@@ -549,8 +515,7 @@ int height;
         }
     }
 
-    if (tmp_win->hints.flags & PResizeInc)
-    {
+    if (tmp_win->hints.flags & PResizeInc) {
         dwidth /= tmp_win->hints.width_inc;
         dheight /= tmp_win->hints.height_inc;
     }
@@ -573,8 +538,7 @@ int height;
  */
 
 void
-EndResize()
-{
+EndResize() {
     TwmWindow *tmp_win;
 
 #ifdef DEBUG
@@ -595,8 +559,7 @@ EndResize()
     SetupWindow (tmp_win, dragx - tmp_win->frame_bw, dragy - tmp_win->frame_bw,
                  dragWidth, dragHeight, -1);
 
-    if (tmp_win->iconmgr)
-    {
+    if (tmp_win->iconmgr) {
         int ncols = tmp_win->iconmgrp->cur_columns;
         if (ncols == 0) ncols = 1;
 
@@ -615,9 +578,7 @@ EndResize()
 }
 
 void
-MenuEndResize(tmp_win)
-TwmWindow *tmp_win;
-{
+MenuEndResize(TwmWindow *tmp_win) {
     MoveOutline(Scr->Root, 0, 0, 0, 0, 0, 0);
     XUnmapWindow(dpy, Scr->SizeWindow);
     ConstrainSize (tmp_win, &dragWidth, &dragHeight);
@@ -639,9 +600,7 @@ TwmWindow *tmp_win;
  */
 
 void
-AddEndResize(tmp_win)
-TwmWindow *tmp_win;
-{
+AddEndResize(TwmWindow *tmp_win) {
 
 #ifdef DEBUG
     fprintf(stderr, "AddEndResize\n");
@@ -665,10 +624,7 @@ TwmWindow *tmp_win;
  *
  ***********************************************************************/
 
-ConstrainSize (tmp_win, widthp, heightp)
-TwmWindow *tmp_win;
-int *widthp, *heightp;
-{
+int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
 #define makemult(a,b) ((b==1) ? (a) : (((int)((a)/(b))) * (b)) )
 #define _min(a,b) (((a) < (b)) ? (a) : (b))
 
@@ -751,28 +707,23 @@ int *widthp, *heightp;
      *
      */
 
-    if (tmp_win->hints.flags & PAspect)
-    {
-        if (minAspectX * dheight > minAspectY * dwidth)
-        {
+    if (tmp_win->hints.flags & PAspect) {
+        if (minAspectX * dheight > minAspectY * dwidth) {
             delta = makemult(minAspectX * dheight / minAspectY - dwidth,
                              xinc);
             if (dwidth + delta <= maxWidth) dwidth += delta;
-            else
-            {
+            else {
                 delta = makemult(dheight - dwidth*minAspectY/minAspectX,
                                  yinc);
                 if (dheight - delta >= minHeight) dheight -= delta;
             }
         }
 
-        if (maxAspectX * dheight < maxAspectY * dwidth)
-        {
+        if (maxAspectX * dheight < maxAspectY * dwidth) {
             delta = makemult(dwidth * maxAspectY / maxAspectX - dheight,
                              yinc);
             if (dheight + delta <= maxHeight) dheight += delta;
-            else
-            {
+            else {
                 delta = makemult(dwidth - maxAspectX*dheight/maxAspectY,
                                  xinc);
                 if (dwidth - delta >= minWidth) dwidth -= delta;
@@ -816,18 +767,11 @@ int *widthp, *heightp;
  ***********************************************************************
  */
 
-void SetupWindow (tmp_win, x, y, w, h, bw)
-TwmWindow *tmp_win;
-int x, y, w, h, bw;
-{
+void SetupWindow (TwmWindow *tmp_win, int x, int y, int w, int h, int bw) {
     SetupFrame (tmp_win, x, y, w, h, bw, False);
 }
 
-void SetupFrame (tmp_win, x, y, w, h, bw, sendEvent)
-TwmWindow *tmp_win;
-int x, y, w, h, bw;
-Bool sendEvent;			/* whether or not to force a send */
-{
+void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool sendEvent) {
     XEvent client_event;
     XWindowChanges frame_wc, xwc;
     unsigned long frame_mask, xwcm;
@@ -868,20 +812,16 @@ Bool sendEvent;			/* whether or not to force a send */
     ComputeWindowTitleOffsets (tmp_win, xwc.width, True);
 
     reShape = (tmp_win->wShaped ? TRUE : FALSE);
-    if (tmp_win->squeeze_info)		/* check for title shaping */
-    {
+    if (tmp_win->squeeze_info) {	/* check for title shaping */
         title_width = tmp_win->rightx + Scr->TBInfo.rightoff;
-        if (title_width < xwc.width)
-        {
+        if (title_width < xwc.width) {
             xwc.width = title_width;
             if (tmp_win->frame_height != h ||
                     tmp_win->frame_width != w ||
                     tmp_win->frame_bw != bw ||
                     title_width != tmp_win->title_width)
                 reShape = TRUE;
-        }
-        else
-        {
+        } else {
             if (!tmp_win->wShaped) reShape = TRUE;
             title_width = xwc.width;
         }
@@ -931,8 +871,7 @@ Bool sendEvent;			/* whether or not to force a send */
     /*
      * fix up highlight window
      */
-    if (tmp_win->title_height && tmp_win->hilite_w)
-    {
+    if (tmp_win->title_height && tmp_win->hilite_w) {
         xwc.width = (tmp_win->rightx - tmp_win->highlightx);
         if (Scr->TBInfo.nright > 0) xwc.width -= Scr->TitlePadding;
         if (xwc.width <= 0) {
@@ -950,8 +889,7 @@ Bool sendEvent;			/* whether or not to force a send */
         SetFrameShape (tmp_win);
     }
 
-    if (sendEvent)
-    {
+    if (sendEvent) {
         client_event.type = ConfigureNotify;
         client_event.xconfigure.display = dpy;
         client_event.xconfigure.event = tmp_win->w;
@@ -988,10 +926,7 @@ Bool sendEvent;			/* whether or not to force a send */
  */
 
 void
-fullzoom(tmp_win,flag)
-TwmWindow *tmp_win;
-int flag;
-{
+fullzoom(TwmWindow *tmp_win, int flag) {
     Window      junkRoot;
     unsigned int junkbw, junkDepth;
     int basex, basey;
@@ -1004,32 +939,26 @@ int flag;
     basex = 0;
     basey = 0;
 
-    if (tmp_win->zoomed == flag)
-    {
+    if (tmp_win->zoomed == flag) {
         dragHeight = tmp_win->save_frame_height;
         dragWidth = tmp_win->save_frame_width;
         dragx = tmp_win->save_frame_x;
         dragy = tmp_win->save_frame_y;
         tmp_win->zoomed = ZOOM_NONE;
-    }
-    else
-    {
-        if (tmp_win->zoomed == ZOOM_NONE)
-        {
+    } else {
+        if (tmp_win->zoomed == ZOOM_NONE) {
             tmp_win->save_frame_x = dragx;
             tmp_win->save_frame_y = dragy;
             tmp_win->save_frame_width = dragWidth;
             tmp_win->save_frame_height = dragHeight;
             tmp_win->zoomed = flag;
-        }
-        else
+        } else
             tmp_win->zoomed = flag;
 
 
         frame_bw_times_2 = 2*tmp_win->frame_bw;
 
-        switch (flag)
-        {
+        switch (flag) {
         case ZOOM_NONE:
             break;
         case F_ZOOM:
@@ -1107,9 +1036,7 @@ int flag;
     XUngrabServer (dpy);
 }
 
-SetFrameShape (tmp)
-TwmWindow *tmp;
-{
+int SetFrameShape (TwmWindow *tmp) {
     /*
      * see if the titlebar needs to move
      */
