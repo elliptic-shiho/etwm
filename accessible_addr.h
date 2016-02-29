@@ -1,8 +1,8 @@
-#ifndef __ACCESIBLE_ADDR_H__
-#define __ACCESIBLE_ADDR_H__
+#ifndef __ACCESSIBLE_ADDR_H__
+#define __ACCESSIBLE_ADDR_H__
 #include <signal.h>
 #include <setjmp.h>
 
-extern int is_accesible_address(void *);
+int is_accessible_address(void *);
 
-#endif /*__ACCESIBLE_ADDR_H__ */
+#endif /*__ACCESSIBLE_ADDR_H__ */

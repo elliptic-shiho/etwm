@@ -1879,7 +1879,7 @@ HandleButtonPress() {
         return;
 
     RootFunction = 0;
-    if (!is_accesible_address(&(Scr->Mouse[Event.xbutton.button][Context][modifier]))) {
+    if (!is_accessible_address(&(Scr->Mouse[Event.xbutton.button][Context][modifier]))) {
       fprintf(stderr, "Error: Invalid Address: %llu\n", *((unsigned long long*)Scr->Mouse[Event.xbutton.button][Context]));
       return;
     }

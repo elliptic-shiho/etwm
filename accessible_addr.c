@@ -1,6 +1,6 @@
 #include "accessible_addr.h"
 
-int is_accesible_address(void *p) {
+int is_accessible_address(void *p) {
   jmp_buf jbuf;
   int flag = 0;
   int a;
