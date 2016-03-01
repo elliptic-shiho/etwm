@@ -548,7 +548,7 @@ void UpdateMenu() {
 
         /* now check to see if we were over the arrow of a pull right entry */
         if (ActiveItem->func == F_MENU &&
-                ((ActiveMenu->width - x) < (ActiveMenu->width >> 1))) {
+                ((ActiveMenu->width - x) < (ActiveMenu->width >> 3))) {
             MenuRoot *save = ActiveMenu;
             int savex = MenuOrigins[MenuDepth - 1].x;
             int savey = MenuOrigins[MenuDepth - 1].y;
