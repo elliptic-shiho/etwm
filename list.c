@@ -92,8 +92,7 @@ struct name_list_struct {
  ***********************************************************************
  */
 
-void
-AddToList(name_list **list_head, char *name, char *ptr) {
+void AddToList(name_list **list_head, char *name, char *ptr) {
     name_list *nptr;
 
     if (!list_head) return;	/* ignore empty inserts */
@@ -129,8 +128,7 @@ AddToList(name_list **list_head, char *name, char *ptr) {
  ***********************************************************************
  */
 
-char *
-LookInList(name_list *list_head, char *name, XClassHint *class) {
+char *LookInList(name_list *list_head, char *name, XClassHint *class) {
     name_list *nptr;
 
     /* look for the name first */
@@ -152,8 +150,7 @@ LookInList(name_list *list_head, char *name, XClassHint *class) {
     return (NULL);
 }
 
-char *
-LookInNameList(name_list *list_head, char *name) {
+char *LookInNameList(name_list *list_head, char *name) {
     return (LookInList(list_head, name, NULL));
 }
 
@@ -220,8 +217,7 @@ int GetColorFromList(name_list *list_head, char *name, XClassHint *class, Pixel 
  ***********************************************************************
  */
 
-void
-FreeList (name_list **list) {
+void FreeList (name_list **list) {
     name_list *nptr;
     name_list *tmp;
 
