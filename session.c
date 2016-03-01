@@ -67,8 +67,7 @@ Bool sent_save_done = 0;
 
 
 
-char *
-GetClientID (Window window) {
+char *GetClientID (Window window) {
     char *client_id = NULL;
     Window client_leader;
     XTextProperty tp;
@@ -82,19 +81,19 @@ GetClientID (Window window) {
     if (XGetWindowProperty (dpy, window, _XA_WM_CLIENT_LEADER,
                             0L, 1L, False, AnyPropertyType,	&actual_type, &actual_format,
                             &nitems, &bytes_after, &prop) == Success) {
-        if (actual_type == XA_WINDOW && actual_format == 32 &&
-                nitems == 1 && bytes_after == 0) {
-            client_leader = *((Window *) prop);
+        if (actual_type == XA_WINDOW && actual_format == 32 && nitems == 1 && bytes_after == 0) {
+          client_leader = *((Window *) prop);
 
-            if (XGetTextProperty (dpy, client_leader, &tp, _XA_SM_CLIENT_ID)) {
-                if (tp.encoding == XA_STRING &&
-                        tp.format == 8 && tp.nitems != 0)
-                    client_id = (char *) tp.value;
+          if (XGetTextProperty (dpy, client_leader, &tp, _XA_SM_CLIENT_ID)) {
+            if (tp.encoding == XA_STRING && tp.format == 8 && tp.nitems != 0) {
+              client_id = (char *) tp.value;
             }
+          }
         }
 
-        if (prop)
-            XFree (prop);
+        if (prop) {
+          XFree (prop);
+        }
     }
 
     return client_id;
@@ -102,122 +101,120 @@ GetClientID (Window window) {
 
 
 
-char *
-GetWindowRole (Window window) {
-    XTextProperty tp;
+char *GetWindowRole (Window window) {
+  XTextProperty tp;
 
-    if (XGetTextProperty (dpy, window, &tp, _XA_WM_WINDOW_ROLE)) {
-        if (tp.encoding == XA_STRING && tp.format == 8 && tp.nitems != 0)
-            return ((char *) tp.value);
+  if (XGetTextProperty (dpy, window, &tp, _XA_WM_WINDOW_ROLE)) {
+    if (tp.encoding == XA_STRING && tp.format == 8 && tp.nitems != 0) {
+      return ((char *) tp.value);
     }
+  }
 
-    return NULL;
+  return NULL;
 }
 
 
 
-int
-write_byte (FILE *file, unsigned char b) {
-    if (fwrite ((char *) &b, 1, 1, file) != 1)
-        return 0;
+int write_byte (FILE *file, unsigned char b) {
+  if (fwrite ((char *) &b, 1, 1, file) != 1) {
+    return 0;
+  } else {
     return 1;
+  }
 }
 
 
-int
-write_ushort (FILE *file, unsigned short s) {
-    unsigned char   file_short[2];
+int write_ushort (FILE *file, unsigned short s) {
+  unsigned char   file_short[2];
 
-    file_short[0] = (s & (unsigned)0xff00) >> 8;
-    file_short[1] = s & 0xff;
-    if (fwrite ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
-        return 0;
+  file_short[0] = (s & (unsigned)0xff00) >> 8;
+  file_short[1] = s & 0xff;
+  if (fwrite ((char *) file_short, (int) sizeof (file_short), 1, file) != 1) {
+    return 0;
+  } else {
     return 1;
+  }
 }
 
 
-int
-write_short (FILE *file, short s) {
-    unsigned char   file_short[2];
+int write_short (FILE *file, short s) {
+  unsigned char   file_short[2];
 
-    file_short[0] = (s & (unsigned)0xff00) >> 8;
-    file_short[1] = s & 0xff;
-    if (fwrite ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
-        return 0;
+  file_short[0] = (s & (unsigned)0xff00) >> 8;
+  file_short[1] = s & 0xff;
+  if (fwrite ((char *) file_short, (int) sizeof (file_short), 1, file) != 1) {
+    return 0;
+  } else {
     return 1;
+  }
 }
 
 
-int
-write_counted_string (FILE *file, char *string) {
-    if (string) {
-        unsigned char count = strlen (string);
+int write_counted_string (FILE *file, char *string) {
+  if (string == NULL) {
+    return (!write_byte (file, 0)) ? 0 : 1;
+  }
+  unsigned char count = strlen (string);
 
-        if (write_byte (file, count) == 0)
-            return 0;
-        if (fwrite (string, (int) sizeof (char), (int) count, file) != count)
-            return 0;
-    } else {
-        if (write_byte (file, 0) == 0)
-            return 0;
+  if (write_byte (file, count) != 0) {
+    if (fwrite (string, (int) sizeof (char), (int) count, file) == count) {
+      return 1;
     }
-
-    return 1;
+  }
+  return 0;
 }
 
 
 
-int
-read_byte (FILE *file, unsigned char *bp) {
-    if (fread ((char *) bp, 1, 1, file) != 1)
-        return 0;
-    return 1;
+int read_byte (FILE *file, unsigned char *bp) {
+  return (fread ((char *) bp, 1, 1, file) != 1) ? 0 : 1;
 }
 
 
-int
-read_ushort (FILE *file, unsigned short *shortp) {
-    unsigned char   file_short[2];
+int read_ushort (FILE *file, unsigned short *shortp) {
+    unsigned char file_short[2];
 
-    if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
-        return 0;
+    if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1) {
+      return 0;
+    }
     *shortp = file_short[0] * 256 + file_short[1];
     return 1;
 }
 
 
-int
-read_short (FILE *file, short *shortp) {
-    unsigned char   file_short[2];
+int read_short (FILE *file, short *shortp) {
+  unsigned char   file_short[2];
 
-    if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1)
-        return 0;
-    *shortp = file_short[0] * 256 + file_short[1];
-    return 1;
+  if (fread ((char *) file_short, (int) sizeof (file_short), 1, file) != 1) {
+    return 0;
+  }
+  *shortp = file_short[0] * 256 + file_short[1];
+  return 1;
 }
 
 
-int
-read_counted_string (FILE *file, char **stringp) {
-    unsigned char  len;
-    char	   *data;
+int read_counted_string (FILE *file, char **stringp) {
+  unsigned char  len;
+  char	   *data;
 
-    if (read_byte (file, &len) == 0)
-        return 0;
-    if (len == 0) {
-        data = 0;
-    } else {
-        data = malloc ((unsigned) len + 1);
-        if (!data)
-            return 0;
-        if (fread (data, (int) sizeof (char), (int) len, file) != len) {
-            free (data);
-            return 0;
-        }
-        data[len] = '\0';
+  if (!read_byte (file, &len) == 0) {
+    return 0;
+  }
+
+  if (len == 0) {
+      data = 0;
+  } else {
+    data = malloc ((unsigned) len + 1);
+    if (!data)
+      return 0;
+    if (fread (data, (int) sizeof (char), (int) len, file) != len) {
+      free (data);
+      return 0;
     }
-    *stringp = data;
-    return 1;
+    data[len] = '\0';
+  }
+  *stringp = data;
+  return 1;
 }
 
 
@@ -262,8 +259,7 @@ read_counted_string (FILE *file, char **stringp) {
  * Height ever changed by user		1
  */
 
-int
-WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId, char *windowRole) {
+int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId, char *windowRole) {
     char **wm_command;
     int wm_command_count, i;
 
@@ -346,8 +342,7 @@ WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId, cha
 }
 
 
-int
-ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEntry **pentry) {
+int ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEntry **pentry) {
     TWMWinConfigEntry *entry;
     unsigned char byte;
     int i;
@@ -465,8 +460,7 @@ give_up:
 }
 
 
-void
-ReadWinConfigFile (char *filename) {
+void ReadWinConfigFile (char *filename) {
     FILE *configFile;
     TWMWinConfigEntry *entry;
     int done = 0;
@@ -494,8 +488,7 @@ ReadWinConfigFile (char *filename) {
 
 
 
-int
-GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width, unsigned short *height,
+int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width, unsigned short *height,
                  Bool *iconified, Bool *icon_info_present, short *icon_x, short *icon_y,
                  Bool *width_ever_changed_by_user, Bool *height_ever_changed_by_user) {
     char *clientId, *windowRole;
@@ -594,10 +587,11 @@ GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width
             *icon_y = ptr->icon_y;
         }
         ptr->tag = 1;
-    } else
+    } else {
         *iconified = 0;
+    }
 
-    if (clientId)
+    if (clientId) 
         XFree (clientId);
 
     if (windowRole)
@@ -608,25 +602,24 @@ GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width
 
 
 
-static char *
-unique_filename (char *path, char *prefix) {
+static char *unique_filename (char *path, char *prefix) {
     char tempFile[PATH_MAX];
     char *tmp;
 
     sprintf (tempFile, "%s/%sXXXXXX", path, prefix);
     tmp = (char *) mkdtemp (tempFile);
     if (tmp) {
-        char *ptr = (char *) malloc (strlen (tmp) + 1);
-        strcpy (ptr, tmp);
-        return (ptr);
-    } else
-        return (NULL);
+      char *ptr = (char *) malloc (strlen (tmp) + 1);
+      strcpy (ptr, tmp);
+      return (ptr);
+    } else {
+      return (NULL);
+    }
 }
 
 
 
-void
-SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
+void SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
     int scrnum;
     ScreenInfo *theScreen;
     TwmWindow *theWindow;
@@ -783,8 +776,7 @@ bad:
 
 
 
-void
-SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdown, int interactStyle, Bool fast) {
+void SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdown, int interactStyle, Bool fast) {
     if (!SmcRequestSaveYourselfPhase2 (smcConn, SaveYourselfPhase2CB, NULL)) {
         SmcSaveYourselfDone (smcConn, False);
         sent_save_done = 1;
@@ -794,8 +786,7 @@ SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdo
 
 
 
-void
-DieCB (SmcConn smcConn, SmPointer clientData) {
+void DieCB (SmcConn smcConn, SmPointer clientData) {
     SmcCloseConnection (smcConn, 0, NULL);
     XtRemoveInput (iceInputId);
     Done();
@@ -803,15 +794,14 @@ DieCB (SmcConn smcConn, SmPointer clientData) {
 
 
 
-void
-SaveCompleteCB (SmcConn smcConn, SmPointer clientData) {
+void SaveCompleteCB (SmcConn smcConn, SmPointer clientData) {
+    // do nothing...
     ;
 }
 
 
 
-void
-ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
+void ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
     if (!sent_save_done) {
         SmcSaveYourselfDone (smcConn, False);
         sent_save_done = 1;
@@ -820,17 +810,14 @@ ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
 
 
 
-void
-ProcessIceMsgProc (XtPointer client_data, int *source, XtInputId *id) {
+void ProcessIceMsgProc (XtPointer client_data, int *source, XtInputId *id) {
     IceConn	ice_conn = (IceConn) client_data;
-
     IceProcessMessages (ice_conn, NULL, NULL);
 }
 
 
 
-void
-ConnectToSessionManager (char *previous_id) {
+void ConnectToSessionManager (char *previous_id) {
     char errorMsg[256];
     unsigned long mask;
     SmcCallbacks callbacks;
