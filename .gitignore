@@ -1,9 +1,8 @@
-*.o
-twm
-Makefile
-deftwmrc.c
-gram.c
-gram.h
-lex.c
+bin/*.o
+bin/twm
+src/deftwmrc.c
+src/gram.c
+includes/gram.h
+src/lex.c
 twm._man
 
