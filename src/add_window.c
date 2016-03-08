@@ -227,10 +227,12 @@ AddWindow(Window w, int iconm, IconMgr *iconp) {
     /*
      * do initial clip; should look at window gravity
      */
+    /*
     if (tmp_win->attr.width > Scr->MaxWindowWidth)
         tmp_win->attr.width = Scr->MaxWindowWidth;
     if (tmp_win->attr.height > Scr->MaxWindowHeight)
         tmp_win->attr.height = Scr->MaxWindowHeight;
+        */
 
     tmp_win->wmhints = XGetWMHints(dpy, tmp_win->w);
 
