@@ -119,6 +119,7 @@ extern void TwmOutput();
 #define F_QZOOM_2			47
 #define F_QZOOM_3			48
 #define F_QZOOM_4			49
+#define F_DEBUG       50
 
 #define F_MENU			101	/* string */
 #define F_WARPTO		102	/* string */

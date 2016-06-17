@@ -176,6 +176,7 @@ InitEvents() {
     EventHandler[KeyPress] = HandleKeyPress;
     EventHandler[ColormapNotify] = HandleColormapNotify;
     EventHandler[VisibilityNotify] = HandleVisibilityNotify;
+    EventHandler[ConfigureNotify] = HandleConfigureNotify;
     if (HasShape)
         EventHandler[ShapeEventBase+ShapeNotify] = HandleShapeNotify;
 }
@@ -741,6 +742,11 @@ void free_cwins (TwmWindow *tmp)
         tmp->cmaps.number_cwins = 0;
     }
 }
+void HandleConfigureNotify() {
+  if (Event.xconfigure.window == Scr->Root) {
+    fprintf(stderr, "Need Restart!\n");
+  }
+}
 
 
 
@@ -751,7 +757,6 @@ void free_cwins (TwmWindow *tmp)
  *
  ***********************************************************************
  */
-
 void
 HandlePropertyNotify() {
     char *prop = NULL;

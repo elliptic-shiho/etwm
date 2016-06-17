@@ -441,6 +441,7 @@ static TwmKeyword keytable[] = {
     { "f.colormap",		FSKEYWORD, F_COLORMAP },
     { "f.cut",			FSKEYWORD, F_CUT },
     { "f.cutfile",		FKEYWORD, F_CUTFILE },
+    { "f.debug",		FKEYWORD, F_DEBUG },
     { "f.deiconify",		FKEYWORD, F_DEICONIFY },
     { "f.delete",		FKEYWORD, F_DELETE },
     { "f.deltastop",		FKEYWORD, F_DELTASTOP },

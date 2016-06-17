@@ -68,6 +68,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "resize.h"
 #include "add_window.h"
 #include "screen.h"
+#include "xinerama.h"
 
 #define MINHEIGHT 0     /* had been 32 */
 #define MINWIDTH 0      /* had been 60 */
@@ -931,6 +932,7 @@ fullzoom(TwmWindow *tmp_win, int flag) {
     unsigned int junkbw, junkDepth;
     int basex, basey;
     int frame_bw_times_2;
+    int scr_id, scr_width, scr_height, scr_org_x, scr_org_y;
 
     XGetGeometry(dpy, (Drawable) tmp_win->frame, &junkRoot,
                  &dragx, &dragy, (unsigned int *)&dragWidth, (unsigned int *)&dragHeight, &junkbw,
@@ -952,9 +954,17 @@ fullzoom(TwmWindow *tmp_win, int flag) {
             tmp_win->save_frame_width = dragWidth;
             tmp_win->save_frame_height = dragHeight;
             tmp_win->zoomed = flag;
-        } else
+        } else {
             tmp_win->zoomed = flag;
+        }
 
+        scr_id = get_display_number_from_coordinate(dragx, dragy);
+        scr_width = get_screen_width(scr_id);
+        scr_height = get_screen_height(scr_id);
+        scr_org_x = get_screen_org_x(scr_id);
+        scr_org_y = get_screen_org_y(scr_id);
+        basex += scr_org_x;
+        basey += scr_org_y;
 
         frame_bw_times_2 = 2*tmp_win->frame_bw;
 
@@ -962,66 +972,66 @@ fullzoom(TwmWindow *tmp_win, int flag) {
         case ZOOM_NONE:
             break;
         case F_ZOOM:
-            dragHeight = Scr->MyDisplayHeight - frame_bw_times_2;
+            dragHeight = scr_height - frame_bw_times_2;
             dragy=basey;
             break;
         case F_HORIZOOM:
             dragx = basex;
-            dragWidth = Scr->MyDisplayWidth - frame_bw_times_2;
+            dragWidth = scr_width - frame_bw_times_2;
             break;
         case F_FULLZOOM:
             dragx = basex;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth - frame_bw_times_2;
+            dragHeight = scr_height - frame_bw_times_2;
+            dragWidth = scr_width - frame_bw_times_2;
             break;
         case F_LEFTZOOM:
             dragx = basex;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragHeight = scr_height - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         case F_RIGHTZOOM:
-            dragx = basex + Scr->MyDisplayWidth/2;
+            dragx = basex + scr_width/2;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragHeight = scr_height - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         case F_TOPZOOM:
             dragx = basex;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth - frame_bw_times_2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width - frame_bw_times_2;
             break;
         case F_BOTTOMZOOM:
             dragx = basex;
-            dragy = basey + Scr->MyDisplayHeight/2;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth - frame_bw_times_2;
+            dragy = basey + scr_height/2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width - frame_bw_times_2;
             break;
         case F_QZOOM_1:
             dragx = basex;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         case F_QZOOM_2:
             dragx = basex;
-            dragy = basey + Scr->MyDisplayHeight/2;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragy = basey + scr_height/2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         case F_QZOOM_3:
-            dragx = basex + Scr->MyDisplayWidth/2;
+            dragx = basex + scr_width/2;
             dragy = basey;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         case F_QZOOM_4:
-            dragx = basex + Scr->MyDisplayWidth/2;
-            dragy = basey + Scr->MyDisplayHeight/2;
-            dragHeight = Scr->MyDisplayHeight/2 - frame_bw_times_2;
-            dragWidth = Scr->MyDisplayWidth/2 - frame_bw_times_2;
+            dragx = basex + scr_width/2;
+            dragy = basey + scr_height/2;
+            dragHeight = scr_height/2 - frame_bw_times_2;
+            dragWidth = scr_width/2 - frame_bw_times_2;
             break;
         }
     }

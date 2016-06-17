@@ -91,6 +91,7 @@ extern void HandlePropertyNotify();
 extern void HandleKeyPress();
 extern void HandleColormapNotify();
 extern void HandleVisibilityNotify();
+extern void HandleConfigureNotify();
 extern void HandleUnknown();
 
 extern event_proc EventHandler[];

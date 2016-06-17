@@ -76,6 +76,7 @@ in this Software without prior written authorization from the X Consortium.
 #include <X11/bitmaps/menu12>
 #include "version.h"
 #include <X11/extensions/sync.h>
+#include <X11/extensions/Xinerama.h>
 #include <X11/SM/SMlib.h>
 
 extern XEvent Event;
@@ -1270,6 +1271,27 @@ int ExecuteFunction(int func, char *action, Window w, TwmWindow *tmp_win, XEvent
     RootFunction = 0;
     if (Cancel)
         return TRUE;			/* XXX should this be FALSE? */
+
+    if (func == F_DEBUG) {
+      if (XineramaIsActive(dpy)) {
+        int major, minor;
+        XineramaQueryVersion(dpy, &major, &minor);
+        fprintf(stderr, "[+] Xinerama is active: version %d.%d\n", major, minor);
+        XineramaScreenInfo *info;
+        int n, i;
+        info = XineramaQueryScreens(dpy, &n);
+        fprintf(stderr, "[+] %d Screen(s) Active.\n", n);
+        for (i = 0; i < n; i++) {
+          fprintf(stderr, "[+] Display %d: \n", info[i].screen_number);
+          fprintf(stderr, "[+] \t %dx%d+%d+%d\n", info[i].width, info[i].height,
+              info[i].x_org, info[i].y_org);
+        }
+        XFree(info);
+      } else {
+        fprintf(stderr, "[-] Xinerama is not active\n");
+      }
+      return TRUE;
+    }
 
     switch (func) {
     case F_UPICONMGR:
