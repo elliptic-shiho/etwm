@@ -973,7 +973,7 @@ fullzoom(TwmWindow *tmp_win, int flag) {
             break;
         case F_ZOOM:
             dragHeight = scr_height - frame_bw_times_2;
-            dragy=basey;
+            dragy = basey;
             break;
         case F_HORIZOOM:
             dragx = basex;

@@ -158,7 +158,7 @@ InitEvents() {
     enter_win = raise_win = NULL;
 
     for (i = 0; i < MAX_X_EVENT; i++)
-        EventHandler[i] = HandleUnknown;
+        EventHandler[i] = NULL;
 
     EventHandler[Expose] = HandleExpose;
     EventHandler[CreateNotify] = HandleCreateNotify;
@@ -354,7 +354,7 @@ Bool DispatchEvent () {
 
     if (!Scr) return False;
 
-    if (Event.type>= 0 && Event.type < MAX_X_EVENT) {
+    if (Event.type>= 0 && Event.type < MAX_X_EVENT && EventHandler[Event.type] != NULL) {
         (*EventHandler[Event.type])();
     }
 

@@ -1541,6 +1541,7 @@ int ExecuteFunction(int func, char *action, Window w, TwmWindow *tmp_win, XEvent
                                   &DragX, &DragY, &JunkChild);
 
             w = tmp_win->frame;
+            tmp_win->zoomed = ZOOM_NONE;
         }
 
         DragWindow = None;
