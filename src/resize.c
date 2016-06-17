@@ -958,7 +958,7 @@ fullzoom(TwmWindow *tmp_win, int flag) {
             tmp_win->zoomed = flag;
         }
 
-        scr_id = get_display_number_from_coordinate(dragx, dragy);
+        scr_id = get_display_number_from_coordinate(tmp_win->frame_x + tmp_win->frame_width / 2, tmp_win->frame_y + tmp_win->frame_height / 2);
         scr_width = get_screen_width(scr_id);
         scr_height = get_screen_height(scr_id);
         scr_org_x = get_screen_org_x(scr_id);
