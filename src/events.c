@@ -75,6 +75,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "iconmgr.h"
 #include "version.h"
 #include "accessible_addr.h"
+#include <X11/SM/SMlib.h>
 
 extern int iconifybox_width, iconifybox_height;
 extern unsigned int mods_used;
@@ -744,7 +745,14 @@ void free_cwins (TwmWindow *tmp)
 }
 void HandleConfigureNotify() {
   if (Event.xconfigure.window == Scr->Root) {
-    fprintf(stderr, "Need Restart!\n");
+    extern SmcConn smcConn;
+    XSync (dpy, 0);
+    Reborder (Event.xbutton.time);
+    XSync (dpy, 0);
+    if (smcConn)
+      SmcCloseConnection (smcConn, 0, NULL);
+    execvp(*Argv, Argv);
+    fprintf (stderr, "%s:  unable to restart:  %s\n", ProgramName, *Argv);
   }
 }
 

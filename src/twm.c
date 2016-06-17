@@ -302,7 +302,7 @@ usage:
         XSetErrorHandler(CatchRedirectError);
         XSelectInput(dpy, RootWindow (dpy, scrnum),
                      ColormapChangeMask | EnterWindowMask | PropertyChangeMask |
-                     SubstructureRedirectMask | KeyPressMask |
+                     SubstructureRedirectMask | KeyPressMask | SubstructureNotifyMask | StructureNotifyMask | 
                      ButtonPressMask | ButtonReleaseMask);
         XSync(dpy, 0);
         XSetErrorHandler(TwmErrorHandler);
