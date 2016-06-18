@@ -110,8 +110,9 @@ static void do_auto_clamp (TwmWindow *tmp_win, XEvent *evp) {
     break;
   default:
     if (!XQueryPointer (dpy, Scr->Root, &junkRoot, &junkRoot,
-                        &x, &y, &junkbw, &junkbw, &junkMask))
+                        &x, &y, &junkbw, &junkbw, &junkMask)) {
       return;
+    }
   }
 
   h = ((x - dragx) / (dragWidth < 3 ? 1 : (dragWidth / 3)));
@@ -173,8 +174,9 @@ StartResize(XEvent *evp, TwmWindow *tmp_win, Bool fromtitlebar) {
   origHeight = dragHeight;
   clampTop = clampBottom = clampLeft = clampRight = clampDX = clampDY = 0;
 
-  if (Scr->AutoRelativeResize && !fromtitlebar)
+  if (Scr->AutoRelativeResize && !fromtitlebar) {
     do_auto_clamp (tmp_win, evp);
+  }
 
   Scr->SizeStringOffset = SIZE_HINDENT;
   XResizeWindow (dpy, Scr->SizeWindow,
@@ -344,10 +346,12 @@ MenuDoResize(int x_root, int y_root, TwmWindow *tmp_win) {
 
   if (action) {
     ConstrainSize (tmp_win, &dragWidth, &dragHeight);
-    if (clampLeft)
+    if (clampLeft) {
       dragx = origx + origWidth - dragWidth;
-    if (clampTop)
+    }
+    if (clampTop) {
       dragy = origy + origHeight - dragHeight;
+    }
     MoveOutline(Scr->Root,
                 dragx - tmp_win->frame_bw,
                 dragy - tmp_win->frame_bw,
@@ -459,10 +463,12 @@ DoResize(int x_root, int y_root, TwmWindow *tmp_win) {
 
   if (action) {
     ConstrainSize (tmp_win, &dragWidth, &dragHeight);
-    if (clampLeft)
+    if (clampLeft) {
       dragx = origx + origWidth - dragWidth;
-    if (clampTop)
+    }
+    if (clampTop) {
       dragy = origy + origHeight - dragHeight;
+    }
     MoveOutline(Scr->Root,
                 dragx - tmp_win->frame_bw,
                 dragy - tmp_win->frame_bw,
@@ -493,8 +499,9 @@ DisplaySize(TwmWindow *tmp_win, int width, int height) {
   int dwidth;
   int dheight;
 
-  if (last_width == width && last_height == height)
+  if (last_width == width && last_height == height) {
     return;
+  }
 
   last_width = width;
   last_height = height;
@@ -554,15 +561,18 @@ EndResize() {
   ConstrainSize (tmp_win, &dragWidth, &dragHeight);
 
   if (dragWidth != tmp_win->frame_width ||
-      dragHeight != tmp_win->frame_height)
+      dragHeight != tmp_win->frame_height) {
     tmp_win->zoomed = ZOOM_NONE;
+  }
 
   SetupWindow (tmp_win, dragx - tmp_win->frame_bw, dragy - tmp_win->frame_bw,
                dragWidth, dragHeight, -1);
 
   if (tmp_win->iconmgr) {
     int ncols = tmp_win->iconmgrp->cur_columns;
-    if (ncols == 0) ncols = 1;
+    if (ncols == 0) {
+      ncols = 1;
+    }
 
     tmp_win->iconmgrp->width = (int) ((dragWidth *
                                        (long) tmp_win->iconmgrp->columns)
@@ -570,8 +580,9 @@ EndResize() {
     PackIconManager(tmp_win->iconmgrp);
   }
 
-  if (!Scr->NoRaiseResize)
+  if (!Scr->NoRaiseResize) {
     XRaiseWindow(dpy, tmp_win->frame);
+  }
 
   UninstallRootColormap();
 
@@ -642,8 +653,9 @@ int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
   } else if (tmp_win->hints.flags & PBaseSize) {
     minWidth = tmp_win->hints.base_width;
     minHeight = tmp_win->hints.base_height;
-  } else
+  } else {
     minWidth = minHeight = 1;
+  }
 
   if (tmp_win->hints.flags & PBaseSize) {
     baseWidth = tmp_win->hints.base_width;
@@ -651,8 +663,9 @@ int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
   } else if (tmp_win->hints.flags & PMinSize) {
     baseWidth = tmp_win->hints.min_width;
     baseHeight = tmp_win->hints.min_height;
-  } else
+  } else {
     baseWidth = baseHeight = 0;
+  }
 
 
   if (tmp_win->hints.flags & PMaxSize) {
@@ -666,17 +679,26 @@ int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
   if (tmp_win->hints.flags & PResizeInc) {
     xinc = tmp_win->hints.width_inc;
     yinc = tmp_win->hints.height_inc;
-  } else
+  } else {
     xinc = yinc = 1;
+  }
 
   /*
    * First, clamp to min and max values
    */
-  if (dwidth < minWidth) dwidth = minWidth;
-  if (dheight < minHeight) dheight = minHeight;
+  if (dwidth < minWidth) {
+    dwidth = minWidth;
+  }
+  if (dheight < minHeight) {
+    dheight = minHeight;
+  }
 
-  if (dwidth > maxWidth) dwidth = maxWidth;
-  if (dheight > maxHeight) dheight = maxHeight;
+  if (dwidth > maxWidth) {
+    dwidth = maxWidth;
+  }
+  if (dheight > maxHeight) {
+    dheight = maxHeight;
+  }
 
 
   /*
@@ -712,22 +734,28 @@ int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
     if (minAspectX * dheight > minAspectY * dwidth) {
       delta = makemult(minAspectX * dheight / minAspectY - dwidth,
                        xinc);
-      if (dwidth + delta <= maxWidth) dwidth += delta;
-      else {
+      if (dwidth + delta <= maxWidth) {
+        dwidth += delta;
+      } else {
         delta = makemult(dheight - dwidth*minAspectY/minAspectX,
                          yinc);
-        if (dheight - delta >= minHeight) dheight -= delta;
+        if (dheight - delta >= minHeight) {
+          dheight -= delta;
+        }
       }
     }
 
     if (maxAspectX * dheight < maxAspectY * dwidth) {
       delta = makemult(dwidth * maxAspectY / maxAspectX - dheight,
                        yinc);
-      if (dheight + delta <= maxHeight) dheight += delta;
-      else {
+      if (dheight + delta <= maxHeight) {
+        dheight += delta;
+      } else {
         delta = makemult(dwidth - maxAspectX*dheight/maxAspectY,
                          xinc);
-        if (dwidth - delta >= minWidth) dwidth -= delta;
+        if (dwidth - delta >= minWidth) {
+          dwidth -= delta;
+        }
       }
     }
   }
@@ -784,12 +812,15 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
            x, y, w, h, bw);
 #endif
 
-  if (x >= Scr->MyDisplayWidth)
-    x = Scr->MyDisplayWidth - 16;	/* one "average" cursor width */
-  if (y >= Scr->MyDisplayHeight)
-    y = Scr->MyDisplayHeight - 16;	/* one "average" cursor width */
-  if (bw < 0)
-    bw = tmp_win->frame_bw;		/* -1 means current frame width */
+  if (x >= Scr->MyDisplayWidth) {
+    x = Scr->MyDisplayWidth - 16;  /* one "average" cursor width */
+  }
+  if (y >= Scr->MyDisplayHeight) {
+    y = Scr->MyDisplayHeight - 16;  /* one "average" cursor width */
+  }
+  if (bw < 0) {
+    bw = tmp_win->frame_bw;  /* -1 means current frame width */
+  }
 
   if (tmp_win->iconmgr) {
     tmp_win->iconmgrp->width = w;
@@ -803,8 +834,9 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
    */
   if (((x != tmp_win->frame_x || y != tmp_win->frame_y) &&
        (w == tmp_win->frame_width && h == tmp_win->frame_height)) ||
-      (bw != tmp_win->frame_bw))
+      (bw != tmp_win->frame_bw)) {
     sendEvent = TRUE;
+  }
 
   xwcm = CWWidth;
   title_width = xwc.width = w;
@@ -820,16 +852,21 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
       if (tmp_win->frame_height != h ||
           tmp_win->frame_width != w ||
           tmp_win->frame_bw != bw ||
-          title_width != tmp_win->title_width)
+          title_width != tmp_win->title_width) {
         reShape = TRUE;
+      }
     } else {
-      if (!tmp_win->wShaped) reShape = TRUE;
+      if (!tmp_win->wShaped) {
+        reShape = TRUE;
+      }
       title_width = xwc.width;
     }
   }
 
   tmp_win->title_width = title_width;
-  if (tmp_win->title_height) tmp_win->title_height = title_height;
+  if (tmp_win->title_height) {
+    tmp_win->title_height = title_height;
+  }
 
   if (tmp_win->title_w) {
     if (bw != tmp_win->frame_bw) {
@@ -842,11 +879,13 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
     XConfigureWindow(dpy, tmp_win->title_w, xwcm, &xwc);
   }
 
-  if (tmp_win->attr.width != w)
+  if (tmp_win->attr.width != w) {
     tmp_win->widthEverChangedByUser = True;
+  }
 
-  if (tmp_win->attr.height != (h - tmp_win->title_height))
+  if (tmp_win->attr.height != (h - tmp_win->title_height)) {
     tmp_win->heightEverChangedByUser = True;
+  }
 
   tmp_win->attr.width = w;
   tmp_win->attr.height = h - tmp_win->title_height;
@@ -874,7 +913,9 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
    */
   if (tmp_win->title_height && tmp_win->hilite_w) {
     xwc.width = (tmp_win->rightx - tmp_win->highlightx);
-    if (Scr->TBInfo.nright > 0) xwc.width -= Scr->TitlePadding;
+    if (Scr->TBInfo.nright > 0) {
+      xwc.width -= Scr->TitlePadding;
+    }
     if (xwc.width <= 0) {
       xwc.x = Scr->MyDisplayWidth;	/* move offscreen */
       xwc.width = 1;
@@ -1036,8 +1077,9 @@ fullzoom(TwmWindow *tmp_win, int flag) {
     }
   }
 
-  if (!Scr->NoRaiseResize)
+  if (!Scr->NoRaiseResize) {
     XRaiseWindow(dpy, tmp_win->frame);
+  }
 
   ConstrainSize(tmp_win, &dragWidth, &dragHeight);
 
@@ -1053,8 +1095,9 @@ int SetFrameShape (TwmWindow *tmp) {
   if (tmp->title_w) {
     int oldx = tmp->title_x, oldy = tmp->title_y;
     ComputeTitleLocation (tmp);
-    if (oldx != tmp->title_x || oldy != tmp->title_y)
+    if (oldx != tmp->title_x || oldy != tmp->title_y) {
       XMoveWindow (dpy, tmp->title_w, tmp->title_x, tmp->title_y);
+    }
   }
 
   /*

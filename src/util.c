@@ -107,8 +107,9 @@ void MoveOutline(Window root, int x, int y, int width, int height, int bw, int t
   register XSegment	*r;
 
   if (x == lastx && y == lasty && width == lastWidth && height == lastHeight
-      && lastBW == bw && th == lastTH)
+      && lastBW == bw && th == lastTH) {
     return;
+  }
 
   r = outline;
 
@@ -224,9 +225,13 @@ Zoom(Window wf, Window wt) {
   long z;
   int j;
 
-  if (!Scr->DoZoom || Scr->ZoomCount < 1) return;
+  if (!Scr->DoZoom || Scr->ZoomCount < 1) {
+    return;
+  }
 
-  if (wf == None || wt == None) return;
+  if (wf == None || wt == None) {
+    return;
+  }
 
   XGetGeometry (dpy, wf, &JunkRoot, &fx, &fy, &fw, &fh, &JunkBW, &JunkDepth);
   XGetGeometry (dpy, wt, &JunkRoot, &tx, &ty, &tw, &th, &JunkBW, &JunkDepth);
@@ -274,7 +279,9 @@ char *
 ExpandFilename(char *name) {
   char *newname;
 
-  if (name[0] != '~') return name;
+  if (name[0] != '~') {
+    return name;
+  }
 
   newname = (char *) malloc (HomeLen + strlen(name) + 2);
   if (!newname) {
@@ -327,7 +334,9 @@ Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
   char *bigname;
   Pixmap pm;
 
-  if (!name) return None;
+  if (!name) {
+    return None;
+  }
 
   /*
    * Names of the form :name refer to hardcoded images that are scaled to
@@ -350,8 +359,9 @@ Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
     };
 
     for (i = 0; i < (sizeof pmtab)/(sizeof pmtab[0]); i++) {
-      if (XmuCompareISOLatin1 (pmtab[i].name, name) == 0)
+      if (XmuCompareISOLatin1 (pmtab[i].name, name) == 0) {
         return (*pmtab[i].proc) (widthp, heightp);
+      }
     }
     fprintf (stderr, "%s:  no such built-in bitmap \"%s\"\n",
              ProgramName, name);
@@ -364,7 +374,9 @@ Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
    * be freed.
    */
   bigname = ExpandFilename (name);
-  if (!bigname) return None;
+  if (!bigname) {
+    return None;
+  }
 
   /*
    * look along bitmapFilePath resource same as toolkit clients
@@ -372,7 +384,9 @@ Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
   pm = XmuLocateBitmapFile (ScreenOfDisplay(dpy, Scr->screen), bigname, NULL,
                             0, (int *)widthp, (int *)heightp, &HotX, &HotY);
   if (pm == None && Scr->IconDirectory && bigname[0] != '/') {
-    if (bigname != name) free (bigname);
+    if (bigname != name) {
+      free (bigname);
+    }
     /*
      * Attempt to find icon in old IconDirectory (now obsolete)
      */
@@ -390,7 +404,9 @@ Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {
       pm = None;
     }
   }
-  if (bigname != name) free (bigname);
+  if (bigname != name) {
+    free (bigname);
+  }
   if (pm == None) {
     fprintf (stderr, "%s:  unable to find bitmap \"%s\"\n",
              ProgramName, name);
@@ -409,7 +425,9 @@ int InsertRGBColormap (Atom a, XStandardColormap *maps, int nmaps, Bool replace)
 
   if (replace) {			/* locate existing entry */
     for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
-      if (sc->atom == a) break;
+      if (sc->atom == a) {
+        break;
+      }
     }
   }
 
@@ -423,8 +441,12 @@ int InsertRGBColormap (Atom a, XStandardColormap *maps, int nmaps, Bool replace)
   }
 
   if (replace) {			/* just update contents */
-    if (sc->maps) XFree ((char *) maps);
-    if (sc == Scr->StdCmapInfo.mru) Scr->StdCmapInfo.mru = NULL;
+    if (sc->maps) {
+      XFree ((char *) maps);
+    }
+    if (sc == Scr->StdCmapInfo.mru) {
+      Scr->StdCmapInfo.mru = NULL;
+    }
   } else {				/* else appending */
     sc->next = NULL;
     sc->atom = a;
@@ -446,15 +468,27 @@ int RemoveRGBColormap (Atom a) {
 
   prev = NULL;
   for (sc = Scr->StdCmapInfo.head; sc; sc = sc->next) {
-    if (sc->atom == a) break;
+    if (sc->atom == a) {
+      break;
+    }
     prev = sc;
   }
   if (sc) {				/* found one */
-    if (sc->maps) XFree ((char *) sc->maps);
-    if (prev) prev->next = sc->next;
-    if (Scr->StdCmapInfo.head == sc) Scr->StdCmapInfo.head = sc->next;
-    if (Scr->StdCmapInfo.tail == sc) Scr->StdCmapInfo.tail = prev;
-    if (Scr->StdCmapInfo.mru == sc) Scr->StdCmapInfo.mru = NULL;
+    if (sc->maps) {
+      XFree ((char *) sc->maps);
+    }
+    if (prev) {
+      prev->next = sc->next;
+    }
+    if (Scr->StdCmapInfo.head == sc) {
+      Scr->StdCmapInfo.head = sc->next;
+    }
+    if (Scr->StdCmapInfo.tail == sc) {
+      Scr->StdCmapInfo.tail = prev;
+    }
+    if (Scr->StdCmapInfo.mru == sc) {
+      Scr->StdCmapInfo.mru = NULL;
+    }
   }
   return 0;
 }
@@ -474,7 +508,9 @@ int LocateStandardColormaps() {
       InsertRGBColormap (atoms[i], maps, nmaps, False);
     }
   }
-  if (atoms) XFree ((char *) atoms);
+  if (atoms) {
+    XFree ((char *) atoms);
+  }
   return 0;
 }
 
@@ -484,12 +520,14 @@ int GetColor(int kind, Pixel *what, char *name) {
   Colormap cmap = Scr->TwmRoot.cmaps.cwins[0]->colormap->c;
 
 #ifndef TOM
-  if (!Scr->FirstTime)
+  if (!Scr->FirstTime) {
     return 0;
+  }
 #endif
 
-  if (Scr->Monochrome != kind)
+  if (Scr->Monochrome != kind) {
     return 0;
+  }
 
   if (!XAllocNamedColor (dpy, cmap, name, &color, &junkcolor)) {
     /* if we could not allocate the color, let's see if this is a
@@ -498,8 +536,9 @@ int GetColor(int kind, Pixel *what, char *name) {
     XStandardColormap *stdcmap = NULL;
 
     /* parse the named color */
-    if (name[0] != '#')
+    if (name[0] != '#') {
       stat = XParseColor (dpy, cmap, name, &color);
+    }
     if (!stat) {
       fprintf (stderr, "%s:  invalid color name \"%s\"\n",
                ProgramName, name);
@@ -557,12 +596,14 @@ int GetColorValue(int kind, XColor *what, char *name) {
   Colormap cmap = Scr->TwmRoot.cmaps.cwins[0]->colormap->c;
 
 #ifndef TOM
-  if (!Scr->FirstTime)
+  if (!Scr->FirstTime) {
     return 0;
+  }
 #endif
 
-  if (Scr->Monochrome != kind)
+  if (Scr->Monochrome != kind) {
     return 0;
+  }
 
   if (!XLookupColor (dpy, cmap, name, what, &junkcolor)) {
     fprintf (stderr, "%s:  invalid color name \"%s\"\n",
@@ -575,8 +616,9 @@ int GetColorValue(int kind, XColor *what, char *name) {
 int GetFont(MyFont *font) {
   char *deffontname = "fixed";
 
-  if (font->font != NULL)
+  if (font->font != NULL) {
     XFreeFont(dpy, font->font);
+  }
 
   if ((font->font = XLoadQueryFont(dpy, font->name)) == NULL) {
     if (Scr->DefaultFont.name) {
@@ -631,8 +673,9 @@ int putenv(char *s) {
   static int virgin = 1; /* true while "environ" is a virgin */
 
   v = index(s, '=');
-  if(v == 0)
-    return 0; /* punt if it's not of the right form */
+  if(v == 0) {
+    return 0;  /* punt if it's not of the right form */
+  }
   varlen = (v + 1) - s;
 
   for (idx = 0; environ[idx] != 0; idx++) {
@@ -650,22 +693,26 @@ int putenv(char *s) {
   }
 
   /* add to environment (unless no value; then just return) */
-  if(v[1] == 0)
+  if(v[1] == 0) {
     return 0;
+  }
   if(virgin) {
     register i;
 
-    newenv = (char **) malloc((unsigned) ((idx + 2) * sizeof(char*)));
-    if(newenv == 0)
+    newenv = (char **) malloc((unsigned) ((idx + 2) * sizeof(char *)));
+    if(newenv == 0) {
       return -1;
-    for(i = idx-1; i >= 0; --i)
+    }
+    for(i = idx-1; i >= 0; --i) {
       newenv[i] = environ[i];
+    }
     virgin = 0;     /* you're not a virgin anymore, sweety */
   } else {
     newenv = (char **) realloc((char *) environ,
-                               (unsigned) ((idx + 2) * sizeof(char*)));
-    if (newenv == 0)
+                               (unsigned) ((idx + 2) * sizeof(char *)));
+    if (newenv == 0) {
       return -1;
+    }
   }
 
   environ = newenv;
@@ -679,7 +726,9 @@ int putenv(char *s) {
 
 static Pixmap CreateXLogoPixmap (unsigned int *widthp, unsigned int *heightp) {
   int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
-  if (h < 0) h = 0;
+  if (h < 0) {
+    h = 0;
+  }
 
   *widthp = *heightp = (unsigned int) h;
   if (Scr->tbpm.xlogo == None) {
@@ -712,7 +761,9 @@ static Pixmap CreateXLogoPixmap (unsigned int *widthp, unsigned int *heightp) {
 
 static Pixmap CreateResizePixmap (unsigned int *widthp, unsigned int *heightp) {
   int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
-  if (h < 1) h = 1;
+  if (h < 1) {
+    h = 1;
+  }
 
   *widthp = *heightp = (unsigned int) h;
   if (Scr->tbpm.resize == None) {
@@ -730,8 +781,9 @@ static Pixmap CreateResizePixmap (unsigned int *widthp, unsigned int *heightp) {
     XFillRectangle (dpy, Scr->tbpm.resize, gc, 0, 0, h, h);
     XSetForeground (dpy, gc, 1);
     lw = h / 16;
-    if (lw == 1)
+    if (lw == 1) {
       lw = 0;
+    }
     XSetLineAttributes (dpy, gc, lw, LineSolid, CapButt, JoinMiter);
 
     /*
@@ -767,9 +819,12 @@ static Pixmap CreateDotPixmap (unsigned int *widthp, unsigned int *heightp) {
   int h = Scr->TBInfo.width - Scr->TBInfo.border * 2;
 
   h = h * 3 / 4;
-  if (h < 1) h = 1;
-  if (!(h & 1))
+  if (h < 1) {
+    h = 1;
+  }
+  if (!(h & 1)) {
     h--;
+  }
   *widthp = *heightp = (unsigned int) h;
   if (Scr->tbpm.delete == None) {
     GC  gc;
@@ -827,10 +882,12 @@ Pixmap CreateMenuIcon (unsigned int height, unsigned int *widthp, unsigned int *
 
   h = height;
   w = h * 7 / 8;
-  if (h < 1)
+  if (h < 1) {
     h = 1;
-  if (w < 1)
+  }
+  if (w < 1) {
     w = 1;
+  }
   *widthp = w;
   *heightp = h;
   if (Scr->tbpm.menu == None) {
@@ -850,8 +907,9 @@ Pixmap CreateMenuIcon (unsigned int height, unsigned int *widthp, unsigned int *
     mh = ih - off;
     mw = iw - off;
     bw = mh / 16;
-    if (bw == 0 && mw > 2)
+    if (bw == 0 && mw > 2) {
       bw = 1;
+    }
     tw = mw - bw * 2;
     th = mh - bw * 2;
     XFillRectangle (dpy, pix, gc, ix, iy, mw, mh);
@@ -860,13 +918,15 @@ Pixmap CreateMenuIcon (unsigned int height, unsigned int *widthp, unsigned int *
     XFillRectangle (dpy, pix, gc, ix+bw, iy+bw, tw, th);
     XSetForeground (dpy, gc, 1L);
     lw = tw / 2;
-    if ((tw & 1) ^ (lw & 1))
+    if ((tw & 1) ^ (lw & 1)) {
       lw++;
+    }
     lx = ix + bw + (tw - lw) / 2;
 
     lh = th / 2 - bw;
-    if ((lh & 1) ^ ((th - bw) & 1))
+    if ((lh & 1) ^ ((th - bw) & 1)) {
       lh++;
+    }
     ly = iy + bw + (th - bw - lh) / 2;
 
     lines = 3;

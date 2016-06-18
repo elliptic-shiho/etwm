@@ -12,7 +12,7 @@ int is_accessible_address(void *p) {
   if (setjmp(jbuf) == 0) {
     signal(SIGSEGV, handler);
 
-    a = *((int*)p);
+    a = *((int *)p);
 
   } else {
     flag = 1;

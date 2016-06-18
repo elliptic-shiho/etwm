@@ -95,7 +95,9 @@ struct name_list_struct {
 void AddToList(name_list **list_head, char *name, char *ptr) {
   name_list *nptr;
 
-  if (!list_head) return;	/* ignore empty inserts */
+  if (!list_head) {
+    return;  /* ignore empty inserts */
+  }
 
   nptr = (name_list *)malloc(sizeof(name_list));
   if (nptr == NULL) {
@@ -133,19 +135,22 @@ char *LookInList(name_list *list_head, char *name, XClassHint *class) {
 
   /* look for the name first */
   for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-    if (strcmp(name, nptr->name) == 0)
+    if (strcmp(name, nptr->name) == 0) {
       return (nptr->ptr);
+    }
 
   if (class) {
     /* look for the res_name next */
     for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-      if (strcmp(class->res_name, nptr->name) == 0)
+      if (strcmp(class->res_name, nptr->name) == 0) {
         return (nptr->ptr);
+      }
 
     /* finally look for the res_class */
     for (nptr = list_head; nptr != NULL; nptr = nptr->next)
-      if (strcmp(class->res_class, nptr->name) == 0)
+      if (strcmp(class->res_class, nptr->name) == 0) {
         return (nptr->ptr);
+      }
   }
   return (NULL);
 }

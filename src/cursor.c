@@ -149,8 +149,12 @@ void NewBitmapCursor(Cursor *cp, char *source, char *mask) {
   Pixmap spm, mpm;
 
   spm = GetBitmap(source);
-  if ((hotx = HotX) < 0) hotx = 0;
-  if ((hoty = HotY) < 0) hoty = 0;
+  if ((hotx = HotX) < 0) {
+    hotx = 0;
+  }
+  if ((hoty = HotY) < 0) {
+    hoty = 0;
+  }
   mpm = GetBitmap(mask);
 
   /* make sure they are the same size */

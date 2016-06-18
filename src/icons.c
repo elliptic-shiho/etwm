@@ -51,8 +51,9 @@ static int splitEntry (IconEntry	*ie, int grav1, int grav2, int w, int h) {
   switch (grav1) {
   case D_NORTH:
   case D_SOUTH:
-    if (w != ie->w)
+    if (w != ie->w) {
       splitEntry (ie, grav2, grav1, w, ie->h);
+    }
     if (h != ie->h) {
       new = (IconEntry *)malloc (sizeof (IconEntry));
       new->twm_win = 0;
@@ -66,14 +67,16 @@ static int splitEntry (IconEntry	*ie, int grav1, int grav2, int w, int h) {
       if (grav1 == D_SOUTH) {
         new->y = ie->y;
         ie->y = new->y + new->h;
-      } else
+      } else {
         new->y = ie->y + ie->h;
+      }
     }
     break;
   case D_EAST:
   case D_WEST:
-    if (h != ie->h)
+    if (h != ie->h) {
       splitEntry (ie, grav2, grav1, ie->w, h);
+    }
     if (w != ie->w) {
       new = (IconEntry *)malloc (sizeof (IconEntry));
       new->twm_win = 0;
@@ -87,8 +90,9 @@ static int splitEntry (IconEntry	*ie, int grav1, int grav2, int w, int h) {
       if (grav1 == D_EAST) {
         new->x = ie->x;
         ie->x = new->x + new->w;
-      } else
+      } else {
         new->x = ie->x + ie->w;
+      }
     }
     break;
   }
@@ -108,13 +112,16 @@ void PlaceIcon(TwmWindow *tmp_win, int def_x, int def_y, int *final_x, int *fina
     w = roundUp (iconWidth (tmp_win), ir->stepx);
     h = roundUp (iconHeight (tmp_win), ir->stepy);
     for (ie = ir->entries; ie; ie=ie->next) {
-      if (ie->used)
+      if (ie->used) {
         continue;
-      if (ie->w >= w && ie->h >= h)
+      }
+      if (ie->w >= w && ie->h >= h) {
         break;
+      }
     }
-    if (ie)
+    if (ie) {
       break;
+    }
   }
   if (ie) {
     splitEntry (ie, ir->grav1, ir->grav2, w, h);
@@ -129,15 +136,16 @@ void PlaceIcon(TwmWindow *tmp_win, int def_x, int def_y, int *final_x, int *fina
   return;
 }
 
-static IconEntry * FindIconEntry (TwmWindow   *tmp_win, IconRegion	**irp) {
+static IconEntry *FindIconEntry (TwmWindow   *tmp_win, IconRegion	**irp) {
   IconRegion	*ir;
   IconEntry	*ie;
 
   for (ir = Scr->FirstRegion; ir; ir = ir->next) {
     for (ie = ir->entries; ie; ie=ie->next)
       if (ie->twm_win == tmp_win) {
-        if (irp)
+        if (irp) {
           *irp = ir;
+        }
         return ie;
       }
   }
@@ -154,23 +162,28 @@ void IconUp (TwmWindow *tmp_win) {
    * want to be an option at some point).  Otherwise, try to fit within the
    * icon region.
    */
-  if (tmp_win->wmhints && (tmp_win->wmhints->flags & IconPositionHint))
+  if (tmp_win->wmhints && (tmp_win->wmhints->flags & IconPositionHint)) {
     return;
+  }
 
   if (tmp_win->icon_moved) {
     if (!XGetGeometry (dpy, tmp_win->icon_w, &JunkRoot, &defx, &defy,
-                       &JunkWidth, &JunkHeight, &JunkBW, &JunkDepth))
+                       &JunkWidth, &JunkHeight, &JunkBW, &JunkDepth)) {
       return;
+    }
 
     x = defx + ((int) JunkWidth) / 2;
     y = defy + ((int) JunkHeight) / 2;
 
     for (ir = Scr->FirstRegion; ir; ir = ir->next) {
       if (x >= ir->x && x < (ir->x + ir->w) &&
-          y >= ir->y && y < (ir->y + ir->h))
+          y >= ir->y && y < (ir->y + ir->h)) {
         break;
+      }
     }
-    if (!ir) return;		/* outside icon regions, leave alone */
+    if (!ir) {
+      return;  /* outside icon regions, leave alone */
+    }
   }
 
   defx = -100;
@@ -185,8 +198,9 @@ void IconUp (TwmWindow *tmp_win) {
 static IconEntry *prevIconEntry (IconEntry	*ie, IconRegion	*ir) {
   IconEntry	*ip;
 
-  if (ie == ir->entries)
+  if (ie == ir->entries) {
     return 0;
+  }
   for (ip = ir->entries; ip->next != ie; ip=ip->next)
     ;
   return ip;
@@ -199,12 +213,14 @@ static IconEntry *prevIconEntry (IconEntry	*ie, IconRegion	*ir) {
 static void mergeEntries (IconEntry	*old, IconEntry *ie) {
   if (old->y == ie->y) {
     ie->w = old->w + ie->w;
-    if (old->x < ie->x)
+    if (old->x < ie->x) {
       ie->x = old->x;
+    }
   } else {
     ie->h = old->h + ie->h;
-    if (old->y < ie->y)
+    if (old->y < ie->y) {
       ie->y = old->y;
+    }
   }
 }
 
@@ -234,8 +250,9 @@ void IconDown (TwmWindow *tmp_win) {
         mergeEntries (in, ie);
         free ((char *) in);
         in = ie->next;
-      } else
+      } else {
         break;
+      }
     }
   }
 }
@@ -246,30 +263,36 @@ void AddIconRegion(char *geom, int grav1, int grav2, int stepx, int stepy) {
 
   ir = (IconRegion *)malloc(sizeof(IconRegion));
   ir->next = NULL;
-  if (Scr->LastRegion)
+  if (Scr->LastRegion) {
     Scr->LastRegion->next = ir;
+  }
   Scr->LastRegion = ir;
-  if (!Scr->FirstRegion)
+  if (!Scr->FirstRegion) {
     Scr->FirstRegion = ir;
+  }
 
   ir->entries = NULL;
   ir->grav1 = grav1;
   ir->grav2 = grav2;
-  if (stepx <= 0)
+  if (stepx <= 0) {
     stepx = 1;
-  if (stepy <= 0)
+  }
+  if (stepy <= 0) {
     stepy = 1;
+  }
   ir->stepx = stepx;
   ir->stepy = stepy;
   ir->x = ir->y = ir->w = ir->h = 0;
 
   mask = XParseGeometry(geom, &ir->x, &ir->y, (unsigned int *)&ir->w, (unsigned int *)&ir->h);
 
-  if (mask & XNegative)
+  if (mask & XNegative) {
     ir->x += Scr->MyDisplayWidth - ir->w;
+  }
 
-  if (mask & YNegative)
+  if (mask & YNegative) {
     ir->y += Scr->MyDisplayHeight - ir->h;
+  }
   ir->entries = (IconEntry *)malloc(sizeof(IconEntry));
   ir->entries->next = 0;
   ir->entries->x = ir->x;
@@ -334,8 +357,9 @@ void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {
     bm = None;
     if (icon_name != NULL) {
       if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None) {
-        if ((bm = GetBitmap (icon_name)) != None)
+        if ((bm = GetBitmap (icon_name)) != None) {
           AddToList(&Scr->Icons, icon_name, (char *)bm);
+        }
       }
     }
 
@@ -389,8 +413,9 @@ void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {
     bm = None;
     if (icon_name != NULL) {
       if ((bm = (Pixmap)LookInNameList(Scr->Icons, icon_name)) == None) {
-        if ((bm = GetBitmap (icon_name)) != None)
+        if ((bm = GetBitmap (icon_name)) != None) {
           AddToList(&Scr->Icons, icon_name, (char *)bm);
+        }
       }
     }
 
@@ -480,10 +505,11 @@ void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {
     int y;
 
     y = 0;
-    if (tmp_win->icon_w_width == tmp_win->icon_width)
+    if (tmp_win->icon_w_width == tmp_win->icon_width) {
       x = 0;
-    else
+    } else {
       x = (tmp_win->icon_w_width - tmp_win->icon_width)/2;
+    }
 
     tmp_win->icon_bm_w = XCreateWindow (dpy, tmp_win->icon_w, x, y,
                                         (unsigned int)tmp_win->icon_width,
@@ -520,6 +546,8 @@ void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {
   XSaveContext(dpy, tmp_win->icon_w, TwmContext, (caddr_t)tmp_win);
   XSaveContext(dpy, tmp_win->icon_w, ScreenContext, (caddr_t)Scr);
   XDefineCursor(dpy, tmp_win->icon_w, Scr->IconCursor);
-  if (pm) XFreePixmap (dpy, pm);
+  if (pm) {
+    XFreePixmap (dpy, pm);
+  }
   return;
 }

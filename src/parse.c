@@ -157,7 +157,9 @@ static int doparse (int (*ifunc)(), char *srctypename, char *srcname) {
   if (ParseError) {
     fprintf (stderr, "%s:  errors found in twm %s",
              ProgramName, srctypename);
-    if (srcname) fprintf (stderr, " \"%s\"", srcname);
+    if (srcname) {
+      fprintf (stderr, " \"%s\"", srcname);
+    }
     fprintf (stderr, "\n");
   }
   return (ParseError ? 0 : 1);
@@ -205,7 +207,9 @@ int ParseTwmrc (char *filename) {
       break;
     }
 
-    if (cp) twmrc = fopen (cp, "r");
+    if (cp) {
+      twmrc = fopen (cp, "r");
+    }
   }
 
   if (twmrc) {
@@ -248,11 +252,14 @@ int ParseStringList (char **sl) {
  */
 
 static int twmFileInput() {
-  if (overflowlen) return (int) overflowbuff[--overflowlen];
+  if (overflowlen) {
+    return (int) overflowbuff[--overflowlen];
+  }
 
   while (ptr == len) {
-    if (fgets(buff, BUF_LEN, twmrc) == NULL)
+    if (fgets(buff, BUF_LEN, twmrc) == NULL) {
       return 0;
+    }
 
     yylineno++;
 
@@ -263,7 +270,9 @@ static int twmFileInput() {
 }
 
 static int twmStringListInput() {
-  if (overflowlen) return (int) overflowbuff[--overflowlen];
+  if (overflowlen) {
+    return (int) overflowbuff[--overflowlen];
+  }
 
   /*
    * return the character currently pointed to
@@ -271,7 +280,9 @@ static int twmStringListInput() {
   if (currentString) {
     unsigned int c = (unsigned int) *currentString++;
 
-    if (c) return c;		/* if non-nul char */
+    if (c) {
+      return c;  /* if non-nul char */
+    }
     currentString = *++stringListSource;  /* advance to next bol */
     return '\n';			/* but say that we hit last eol */
   }
@@ -648,7 +659,9 @@ int do_single_keyword (int keyword) {
     return 1;
 
   case kw0_ForceIcons:
-    if (Scr->FirstTime) Scr->ForceIcon = TRUE;
+    if (Scr->FirstTime) {
+      Scr->ForceIcon = TRUE;
+    }
     return 1;
 
   case kw0_NoIconManagers:
@@ -660,7 +673,9 @@ int do_single_keyword (int keyword) {
     return 1;
 
   case kw0_InterpolateMenuColors:
-    if (Scr->FirstTime) Scr->InterpolateMenuColors = TRUE;
+    if (Scr->FirstTime) {
+      Scr->InterpolateMenuColors = TRUE;
+    }
     return 1;
 
   case kw0_NoVersion:
@@ -668,7 +683,9 @@ int do_single_keyword (int keyword) {
     return 1;
 
   case kw0_SortIconManager:
-    if (Scr->FirstTime) Scr->SortIconMgr = TRUE;
+    if (Scr->FirstTime) {
+      Scr->SortIconMgr = TRUE;
+    }
     return 1;
 
   case kw0_NoGrabServer:
@@ -676,19 +693,27 @@ int do_single_keyword (int keyword) {
     return 1;
 
   case kw0_NoMenuShadows:
-    if (Scr->FirstTime) Scr->Shadow = FALSE;
+    if (Scr->FirstTime) {
+      Scr->Shadow = FALSE;
+    }
     return 1;
 
   case kw0_NoRaiseOnMove:
-    if (Scr->FirstTime) Scr->NoRaiseMove = TRUE;
+    if (Scr->FirstTime) {
+      Scr->NoRaiseMove = TRUE;
+    }
     return 1;
 
   case kw0_NoRaiseOnResize:
-    if (Scr->FirstTime) Scr->NoRaiseResize = TRUE;
+    if (Scr->FirstTime) {
+      Scr->NoRaiseResize = TRUE;
+    }
     return 1;
 
   case kw0_NoRaiseOnDeiconify:
-    if (Scr->FirstTime) Scr->NoRaiseDeicon = TRUE;
+    if (Scr->FirstTime) {
+      Scr->NoRaiseDeicon = TRUE;
+    }
     return 1;
 
   case kw0_DontMoveOff:
@@ -708,7 +733,9 @@ int do_single_keyword (int keyword) {
     return 1;
 
   case kw0_ClientBorderWidth:
-    if (Scr->FirstTime) Scr->ClientBorderWidth = TRUE;
+    if (Scr->FirstTime) {
+      Scr->ClientBorderWidth = TRUE;
+    }
     return 1;
 
   case kw0_NoTitleFocus:
@@ -759,31 +786,45 @@ int do_string_keyword (int keyword, char *s) {
   }
 
   case kws_IconFont:
-    if (!Scr->HaveFonts) Scr->IconFont.name = s;
+    if (!Scr->HaveFonts) {
+      Scr->IconFont.name = s;
+    }
     return 1;
 
   case kws_ResizeFont:
-    if (!Scr->HaveFonts) Scr->SizeFont.name = s;
+    if (!Scr->HaveFonts) {
+      Scr->SizeFont.name = s;
+    }
     return 1;
 
   case kws_MenuFont:
-    if (!Scr->HaveFonts) Scr->MenuFont.name = s;
+    if (!Scr->HaveFonts) {
+      Scr->MenuFont.name = s;
+    }
     return 1;
 
   case kws_TitleFont:
-    if (!Scr->HaveFonts) Scr->TitleBarFont.name = s;
+    if (!Scr->HaveFonts) {
+      Scr->TitleBarFont.name = s;
+    }
     return 1;
 
   case kws_IconManagerFont:
-    if (!Scr->HaveFonts) Scr->IconManagerFont.name = s;
+    if (!Scr->HaveFonts) {
+      Scr->IconManagerFont.name = s;
+    }
     return 1;
 
   case kws_UnknownIcon:
-    if (Scr->FirstTime) GetUnknownIcon (s);
+    if (Scr->FirstTime) {
+      GetUnknownIcon (s);
+    }
     return 1;
 
   case kws_IconDirectory:
-    if (Scr->FirstTime) Scr->IconDirectory = ExpandFilename (s);
+    if (Scr->FirstTime) {
+      Scr->IconDirectory = ExpandFilename (s);
+    }
     return 1;
 
   case kws_MaxWindowSize:
@@ -819,35 +860,51 @@ int do_number_keyword (int keyword, int num) {
     return 1;
 
   case kwn_XorValue:
-    if (Scr->FirstTime) Scr->XORvalue = num;
+    if (Scr->FirstTime) {
+      Scr->XORvalue = num;
+    }
     return 1;
 
   case kwn_FramePadding:
-    if (Scr->FirstTime) Scr->FramePadding = num;
+    if (Scr->FirstTime) {
+      Scr->FramePadding = num;
+    }
     return 1;
 
   case kwn_TitlePadding:
-    if (Scr->FirstTime) Scr->TitlePadding = num;
+    if (Scr->FirstTime) {
+      Scr->TitlePadding = num;
+    }
     return 1;
 
   case kwn_ButtonIndent:
-    if (Scr->FirstTime) Scr->ButtonIndent = num;
+    if (Scr->FirstTime) {
+      Scr->ButtonIndent = num;
+    }
     return 1;
 
   case kwn_BorderWidth:
-    if (Scr->FirstTime) Scr->BorderWidth = num;
+    if (Scr->FirstTime) {
+      Scr->BorderWidth = num;
+    }
     return 1;
 
   case kwn_IconBorderWidth:
-    if (Scr->FirstTime) Scr->IconBorderWidth = num;
+    if (Scr->FirstTime) {
+      Scr->IconBorderWidth = num;
+    }
     return 1;
 
   case kwn_TitleButtonBorderWidth:
-    if (Scr->FirstTime) Scr->TBInfo.border = num;
+    if (Scr->FirstTime) {
+      Scr->TBInfo.border = num;
+    }
     return 1;
 
   case kwn_Priority:
-    if (HasSync) XSyncSetPriority(dpy, /*self*/ None, num);
+    if (HasSync) {
+      XSyncSetPriority(dpy, /*self*/ None, num);
+    }
     return 1;
   }
 
@@ -961,7 +1018,9 @@ void put_pixel_on_root(Pixel pixel) {
                      (unsigned char **)&retProp);
 
   for (i=0; i< nPixels; i++)
-    if (pixel == retProp[i]) addPixel = 0;
+    if (pixel == retProp[i]) {
+      addPixel = 0;
+    }
 
   if (addPixel)
     XChangeProperty (dpy, Scr->Root, _XA_MIT_PRIORITY_COLORS,

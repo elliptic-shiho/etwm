@@ -80,8 +80,9 @@ void CreateGCs() {
   XGCValues	    gcv;
   unsigned long   gcm;
 
-  if (!Scr->FirstTime || prevScr == Scr)
+  if (!Scr->FirstTime || prevScr == Scr) {
     return;
+  }
 
   prevScr = Scr;
 

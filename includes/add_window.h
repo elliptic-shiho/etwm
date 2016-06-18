@@ -73,7 +73,7 @@ extern void GrabKeys();
 extern void UngrabButtons();
 extern void UngrabKeys();
 extern void GetWindowSizeHints();
-extern int AddingX;	
+extern int AddingX;
 extern int AddingY;
 extern int AddingW;
 extern int AddingH;

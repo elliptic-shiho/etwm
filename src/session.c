@@ -205,8 +205,9 @@ int read_counted_string (FILE *file, char **stringp) {
     data = 0;
   } else {
     data = malloc ((unsigned) len + 1);
-    if (!data)
+    if (!data) {
       return 0;
+    }
     if (fread (data, (int) sizeof (char), (int) len, file) != len) {
       free (data);
       return 0;
@@ -263,17 +264,21 @@ int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId,
   char **wm_command;
   int wm_command_count, i;
 
-  if (!write_counted_string (configFile, clientId))
+  if (!write_counted_string (configFile, clientId)) {
     return 0;
+  }
 
-  if (!write_counted_string (configFile, windowRole))
+  if (!write_counted_string (configFile, windowRole)) {
     return 0;
+  }
 
   if (!windowRole) {
-    if (!write_counted_string (configFile, theWindow->class.res_name))
+    if (!write_counted_string (configFile, theWindow->class.res_name)) {
       return 0;
-    if (!write_counted_string (configFile, theWindow->class.res_class))
+    }
+    if (!write_counted_string (configFile, theWindow->class.res_class)) {
       return 0;
+    }
     if (theWindow->nameChanged) {
       /*
        * If WM_NAME changed on this window, we can't use it as
@@ -281,11 +286,13 @@ int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId,
        * longer explanation in the GetWindowConfig() function below.
        */
 
-      if (!write_counted_string (configFile, NULL))
+      if (!write_counted_string (configFile, NULL)) {
         return 0;
+      }
     } else {
-      if (!write_counted_string (configFile, theWindow->name))
+      if (!write_counted_string (configFile, theWindow->name)) {
         return 0;
+      }
     }
 
     wm_command = NULL;
@@ -293,23 +300,28 @@ int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId,
     XGetCommand (dpy, theWindow->w, &wm_command, &wm_command_count);
 
     if (clientId || !wm_command || wm_command_count == 0) {
-      if (!write_byte (configFile, 0))
+      if (!write_byte (configFile, 0)) {
         return 0;
+      }
     } else {
-      if (!write_byte (configFile, (char) wm_command_count))
+      if (!write_byte (configFile, (char) wm_command_count)) {
         return 0;
+      }
       for (i = 0; i < wm_command_count; i++)
-        if (!write_counted_string (configFile, wm_command[i]))
+        if (!write_counted_string (configFile, wm_command[i])) {
           return 0;
+        }
       XFreeStringList (wm_command);
     }
   }
 
-  if (!write_byte (configFile, theWindow->icon ? 1 : 0))    /* iconified */
+  if (!write_byte (configFile, theWindow->icon ? 1 : 0)) {  /* iconified */
     return 0;
+  }
 
-  if (!write_byte (configFile, theWindow->icon_w ? 1 : 0))  /* icon exists */
+  if (!write_byte (configFile, theWindow->icon_w ? 1 : 0)) { /* icon exists */
     return 0;
+  }
 
   if (theWindow->icon_w) {
     int icon_x, icon_y;
@@ -317,26 +329,34 @@ int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId,
     XGetGeometry (dpy, theWindow->icon_w, &JunkRoot, &icon_x,
                   &icon_y, &JunkWidth, &JunkHeight, &JunkBW, &JunkDepth);
 
-    if (!write_short (configFile, (short) icon_x))
+    if (!write_short (configFile, (short) icon_x)) {
       return 0;
-    if (!write_short (configFile, (short) icon_y))
+    }
+    if (!write_short (configFile, (short) icon_y)) {
       return 0;
+    }
   }
 
-  if (!write_short (configFile, (short) theWindow->frame_x))
+  if (!write_short (configFile, (short) theWindow->frame_x)) {
     return 0;
-  if (!write_short (configFile, (short) theWindow->frame_y))
+  }
+  if (!write_short (configFile, (short) theWindow->frame_y)) {
     return 0;
-  if (!write_ushort (configFile, (unsigned short) theWindow->attr.width))
+  }
+  if (!write_ushort (configFile, (unsigned short) theWindow->attr.width)) {
     return 0;
-  if (!write_ushort (configFile, (unsigned short) theWindow->attr.height))
+  }
+  if (!write_ushort (configFile, (unsigned short) theWindow->attr.height)) {
     return 0;
+  }
 
-  if (!write_byte (configFile, theWindow->widthEverChangedByUser ? 1 : 0))
+  if (!write_byte (configFile, theWindow->widthEverChangedByUser ? 1 : 0)) {
     return 0;
+  }
 
-  if (!write_byte (configFile, theWindow->heightEverChangedByUser ? 1 : 0))
+  if (!write_byte (configFile, theWindow->heightEverChangedByUser ? 1 : 0)) {
     return 0;
+  }
 
   return 1;
 }
@@ -349,8 +369,9 @@ int ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEn
 
   *pentry = entry = (TWMWinConfigEntry *) malloc (
                       sizeof (TWMWinConfigEntry));
-  if (!*pentry)
+  if (!*pentry) {
     return 0;
+  }
 
   entry->tag = 0;
   entry->client_id = NULL;
@@ -361,70 +382,88 @@ int ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEn
   entry->wm_command = NULL;
   entry->wm_command_count = 0;
 
-  if (!read_counted_string (configFile, &entry->client_id))
+  if (!read_counted_string (configFile, &entry->client_id)) {
     goto give_up;
+  }
 
-  if (!read_counted_string (configFile, &entry->window_role))
+  if (!read_counted_string (configFile, &entry->window_role)) {
     goto give_up;
+  }
 
   if (!entry->window_role) {
-    if (!read_counted_string (configFile, &entry->class.res_name))
+    if (!read_counted_string (configFile, &entry->class.res_name)) {
       goto give_up;
-    if (!read_counted_string (configFile, &entry->class.res_class))
+    }
+    if (!read_counted_string (configFile, &entry->class.res_class)) {
       goto give_up;
-    if (!read_counted_string (configFile, &entry->wm_name))
+    }
+    if (!read_counted_string (configFile, &entry->wm_name)) {
       goto give_up;
+    }
 
-    if (!read_byte (configFile, &byte))
+    if (!read_byte (configFile, &byte)) {
       goto give_up;
+    }
     entry->wm_command_count = byte;
 
-    if (entry->wm_command_count == 0)
+    if (entry->wm_command_count == 0) {
       entry->wm_command = NULL;
-    else {
+    } else {
       entry->wm_command = (char **) malloc (entry->wm_command_count *
                                             sizeof (char *));
 
-      if (!entry->wm_command)
+      if (!entry->wm_command) {
         goto give_up;
+      }
 
       for (i = 0; i < entry->wm_command_count; i++)
-        if (!read_counted_string (configFile, &entry->wm_command[i]))
+        if (!read_counted_string (configFile, &entry->wm_command[i])) {
           goto give_up;
+        }
     }
   }
 
-  if (!read_byte (configFile, &byte))
+  if (!read_byte (configFile, &byte)) {
     goto give_up;
+  }
   entry->iconified = byte;
 
-  if (!read_byte (configFile, &byte))
+  if (!read_byte (configFile, &byte)) {
     goto give_up;
+  }
   entry->icon_info_present = byte;
 
   if (entry->icon_info_present) {
-    if (!read_short (configFile, (short *) &entry->icon_x))
+    if (!read_short (configFile, (short *) &entry->icon_x)) {
       goto give_up;
-    if (!read_short (configFile, (short *) &entry->icon_y))
+    }
+    if (!read_short (configFile, (short *) &entry->icon_y)) {
       goto give_up;
+    }
   }
 
-  if (!read_short (configFile, (short *) &entry->x))
+  if (!read_short (configFile, (short *) &entry->x)) {
     goto give_up;
-  if (!read_short (configFile, (short *) &entry->y))
+  }
+  if (!read_short (configFile, (short *) &entry->y)) {
     goto give_up;
-  if (!read_ushort (configFile, &entry->width))
+  }
+  if (!read_ushort (configFile, &entry->width)) {
     goto give_up;
-  if (!read_ushort (configFile, &entry->height))
+  }
+  if (!read_ushort (configFile, &entry->height)) {
     goto give_up;
+  }
 
   if (version > 1) {
-    if (!read_byte (configFile, &byte))
+    if (!read_byte (configFile, &byte)) {
       goto give_up;
+    }
     entry->width_ever_changed_by_user = byte;
 
-    if (!read_byte (configFile, &byte))
+    if (!read_byte (configFile, &byte)) {
       goto give_up;
+    }
     entry->height_ever_changed_by_user = byte;
   } else {
     entry->width_ever_changed_by_user = False;
@@ -435,23 +474,30 @@ int ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEn
 
 give_up:
 
-  if (entry->client_id)
+  if (entry->client_id) {
     free (entry->client_id);
-  if (entry->window_role)
+  }
+  if (entry->window_role) {
     free (entry->window_role);
-  if (entry->class.res_name)
+  }
+  if (entry->class.res_name) {
     free (entry->class.res_name);
-  if (entry->class.res_class)
+  }
+  if (entry->class.res_class) {
     free (entry->class.res_class);
-  if (entry->wm_name)
+  }
+  if (entry->wm_name) {
     free (entry->wm_name);
+  }
   if (entry->wm_command_count) {
     for (i = 0; i < entry->wm_command_count; i++)
-      if (entry->wm_command[i])
+      if (entry->wm_command[i]) {
         free (entry->wm_command[i]);
+      }
   }
-  if (entry->wm_command)
+  if (entry->wm_command) {
     free ((char *) entry->wm_command);
+  }
 
   free ((char *) entry);
   *pentry = NULL;
@@ -467,8 +513,9 @@ void ReadWinConfigFile (char *filename) {
   unsigned short version;
 
   configFile = fopen (filename, "rb");
-  if (!configFile)
+  if (!configFile) {
     return;
+  }
 
   if (!read_ushort (configFile, &version) ||
       version > SAVEFILE_VERSION) {
@@ -479,8 +526,9 @@ void ReadWinConfigFile (char *filename) {
     if (ReadWinConfigEntry (configFile, version, &entry)) {
       entry->next = winConfigHead;
       winConfigHead = entry;
-    } else
+    } else {
       done = 1;
+    }
   }
 
   fclose (configFile);
@@ -497,8 +545,9 @@ int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *w
 
   ptr = winConfigHead;
 
-  if (!ptr)
+  if (!ptr) {
     return 0;
+  }
 
   clientId = GetClientID (theWindow->w);
   windowRole = GetWindowRole (theWindow->w);
@@ -557,19 +606,22 @@ int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *w
             if (wm_command_count == ptr->wm_command_count) {
               for (i = 0; i < wm_command_count; i++)
                 if (strcmp (wm_command[i],
-                            ptr->wm_command[i]) != 0)
+                            ptr->wm_command[i]) != 0) {
                   break;
+                }
 
-              if (i == wm_command_count)
+              if (i == wm_command_count) {
                 found = 1;
+              }
             }
           }
         }
       }
     }
 
-    if (!found)
+    if (!found) {
       ptr = ptr->next;
+    }
   }
 
   if (found) {
@@ -591,11 +643,13 @@ int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *w
     *iconified = 0;
   }
 
-  if (clientId)
+  if (clientId) {
     XFree (clientId);
+  }
 
-  if (windowRole)
+  if (windowRole) {
     XFree (windowRole);
+  }
 
   return found;
 }
@@ -673,18 +727,22 @@ void SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
   path = getenv ("SM_SAVE_DIR");
   if (!path) {
     path = getenv ("HOME");
-    if (!path)
+    if (!path) {
       path = ".";
+    }
   }
 
-  if ((filename = unique_filename (path, ".twm")) == NULL)
+  if ((filename = unique_filename (path, ".twm")) == NULL) {
     goto bad;
+  }
 
-  if (!(configFile = fopen (filename, "wb")))
+  if (!(configFile = fopen (filename, "wb"))) {
     goto bad;
+  }
 
-  if (!write_ushort (configFile, SAVEFILE_VERSION))
+  if (!write_ushort (configFile, SAVEFILE_VERSION)) {
     goto bad;
+  }
 
   success = True;
 
@@ -698,14 +756,17 @@ void SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
         windowRole = GetWindowRole (theWindow->w);
 
         if (!WriteWinConfigEntry (configFile, theWindow,
-                                  clientId, windowRole))
+                                  clientId, windowRole)) {
           success = False;
+        }
 
-        if (clientId)
+        if (clientId) {
           XFree (clientId);
+        }
 
-        if (windowRole)
+        if (windowRole) {
           XFree (windowRole);
+        }
 
         theWindow = theWindow->next;
       }
@@ -767,11 +828,13 @@ bad:
   SmcSaveYourselfDone (smcConn, success);
   sent_save_done = 1;
 
-  if (configFile)
+  if (configFile) {
     fclose (configFile);
+  }
 
-  if (filename)
+  if (filename) {
     free (filename);
+  }
 }
 
 
@@ -780,8 +843,9 @@ void SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool s
   if (!SmcRequestSaveYourselfPhase2 (smcConn, SaveYourselfPhase2CB, NULL)) {
     SmcSaveYourselfDone (smcConn, False);
     sent_save_done = 1;
-  } else
+  } else {
     sent_save_done = 0;
+  }
 }
 
 
@@ -849,8 +913,9 @@ void ConnectToSessionManager (char *previous_id) {
               &twm_clientId,
               256, errorMsg);
 
-  if (smcConn == NULL)
+  if (smcConn == NULL) {
     return;
+  }
 
   iceConn = SmcGetIceConnection (smcConn);
 

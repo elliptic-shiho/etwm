@@ -151,41 +151,39 @@ typedef SIGNAL_T (*SigProc)();	/* type of function returned by signal() */
     Gcv.background = fix_back;\
     XChangeGC(dpy, Scr->NormalGC, GCForeground|GCBackground,&Gcv)
 
-typedef struct MyFont
-{
-    char *name;			/* name of the font */
-    XFontStruct *font;		/* font structure */
-    int height;			/* height of the font */
-    int y;			/* Y coordinate to draw characters */
+typedef struct MyFont {
+  char *name;			/* name of the font */
+  XFontStruct *font;		/* font structure */
+  int height;			/* height of the font */
+  int y;			/* Y coordinate to draw characters */
 } MyFont;
 
-typedef struct ColorPair
-{
-    Pixel fore, back;
+typedef struct ColorPair {
+  Pixel fore, back;
 } ColorPair;
 
 typedef struct _TitleButton {
-    struct _TitleButton *next;		/* next link in chain */
-    char *name;				/* bitmap name in case of deferal */
-    Pixmap bitmap;			/* image to display in button */
-    int srcx, srcy;			/* from where to start copying */
-    unsigned int width, height;		/* size of pixmap */
-    int dstx, dsty;			/* to where to start copying */
-    int func;				/* function to execute */
-    char *action;			/* optional action arg */
-    struct MenuRoot *menuroot;		/* menu to pop on F_MENU */
-    Bool rightside;			/* t: on right, f: on left */
+  struct _TitleButton *next;		/* next link in chain */
+  char *name;				/* bitmap name in case of deferal */
+  Pixmap bitmap;			/* image to display in button */
+  int srcx, srcy;			/* from where to start copying */
+  unsigned int width, height;		/* size of pixmap */
+  int dstx, dsty;			/* to where to start copying */
+  int func;				/* function to execute */
+  char *action;			/* optional action arg */
+  struct MenuRoot *menuroot;		/* menu to pop on F_MENU */
+  Bool rightside;			/* t: on right, f: on left */
 } TitleButton;
 
 typedef struct _TBWindow {
-    Window window;			/* which window in this frame */
-    TitleButton *info;			/* description of this window */
+  Window window;			/* which window in this frame */
+  TitleButton *info;			/* description of this window */
 } TBWindow;
 
 typedef struct _SqueezeInfo {
-    int justify;			/* left, center, right */
-    int num;				/* signed pixel count or numerator */
-    int denom;				/* 0 for pix count or denominator */
+  int justify;			/* left, center, right */
+  int num;				/* signed pixel count or numerator */
+  int denom;				/* 0 for pix count or denominator */
 } SqueezeInfo;
 
 #define J_LEFT			1
@@ -195,146 +193,141 @@ typedef struct _SqueezeInfo {
 /* Colormap window entry for each window in WM_COLORMAP_WINDOWS
  * ICCCM property.
  */
-typedef struct TwmColormap
-{	
-    Colormap c;			/* Colormap id */
-    int state;			/* install(ability) state */
-    unsigned long install_req;	/* request number which installed it */
-    Window w;			/* window causing load of color table */
-    int refcnt;
+typedef struct TwmColormap {
+  Colormap c;			/* Colormap id */
+  int state;			/* install(ability) state */
+  unsigned long install_req;	/* request number which installed it */
+  Window w;			/* window causing load of color table */
+  int refcnt;
 } TwmColormap;
 
 #define CM_INSTALLABLE		1
 #define CM_INSTALLED		2
 #define CM_INSTALL		4
 
-typedef struct ColormapWindow
-{
-    Window w;			/* Window id */
-    TwmColormap *colormap;	/* Colormap for this window */
-    int visibility;		/* Visibility of this window */
-    int refcnt;
+typedef struct ColormapWindow {
+  Window w;			/* Window id */
+  TwmColormap *colormap;	/* Colormap for this window */
+  int visibility;		/* Visibility of this window */
+  int refcnt;
 } ColormapWindow;
 
-typedef struct Colormaps
-{
-    ColormapWindow **cwins;	/* current list of colormap windows */
-    int number_cwins;		/* number of elements in current list */
-    char *scoreboard;		/* conflicts between installable colortables */
+typedef struct Colormaps {
+  ColormapWindow **cwins;	/* current list of colormap windows */
+  int number_cwins;		/* number of elements in current list */
+  char *scoreboard;		/* conflicts between installable colortables */
 } Colormaps;
 
 #define ColormapsScoreboardLength(cm) ((cm)->number_cwins * \
 				       ((cm)->number_cwins - 1) / 2)
 
 /* for each window that is on the display, one of these structures
- * is allocated and linked into a list 
+ * is allocated and linked into a list
  */
-typedef struct TwmWindow
-{
-    struct TwmWindow *next;	/* next twm window */
-    struct TwmWindow *prev;	/* previous twm window */
-    Window w;			/* the child window */
-    int old_bw;			/* border width before reparenting */
-    Window frame;		/* the frame window */
-    Window title_w;		/* the title bar window */
-    Window hilite_w;		/* the hilite window */
-    Pixmap gray;
-    Window icon_w;		/* the icon window */
-    Window icon_bm_w;		/* the icon bitmap window */
-    int frame_x;		/* x position of frame */
-    int frame_y;		/* y position of frame */
-    int frame_width;		/* width of frame */
-    int frame_height;		/* height of frame */
-    int frame_bw;		/* borderwidth of frame */
-    int title_x;
-    int title_y;
-    int icon_x;			/* icon text x coordinate */
-    int icon_y;			/* icon text y coordiante */
-    int icon_w_width;		/* width of the icon window */
-    int icon_w_height;		/* height of the icon window */
-    int icon_width;		/* width of the icon bitmap */
-    int icon_height;		/* height of the icon bitmap */
-    int title_height;		/* height of the title bar */
-    int title_width;		/* width of the title bar */
-    char *full_name;		/* full name of the window */
-    char *name;			/* name of the window */
-    char *icon_name;		/* name of the icon */
-    int name_width;		/* width of name text */
-    int highlightx;		/* start of highlight window */
-    int rightx;			/* start of right buttons */
-    XWindowAttributes attr;	/* the child window attributes */
-    XSizeHints hints;		/* normal hints */
-    XWMHints *wmhints;		/* WM hints */
-    Window group;		/* group ID */
-    XClassHint class;
-    struct WList *list;
-    /***********************************************************************
-     * color definitions per window
-     **********************************************************************/
-    Pixel border;		/* border color */
-    Pixel icon_border;		/* border color */
-    ColorPair border_tile;
-    ColorPair title;
-    ColorPair iconc;
-    short iconified;		/* has the window ever been iconified? */
-    short icon;			/* is the window an icon now ? */
-    short icon_on;		/* is the icon visible */
-    short mapped;		/* is the window mapped ? */
-    short auto_raise;		/* should we auto-raise this window ? */
-    short forced;		/* has had an icon forced upon it */
-    short icon_not_ours;	/* icon pixmap or window supplied to us */
-    short icon_moved;		/* user explicitly moved the icon */
-    short highlight;		/* should highlight this window */
-    short stackmode;		/* honor stackmode requests */
-    short iconify_by_unmapping;	/* unmap window to iconify it */
-    short iconmgr;		/* this is an icon manager window */
-    short transient;		/* this is a transient window */
-    Window transientfor;	/* window contained in XA_XM_TRANSIENT_FOR */
-    short titlehighlight;	/* should I highlight the title bar */
-    struct IconMgr *iconmgrp;	/* pointer to it if this is an icon manager */
-    int save_frame_x;		/* x position of frame */
-    int save_frame_y;		/* y position of frame */
-    int save_frame_width;	/* width of frame */
-    int save_frame_height;	/* height of frame */
-    short zoomed;		/* is the window zoomed? */
-    short wShaped;		/* this window has a bounding shape */
-    unsigned long protocols;	/* which protocols this window handles */
-    Colormaps cmaps;		/* colormaps for this application */
-    TBWindow *titlebuttons;
-    SqueezeInfo *squeeze_info;	/* should the title be squeezed? */
-    struct {
-	struct TwmWindow *next, *prev;
-	Bool cursor_valid;
-	int curs_x, curs_y;
-    } ring;
+typedef struct TwmWindow {
+  struct TwmWindow *next;	/* next twm window */
+  struct TwmWindow *prev;	/* previous twm window */
+  Window w;			/* the child window */
+  int old_bw;			/* border width before reparenting */
+  Window frame;		/* the frame window */
+  Window title_w;		/* the title bar window */
+  Window hilite_w;		/* the hilite window */
+  Pixmap gray;
+  Window icon_w;		/* the icon window */
+  Window icon_bm_w;		/* the icon bitmap window */
+  int frame_x;		/* x position of frame */
+  int frame_y;		/* y position of frame */
+  int frame_width;		/* width of frame */
+  int frame_height;		/* height of frame */
+  int frame_bw;		/* borderwidth of frame */
+  int title_x;
+  int title_y;
+  int icon_x;			/* icon text x coordinate */
+  int icon_y;			/* icon text y coordiante */
+  int icon_w_width;		/* width of the icon window */
+  int icon_w_height;		/* height of the icon window */
+  int icon_width;		/* width of the icon bitmap */
+  int icon_height;		/* height of the icon bitmap */
+  int title_height;		/* height of the title bar */
+  int title_width;		/* width of the title bar */
+  char *full_name;		/* full name of the window */
+  char *name;			/* name of the window */
+  char *icon_name;		/* name of the icon */
+  int name_width;		/* width of name text */
+  int highlightx;		/* start of highlight window */
+  int rightx;			/* start of right buttons */
+  XWindowAttributes attr;	/* the child window attributes */
+  XSizeHints hints;		/* normal hints */
+  XWMHints *wmhints;		/* WM hints */
+  Window group;		/* group ID */
+  XClassHint class;
+  struct WList *list;
+  /***********************************************************************
+   * color definitions per window
+   **********************************************************************/
+  Pixel border;		/* border color */
+  Pixel icon_border;		/* border color */
+  ColorPair border_tile;
+  ColorPair title;
+  ColorPair iconc;
+  short iconified;		/* has the window ever been iconified? */
+  short icon;			/* is the window an icon now ? */
+  short icon_on;		/* is the icon visible */
+  short mapped;		/* is the window mapped ? */
+  short auto_raise;		/* should we auto-raise this window ? */
+  short forced;		/* has had an icon forced upon it */
+  short icon_not_ours;	/* icon pixmap or window supplied to us */
+  short icon_moved;		/* user explicitly moved the icon */
+  short highlight;		/* should highlight this window */
+  short stackmode;		/* honor stackmode requests */
+  short iconify_by_unmapping;	/* unmap window to iconify it */
+  short iconmgr;		/* this is an icon manager window */
+  short transient;		/* this is a transient window */
+  Window transientfor;	/* window contained in XA_XM_TRANSIENT_FOR */
+  short titlehighlight;	/* should I highlight the title bar */
+  struct IconMgr *iconmgrp;	/* pointer to it if this is an icon manager */
+  int save_frame_x;		/* x position of frame */
+  int save_frame_y;		/* y position of frame */
+  int save_frame_width;	/* width of frame */
+  int save_frame_height;	/* height of frame */
+  short zoomed;		/* is the window zoomed? */
+  short wShaped;		/* this window has a bounding shape */
+  unsigned long protocols;	/* which protocols this window handles */
+  Colormaps cmaps;		/* colormaps for this application */
+  TBWindow *titlebuttons;
+  SqueezeInfo *squeeze_info;	/* should the title be squeezed? */
+  struct {
+    struct TwmWindow *next, *prev;
+    Bool cursor_valid;
+    int curs_x, curs_y;
+  } ring;
 
-    Bool nameChanged;	/* did WM_NAME ever change? */
+  Bool nameChanged;	/* did WM_NAME ever change? */
 
-    /* did the user ever change the width/height? {yes, no, or unknown} */
+  /* did the user ever change the width/height? {yes, no, or unknown} */
 
-    Bool widthEverChangedByUser;
-    Bool heightEverChangedByUser;
+  Bool widthEverChangedByUser;
+  Bool heightEverChangedByUser;
 
 } TwmWindow;
 
 
-typedef struct TWMWinConfigEntry
-{
-    struct TWMWinConfigEntry *next;
-    int tag;
-    char *client_id;
-    char *window_role;
-    XClassHint class;
-    char *wm_name;
-    int wm_command_count;
-    char **wm_command;
-    short x, y;
-    unsigned short width, height;
-    short icon_x, icon_y;
-    Bool iconified;
-    Bool icon_info_present;
-    Bool width_ever_changed_by_user;
-    Bool height_ever_changed_by_user;
+typedef struct TWMWinConfigEntry {
+  struct TWMWinConfigEntry *next;
+  int tag;
+  char *client_id;
+  char *window_role;
+  XClassHint class;
+  char *wm_name;
+  int wm_command_count;
+  char **wm_command;
+  short x, y;
+  unsigned short width, height;
+  short icon_x, icon_y;
+  Bool iconified;
+  Bool icon_info_present;
+  Bool width_ever_changed_by_user;
+  Bool height_ever_changed_by_user;
 } TWMWinConfigEntry;
 
 

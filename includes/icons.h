@@ -1,5 +1,5 @@
 /*
- * 
+ *
 Copyright (c) 1989  X Consortium
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,21 +37,19 @@ in this Software without prior written authorization from the X Consortium.
 #ifndef ICONS_H
 #define ICONS_H
 
-typedef struct IconRegion
-{
-    struct IconRegion	*next;
-    int			x, y, w, h;
-    int			grav1, grav2;
-    int			stepx, stepy;	/* allocation granularity */
-    struct IconEntry	*entries;
+typedef struct IconRegion {
+  struct IconRegion	*next;
+  int			x, y, w, h;
+  int			grav1, grav2;
+  int			stepx, stepy;	/* allocation granularity */
+  struct IconEntry	*entries;
 } IconRegion;
 
-typedef struct IconEntry
-{
-    struct IconEntry	*next;
-    int			x, y, w, h;
-    TwmWindow		*twm_win;
-    short 		used;
-}IconEntry;
+typedef struct IconEntry {
+  struct IconEntry	*next;
+  int			x, y, w, h;
+  TwmWindow		*twm_win;
+  short 		used;
+} IconEntry;
 
 #endif /* ICONS_H */

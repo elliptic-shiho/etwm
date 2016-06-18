@@ -10,6 +10,7 @@ TARGET    := twm
 OBJS      := gram.o lex.o deftwmrc.o add_window.o gc.o list.o twm.o parse.o menus.o events.o resize.o util.o version.o iconmgr.o cursor.o icons.o session.o accessible_addr.o xinerama.o
 MV				:= mv
 RM				:= rm
+ASTYLE    := astyle
 
 vpath %.c src/
 vpath %.y src/
@@ -55,3 +56,7 @@ clean:
 	$(RM) -f src/gram.c
 	$(RM) -f src/lex.c
 	$(RM) -f src/deftwmrc.c
+
+.PHONY: format
+format:
+	$(ASTYLE) --mode=c -s2 -n -j -W3 -k3 -A2 src/*.c includes/*.h

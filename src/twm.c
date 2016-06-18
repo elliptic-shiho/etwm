@@ -145,7 +145,7 @@ extern void assign_var_savecolor();
 Atom TwmAtoms[11];
 
 /* don't change the order of these strings */
-static char* atom_names[11] = {
+static char *atom_names[11] = {
   "_MIT_PRIORITY_COLORS",
   "WM_CHANGE_STATE",
   "WM_STATE",
@@ -189,25 +189,33 @@ int main(int argc, char **argv, char **environ) {
     if (argv[i][0] == '-') {
       switch (argv[i][1]) {
       case 'd':				/* -display dpy */
-        if (++i >= argc) goto usage;
+        if (++i >= argc) {
+          goto usage;
+        }
         display_name = argv[i];
         continue;
       case 's':				/* -single */
         MultiScreen = FALSE;
         continue;
       case 'f':				/* -file twmrcfilename */
-        if (++i >= argc) goto usage;
+        if (++i >= argc) {
+          goto usage;
+        }
         InitFile = argv[i];
         continue;
       case 'v':				/* -verbose */
         PrintErrorMessages = True;
         continue;
       case 'c':				/* -clientId */
-        if (++i >= argc) goto usage;
+        if (++i >= argc) {
+          goto usage;
+        }
         client_id = argv[i];
         continue;
       case 'r':				/* -restore */
-        if (++i >= argc) goto usage;
+        if (++i >= argc) {
+          goto usage;
+        }
         restore_filename = argv[i];
         continue;
       case 'q':				/* -quiet */
@@ -233,8 +241,9 @@ usage:
 #undef newhandler
 
   Home = getenv("HOME");
-  if (Home == NULL)
+  if (Home == NULL) {
     Home = "./";
+  }
 
   HomeLen = strlen(Home);
 
@@ -258,8 +267,9 @@ usage:
     exit (1);
   }
 
-  if (restore_filename)
+  if (restore_filename) {
     ReadWinConfigFile (restore_filename);
+  }
 
   HasShape = XShapeQueryExtension (dpy, &ShapeEventBase, &ShapeErrorBase);
   HasSync = XSyncQueryExtension(dpy,  &SyncEventBase, &SyncErrorBase);
@@ -311,10 +321,11 @@ usage:
     if (RedirectError) {
       fprintf (stderr, "%s:  another window manager is already running",
                ProgramName);
-      if (MultiScreen && NumScreens > 0)
+      if (MultiScreen && NumScreens > 0) {
         fprintf(stderr, " on screen %d?\n", scrnum);
-      else
+      } else {
         fprintf(stderr, "?\n");
+      }
       continue;
     }
 
@@ -400,12 +411,13 @@ usage:
 
     Scr->XORvalue = (((unsigned long) 1) << Scr->d_depth) - 1;
 
-    if (DisplayCells(dpy, scrnum) < 3)
+    if (DisplayCells(dpy, scrnum) < 3) {
       Scr->Monochrome = MONOCHROME;
-    else if (DefaultVisual(dpy, scrnum)->class == GrayScale)
+    } else if (DefaultVisual(dpy, scrnum)->class == GrayScale) {
       Scr->Monochrome = GRAYSCALE;
-    else
+    } else {
       Scr->Monochrome = COLOR;
+    }
 
     /* setup default colors */
     Scr->FirstTime = TRUE;
@@ -458,15 +470,21 @@ usage:
     /* Parse it once for each screen. */
     ParseTwmrc(InitFile);
     assign_var_savecolor(); /* storeing pixels for twmrc "entities" */
-    if (Scr->SqueezeTitle == -1) Scr->SqueezeTitle = FALSE;
-    if (!Scr->HaveFonts) CreateFonts();
+    if (Scr->SqueezeTitle == -1) {
+      Scr->SqueezeTitle = FALSE;
+    }
+    if (!Scr->HaveFonts) {
+      CreateFonts();
+    }
     CreateGCs();
     MakeMenus();
 
     Scr->TitleBarFont.y += Scr->FramePadding;
     Scr->TitleHeight = Scr->TitleBarFont.height + Scr->FramePadding * 2;
     /* make title height be odd so buttons look nice and centered */
-    if (!(Scr->TitleHeight & 1)) Scr->TitleHeight++;
+    if (!(Scr->TitleHeight & 1)) {
+      Scr->TitleHeight++;
+    }
 
     InitTitlebarButtons ();		/* menus are now loaded! */
 
@@ -478,8 +496,9 @@ usage:
 
     XQueryTree(dpy, Scr->Root, &root, &parent, &children, &nchildren);
     CreateIconManagers();
-    if (!Scr->NoIconManagers)
+    if (!Scr->NoIconManagers) {
       Scr->iconmgr.twm_win->icon = TRUE;
+    }
 
     /*
      * weed out icon windows
@@ -740,7 +759,9 @@ void RestoreWithdrawnLocation (TwmWindow *tmp) {
                     &JunkWidth, &JunkHeight, &bw, &JunkDepth)) {
 
     GetGravityOffsets (tmp, &gravx, &gravy);
-    if (gravy < 0) xwc.y -= tmp->title_height;
+    if (gravy < 0) {
+      xwc.y -= tmp->title_height;
+    }
 
     if (bw != tmp->old_bw) {
       int xoff, yoff;
@@ -805,8 +826,9 @@ void Reborder (Time time) {
 
   XGrabServer (dpy);
   for (scrnum = 0; scrnum < NumScreens; scrnum++) {
-    if ((Scr = ScreenList[scrnum]) == NULL)
+    if ((Scr = ScreenList[scrnum]) == NULL) {
       continue;
+    }
 
     InstallWindowColormaps (0, &Scr->TwmRoot);	/* force reinstall */
     for (tmp = Scr->TwmRoot.next; tmp != NULL; tmp = tmp->next) {
@@ -816,7 +838,7 @@ void Reborder (Time time) {
   }
 
   XUngrabServer (dpy);
-  SetFocus ((TwmWindow*)NULL, time);
+  SetFocus ((TwmWindow *)NULL, time);
 }
 
 SIGNAL_T Done() {
@@ -843,8 +865,9 @@ static int TwmErrorHandler(Display *dpy, XErrorEvent *event) {
   if (PrintErrorMessages && 			/* don't be too obnoxious */
       event->error_code != BadWindow &&	/* watch for dead puppies */
       (event->request_code != X_GetGeometry &&	 /* of all styles */
-       event->error_code != BadDrawable))
+       event->error_code != BadDrawable)) {
     XmuPrintDefaultErrorMessage (dpy, event, stderr);
+  }
   return 0;
 }
 
