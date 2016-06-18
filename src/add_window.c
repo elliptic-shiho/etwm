@@ -89,6 +89,20 @@ int AddingH;
 static int PlaceX = 50;
 static int PlaceY = 50;
 static void CreateWindowTitlebarButtons();
+void FetchWmProtocols(TwmWindow*);
+void FetchWmColormapWindows(TwmWindow*);
+void GetWindowSizeHints (TwmWindow *);
+ColormapWindow *CreateColormapWindow(Window, Bool, Bool);
+TwmColormap *CreateTwmColormap(Colormap);
+void SetHighlightPixmap(char *);
+void ComputeTitleLocation(register TwmWindow *);
+void ComputeWindowTitleOffsets(TwmWindow *, int, Bool);
+void ComputeCommonTitleOffsets();
+int MappedNotOverride(Window);
+void AddDefaultBindings();
+void GrabButtons(TwmWindow *);
+void GrabKeys(TwmWindow *);
+static Window CreateHighlightWindow (TwmWindow *);
 
 char NoName[] = "Untitled"; /* name if no name is specified */
 
@@ -148,8 +162,7 @@ void GetGravityOffsets (TwmWindow *tmp, int *xp, int *yp) {
  ***********************************************************************
  */
 
-TwmWindow *
-AddWindow(Window w, int iconm, IconMgr *iconp) {
+TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {
     TwmWindow *tmp_win;			/* new twm window structure */
     int stat;
     XEvent event;
@@ -273,29 +286,29 @@ AddWindow(Window w, int iconm, IconMgr *iconp) {
     namelen = strlen (tmp_win->name);
 
     tmp_win->highlight = Scr->Highlight &&
-                         (!(short)(int) LookInList(Scr->NoHighlight, tmp_win->full_name,
+                         (!(short)(ptrdiff_t) LookInList(Scr->NoHighlight, tmp_win->full_name,
                                  &tmp_win->class));
 
     tmp_win->stackmode = Scr->StackMode &&
-                         (!(short)(int) LookInList(Scr->NoStackModeL, tmp_win->full_name,
+                         (!(short)(ptrdiff_t) LookInList(Scr->NoStackModeL, tmp_win->full_name,
                                  &tmp_win->class));
 
     tmp_win->titlehighlight = Scr->TitleHighlight &&
-                              (!(short)(int) LookInList(Scr->NoTitleHighlight, tmp_win->full_name,
+                              (!(short)(ptrdiff_t) LookInList(Scr->NoTitleHighlight, tmp_win->full_name,
                                       &tmp_win->class));
 
-    tmp_win->auto_raise = (short)(int) LookInList(Scr->AutoRaise,
+    tmp_win->auto_raise = (short)(ptrdiff_t) LookInList(Scr->AutoRaise,
                           tmp_win->full_name,
                           &tmp_win->class);
     if (tmp_win->auto_raise) Scr->NumAutoRaises++;
     tmp_win->iconify_by_unmapping = Scr->IconifyByUnmapping;
     if (Scr->IconifyByUnmapping) {
         tmp_win->iconify_by_unmapping = iconm ? FALSE :
-                                        !(short)(int) LookInList(Scr->DontIconify, tmp_win->full_name,
+                                        !(short)(ptrdiff_t) LookInList(Scr->DontIconify, tmp_win->full_name,
                                                 &tmp_win->class);
     }
     tmp_win->iconify_by_unmapping |=
-        (short)(int) LookInList(Scr->IconifyByUn, tmp_win->full_name,
+        (short)(ptrdiff_t) LookInList(Scr->IconifyByUn, tmp_win->full_name,
                                 &tmp_win->class);
 
     if (LookInList(Scr->WindowRingL, tmp_win->full_name, &tmp_win->class)) {
@@ -929,8 +942,7 @@ AddWindow(Window w, int iconm, IconMgr *iconp) {
  ***********************************************************************
  */
 
-int
-MappedNotOverride(Window w) {
+int MappedNotOverride(Window w) {
     XWindowAttributes wa;
 
     XGetWindowAttributes(dpy, w, &wa);
@@ -986,8 +998,7 @@ void AddDefaultBindings () {
  ***********************************************************************
  */
 
-void
-GrabButtons(TwmWindow *tmp_win) {
+void GrabButtons(TwmWindow *tmp_win) {
     int i, j;
 
     for (i = 0; i < MAX_BUTTONS+1; i++) {
@@ -1016,8 +1027,7 @@ GrabButtons(TwmWindow *tmp_win) {
  ***********************************************************************
  */
 
-void
-GrabKeys(TwmWindow *tmp_win) {
+void GrabKeys(TwmWindow *tmp_win) {
     FuncKey *tmp;
     IconMgr *p;
 
@@ -1165,7 +1175,6 @@ void ComputeWindowTitleOffsets (TwmWindow *tmp_win, int width, Bool squeeze) {
     return;
 }
 
-
 /*
  * ComputeTitleLocation - calculate the position of the title window; we need
  * to take the frame_bw into account since we want (0,0) of the title window
@@ -1218,7 +1227,6 @@ void ComputeTitleLocation (register TwmWindow *tmp) {
         tmp->title_x = basex - tmp->frame_bw;
     }
 }
-
 
 static void CreateWindowTitlebarButtons (TwmWindow *tmp_win) {
     unsigned long valuemask;		/* mask for create windows */
@@ -1294,7 +1302,6 @@ static void CreateWindowTitlebarButtons (TwmWindow *tmp_win) {
     return;
 }
 
-
 void SetHighlightPixmap (char *filename) {
     Pixmap pm = GetBitmap (filename);
 
@@ -1309,7 +1316,7 @@ void SetHighlightPixmap (char *filename) {
 }
 
 
-int FetchWmProtocols (TwmWindow *tmp) {
+void FetchWmProtocols (TwmWindow *tmp) {
     unsigned long flags = 0L;
     Atom *protocols = NULL;
     int n;
@@ -1328,8 +1335,7 @@ int FetchWmProtocols (TwmWindow *tmp) {
     tmp->protocols = flags;
 }
 
-TwmColormap *
-CreateTwmColormap(Colormap c) {
+TwmColormap *CreateTwmColormap(Colormap c) {
     TwmColormap *cmap;
     cmap = (TwmColormap *) malloc(sizeof(TwmColormap));
     if (!cmap ||
@@ -1345,8 +1351,7 @@ CreateTwmColormap(Colormap c) {
     return (cmap);
 }
 
-ColormapWindow *
-CreateColormapWindow(Window w, Bool creating_parent, Bool property_window) {
+ColormapWindow *CreateColormapWindow(Window w, Bool creating_parent, Bool property_window) {
     ColormapWindow *cwin;
     TwmColormap *cmap;
     XWindowAttributes attributes;
@@ -1398,7 +1403,7 @@ CreateColormapWindow(Window w, Bool creating_parent, Bool property_window) {
     return (cwin);
 }
 
-int FetchWmColormapWindows (TwmWindow *tmp) {
+void FetchWmColormapWindows (TwmWindow *tmp) {
     register int i, j;
     Window *cmap_windows = NULL;
     Bool can_free_cmap_windows = False;

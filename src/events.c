@@ -62,8 +62,10 @@ in this Software without prior written authorization from the X Consortium.
  ***********************************************************************/
 
 #include <stdio.h>
-#include "twm.h"
+#include <X11/SM/SMlib.h>
+#include <unistd.h>
 #include <X11/Xatom.h>
+#include "twm.h"
 #include "add_window.h"
 #include "menus.h"
 #include "events.h"
@@ -75,7 +77,6 @@ in this Software without prior written authorization from the X Consortium.
 #include "iconmgr.h"
 #include "version.h"
 #include "accessible_addr.h"
-#include <X11/SM/SMlib.h>
 
 extern int iconifybox_width, iconifybox_height;
 extern unsigned int mods_used;
@@ -147,8 +148,7 @@ void SetRaiseWindow (TwmWindow *tmp) {
  ***********************************************************************
  */
 
-void
-InitEvents() {
+void InitEvents() {
     int i;
 
 
@@ -371,8 +371,7 @@ Bool DispatchEvent () {
  ***********************************************************************
  */
 
-void
-HandleEvents() {
+void HandleEvents() {
     while (TRUE) {
         if (enter_flag && !QLength(dpy)) {
             if (enter_win && enter_win != raise_win) {
@@ -407,8 +406,7 @@ HandleEvents() {
  ***********************************************************************
  */
 
-void
-HandleColormapNotify() {
+void HandleColormapNotify() {
     XColormapEvent *cevent = (XColormapEvent *) &Event;
     ColormapWindow *cwin, **cwins;
     TwmColormap *cmap;
@@ -555,8 +553,7 @@ HandleColormapNotify() {
  ***********************************************************************
  */
 
-void
-HandleVisibilityNotify() {
+void HandleVisibilityNotify() {
     XVisibilityEvent *vevent = (XVisibilityEvent *) &Event;
     ColormapWindow *cwin;
     TwmColormap *cmap;
@@ -592,8 +589,7 @@ HandleVisibilityNotify() {
 
 int MovedFromKeyPress = False;
 
-void
-HandleKeyPress() {
+void HandleKeyPress() {
     KeySym ks;
     FuncKey *key;
     int len;
@@ -743,6 +739,15 @@ void free_cwins (TwmWindow *tmp)
         tmp->cmaps.number_cwins = 0;
     }
 }
+
+/***********************************************************************
+ *
+ *  Procedure:
+ *	HandleConfigureNotify - configure notify event handler
+ *
+ ***********************************************************************
+ */
+
 void HandleConfigureNotify() {
   if (Event.xconfigure.window == Scr->Root) {
     extern SmcConn smcConn;
@@ -973,7 +978,7 @@ HandlePropertyNotify() {
  ***********************************************************************
  */
 
-int RedoIconName() {
+void RedoIconName() {
     int x, y;
 
     if (Tmp_win->list) {
@@ -1033,8 +1038,7 @@ int RedoIconName() {
  ***********************************************************************
  */
 
-void
-HandleClientMessage() {
+void HandleClientMessage() {
     if (Event.xclient.message_type == _XA_WM_CHANGE_STATE) {
         if (Tmp_win != NULL) {
             if (Event.xclient.data.l[0] == IconicState && !Tmp_win->icon) {
@@ -1065,8 +1069,7 @@ HandleClientMessage() {
 
 static void flush_expose();
 
-void
-HandleExpose() {
+void HandleExpose() {
     MenuRoot *tmp;
     if (XFindContext(dpy, Event.xany.window, MenuContext, (caddr_t *)&tmp) == 0) {
         PaintMenu(tmp, &Event);
@@ -2218,10 +2221,10 @@ HandleLeaveNotify() {
                     if (Tmp_win->hilite_w)
                         XUnmapWindow (dpy, Tmp_win->hilite_w);
                     SetBorder (Tmp_win, False);
-                    if (Scr->TitleFocus ||
+                    /*if (Scr->TitleFocus ||
                             Tmp_win->protocols & DoesWmTakeFocus)
                         SetFocus ((TwmWindow *) NULL, Event.xcrossing.time);
-                    Scr->Focus = NULL;
+                    Scr->Focus = NULL;*/
                 } else if (Event.xcrossing.window == Tmp_win->w &&
                            !scanArgs.enters) {
                     InstallWindowColormaps (LeaveNotify, &Scr->TwmRoot);
@@ -2426,8 +2429,7 @@ HandleUnknown() {
  ***********************************************************************
  */
 
-int
-Transient(Window w, Window *propw) {
+int Transient(Window w, Window *propw) {
     return (XGetTransientForHint(dpy, w, propw));
 }
 
@@ -2488,8 +2490,7 @@ static void flush_expose (Window w) {
  *
  ***********************************************************************
  */
-
-InstallWindowColormaps (int type, TwmWindow *tmp) {
+void InstallWindowColormaps (int type, TwmWindow *tmp) {
     int i, j, n, number_cwins, state;
     ColormapWindow **cwins, *cwin, **maxcwin = NULL;
     TwmColormap *cmap;
@@ -2596,7 +2597,7 @@ InstallWindowColormaps (int type, TwmWindow *tmp) {
  ***********************************************************************
  */
 
-InstallRootColormap() {
+void InstallRootColormap() {
     TwmWindow *tmp;
     if (Scr->cmapInfo.root_pushes == 0) {
         /*
@@ -2614,12 +2615,7 @@ InstallRootColormap() {
 
 
 /* ARGSUSED*/
-static Bool
-UninstallRootColormapQScanner(dpy, ev, args)
-Display *dpy;
-XEvent *ev;
-char *args;
-{
+static Bool UninstallRootColormapQScanner(Display *dpy, XEvent *ev, char *args) {
     if (!*args)
         if (ev->type == EnterNotify) {
             if (ev->xcrossing.mode != NotifyGrab)
@@ -2633,8 +2629,7 @@ char *args;
 }
 
 
-
-UninstallRootColormap() {
+void UninstallRootColormap() {
     char args;
     XEvent dummy;
 
@@ -2656,7 +2651,7 @@ UninstallRootColormap() {
 }
 
 #ifdef TRACE
-dumpevent (XEvent *e) {
+void dumpevent (XEvent *e) {
     char *name = NULL;
 
     switch (e->type) {

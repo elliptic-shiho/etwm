@@ -144,7 +144,7 @@ static IconEntry * FindIconEntry (TwmWindow   *tmp_win, IconRegion	**irp) {
     return 0;
 }
 
-void IconUp (TwmWindow   *tmp_win) {
+void IconUp (TwmWindow *tmp_win) {
     int		x, y;
     int		defx, defy;
     struct IconRegion *ir;
@@ -289,7 +289,8 @@ void FreeIconEntries (IconRegion	*ir) {
         free ((char *) ie);
     }
 }
-FreeIconRegions() {
+
+void FreeIconRegions() {
     IconRegion *ir, *tmp;
 
     for (ir = Scr->FirstRegion; ir != NULL;) {

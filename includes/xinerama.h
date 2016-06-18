@@ -3,6 +3,11 @@
 
 #include <X11/extensions/Xinerama.h>
 
+typedef struct {
+  unsigned int org_x, org_y;
+  unsigned int width, height;
+} Monitor;
+
 extern Bool is_enable_xinerama;
 
 extern int get_display_number_from_coordinate(unsigned int x, unsigned int y);

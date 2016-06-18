@@ -64,7 +64,8 @@ in this Software without prior written authorization from the X Consortium.
 #ifndef _PARSE_
 #define _PARSE_
 
-extern int ParseTwmrc(), ParseStringList();
+extern int ParseTwmrc();
+extern int ParseStringList();
 extern int (*twmInputFunc)();
 extern void twmUnput();
 extern void TwmOutput();

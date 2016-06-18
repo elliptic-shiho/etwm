@@ -79,6 +79,7 @@ in this Software without prior written authorization from the X Consortium.
 #include <X11/Xproto.h>
 #include <X11/Xatom.h>
 #include <X11/SM/SMlib.h>
+#include <X11/Xmu/Error.h>
 
 XtAppContext appContext;	/* Xt application context */
 
@@ -562,7 +563,7 @@ usage:
         exit (1);
     }
 
-    (void) ConnectToSessionManager (client_id);
+    ConnectToSessionManager (client_id);
 
     RestartPreviousState = False;
     HandlingEvents = TRUE;
@@ -579,7 +580,7 @@ usage:
  ***********************************************************************
  */
 
-int InitVariables() {
+void InitVariables() {
     FreeList(&Scr->BorderColorL);
     FreeList(&Scr->IconBorderColorL);
     FreeList(&Scr->BorderTileForegroundL);
@@ -719,7 +720,7 @@ int InitVariables() {
 }
 
 
-int CreateFonts () {
+void CreateFonts () {
     GetFont(&Scr->TitleBarFont);
     GetFont(&Scr->MenuFont);
     GetFont(&Scr->IconFont);
@@ -730,7 +731,7 @@ int CreateFonts () {
 }
 
 
-int RestoreWithdrawnLocation (TwmWindow *tmp) {
+void RestoreWithdrawnLocation (TwmWindow *tmp) {
     int gravx, gravy;
     unsigned int bw, mask;
     XWindowChanges xwc;

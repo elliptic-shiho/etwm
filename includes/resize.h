@@ -73,6 +73,6 @@ extern void AddEndResize();
 extern void SetupWindow();
 extern void SetupFrame();
 
-#endif /* _RESIZE_ */
-
 extern void fullzoom();
+
+#endif /* _RESIZE_ */

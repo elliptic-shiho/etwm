@@ -71,6 +71,7 @@ extern Bool StashEventTime();
 extern Time lastTimestamp;
 extern void SimulateMapRequest();
 extern void AutoRaiseWindow();
+extern int Transient(Window, Window *);
 #define LastTimestamp() lastTimestamp
 extern Bool DispatchEvent();
 extern Bool DispatchEvent2();
@@ -93,6 +94,12 @@ extern void HandleColormapNotify();
 extern void HandleVisibilityNotify();
 extern void HandleConfigureNotify();
 extern void HandleUnknown();
+
+extern void InstallRootColormap();
+extern void UninstallRootColormap();
+extern void InstallWindowColormaps (int, TwmWindow *);
+extern void RedoIconName();
+
 
 extern event_proc EventHandler[];
 extern Window DragWindow;
