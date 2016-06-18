@@ -176,4 +176,7 @@ extern int DeferExecution();
 extern void Execute();
 extern void FocusOnRoot();
 
+extern void SetBorder (TwmWindow *, Bool);
+extern void ReGrab(void);
+
 #endif /* _MENUS_ */

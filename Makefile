@@ -23,7 +23,7 @@ all: bin/$(TARGET)
 bin/$(TARGET): $(OBJS)
 	$(LD) $(DFLAGS) -o $@ $(addprefix bin/,$(OBJS)) $(LDFLAGS) 
 
-%.o: %.c 
+%.o: %.c includes/*.h
 	$(CC) $(DFLAGS) $(CFLAGS) -c -o bin/$@ $<
 
 src/gram.c: gram.y

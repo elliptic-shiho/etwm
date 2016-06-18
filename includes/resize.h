@@ -75,4 +75,6 @@ extern void SetupFrame();
 
 extern void fullzoom();
 
+extern int ConstrainSize(TwmWindow *, int *, int *);
+
 #endif /* _RESIZE_ */

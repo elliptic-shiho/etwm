@@ -1,0 +1,1875 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALL	includes/gram.h	/^    ALL = 268,$/;"	e	enum:yytokentype
+ALL	includes/gram.h	133;"	d
+ALL	src/gram.c	/^    ALL = 268,$/;"	e	enum:yytokentype	file:
+ALL	src/gram.c	219;"	d	file:
+AUTO_RAISE	includes/gram.h	/^    AUTO_RAISE = 289,$/;"	e	enum:yytokentype
+AUTO_RAISE	includes/gram.h	154;"	d
+AUTO_RAISE	src/gram.c	/^    AUTO_RAISE = 289,$/;"	e	enum:yytokentype	file:
+AUTO_RAISE	src/gram.c	240;"	d	file:
+Action	src/events.c	/^char *Action;$/;"	v
+Action	src/gram.c	/^static char *Action = "";$/;"	v	file:
+Active	src/iconmgr.c	/^WList *Active = NULL;$/;"	v
+ActiveIconManager	src/iconmgr.c	/^void ActiveIconManager(WList *active) {$/;"	f
+ActiveItem	src/menus.c	/^MenuItem *ActiveItem = NULL;		\/* the active menu item *\/$/;"	v
+ActiveMenu	src/menus.c	/^MenuRoot *ActiveMenu = NULL;		\/* the active menu *\/$/;"	v
+AddDefaultBindings	src/add_window.c	/^void AddDefaultBindings () {$/;"	f
+AddEndResize	src/resize.c	/^AddEndResize(TwmWindow *tmp_win) {$/;"	f
+AddFuncKey	src/menus.c	/^Bool AddFuncKey (char *name, int cont, int mods, int func, char *win_name, char *action) {$/;"	f
+AddIconManager	src/iconmgr.c	/^WList *AddIconManager(TwmWindow *tmp_win) {$/;"	f
+AddIconRegion	src/icons.c	/^void AddIconRegion(char *geom, int grav1, int grav2, int stepx, int stepy) {$/;"	f
+AddStartResize	src/resize.c	/^AddStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {$/;"	f
+AddToList	src/list.c	/^void AddToList(name_list **list_head, char *name, char *ptr) {$/;"	f
+AddToMenu	src/menus.c	/^AddToMenu(MenuRoot *menu, char *item, char *action, MenuRoot *sub, int func, char *fore, char *back) {$/;"	f
+AddWindow	src/add_window.c	/^TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {$/;"	f
+AddingH	src/add_window.c	/^int AddingH;$/;"	v
+AddingW	src/add_window.c	/^int AddingW;$/;"	v
+AddingX	src/add_window.c	/^int AddingX;$/;"	v
+AddingY	src/add_window.c	/^int AddingY;$/;"	v
+AllocateIconManager	src/iconmgr.c	/^IconMgr *AllocateIconManager(char *name, char *icon_name, char *geom, int columns) {$/;"	f
+Argc	src/twm.c	/^int Argc;$/;"	v
+Argv	src/twm.c	/^char **Argv;$/;"	v
+AutoRaise	includes/screen.h	/^    name_list *AutoRaise;	\/* list of window names to auto-raise *\/$/;"	m	struct:ScreenInfo
+AutoRaiseWindow	src/events.c	/^void AutoRaiseWindow (TwmWindow *tmp) {$/;"	f
+AutoRelativeResize	includes/screen.h	/^    short AutoRelativeResize;	\/* start resize relative to position in quad *\/$/;"	m	struct:ScreenInfo
+BEGIN	src/lex.c	125;"	d	file:
+BUF_LEN	src/parse.c	79;"	d	file:
+BUTTON	includes/gram.h	/^    BUTTON = 264,$/;"	e	enum:yytokentype
+BUTTON	includes/gram.h	129;"	d
+BUTTON	src/gram.c	/^    BUTTON = 264,$/;"	e	enum:yytokentype	file:
+BUTTON	src/gram.c	215;"	d	file:
+BW	includes/twm.h	93;"	d
+BW2	includes/twm.h	94;"	d
+BackingStore	includes/screen.h	/^    short BackingStore;		\/* use backing store for menus *\/$/;"	m	struct:ScreenInfo
+Black	includes/screen.h	/^    unsigned long Black;$/;"	m	struct:ScreenInfo
+BorderColor	includes/screen.h	/^    Pixel BorderColor;		\/* color of window borders *\/$/;"	m	struct:ScreenInfo
+BorderColorL	includes/screen.h	/^    name_list *BorderColorL;$/;"	m	struct:ScreenInfo
+BorderTileBackgroundL	includes/screen.h	/^    name_list *BorderTileBackgroundL;$/;"	m	struct:ScreenInfo
+BorderTileC	includes/screen.h	/^    ColorPair BorderTileC;	\/* border tile colors *\/$/;"	m	struct:ScreenInfo
+BorderTileForegroundL	includes/screen.h	/^    name_list *BorderTileForegroundL;$/;"	m	struct:ScreenInfo
+BorderWidth	includes/screen.h	/^    int BorderWidth;		\/* border width of twm windows *\/$/;"	m	struct:ScreenInfo
+BumpWindowColormap	src/menus.c	/^int BumpWindowColormap (TwmWindow *tmp, int inc) {$/;"	f
+ButtonCursor	includes/screen.h	/^    Cursor ButtonCursor;	\/* title bar button cursor *\/$/;"	m	struct:ScreenInfo
+ButtonEvent	src/events.c	/^XEvent ButtonEvent;		\/* button press event *\/$/;"	v
+ButtonIndent	includes/screen.h	/^    int ButtonIndent;		\/* amount to shrink buttons on each side *\/$/;"	m	struct:ScreenInfo
+ButtonPressed	src/events.c	/^int ButtonPressed = -1;$/;"	v
+ButtonWindow	src/events.c	/^TwmWindow *ButtonWindow;	\/* button press window structure *\/$/;"	v
+CC	Makefile	/^CC        := gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS    := -Dlinux -D__amd64__ -D_POSIX_C_SOURCE=199309L -D_POSIX_SOURCE -D_XOPEN_SOURCE -D_BSD_SOURCE -D_SVID_SOURCE -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DFUNCPROTO=15 -DNARROWPROTO -std=c11 -Iincludes\/$/;"	m
+CKEYWORD	includes/gram.h	/^    CKEYWORD = 318,$/;"	e	enum:yytokentype
+CKEYWORD	includes/gram.h	183;"	d
+CKEYWORD	src/gram.c	/^    CKEYWORD = 318,$/;"	e	enum:yytokentype	file:
+CKEYWORD	src/gram.c	269;"	d	file:
+CLKEYWORD	includes/gram.h	/^    CLKEYWORD = 319,$/;"	e	enum:yytokentype
+CLKEYWORD	includes/gram.h	184;"	d
+CLKEYWORD	src/gram.c	/^    CLKEYWORD = 319,$/;"	e	enum:yytokentype	file:
+CLKEYWORD	src/gram.c	270;"	d	file:
+CM_INSTALL	includes/twm.h	209;"	d
+CM_INSTALLABLE	includes/twm.h	207;"	d
+CM_INSTALLED	includes/twm.h	208;"	d
+COLON	includes/gram.h	/^    COLON = 301,$/;"	e	enum:yytokentype
+COLON	includes/gram.h	166;"	d
+COLON	src/gram.c	/^    COLON = 301,$/;"	e	enum:yytokentype	file:
+COLON	src/gram.c	252;"	d	file:
+COLOR	includes/gram.h	/^    COLOR = 273,$/;"	e	enum:yytokentype
+COLOR	includes/gram.h	138;"	d
+COLOR	src/gram.c	/^    COLOR = 273,$/;"	e	enum:yytokentype	file:
+COLOR	src/gram.c	224;"	d	file:
+COLORMAP_DEFAULT	includes/menus.h	165;"	d
+COLORMAP_NEXT	includes/menus.h	163;"	d
+COLORMAP_PREV	includes/menus.h	164;"	d
+CONTROL	includes/gram.h	/^    CONTROL = 295,$/;"	e	enum:yytokentype
+CONTROL	includes/gram.h	160;"	d
+CONTROL	src/gram.c	/^    CONTROL = 295,$/;"	e	enum:yytokentype	file:
+CONTROL	src/gram.c	246;"	d	file:
+CURSORS	includes/gram.h	/^    CURSORS = 270,$/;"	e	enum:yytokentype
+CURSORS	includes/gram.h	135;"	d
+CURSORS	src/gram.c	/^    CURSORS = 270,$/;"	e	enum:yytokentype	file:
+CURSORS	src/gram.c	221;"	d	file:
+C_ALL_BITS	includes/twm.h	129;"	d
+C_FRAME	includes/twm.h	115;"	d
+C_FRAME_BIT	includes/twm.h	125;"	d
+C_ICON	includes/twm.h	113;"	d
+C_ICONMGR	includes/twm.h	116;"	d
+C_ICONMGR_BIT	includes/twm.h	126;"	d
+C_ICON_BIT	includes/twm.h	123;"	d
+C_IDENTIFY	includes/twm.h	118;"	d
+C_NAME	includes/twm.h	117;"	d
+C_NAME_BIT	includes/twm.h	127;"	d
+C_NO_CONTEXT	includes/twm.h	110;"	d
+C_ROOT	includes/twm.h	114;"	d
+C_ROOT_BIT	includes/twm.h	124;"	d
+C_TITLE	includes/twm.h	112;"	d
+C_TITLE_BIT	includes/twm.h	122;"	d
+C_WINDOW	includes/twm.h	111;"	d
+C_WINDOW_BIT	includes/twm.h	121;"	d
+Cancel	src/events.c	/^int Cancel = FALSE;$/;"	v
+CaseSensitive	includes/screen.h	/^    short CaseSensitive;	\/* be case-sensitive when sorting names *\/$/;"	m	struct:ScreenInfo
+CatchRedirectError	src/twm.c	/^static int CatchRedirectError(Display *dpy, XErrorEvent *event) {$/;"	f	file:
+CheckColormapArg	src/gram.c	/^static Bool CheckColormapArg (s)$/;"	f	file:
+CheckWarpRingArg	src/gram.c	/^static Bool CheckWarpRingArg (s)$/;"	f	file:
+CheckWarpScreenArg	src/gram.c	/^static Bool CheckWarpScreenArg (s)$/;"	f	file:
+ClientBorderWidth	includes/screen.h	/^    short ClientBorderWidth;	\/* respect client window border width *\/$/;"	m	struct:ScreenInfo
+Cnode	src/parse.c	/^} Cnode, *Cptr;$/;"	t	typeref:struct:_cnode	file:
+ColorPair	includes/twm.h	/^typedef struct ColorPair$/;"	s
+ColorPair	includes/twm.h	/^} ColorPair;$/;"	t	typeref:struct:ColorPair
+ColormapContext	src/twm.c	/^XContext ColormapContext;	\/* context for colormap operations *\/$/;"	v
+ColormapWindow	includes/twm.h	/^typedef struct ColormapWindow$/;"	s
+ColormapWindow	includes/twm.h	/^} ColormapWindow;$/;"	t	typeref:struct:ColormapWindow
+Colormaps	includes/twm.h	/^typedef struct Colormaps$/;"	s
+Colormaps	includes/twm.h	/^} Colormaps;$/;"	t	typeref:struct:Colormaps
+ColormapsScoreboardLength	includes/twm.h	226;"	d
+ColortableThrashing	src/events.c	/^static int ColortableThrashing;$/;"	v	file:
+ComputeCommonTitleOffsets	src/add_window.c	/^void ComputeCommonTitleOffsets () {$/;"	f
+ComputeTitleLocation	src/add_window.c	/^void ComputeTitleLocation (register TwmWindow *tmp) {$/;"	f
+ComputeWindowTitleOffsets	src/add_window.c	/^void ComputeWindowTitleOffsets (TwmWindow *tmp_win, int width, Bool squeeze) {$/;"	f
+ConnectToSessionManager	src/session.c	/^void ConnectToSessionManager (char *previous_id) {$/;"	f
+ConstMove	src/menus.c	/^int ConstMove = FALSE;		\/* constrained move variables *\/$/;"	v
+ConstMoveDir	src/menus.c	/^int ConstMoveDir;$/;"	v
+ConstMoveX	src/menus.c	/^int ConstMoveX;$/;"	v
+ConstMoveXL	src/menus.c	/^int ConstMoveXL;$/;"	v
+ConstMoveXR	src/menus.c	/^int ConstMoveXR;$/;"	v
+ConstMoveY	src/menus.c	/^int ConstMoveY;$/;"	v
+ConstMoveYB	src/menus.c	/^int ConstMoveYB;$/;"	v
+ConstMoveYT	src/menus.c	/^int ConstMoveYT;$/;"	v
+ConstrainSize	src/resize.c	/^int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {$/;"	f
+ConstrainedMoveTime	src/parse.c	/^int ConstrainedMoveTime = 400;		\/* milliseconds, event times *\/$/;"	v
+Context	src/events.c	/^int Context = C_NO_CONTEXT;	\/* current button press context *\/$/;"	v
+Cptr	src/parse.c	/^} Cnode, *Cptr;$/;"	t	typeref:struct:_cnode	file:
+CreateColormapWindow	src/add_window.c	/^ColormapWindow *CreateColormapWindow(Window w, Bool creating_parent, Bool property_window) {$/;"	f
+CreateDotPixmap	src/util.c	/^static Pixmap CreateDotPixmap (unsigned int *widthp, unsigned int *heightp) {$/;"	f	file:
+CreateFonts	src/twm.c	/^void CreateFonts () {$/;"	f
+CreateGCs	src/gc.c	/^void CreateGCs() {$/;"	f
+CreateHighlightWindow	src/add_window.c	/^static Window CreateHighlightWindow (TwmWindow *tmp_win) {$/;"	f	file:
+CreateIconManagers	src/iconmgr.c	/^void CreateIconManagers() {$/;"	f
+CreateIconWindow	src/icons.c	/^void CreateIconWindow(TwmWindow *tmp_win, int def_x, int def_y) {$/;"	f
+CreateMenuIcon	src/util.c	/^Pixmap CreateMenuIcon (unsigned int height, unsigned int *widthp, unsigned int *heightp) {$/;"	f
+CreateMenuPixmap	src/util.c	/^static Pixmap CreateMenuPixmap (unsigned int *widthp, unsigned int *heightp) {$/;"	f	file:
+CreateQuestionPixmap	src/util.c	/^static Pixmap CreateQuestionPixmap (unsigned int *widthp, unsigned int *heightp) {$/;"	f	file:
+CreateResizePixmap	src/util.c	/^static Pixmap CreateResizePixmap (unsigned int *widthp, unsigned int *heightp) {$/;"	f	file:
+CreateTitleButton	src/menus.c	/^int CreateTitleButton (char *name, int func, char *action, MenuRoot *menuroot, Bool rightside, Bool append) {$/;"	f
+CreateTwmColormap	src/add_window.c	/^TwmColormap *CreateTwmColormap(Colormap c) {$/;"	f
+CreateWindowTitlebarButtons	src/add_window.c	/^static void CreateWindowTitlebarButtons (TwmWindow *tmp_win) {$/;"	f	file:
+CreateXLogoPixmap	src/util.c	/^static Pixmap CreateXLogoPixmap (unsigned int *widthp, unsigned int *heightp) {$/;"	f	file:
+CurrentDragX	src/events.c	/^int CurrentDragX;$/;"	v
+CurrentDragY	src/events.c	/^int CurrentDragY;$/;"	v
+DEFAULT_FAST_FONT	src/twm.c	705;"	d	file:
+DEFAULT_FUNCTION	includes/gram.h	/^    DEFAULT_FUNCTION = 265,$/;"	e	enum:yytokentype
+DEFAULT_FUNCTION	includes/gram.h	130;"	d
+DEFAULT_FUNCTION	src/gram.c	/^    DEFAULT_FUNCTION = 265,$/;"	e	enum:yytokentype	file:
+DEFAULT_FUNCTION	src/gram.c	216;"	d	file:
+DEFAULT_NICE_FONT	src/twm.c	704;"	d	file:
+DFLAGS	Makefile	/^DFLAGS    := -g -O2 -fno-strict-aliasing $/;"	m
+DKEYWORD	includes/gram.h	/^    DKEYWORD = 323,$/;"	e	enum:yytokentype
+DKEYWORD	includes/gram.h	188;"	d
+DKEYWORD	src/gram.c	/^    DKEYWORD = 323,$/;"	e	enum:yytokentype	file:
+DKEYWORD	src/gram.c	274;"	d	file:
+DONT_ICONIFY_BY_UNMAPPING	includes/gram.h	/^    DONT_ICONIFY_BY_UNMAPPING = 287,$/;"	e	enum:yytokentype
+DONT_ICONIFY_BY_UNMAPPING	includes/gram.h	152;"	d
+DONT_ICONIFY_BY_UNMAPPING	src/gram.c	/^    DONT_ICONIFY_BY_UNMAPPING = 287,$/;"	e	enum:yytokentype	file:
+DONT_ICONIFY_BY_UNMAPPING	src/gram.c	238;"	d	file:
+DONT_SQUEEZE_TITLE	includes/gram.h	/^    DONT_SQUEEZE_TITLE = 304,$/;"	e	enum:yytokentype
+DONT_SQUEEZE_TITLE	includes/gram.h	169;"	d
+DONT_SQUEEZE_TITLE	src/gram.c	/^    DONT_SQUEEZE_TITLE = 304,$/;"	e	enum:yytokentype	file:
+DONT_SQUEEZE_TITLE	src/gram.c	255;"	d	file:
+DRAWIT	src/util.c	115;"	d	file:
+DRAWIT	src/util.c	199;"	d	file:
+D_EAST	includes/parse.h	139;"	d
+D_NORTH	includes/parse.h	137;"	d
+D_SOUTH	includes/parse.h	138;"	d
+D_WEST	includes/parse.h	140;"	d
+DeIconify	src/menus.c	/^int DeIconify(TwmWindow *tmp_win) {$/;"	f
+DecorateTransients	includes/screen.h	/^    short DecorateTransients;	\/* put title bars on transients *\/$/;"	m	struct:ScreenInfo
+DefaultC	includes/screen.h	/^    ColorPair DefaultC;		\/* default colors *\/$/;"	m	struct:ScreenInfo
+DefaultFont	includes/screen.h	/^    MyFont DefaultFont;$/;"	m	struct:ScreenInfo
+DefaultFunction	includes/screen.h	/^    MouseButton DefaultFunction;$/;"	m	struct:ScreenInfo
+DeferExecution	src/menus.c	/^DeferExecution(int context, int func, Cursor cursor) {$/;"	f
+DestroyCursor	includes/screen.h	/^    Cursor DestroyCursor;		\/* skull and cross bones, f.destroy *\/$/;"	m	struct:ScreenInfo
+DestroyMenu	src/menus.c	/^int DestroyMenu (MenuRoot *menu) {$/;"	f
+DieCB	src/session.c	/^void DieCB (SmcConn smcConn, SmPointer clientData) {$/;"	f
+DispatchEvent	src/events.c	/^Bool DispatchEvent () {$/;"	f
+DispatchEvent2	src/events.c	/^Bool DispatchEvent2 () {$/;"	f
+DisplaySize	src/resize.c	/^DisplaySize(TwmWindow *tmp_win, int width, int height) {$/;"	f
+DoResize	src/resize.c	/^DoResize(int x_root, int y_root, TwmWindow *tmp_win) {$/;"	f
+DoZoom	includes/screen.h	/^    short DoZoom;		\/* zoom in and out of icons *\/$/;"	m	struct:ScreenInfo
+DoesWmDeleteWindow	includes/twm.h	343;"	d
+DoesWmSaveYourself	includes/twm.h	342;"	d
+DoesWmTakeFocus	includes/twm.h	341;"	d
+Done	src/twm.c	/^SIGNAL_T Done() {$/;"	f
+DontIconify	includes/screen.h	/^    name_list *DontIconify;	\/* don't iconify by unmapping *\/$/;"	m	struct:ScreenInfo
+DontMoveOff	includes/screen.h	/^    short DontMoveOff;		\/* don't allow windows to be moved off *\/$/;"	m	struct:ScreenInfo
+DontSqueezeTitleL	includes/screen.h	/^    name_list *DontSqueezeTitleL;	\/* windows of which not to squeeze *\/$/;"	m	struct:ScreenInfo
+DownIconManager	src/iconmgr.c	/^WList *DownIconManager = NULL;$/;"	v
+DragHeight	src/events.c	/^int DragHeight;$/;"	v
+DragWidth	src/events.c	/^int DragWidth;$/;"	v
+DragWindow	src/events.c	/^Window DragWindow;		\/* variables used in moving windows *\/$/;"	v
+DragX	src/events.c	/^int DragX;$/;"	v
+DragY	src/events.c	/^int DragY;$/;"	v
+DrawGC	includes/screen.h	/^    GC DrawGC;			\/* GC to draw lines for move and resize *\/$/;"	m	struct:ScreenInfo
+DrawIconManagerBorder	src/iconmgr.c	/^void DrawIconManagerBorder(WList *tmp) {$/;"	f
+ECHO	src/lex.c	715;"	d	file:
+EOB_ACT_CONTINUE_SCAN	src/lex.c	168;"	d	file:
+EOB_ACT_END_OF_FILE	src/lex.c	169;"	d	file:
+EOB_ACT_LAST_MATCH	src/lex.c	170;"	d	file:
+EQUALS	includes/gram.h	/^    EQUALS = 302,$/;"	e	enum:yytokentype
+EQUALS	includes/gram.h	167;"	d
+EQUALS	src/gram.c	/^    EQUALS = 302,$/;"	e	enum:yytokentype	file:
+EQUALS	src/gram.c	253;"	d	file:
+ERRORTOKEN	includes/gram.h	/^    ERRORTOKEN = 327,$/;"	e	enum:yytokentype
+ERRORTOKEN	includes/gram.h	192;"	d
+ERRORTOKEN	src/gram.c	/^    ERRORTOKEN = 327,$/;"	e	enum:yytokentype	file:
+ERRORTOKEN	src/gram.c	278;"	d	file:
+EXIT_SUCCESS	src/gram.c	439;"	d	file:
+EXIT_SUCCESS	src/gram.c	467;"	d	file:
+EndResize	src/resize.c	/^EndResize() {$/;"	f
+EntryHeight	includes/screen.h	/^    int EntryHeight;		\/* menu entry height *\/$/;"	m	struct:ScreenInfo
+Environ	src/twm.c	/^char **Environ;$/;"	v
+ErrorOccurred	src/twm.c	/^Bool ErrorOccurred = False;$/;"	v
+Event	src/events.c	/^XEvent Event;			\/* the current event *\/$/;"	v
+EventHandler	src/events.c	/^event_proc EventHandler[MAX_X_EVENT]; \/* event handler jump table *\/$/;"	v
+Execute	src/menus.c	/^Execute(char *s) {$/;"	f
+ExecuteFunction	src/menus.c	/^int ExecuteFunction(int func, char *action, Window w, TwmWindow *tmp_win, XEvent *eventp, int context, int pulldown) {$/;"	f
+ExpandFilename	src/util.c	/^ExpandFilename(char *name) {$/;"	f
+FALSE	includes/twm.h	98;"	d
+FB	includes/twm.h	149;"	d
+FBF	includes/twm.h	143;"	d
+FKEYWORD	includes/gram.h	/^    FKEYWORD = 320,$/;"	e	enum:yytokentype
+FKEYWORD	includes/gram.h	185;"	d
+FKEYWORD	src/gram.c	/^    FKEYWORD = 320,$/;"	e	enum:yytokentype	file:
+FKEYWORD	src/gram.c	271;"	d	file:
+FLEXINT_H	src/lex.c	29;"	d	file:
+FLEX_BETA	src/lex.c	13;"	d	file:
+FLEX_SCANNER	src/lex.c	8;"	d	file:
+FRAME	includes/gram.h	/^    FRAME = 300,$/;"	e	enum:yytokentype
+FRAME	includes/gram.h	165;"	d
+FRAME	src/gram.c	/^    FRAME = 300,$/;"	e	enum:yytokentype	file:
+FRAME	src/gram.c	251;"	d	file:
+FSKEYWORD	includes/gram.h	/^    FSKEYWORD = 321,$/;"	e	enum:yytokentype
+FSKEYWORD	includes/gram.h	186;"	d
+FSKEYWORD	src/gram.c	/^    FSKEYWORD = 321,$/;"	e	enum:yytokentype	file:
+FSKEYWORD	src/gram.c	272;"	d	file:
+FUNCTION	includes/gram.h	/^    FUNCTION = 276,$/;"	e	enum:yytokentype
+FUNCTION	includes/gram.h	141;"	d
+FUNCTION	src/gram.c	/^    FUNCTION = 276,$/;"	e	enum:yytokentype	file:
+FUNCTION	src/gram.c	227;"	d	file:
+F_AUTORAISE	includes/parse.h	84;"	d
+F_BACKICONMGR	includes/parse.h	110;"	d
+F_BEEP	includes/parse.h	74;"	d
+F_BOTTOMZOOM	includes/parse.h	94;"	d
+F_CIRCLEDOWN	includes/parse.h	115;"	d
+F_CIRCLEUP	includes/parse.h	114;"	d
+F_COLORMAP	includes/parse.h	134;"	d
+F_CUT	includes/parse.h	131;"	d
+F_CUTFILE	includes/parse.h	116;"	d
+F_DEBUG	includes/parse.h	123;"	d
+F_DEICONIFY	includes/parse.h	87;"	d
+F_DELETE	includes/parse.h	101;"	d
+F_DELTASTOP	includes/parse.h	80;"	d
+F_DESTROY	includes/parse.h	100;"	d
+F_DOWNICONMGR	includes/parse.h	108;"	d
+F_EXEC	includes/parse.h	130;"	d
+F_FILE	includes/parse.h	129;"	d
+F_FOCUS	includes/parse.h	77;"	d
+F_FORCEMOVE	includes/parse.h	83;"	d
+F_FORWICONMGR	includes/parse.h	109;"	d
+F_FULLZOOM	includes/parse.h	96;"	d
+F_FUNCTION	includes/parse.h	132;"	d
+F_HIDELIST	includes/parse.h	118;"	d
+F_HORIZOOM	includes/parse.h	95;"	d
+F_ICONIFY	includes/parse.h	86;"	d
+F_IDENTIFY	includes/parse.h	85;"	d
+F_LEFTICONMGR	includes/parse.h	106;"	d
+F_LEFTZOOM	includes/parse.h	91;"	d
+F_LOWER	includes/parse.h	99;"	d
+F_MENU	includes/parse.h	125;"	d
+F_MOVE	includes/parse.h	81;"	d
+F_NEXTICONMGR	includes/parse.h	111;"	d
+F_NOP	includes/parse.h	73;"	d
+F_POPUP	includes/parse.h	82;"	d
+F_PREVICONMGR	includes/parse.h	112;"	d
+F_PRIORITY	includes/parse.h	135;"	d
+F_QUIT	includes/parse.h	76;"	d
+F_QZOOM_1	includes/parse.h	119;"	d
+F_QZOOM_2	includes/parse.h	120;"	d
+F_QZOOM_3	includes/parse.h	121;"	d
+F_QZOOM_4	includes/parse.h	122;"	d
+F_RAISE	includes/parse.h	97;"	d
+F_RAISELOWER	includes/parse.h	98;"	d
+F_REFRESH	includes/parse.h	78;"	d
+F_RESIZE	includes/parse.h	89;"	d
+F_RESTART	includes/parse.h	75;"	d
+F_RIGHTICONMGR	includes/parse.h	105;"	d
+F_RIGHTZOOM	includes/parse.h	92;"	d
+F_SAVEYOURSELF	includes/parse.h	102;"	d
+F_SHOWLIST	includes/parse.h	117;"	d
+F_SORTICONMGR	includes/parse.h	113;"	d
+F_TITLE	includes/parse.h	104;"	d
+F_TOPZOOM	includes/parse.h	93;"	d
+F_UNFOCUS	includes/parse.h	88;"	d
+F_UPICONMGR	includes/parse.h	107;"	d
+F_VERSION	includes/parse.h	103;"	d
+F_WARPRING	includes/parse.h	128;"	d
+F_WARPTO	includes/parse.h	126;"	d
+F_WARPTOICONMGR	includes/parse.h	127;"	d
+F_WARPTOSCREEN	includes/parse.h	133;"	d
+F_WINREFRESH	includes/parse.h	79;"	d
+F_ZOOM	includes/parse.h	90;"	d
+FetchWmColormapWindows	src/add_window.c	/^void FetchWmColormapWindows (TwmWindow *tmp) {$/;"	f
+FetchWmProtocols	src/add_window.c	/^void FetchWmProtocols (TwmWindow *tmp) {$/;"	f
+FindBitmap	src/util.c	/^Pixmap FindBitmap (char *name, unsigned int *widthp, unsigned int *heightp) {$/;"	f
+FindIconEntry	src/icons.c	/^static IconEntry * FindIconEntry (TwmWindow   *tmp_win, IconRegion	**irp) {$/;"	f	file:
+FindMenuRoot	src/menus.c	/^FindMenuRoot(char *name) {$/;"	f
+FindScreenInfo	src/events.c	/^FindScreenInfo(Window w) {$/;"	f
+FirstRegion	includes/screen.h	/^    struct IconRegion *FirstRegion;	\/* pointer to icon regions *\/$/;"	m	struct:ScreenInfo	typeref:struct:ScreenInfo::IconRegion
+FirstScreen	src/twm.c	/^int FirstScreen;		\/* TRUE ==> first screen of display *\/$/;"	v
+FirstTime	includes/screen.h	/^    short FirstTime;		\/* first time we've read .twmrc *\/$/;"	m	struct:ScreenInfo
+Focus	includes/screen.h	/^    TwmWindow *Focus;		\/* the twm window that has focus *\/$/;"	m	struct:ScreenInfo
+FocusOnRoot	src/menus.c	/^FocusOnRoot() {$/;"	f
+FocusRoot	includes/screen.h	/^    short FocusRoot;		\/* is the input focus on the root ? *\/$/;"	m	struct:ScreenInfo
+ForceIcon	includes/screen.h	/^    short ForceIcon;		\/* force the icon to the user specified *\/$/;"	m	struct:ScreenInfo
+FrameCursor	includes/screen.h	/^    Cursor FrameCursor;		\/* frame cursor *\/$/;"	m	struct:ScreenInfo
+FramePadding	includes/screen.h	/^    int FramePadding;		\/* distance between decorations and border *\/$/;"	m	struct:ScreenInfo
+FreeIconEntries	src/icons.c	/^void FreeIconEntries (IconRegion	*ir) {$/;"	f
+FreeIconRegions	src/icons.c	/^void FreeIconRegions() {$/;"	f
+FreeList	src/list.c	/^void FreeList (name_list **list) {$/;"	f
+FuncKey	includes/menus.h	/^typedef struct FuncKey$/;"	s
+FuncKey	includes/menus.h	/^} FuncKey;$/;"	t	typeref:struct:FuncKey
+FuncKeyRoot	includes/screen.h	/^    FuncKey FuncKeyRoot;$/;"	m	struct:ScreenInfo
+GRAYSCALE	includes/gram.h	/^    GRAYSCALE = 285,$/;"	e	enum:yytokentype
+GRAYSCALE	includes/gram.h	150;"	d
+GRAYSCALE	src/gram.c	/^    GRAYSCALE = 285,$/;"	e	enum:yytokentype	file:
+GRAYSCALE	src/gram.c	236;"	d	file:
+Gcv	src/twm.c	/^XGCValues Gcv;$/;"	v
+GetBitmap	src/util.c	/^Pixmap GetBitmap (char *name) {$/;"	f
+GetClientID	src/session.c	/^char *GetClientID (Window window) {$/;"	f
+GetColor	src/util.c	/^int GetColor(int kind, Pixel *what, char *name) {$/;"	f
+GetColorFromList	src/list.c	/^int GetColorFromList(name_list *list_head, char *name, XClassHint *class, Pixel *ptr) {$/;"	f
+GetColorValue	src/util.c	/^int GetColorValue(int kind, XColor *what, char *name) {$/;"	f
+GetFont	src/util.c	/^int GetFont(MyFont *font) {$/;"	f
+GetGravityOffsets	src/add_window.c	/^void GetGravityOffsets (TwmWindow *tmp, int *xp, int *yp) {$/;"	f
+GetRoot	src/gram.c	/^static MenuRoot *GetRoot(name, fore, back)$/;"	f	file:
+GetUnknownIcon	src/util.c	/^GetUnknownIcon(char *name) {$/;"	f
+GetWMState	src/menus.c	/^Bool GetWMState (Window w, int *statep, Window *iwp) {$/;"	f
+GetWindowConfig	src/session.c	/^int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width, unsigned short *height,$/;"	f
+GetWindowRole	src/session.c	/^char *GetWindowRole (Window window) {$/;"	f
+GetWindowSizeHints	src/add_window.c	/^void GetWindowSizeHints (TwmWindow *tmp) {$/;"	f
+GotButton	src/gram.c	/^static void GotButton(butt, func)$/;"	f	file:
+GotKey	src/gram.c	/^static void GotKey(key, func)$/;"	f	file:
+GotTitleButton	src/gram.c	/^static void GotTitleButton (bitmapname, func, rightside)$/;"	f	file:
+GrabButtons	src/add_window.c	/^void GrabButtons(TwmWindow *tmp_win) {$/;"	f
+GrabKeys	src/add_window.c	/^void GrabKeys(TwmWindow *tmp_win) {$/;"	f
+HALF_AVE_CURSOR_SIZE	src/add_window.c	593;"	d	file:
+HALF_AVE_CURSOR_SIZE	src/add_window.c	596;"	d	file:
+HENQueueScanner	src/events.c	/^HENQueueScanner(Display *dpy, XEvent *ev, char *args) {$/;"	f	file:
+HENScanArgs	src/events.c	/^typedef struct HENScanArgs {$/;"	s	file:
+HENScanArgs	src/events.c	/^} HENScanArgs;$/;"	t	typeref:struct:HENScanArgs	file:
+HLNQueueScanner	src/events.c	/^HLNQueueScanner(dpy, ev, args)$/;"	f	file:
+HLNScanArgs	src/events.c	/^typedef struct HLNScanArgs {$/;"	s	file:
+HLNScanArgs	src/events.c	/^} HLNScanArgs;$/;"	t	typeref:struct:HLNScanArgs	file:
+HandleButtonPress	src/events.c	/^HandleButtonPress() {$/;"	f
+HandleButtonRelease	src/events.c	/^HandleButtonRelease() {$/;"	f
+HandleClientMessage	src/events.c	/^void HandleClientMessage() {$/;"	f
+HandleColormapNotify	src/events.c	/^void HandleColormapNotify() {$/;"	f
+HandleConfigureNotify	src/events.c	/^void HandleConfigureNotify() {$/;"	f
+HandleConfigureRequest	src/events.c	/^HandleConfigureRequest() {$/;"	f
+HandleCreateNotify	src/events.c	/^HandleCreateNotify() {$/;"	f
+HandleDestroyNotify	src/events.c	/^HandleDestroyNotify() {$/;"	f
+HandleEnterNotify	src/events.c	/^HandleEnterNotify() {$/;"	f
+HandleEvents	src/events.c	/^void HandleEvents() {$/;"	f
+HandleExpose	src/events.c	/^void HandleExpose() {$/;"	f
+HandleKeyPress	src/events.c	/^void HandleKeyPress() {$/;"	f
+HandleLeaveNotify	src/events.c	/^HandleLeaveNotify() {$/;"	f
+HandleMapNotify	src/events.c	/^HandleMapNotify() {$/;"	f
+HandleMapRequest	src/events.c	/^HandleMapRequest() {$/;"	f
+HandleMotionNotify	src/events.c	/^HandleMotionNotify() {$/;"	f
+HandlePropertyNotify	src/events.c	/^HandlePropertyNotify() {$/;"	f
+HandleShapeNotify	src/events.c	/^HandleShapeNotify () {$/;"	f
+HandleUnknown	src/events.c	/^HandleUnknown() {$/;"	f
+HandleUnmapNotify	src/events.c	/^HandleUnmapNotify() {$/;"	f
+HandleVisibilityNotify	src/events.c	/^void HandleVisibilityNotify() {$/;"	f
+HandlingEvents	src/twm.c	/^int HandlingEvents = FALSE;	\/* are we handling events yet? *\/$/;"	v
+HasShape	src/twm.c	/^int HasShape;			\/* server supports shape extension? *\/$/;"	v
+HasSync	src/twm.c	/^int HasSync;			\/* server supports SYNC extension? *\/$/;"	v
+HaveFonts	includes/screen.h	/^    short HaveFonts;		\/* set if fonts have been loaded *\/$/;"	m	struct:ScreenInfo
+HideIconManager	src/menus.c	/^int HideIconManager () {$/;"	f
+Highlight	includes/screen.h	/^    short Highlight;		\/* should we highlight the window borders *\/$/;"	m	struct:ScreenInfo
+Home	src/twm.c	/^char *Home;			\/* the HOME environment variable *\/$/;"	v
+HomeLen	src/twm.c	/^int HomeLen;			\/* length of Home *\/$/;"	v
+HotX	src/util.c	/^int HotX, HotY;$/;"	v
+HotY	src/util.c	/^int HotX, HotY;$/;"	v
+ICON	includes/gram.h	/^    ICON = 298,$/;"	e	enum:yytokentype
+ICON	includes/gram.h	163;"	d
+ICON	src/gram.c	/^    ICON = 298,$/;"	e	enum:yytokentype	file:
+ICON	src/gram.c	249;"	d	file:
+ICONIFY_BY_UNMAPPING	includes/gram.h	/^    ICONIFY_BY_UNMAPPING = 286,$/;"	e	enum:yytokentype
+ICONIFY_BY_UNMAPPING	includes/gram.h	151;"	d
+ICONIFY_BY_UNMAPPING	src/gram.c	/^    ICONIFY_BY_UNMAPPING = 286,$/;"	e	enum:yytokentype	file:
+ICONIFY_BY_UNMAPPING	src/gram.c	237;"	d	file:
+ICONMGR	includes/gram.h	/^    ICONMGR = 278,$/;"	e	enum:yytokentype
+ICONMGR	includes/gram.h	143;"	d
+ICONMGR	src/gram.c	/^    ICONMGR = 278,$/;"	e	enum:yytokentype	file:
+ICONMGR	src/gram.c	229;"	d	file:
+ICONMGRS	includes/gram.h	/^    ICONMGRS = 281,$/;"	e	enum:yytokentype
+ICONMGRS	includes/gram.h	146;"	d
+ICONMGRS	src/gram.c	/^    ICONMGRS = 281,$/;"	e	enum:yytokentype	file:
+ICONMGRS	src/gram.c	232;"	d	file:
+ICONMGR_GEOMETRY	includes/gram.h	/^    ICONMGR_GEOMETRY = 282,$/;"	e	enum:yytokentype
+ICONMGR_GEOMETRY	includes/gram.h	147;"	d
+ICONMGR_GEOMETRY	src/gram.c	/^    ICONMGR_GEOMETRY = 282,$/;"	e	enum:yytokentype	file:
+ICONMGR_GEOMETRY	src/gram.c	233;"	d	file:
+ICONMGR_NOSHOW	includes/gram.h	/^    ICONMGR_NOSHOW = 283,$/;"	e	enum:yytokentype
+ICONMGR_NOSHOW	includes/gram.h	148;"	d
+ICONMGR_NOSHOW	src/gram.c	/^    ICONMGR_NOSHOW = 283,$/;"	e	enum:yytokentype	file:
+ICONMGR_NOSHOW	src/gram.c	234;"	d	file:
+ICONMGR_SHOW	includes/gram.h	/^    ICONMGR_SHOW = 277,$/;"	e	enum:yytokentype
+ICONMGR_SHOW	includes/gram.h	142;"	d
+ICONMGR_SHOW	src/gram.c	/^    ICONMGR_SHOW = 277,$/;"	e	enum:yytokentype	file:
+ICONMGR_SHOW	src/gram.c	228;"	d	file:
+ICONS	includes/gram.h	/^    ICONS = 272,$/;"	e	enum:yytokentype
+ICONS	includes/gram.h	137;"	d
+ICONS	src/gram.c	/^    ICONS = 272,$/;"	e	enum:yytokentype	file:
+ICONS	src/gram.c	223;"	d	file:
+ICONS_H	includes/icons.h	38;"	d
+ICON_REGION	includes/gram.h	/^    ICON_REGION = 291,$/;"	e	enum:yytokentype
+ICON_REGION	includes/gram.h	156;"	d
+ICON_REGION	src/gram.c	/^    ICON_REGION = 291,$/;"	e	enum:yytokentype	file:
+ICON_REGION	src/gram.c	242;"	d	file:
+INFO_LINES	includes/twm.h	106;"	d
+INFO_SIZE	includes/twm.h	107;"	d
+INITIAL	src/lex.c	623;"	d	file:
+INT16_MAX	src/lex.c	71;"	d	file:
+INT16_MIN	src/lex.c	62;"	d	file:
+INT32_MAX	src/lex.c	74;"	d	file:
+INT32_MIN	src/lex.c	65;"	d	file:
+INT8_MAX	src/lex.c	68;"	d	file:
+INT8_MIN	src/lex.c	59;"	d	file:
+IPOFSP	src/iconmgr.c	323;"	d	file:
+IPOFSP	src/iconmgr.c	353;"	d	file:
+ITER	src/iconmgr.c	322;"	d	file:
+ITER	src/iconmgr.c	352;"	d	file:
+IconBackgroundL	includes/screen.h	/^    name_list *IconBackgroundL;$/;"	m	struct:ScreenInfo
+IconBorderColor	includes/screen.h	/^    Pixel IconBorderColor;	\/* icon border color *\/$/;"	m	struct:ScreenInfo
+IconBorderColorL	includes/screen.h	/^    name_list *IconBorderColorL;$/;"	m	struct:ScreenInfo
+IconBorderWidth	includes/screen.h	/^    int IconBorderWidth;	\/* border width of icon windows *\/$/;"	m	struct:ScreenInfo
+IconC	includes/screen.h	/^    ColorPair IconC;		\/* icon colors *\/$/;"	m	struct:ScreenInfo
+IconCursor	includes/screen.h	/^    Cursor IconCursor;		\/* icon cursor *\/$/;"	m	struct:ScreenInfo
+IconDirectory	includes/screen.h	/^    char *IconDirectory;	\/* icon directory to search *\/$/;"	m	struct:ScreenInfo
+IconDown	src/icons.c	/^void IconDown (TwmWindow *tmp_win) {$/;"	f
+IconEntry	includes/icons.h	/^typedef struct IconEntry$/;"	s
+IconEntry	includes/icons.h	/^}IconEntry;$/;"	t	typeref:struct:IconEntry
+IconFont	includes/screen.h	/^    MyFont IconFont;		\/* icon font structure *\/$/;"	m	struct:ScreenInfo
+IconForegroundL	includes/screen.h	/^    name_list *IconForegroundL;$/;"	m	struct:ScreenInfo
+IconManagerBL	includes/screen.h	/^    name_list *IconManagerBL;$/;"	m	struct:ScreenInfo
+IconManagerC	includes/screen.h	/^    ColorPair IconManagerC;	\/* icon manager colors *\/$/;"	m	struct:ScreenInfo
+IconManagerContext	src/twm.c	/^XContext IconManagerContext;	\/* context for all window list windows *\/$/;"	v
+IconManagerDontShow	includes/screen.h	/^    short IconManagerDontShow;	\/* show nothing in the icon manager *\/$/;"	m	struct:ScreenInfo
+IconManagerFL	includes/screen.h	/^    name_list *IconManagerFL;$/;"	m	struct:ScreenInfo
+IconManagerFont	includes/screen.h	/^    MyFont IconManagerFont;	\/* window list font structure *\/$/;"	m	struct:ScreenInfo
+IconManagerHighlight	includes/screen.h	/^    Pixel IconManagerHighlight;	\/* icon manager highlight *\/$/;"	m	struct:ScreenInfo
+IconManagerHighlightL	includes/screen.h	/^    name_list *IconManagerHighlightL;	\/* icon manager highlight colors *\/$/;"	m	struct:ScreenInfo
+IconMgr	includes/iconmgr.h	/^typedef struct IconMgr$/;"	s
+IconMgr	includes/iconmgr.h	/^} IconMgr;$/;"	t	typeref:struct:IconMgr
+IconMgrCursor	includes/screen.h	/^    Cursor IconMgrCursor;	\/* icon manager cursor *\/$/;"	m	struct:ScreenInfo
+IconMgrNoShow	includes/screen.h	/^    name_list *IconMgrNoShow;	\/* don't show in the icon manager *\/$/;"	m	struct:ScreenInfo
+IconMgrShow	includes/screen.h	/^    name_list *IconMgrShow;	\/* show in the icon manager *\/$/;"	m	struct:ScreenInfo
+IconMgrs	includes/screen.h	/^    name_list *IconMgrs;$/;"	m	struct:ScreenInfo
+IconNames	includes/screen.h	/^    name_list *IconNames;	\/* list of window names and icon names *\/$/;"	m	struct:ScreenInfo
+IconRegion	includes/icons.h	/^typedef struct IconRegion$/;"	s
+IconRegion	includes/icons.h	/^} IconRegion;$/;"	t	typeref:struct:IconRegion
+IconUp	src/icons.c	/^void IconUp (TwmWindow *tmp_win) {$/;"	f
+Iconify	src/menus.c	/^int Iconify(TwmWindow *tmp_win, int def_x, int def_y) {$/;"	f
+IconifyByUn	includes/screen.h	/^    name_list *IconifyByUn;	\/* windows to iconify by unmapping *\/$/;"	m	struct:ScreenInfo
+IconifyByUnmapping	includes/screen.h	/^    short IconifyByUnmapping;	\/* simply unmap windows when iconifying *\/$/;"	m	struct:ScreenInfo
+Icons	includes/screen.h	/^    name_list *Icons;		\/* list of icon pixmaps *\/$/;"	m	struct:ScreenInfo
+Identify	src/menus.c	/^static void Identify (TwmWindow *t) {$/;"	f	file:
+Info	src/twm.c	/^char Info[INFO_LINES][INFO_SIZE];		\/* info strings to print *\/$/;"	v
+InfoLines	src/twm.c	/^int InfoLines;$/;"	v
+InfoWindow	includes/screen.h	/^    Window InfoWindow;		\/* the information window *\/$/;"	m	struct:ScreenInfo
+InitEvents	src/events.c	/^void InitEvents() {$/;"	f
+InitFile	src/twm.c	/^char *InitFile = NULL;$/;"	v
+InitMenus	src/menus.c	/^InitMenus() {$/;"	f
+InitTitlebarButtons	src/menus.c	/^void InitTitlebarButtons () {$/;"	f
+InitVariables	src/twm.c	/^void InitVariables() {$/;"	f
+InsertInIconManager	src/iconmgr.c	/^void InsertInIconManager(IconMgr *ip, WList *tmp, TwmWindow *tmp_win) {$/;"	f
+InsertRGBColormap	src/util.c	/^int InsertRGBColormap (Atom a, XStandardColormap *maps, int nmaps, Bool replace) {$/;"	f
+InstallRootColormap	src/events.c	/^void InstallRootColormap() {$/;"	f
+InstallWindowColormaps	src/events.c	/^void InstallWindowColormaps (int type, TwmWindow *tmp) {$/;"	f
+InterpolateMenuColors	includes/screen.h	/^    short InterpolateMenuColors;\/* make pretty menus *\/$/;"	m	struct:ScreenInfo
+JKEYWORD	includes/gram.h	/^    JKEYWORD = 324,$/;"	e	enum:yytokentype
+JKEYWORD	includes/gram.h	189;"	d
+JKEYWORD	src/gram.c	/^    JKEYWORD = 324,$/;"	e	enum:yytokentype	file:
+JKEYWORD	src/gram.c	275;"	d	file:
+J_CENTER	includes/twm.h	192;"	d
+J_LEFT	includes/twm.h	191;"	d
+J_RIGHT	includes/twm.h	193;"	d
+JumpIconManager	src/iconmgr.c	/^void JumpIconManager(register int dir) {$/;"	f
+JunkBW	src/twm.c	/^unsigned int JunkWidth, JunkHeight, JunkBW, JunkDepth, JunkMask;$/;"	v
+JunkChild	src/twm.c	/^Window JunkChild;		\/* junk window *\/$/;"	v
+JunkDepth	src/twm.c	/^unsigned int JunkWidth, JunkHeight, JunkBW, JunkDepth, JunkMask;$/;"	v
+JunkHeight	src/twm.c	/^unsigned int JunkWidth, JunkHeight, JunkBW, JunkDepth, JunkMask;$/;"	v
+JunkMask	src/twm.c	/^unsigned int JunkWidth, JunkHeight, JunkBW, JunkDepth, JunkMask;$/;"	v
+JunkRoot	src/twm.c	/^Window JunkRoot;		\/* junk window *\/$/;"	v
+JunkWidth	src/twm.c	/^unsigned int JunkWidth, JunkHeight, JunkBW, JunkDepth, JunkMask;$/;"	v
+JunkX	src/twm.c	/^int JunkX;			\/* junk variable *\/$/;"	v
+JunkY	src/twm.c	/^int JunkY;			\/* junk variable *\/$/;"	v
+KEYWORD	includes/gram.h	/^    KEYWORD = 316,$/;"	e	enum:yytokentype
+KEYWORD	includes/gram.h	181;"	d
+KEYWORD	src/gram.c	/^    KEYWORD = 316,$/;"	e	enum:yytokentype	file:
+KEYWORD	src/gram.c	267;"	d	file:
+KILL	includes/gram.h	/^    KILL = 312,$/;"	e	enum:yytokentype
+KILL	includes/gram.h	177;"	d
+KILL	src/gram.c	/^    KILL = 312,$/;"	e	enum:yytokentype	file:
+KILL	src/gram.c	263;"	d	file:
+LB	includes/gram.h	/^    LB = 258,$/;"	e	enum:yytokentype
+LB	includes/gram.h	123;"	d
+LB	src/gram.c	/^    LB = 258,$/;"	e	enum:yytokentype	file:
+LB	src/gram.c	209;"	d	file:
+LD	Makefile	/^LD        := gcc$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS   := -lXmu -lXt -lSM -lICE -lXext -lX11 -lXt -lSM -lICE -lXext -lX11 -lXinerama$/;"	m
+LEFT_TITLEBUTTON	includes/gram.h	/^    LEFT_TITLEBUTTON = 313,$/;"	e	enum:yytokentype
+LEFT_TITLEBUTTON	includes/gram.h	178;"	d
+LEFT_TITLEBUTTON	src/gram.c	/^    LEFT_TITLEBUTTON = 313,$/;"	e	enum:yytokentype	file:
+LEFT_TITLEBUTTON	src/gram.c	264;"	d	file:
+LEX	Makefile	/^LEX       := flex -l$/;"	m
+LOCK	includes/gram.h	/^    LOCK = 294,$/;"	e	enum:yytokentype
+LOCK	includes/gram.h	159;"	d
+LOCK	src/gram.c	/^    LOCK = 294,$/;"	e	enum:yytokentype	file:
+LOCK	src/gram.c	245;"	d	file:
+LP	includes/gram.h	/^    LP = 260,$/;"	e	enum:yytokentype
+LP	includes/gram.h	125;"	d
+LP	src/gram.c	/^    LP = 260,$/;"	e	enum:yytokentype	file:
+LP	src/gram.c	211;"	d	file:
+LastCursor	src/menus.c	/^static Cursor LastCursor;$/;"	v	file:
+LastErrorEvent	src/twm.c	/^XErrorEvent LastErrorEvent;$/;"	v
+LastMenu	includes/screen.h	/^    MenuRoot *LastMenu;		\/* the last menu (mostly unused?) *\/$/;"	m	struct:ScreenInfo
+LastRegion	includes/screen.h	/^    struct IconRegion *LastRegion;	\/* pointer to the last icon region *\/$/;"	m	struct:ScreenInfo	typeref:struct:ScreenInfo::IconRegion
+LastTimestamp	includes/events.h	75;"	d
+LeftButt	src/twm.c	/^Cursor LeftButt;$/;"	v
+LocateStandardColormaps	src/util.c	/^int LocateStandardColormaps() {$/;"	f
+LookInList	src/list.c	/^char *LookInList(name_list *list_head, char *name, XClassHint *class) {$/;"	f
+LookInNameList	src/list.c	/^char *LookInNameList(name_list *list_head, char *name) {$/;"	f
+MAKE_TITLE	includes/gram.h	/^    MAKE_TITLE = 284,$/;"	e	enum:yytokentype
+MAKE_TITLE	includes/gram.h	149;"	d
+MAKE_TITLE	src/gram.c	/^    MAKE_TITLE = 284,$/;"	e	enum:yytokentype	file:
+MAKE_TITLE	src/gram.c	235;"	d	file:
+MAPPED	includes/menus.h	114;"	d
+MAXMENUDEPTH	includes/menus.h	152;"	d
+MAX_BUTTONS	includes/twm.h	103;"	d
+MAX_FILE_SIZE	includes/menus.h	70;"	d
+MAX_ICON_NAME_LEN	src/events.c	806;"	d	file:
+MAX_NAME_LEN	src/events.c	805;"	d	file:
+MAX_X_EVENT	src/events.c	85;"	d	file:
+MENU	includes/gram.h	/^    MENU = 263,$/;"	e	enum:yytokentype
+MENU	includes/gram.h	128;"	d
+MENU	src/gram.c	/^    MENU = 263,$/;"	e	enum:yytokentype	file:
+MENU	src/gram.c	214;"	d	file:
+MENUS	includes/gram.h	/^    MENUS = 262,$/;"	e	enum:yytokentype
+MENUS	includes/gram.h	127;"	d
+MENUS	src/gram.c	/^    MENUS = 262,$/;"	e	enum:yytokentype	file:
+MENUS	src/gram.c	213;"	d	file:
+META	includes/gram.h	/^    META = 292,$/;"	e	enum:yytokentype
+META	includes/gram.h	157;"	d
+META	src/gram.c	/^    META = 292,$/;"	e	enum:yytokentype	file:
+META	src/gram.c	243;"	d	file:
+MINHEIGHT	src/resize.c	73;"	d	file:
+MINUS	includes/gram.h	/^    MINUS = 267,$/;"	e	enum:yytokentype
+MINUS	includes/gram.h	132;"	d
+MINUS	src/gram.c	/^    MINUS = 267,$/;"	e	enum:yytokentype	file:
+MINUS	src/gram.c	218;"	d	file:
+MINWIDTH	src/resize.c	74;"	d	file:
+MOD_SIZE	includes/twm.h	133;"	d
+MONOCHROME	includes/gram.h	/^    MONOCHROME = 275,$/;"	e	enum:yytokentype
+MONOCHROME	includes/gram.h	140;"	d
+MONOCHROME	src/gram.c	/^    MONOCHROME = 275,$/;"	e	enum:yytokentype	file:
+MONOCHROME	src/gram.c	226;"	d	file:
+MOVE	includes/gram.h	/^    MOVE = 308,$/;"	e	enum:yytokentype
+MOVE	includes/gram.h	173;"	d
+MOVE	src/gram.c	/^    MOVE = 308,$/;"	e	enum:yytokentype	file:
+MOVE	src/gram.c	259;"	d	file:
+MOVE_HORIZ	includes/menus.h	157;"	d
+MOVE_NONE	includes/menus.h	155;"	d
+MOVE_VERT	includes/menus.h	156;"	d
+MV	Makefile	/^MV				:= mv$/;"	m
+MakeMenu	src/menus.c	/^void MakeMenu(MenuRoot *mr) {$/;"	f
+MakeMenus	src/menus.c	/^void MakeMenus() {$/;"	f
+MakeTitle	includes/screen.h	/^    name_list *MakeTitle;	\/* list of window names with title bar *\/$/;"	m	struct:ScreenInfo
+MappedNotOverride	src/add_window.c	/^int MappedNotOverride(Window w) {$/;"	f
+MaxWindowHeight	includes/screen.h	/^    int MaxWindowHeight;	\/* ditto *\/$/;"	m	struct:ScreenInfo
+MaxWindowWidth	includes/screen.h	/^    int MaxWindowWidth;		\/* largest window to allow *\/$/;"	m	struct:ScreenInfo
+MenuC	includes/screen.h	/^    ColorPair MenuC;		\/* menu colors *\/$/;"	m	struct:ScreenInfo
+MenuContext	src/twm.c	/^XContext MenuContext;		\/* context for all menu windows *\/$/;"	v
+MenuCursor	includes/screen.h	/^    Cursor MenuCursor;		\/* menu cursor *\/$/;"	m	struct:ScreenInfo
+MenuDepth	src/menus.c	/^int MenuDepth = 0;		\/* number of menus up *\/$/;"	v
+MenuDoResize	src/resize.c	/^MenuDoResize(int x_root, int y_root, TwmWindow *tmp_win) {$/;"	f
+MenuEndResize	src/resize.c	/^MenuEndResize(TwmWindow *tmp_win) {$/;"	f
+MenuFont	includes/screen.h	/^    MyFont MenuFont;		\/* menu font structure *\/$/;"	m	struct:ScreenInfo
+MenuGC	includes/screen.h	/^    GC MenuGC;			\/* gc for menus *\/$/;"	m	struct:ScreenInfo
+MenuItem	includes/menus.h	/^typedef struct MenuItem$/;"	s
+MenuItem	includes/menus.h	/^} MenuItem;$/;"	t	typeref:struct:MenuItem
+MenuList	includes/screen.h	/^    MenuRoot *MenuList;		\/* head of the menu list *\/$/;"	m	struct:ScreenInfo
+MenuOrigins	src/menus.c	/^} MenuOrigins[MAXMENUDEPTH];$/;"	v	typeref:struct:__anon6	file:
+MenuRoot	includes/menus.h	/^typedef struct MenuRoot$/;"	s
+MenuRoot	includes/menus.h	/^} MenuRoot;$/;"	t	typeref:struct:MenuRoot
+MenuShadowColor	includes/screen.h	/^    Pixel MenuShadowColor;	\/* menu shadow color *\/$/;"	m	struct:ScreenInfo
+MenuStartResize	src/resize.c	/^MenuStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {$/;"	f
+MenuTitleC	includes/screen.h	/^    ColorPair MenuTitleC;	\/* menu title colors *\/$/;"	m	struct:ScreenInfo
+MiddleButt	src/twm.c	/^Cursor MiddleButt;$/;"	v
+Monitor	includes/xinerama.h	/^} Monitor;$/;"	t	typeref:struct:__anon2
+Monochrome	includes/screen.h	/^    int Monochrome;		\/* is the display monochrome ? *\/$/;"	m	struct:ScreenInfo
+Mouse	includes/screen.h	/^    MouseButton Mouse[MAX_BUTTONS+1][NUM_CONTEXTS][MOD_SIZE];$/;"	m	struct:ScreenInfo
+MouseButton	includes/menus.h	/^typedef struct MouseButton$/;"	s
+MouseButton	includes/menus.h	/^} MouseButton;$/;"	t	typeref:struct:MouseButton
+MoveCursor	includes/screen.h	/^    Cursor MoveCursor;		\/* move cursor *\/$/;"	m	struct:ScreenInfo
+MoveDelta	includes/screen.h	/^    short MoveDelta;		\/* number of pixels before f.move starts *\/$/;"	m	struct:ScreenInfo
+MoveFunction	src/menus.c	/^int MoveFunction;			\/* either F_MOVE or F_FORCEMOVE *\/$/;"	v
+MoveIconManager	src/iconmgr.c	/^void MoveIconManager(int dir) {$/;"	f
+MoveOutline	src/util.c	/^void MoveOutline(Window root, int x, int y, int width, int height, int bw, int th) {$/;"	f
+MovedFromKeyPress	src/events.c	/^int MovedFromKeyPress = False;$/;"	v
+MultiScreen	src/twm.c	/^int MultiScreen = TRUE;		\/* try for more than one screen? *\/$/;"	v
+MyDisplayHeight	includes/screen.h	/^    int MyDisplayHeight;	\/* my copy of DisplayHeight(dpy, screen) *\/$/;"	m	struct:ScreenInfo
+MyDisplayWidth	includes/screen.h	/^    int MyDisplayWidth;		\/* my copy of DisplayWidth(dpy, screen) *\/$/;"	m	struct:ScreenInfo
+MyFont	includes/twm.h	/^typedef struct MyFont$/;"	s
+MyFont	includes/twm.h	/^} MyFont;$/;"	t	typeref:struct:MyFont
+NEVER_MAPPED	includes/menus.h	112;"	d
+NKEYWORD	includes/gram.h	/^    NKEYWORD = 317,$/;"	e	enum:yytokentype
+NKEYWORD	includes/gram.h	182;"	d
+NKEYWORD	src/gram.c	/^    NKEYWORD = 317,$/;"	e	enum:yytokentype	file:
+NKEYWORD	src/gram.c	268;"	d	file:
+NO_HILITE	includes/gram.h	/^    NO_HILITE = 290,$/;"	e	enum:yytokentype
+NO_HILITE	includes/gram.h	155;"	d
+NO_HILITE	src/gram.c	/^    NO_HILITE = 290,$/;"	e	enum:yytokentype	file:
+NO_HILITE	src/gram.c	241;"	d	file:
+NO_STACKMODE	includes/gram.h	/^    NO_STACKMODE = 328,$/;"	e	enum:yytokentype
+NO_STACKMODE	includes/gram.h	193;"	d
+NO_STACKMODE	src/gram.c	/^    NO_STACKMODE = 328,$/;"	e	enum:yytokentype	file:
+NO_STACKMODE	src/gram.c	279;"	d	file:
+NO_TITLE	includes/gram.h	/^    NO_TITLE = 288,$/;"	e	enum:yytokentype
+NO_TITLE	includes/gram.h	153;"	d
+NO_TITLE	src/gram.c	/^    NO_TITLE = 288,$/;"	e	enum:yytokentype	file:
+NO_TITLE	src/gram.c	239;"	d	file:
+NO_TITLE_HILITE	includes/gram.h	/^    NO_TITLE_HILITE = 306,$/;"	e	enum:yytokentype
+NO_TITLE_HILITE	includes/gram.h	171;"	d
+NO_TITLE_HILITE	src/gram.c	/^    NO_TITLE_HILITE = 306,$/;"	e	enum:yytokentype	file:
+NO_TITLE_HILITE	src/gram.c	257;"	d	file:
+NULLSTR	includes/twm.h	101;"	d
+NUMBER	includes/gram.h	/^    NUMBER = 315,$/;"	e	enum:yytokentype
+NUMBER	includes/gram.h	180;"	d
+NUMBER	src/gram.c	/^    NUMBER = 315,$/;"	e	enum:yytokentype	file:
+NUMBER	src/gram.c	266;"	d	file:
+NUM_CONTEXTS	includes/twm.h	119;"	d
+Name	src/gram.c	/^static char *Name = "";$/;"	v	file:
+NeedToDefer	src/menus.c	/^Bool NeedToDefer(MenuRoot *root) {$/;"	f
+NewBitmapCursor	src/cursor.c	/^void NewBitmapCursor(Cursor *cp, char *source, char *mask) {$/;"	f
+NewFontCursor	src/cursor.c	/^void NewFontCursor (Cursor *cp, char *str) {$/;"	f
+NewMenuRoot	src/menus.c	/^NewMenuRoot(char *name) {$/;"	f
+NoClass	src/twm.c	/^XClassHint NoClass;		\/* for applications with no class *\/$/;"	v
+NoDefaults	includes/screen.h	/^    short NoDefaults;		\/* do not add in default UI stuff *\/$/;"	m	struct:ScreenInfo
+NoGrabServer	includes/screen.h	/^    short NoGrabServer;		\/* don't do server grabs *\/$/;"	m	struct:ScreenInfo
+NoHighlight	includes/screen.h	/^    name_list *NoHighlight;	\/* list of windows to not highlight *\/$/;"	m	struct:ScreenInfo
+NoIconManagers	includes/screen.h	/^    short NoIconManagers;	\/* Don't create any icon managers *\/$/;"	m	struct:ScreenInfo
+NoModifierMask	src/add_window.c	974;"	d	file:
+NoModifierMask	src/add_window.c	984;"	d	file:
+NoName	src/add_window.c	/^char NoName[] = "Untitled"; \/* name if no name is specified *\/$/;"	v
+NoRaiseDeicon	includes/screen.h	/^    short NoRaiseDeicon;	\/* don't raise window on deiconify *\/$/;"	m	struct:ScreenInfo
+NoRaiseMove	includes/screen.h	/^    short NoRaiseMove;		\/* don't raise window following move *\/$/;"	m	struct:ScreenInfo
+NoRaiseResize	includes/screen.h	/^    short NoRaiseResize;	\/* don't raise window following resize *\/$/;"	m	struct:ScreenInfo
+NoRaiseWarp	includes/screen.h	/^    short NoRaiseWarp;		\/* don't raise window on warp *\/$/;"	m	struct:ScreenInfo
+NoStackModeL	includes/screen.h	/^    name_list *NoStackModeL;	\/* windows to ignore stack mode requests *\/$/;"	m	struct:ScreenInfo
+NoTitle	includes/screen.h	/^    name_list *NoTitle;		\/* list of window names with no title bar *\/$/;"	m	struct:ScreenInfo
+NoTitleHighlight	includes/screen.h	/^    name_list *NoTitleHighlight;\/* list of windows to not highlight the TB*\/$/;"	m	struct:ScreenInfo
+NoTitlebar	includes/screen.h	/^    short NoTitlebar;		\/* put title bars on windows *\/$/;"	m	struct:ScreenInfo
+NormalGC	includes/screen.h	/^    GC NormalGC;		\/* normal GC for everything *\/$/;"	m	struct:ScreenInfo
+NotActiveIconManager	src/iconmgr.c	/^void NotActiveIconManager(WList *active) {$/;"	f
+NumAutoRaises	includes/screen.h	/^    int NumAutoRaises;		\/* number of autoraise windows on screen *\/$/;"	m	struct:ScreenInfo
+NumScreens	src/twm.c	/^int NumScreens;			\/* number of screens in ScreenList *\/$/;"	v
+OBJS	Makefile	/^OBJS      := gram.o lex.o deftwmrc.o add_window.o gc.o list.o twm.o parse.o menus.o events.o resize.o util.o version.o iconmgr.o cursor.o icons.o session.o accessible_addr.o xinerama.o$/;"	m
+OR	includes/gram.h	/^    OR = 269,$/;"	e	enum:yytokentype
+OR	includes/gram.h	134;"	d
+OR	src/gram.c	/^    OR = 269,$/;"	e	enum:yytokentype	file:
+OR	src/gram.c	220;"	d	file:
+OpaqueMove	includes/screen.h	/^    short OpaqueMove;		\/* move the window rather than outline *\/$/;"	m	struct:ScreenInfo
+PATH_MAX	src/session.c	45;"	d	file:
+PATH_MAX	src/session.c	47;"	d	file:
+PIXEL_ALREADY_TYPEDEFED	includes/twm.h	81;"	d
+PIXMAPS	includes/gram.h	/^    PIXMAPS = 271,$/;"	e	enum:yytokentype
+PIXMAPS	includes/gram.h	136;"	d
+PIXMAPS	src/gram.c	/^    PIXMAPS = 271,$/;"	e	enum:yytokentype	file:
+PIXMAPS	src/gram.c	222;"	d	file:
+PLUS	includes/gram.h	/^    PLUS = 266,$/;"	e	enum:yytokentype
+PLUS	includes/gram.h	131;"	d
+PLUS	src/gram.c	/^    PLUS = 266,$/;"	e	enum:yytokentype	file:
+PLUS	src/gram.c	217;"	d	file:
+PPOS_NON_ZERO	includes/screen.h	264;"	d
+PPOS_OFF	includes/screen.h	262;"	d
+PPOS_ON	includes/screen.h	263;"	d
+PackIconManager	src/iconmgr.c	/^void PackIconManager(IconMgr *ip) {$/;"	f
+PaintEntry	src/menus.c	/^void PaintEntry(MenuRoot *mr, MenuItem *mi, int exposure) {$/;"	f
+PaintMenu	src/menus.c	/^void PaintMenu(MenuRoot *mr, XEvent *e) {$/;"	f
+ParseError	src/twm.c	/^int ParseError;			\/* error parsing the .twmrc file *\/$/;"	v
+ParseStringList	src/parse.c	/^int ParseStringList (char **sl) {$/;"	f
+ParseTwmrc	src/parse.c	/^int ParseTwmrc (char *filename) {$/;"	f
+ParseUsePPosition	src/parse.c	/^static int ParseUsePPosition (register char *s) {$/;"	f	file:
+PlaceIcon	src/icons.c	/^void PlaceIcon(TwmWindow *tmp_win, int def_x, int def_y, int *final_x, int *final_y) {$/;"	f
+PlaceX	src/add_window.c	/^static int PlaceX = 50;$/;"	v	file:
+PlaceY	src/add_window.c	/^static int PlaceY = 50;$/;"	v	file:
+PointerBackground	includes/screen.h	/^    XColor PointerBackground;	\/* pointer background color *\/$/;"	m	struct:ScreenInfo
+PointerForeground	includes/screen.h	/^    XColor PointerForeground;	\/* pointer foreground color *\/$/;"	m	struct:ScreenInfo
+PopDownMenu	src/menus.c	/^void PopDownMenu() {$/;"	f
+PopUpMenu	src/menus.c	/^Bool PopUpMenu (MenuRoot *menu, int x, int y, Bool center) {$/;"	f
+PreviousScreen	src/twm.c	/^int PreviousScreen;		\/* last screen that we were on *\/$/;"	v
+PrintErrorMessages	src/twm.c	/^Bool PrintErrorMessages = False;	\/* controls error messages *\/$/;"	v
+ProcessIceMsgProc	src/session.c	/^void ProcessIceMsgProc (XtPointer client_data, int *source, XtInputId *id) {$/;"	f
+ProgramName	src/twm.c	/^char *ProgramName;$/;"	v
+RB	includes/gram.h	/^    RB = 259,$/;"	e	enum:yytokentype
+RB	includes/gram.h	124;"	d
+RB	src/gram.c	/^    RB = 259,$/;"	e	enum:yytokentype	file:
+RB	src/gram.c	210;"	d	file:
+REJECT	src/lex.c	506;"	d	file:
+RESIZE	includes/gram.h	/^    RESIZE = 309,$/;"	e	enum:yytokentype
+RESIZE	includes/gram.h	174;"	d
+RESIZE	src/gram.c	/^    RESIZE = 309,$/;"	e	enum:yytokentype	file:
+RESIZE	src/gram.c	260;"	d	file:
+RIGHT_TITLEBUTTON	includes/gram.h	/^    RIGHT_TITLEBUTTON = 314,$/;"	e	enum:yytokentype
+RIGHT_TITLEBUTTON	includes/gram.h	179;"	d
+RIGHT_TITLEBUTTON	src/gram.c	/^    RIGHT_TITLEBUTTON = 314,$/;"	e	enum:yytokentype	file:
+RIGHT_TITLEBUTTON	src/gram.c	265;"	d	file:
+RM	Makefile	/^RM				:= rm$/;"	m
+ROOT	includes/gram.h	/^    ROOT = 299,$/;"	e	enum:yytokentype
+ROOT	includes/gram.h	164;"	d
+ROOT	src/gram.c	/^    ROOT = 299,$/;"	e	enum:yytokentype	file:
+ROOT	src/gram.c	250;"	d	file:
+RP	includes/gram.h	/^    RP = 261,$/;"	e	enum:yytokentype
+RP	includes/gram.h	126;"	d
+RP	src/gram.c	/^    RP = 261,$/;"	e	enum:yytokentype	file:
+RP	src/gram.c	212;"	d	file:
+RandomPlacement	includes/screen.h	/^    short RandomPlacement;	\/* randomly place windows that no give hints *\/$/;"	m	struct:ScreenInfo
+ReGrab	src/menus.c	/^void ReGrab(void) {$/;"	f
+ReadWinConfigEntry	src/session.c	/^int ReadWinConfigEntry (FILE *configFile, unsigned short version, TWMWinConfigEntry **pentry) {$/;"	f
+ReadWinConfigFile	src/session.c	/^void ReadWinConfigFile (char *filename) {$/;"	f
+Reborder	src/twm.c	/^void Reborder (Time time) {$/;"	f
+RedirectError	src/twm.c	/^static int RedirectError;	\/* TRUE ==> another window manager running *\/$/;"	v	file:
+RedoIconName	src/events.c	/^void RedoIconName() {$/;"	f
+RemoveDQuote	src/gram.c	/^RemoveDQuote(str)$/;"	f
+RemoveFromIconManager	src/iconmgr.c	/^void RemoveFromIconManager(IconMgr *ip, WList *tmp) {$/;"	f
+RemoveIconManager	src/iconmgr.c	/^void RemoveIconManager(TwmWindow *tmp_win) {$/;"	f
+RemoveRGBColormap	src/util.c	/^int RemoveRGBColormap (Atom a) {$/;"	f
+ResetError	includes/twm.h	409;"	d
+ResizeCursor	includes/screen.h	/^    Cursor ResizeCursor;	\/* resize cursor *\/$/;"	m	struct:ScreenInfo
+ResizeOrigX	src/menus.c	/^int ResizeOrigX;$/;"	v
+ResizeOrigY	src/menus.c	/^int ResizeOrigY;$/;"	v
+ResizeWindow	src/twm.c	/^Window ResizeWindow;		\/* the window we are resizing *\/$/;"	v
+RestartPreviousState	src/twm.c	/^Bool RestartPreviousState = False;	\/* try to restart in previous state *\/$/;"	v
+RestoreWithdrawnLocation	src/twm.c	/^void RestoreWithdrawnLocation (TwmWindow *tmp) {$/;"	f
+RightButt	src/twm.c	/^Cursor RightButt;$/;"	v
+Ring	includes/screen.h	/^    TwmWindow *Ring;		\/* one of the windows in window ring *\/$/;"	m	struct:ScreenInfo
+RingLeader	includes/screen.h	/^    TwmWindow *RingLeader;	\/* current winodw in ring *\/$/;"	m	struct:ScreenInfo
+Root	includes/screen.h	/^    Window Root;		\/* the root window *\/$/;"	m	struct:ScreenInfo
+RootFunction	src/menus.c	/^int RootFunction = 0;$/;"	v
+SAVECOLOR	includes/gram.h	/^    SAVECOLOR = 274,$/;"	e	enum:yytokentype
+SAVECOLOR	includes/gram.h	139;"	d
+SAVECOLOR	src/gram.c	/^    SAVECOLOR = 274,$/;"	e	enum:yytokentype	file:
+SAVECOLOR	src/gram.c	225;"	d	file:
+SAVEFILE_VERSION	src/session.c	66;"	d	file:
+SELECT	includes/gram.h	/^    SELECT = 311,$/;"	e	enum:yytokentype
+SELECT	includes/gram.h	176;"	d
+SELECT	src/gram.c	/^    SELECT = 311,$/;"	e	enum:yytokentype	file:
+SELECT	src/gram.c	262;"	d	file:
+SHADOWWIDTH	src/menus.c	121;"	d	file:
+SHIFT	includes/gram.h	/^    SHIFT = 293,$/;"	e	enum:yytokentype
+SHIFT	includes/gram.h	158;"	d
+SHIFT	src/gram.c	/^    SHIFT = 293,$/;"	e	enum:yytokentype	file:
+SHIFT	src/gram.c	244;"	d	file:
+SIGNAL_RETURN	includes/twm.h	85;"	d
+SIGNAL_RETURN	includes/twm.h	88;"	d
+SIGNAL_T	includes/twm.h	84;"	d
+SIGNAL_T	includes/twm.h	87;"	d
+SIZE_HINDENT	includes/screen.h	54;"	d
+SIZE_VINDENT	includes/screen.h	55;"	d
+SKEYWORD	includes/gram.h	/^    SKEYWORD = 322,$/;"	e	enum:yytokentype
+SKEYWORD	includes/gram.h	187;"	d
+SKEYWORD	src/gram.c	/^    SKEYWORD = 322,$/;"	e	enum:yytokentype	file:
+SKEYWORD	src/gram.c	273;"	d	file:
+SQUEEZE_TITLE	includes/gram.h	/^    SQUEEZE_TITLE = 303,$/;"	e	enum:yytokentype
+SQUEEZE_TITLE	includes/gram.h	168;"	d
+SQUEEZE_TITLE	src/gram.c	/^    SQUEEZE_TITLE = 303,$/;"	e	enum:yytokentype	file:
+SQUEEZE_TITLE	src/gram.c	254;"	d	file:
+START_ICONIFIED	includes/gram.h	/^    START_ICONIFIED = 305,$/;"	e	enum:yytokentype
+START_ICONIFIED	includes/gram.h	170;"	d
+START_ICONIFIED	src/gram.c	/^    START_ICONIFIED = 305,$/;"	e	enum:yytokentype	file:
+START_ICONIFIED	src/gram.c	256;"	d	file:
+STRING	includes/gram.h	/^    STRING = 329$/;"	e	enum:yytokentype
+STRING	includes/gram.h	194;"	d
+STRING	src/gram.c	/^    STRING = 329$/;"	e	enum:yytokentype	file:
+STRING	src/gram.c	280;"	d	file:
+SYSTEM_INIT_FILE	src/parse.c	77;"	d	file:
+SaveCompleteCB	src/session.c	/^void SaveCompleteCB (SmcConn smcConn, SmPointer clientData) {$/;"	f
+SaveUnder	includes/screen.h	/^    short SaveUnder;		\/* use save under's for menus *\/$/;"	m	struct:ScreenInfo
+SaveYourselfCB	src/session.c	/^void SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdown, int interactStyle, Bool fast) {$/;"	f
+SaveYourselfPhase2CB	src/session.c	/^void SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {$/;"	f
+Scr	src/twm.c	/^ScreenInfo *Scr = NULL;		\/* the cur and prev screens *\/$/;"	v
+ScreenContext	src/twm.c	/^XContext ScreenContext;		\/* context to get screen data *\/$/;"	v
+ScreenInfo	includes/screen.h	/^typedef struct ScreenInfo$/;"	s
+ScreenInfo	includes/screen.h	/^} ScreenInfo;$/;"	t	typeref:struct:ScreenInfo
+ScreenList	src/twm.c	/^ScreenInfo **ScreenList;	\/* structures for each screen *\/$/;"	v
+SelectCursor	includes/screen.h	/^    Cursor SelectCursor;	\/* dot cursor for f.move, etc. from menus *\/$/;"	m	struct:ScreenInfo
+SendDeleteWindowMessage	src/menus.c	/^int SendDeleteWindowMessage (TwmWindow *tmp, Time timestamp) {$/;"	f
+SendSaveYourselfMessage	src/menus.c	/^int SendSaveYourselfMessage (TwmWindow *tmp, Time timestamp) {$/;"	f
+SendTakeFocusMessage	src/menus.c	/^int SendTakeFocusMessage (TwmWindow *tmp, Time timestamp) {$/;"	f
+SetBorder	src/menus.c	/^int SetBorder (TwmWindow *tmp, Bool onoroff) {$/;"	f
+SetFocus	src/util.c	/^int SetFocus (TwmWindow *tmp_win, Time time) {$/;"	f
+SetFrameShape	src/resize.c	/^int SetFrameShape (TwmWindow *tmp) {$/;"	f
+SetHighlightPixmap	src/add_window.c	/^void SetHighlightPixmap (char *filename) {$/;"	f
+SetMapStateProp	src/menus.c	/^int SetMapStateProp(TwmWindow *tmp_win, int state) {$/;"	f
+SetRaiseWindow	src/events.c	/^void SetRaiseWindow (TwmWindow *tmp) {$/;"	f
+SetupFrame	src/resize.c	/^void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool sendEvent) {$/;"	f
+SetupWindow	src/resize.c	/^void SetupWindow (TwmWindow *tmp_win, int x, int y, int w, int h, int bw) {$/;"	f
+Shadow	includes/screen.h	/^    short Shadow;		\/* show the menu shadow *\/$/;"	m	struct:ScreenInfo
+ShapeErrorBase	src/twm.c	/^int ShapeEventBase, ShapeErrorBase;$/;"	v
+ShapeEventBase	src/twm.c	/^int ShapeEventBase, ShapeErrorBase;$/;"	v
+ShowIconManager	includes/screen.h	/^    short ShowIconManager;	\/* display the window list *\/$/;"	m	struct:ScreenInfo
+ShutdownCancelledCB	src/session.c	/^void ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {$/;"	f
+SigProc	includes/twm.h	/^typedef SIGNAL_T (*SigProc)();	\/* type of function returned by signal() *\/$/;"	t
+SimulateMapRequest	src/events.c	/^void SimulateMapRequest (Window w) {$/;"	f
+SizeFont	includes/screen.h	/^    MyFont SizeFont;		\/* resize font structure *\/$/;"	m	struct:ScreenInfo
+SizeStringOffset	includes/screen.h	/^    int SizeStringOffset;	\/* x offset in size window for drawing *\/$/;"	m	struct:ScreenInfo
+SizeStringWidth	includes/screen.h	/^    int SizeStringWidth;	\/* minimum width of size window *\/$/;"	m	struct:ScreenInfo
+SizeWindow	includes/screen.h	/^    Window SizeWindow;		\/* the resize dimensions window *\/$/;"	m	struct:ScreenInfo
+SortIconManager	src/iconmgr.c	/^void SortIconManager(IconMgr *ip) {$/;"	f
+SortIconMgr	includes/screen.h	/^    short SortIconMgr;		\/* sort entries in the icon manager *\/$/;"	m	struct:ScreenInfo
+SqueezeInfo	includes/twm.h	/^} SqueezeInfo;$/;"	t	typeref:struct:_SqueezeInfo
+SqueezeTitle	includes/screen.h	/^    short SqueezeTitle;		\/* make title as small as possible *\/$/;"	m	struct:ScreenInfo
+SqueezeTitleL	includes/screen.h	/^    name_list *SqueezeTitleL;		\/* windows of which to squeeze title *\/$/;"	m	struct:ScreenInfo
+StackMode	includes/screen.h	/^    short StackMode;		\/* should we honor stack mode requests *\/$/;"	m	struct:ScreenInfo
+StartIconified	includes/screen.h	/^    name_list *StartIconified;	\/* windows to start iconic *\/$/;"	m	struct:ScreenInfo
+StartResize	src/resize.c	/^StartResize(XEvent *evp, TwmWindow *tmp_win, Bool fromtitlebar) {$/;"	f
+StashEventTime	src/events.c	/^Bool StashEventTime (register XEvent *ev) {$/;"	f
+StdCmap	includes/screen.h	/^} StdCmap;$/;"	t	typeref:struct:_StdCmap
+StdCmapInfo	includes/screen.h	/^    } StdCmapInfo;$/;"	m	struct:ScreenInfo	typeref:struct:ScreenInfo::__anon4
+SyncErrorBase	src/twm.c	/^int SyncEventBase, SyncErrorBase;$/;"	v
+SyncEventBase	src/twm.c	/^int SyncEventBase, SyncErrorBase;$/;"	v
+System	src/menus.c	/^static int System (char *s) {$/;"	f	file:
+TARGET	Makefile	/^TARGET    := twm$/;"	m
+TBInfo	includes/screen.h	/^    } TBInfo;$/;"	m	struct:ScreenInfo	typeref:struct:ScreenInfo::__anon5
+TBPM_DELETE	includes/twm.h	349;"	d
+TBPM_DOT	includes/twm.h	345;"	d
+TBPM_ICONIFY	includes/twm.h	346;"	d
+TBPM_MENU	includes/twm.h	350;"	d
+TBPM_QUESTION	includes/twm.h	351;"	d
+TBPM_RESIZE	includes/twm.h	347;"	d
+TBPM_XLOGO	includes/twm.h	348;"	d
+TBWindow	includes/twm.h	/^} TBWindow;$/;"	t	typeref:struct:_TBWindow
+TEST	src/iconmgr.c	324;"	d	file:
+TEST	src/iconmgr.c	354;"	d	file:
+TITLE	includes/gram.h	/^    TITLE = 297,$/;"	e	enum:yytokentype
+TITLE	includes/gram.h	162;"	d
+TITLE	src/gram.c	/^    TITLE = 297,$/;"	e	enum:yytokentype	file:
+TITLE	src/gram.c	248;"	d	file:
+TITLE_BAR_FONT_HEIGHT	includes/twm.h	137;"	d
+TITLE_BAR_HEIGHT	includes/twm.h	138;"	d
+TITLE_BAR_SPACE	includes/twm.h	136;"	d
+TITLE_HILITE	includes/gram.h	/^    TITLE_HILITE = 307,$/;"	e	enum:yytokentype
+TITLE_HILITE	includes/gram.h	172;"	d
+TITLE_HILITE	src/gram.c	/^    TITLE_HILITE = 307,$/;"	e	enum:yytokentype	file:
+TITLE_HILITE	src/gram.c	258;"	d	file:
+TRUE	includes/twm.h	97;"	d
+TWMWinConfigEntry	includes/twm.h	/^typedef struct TWMWinConfigEntry$/;"	s
+TWMWinConfigEntry	includes/twm.h	/^} TWMWinConfigEntry;$/;"	t	typeref:struct:TWMWinConfigEntry
+TWM_ROOT	includes/menus.h	67;"	d
+TWM_WINDOWS	includes/menus.h	68;"	d
+TitleBackgroundL	includes/screen.h	/^    name_list *TitleBackgroundL;$/;"	m	struct:ScreenInfo
+TitleBarFont	includes/screen.h	/^    MyFont TitleBarFont;	\/* title bar font structure *\/$/;"	m	struct:ScreenInfo
+TitleButton	includes/twm.h	/^} TitleButton;$/;"	t	typeref:struct:_TitleButton
+TitleC	includes/screen.h	/^    ColorPair TitleC;		\/* titlebar colors *\/$/;"	m	struct:ScreenInfo
+TitleCursor	includes/screen.h	/^    Cursor TitleCursor;		\/* title bar cursor *\/$/;"	m	struct:ScreenInfo
+TitleFocus	includes/screen.h	/^    short TitleFocus;		\/* focus on window in title bar ? *\/$/;"	m	struct:ScreenInfo
+TitleForegroundL	includes/screen.h	/^    name_list *TitleForegroundL;$/;"	m	struct:ScreenInfo
+TitleHeight	includes/screen.h	/^    int TitleHeight;		\/* height of the title bar window *\/$/;"	m	struct:ScreenInfo
+TitleHighlight	includes/screen.h	/^    short TitleHighlight;	\/* should we highlight the titlebar *\/$/;"	m	struct:ScreenInfo
+TitlePadding	includes/screen.h	/^    int TitlePadding;		\/* distance between items in titlebar *\/$/;"	m	struct:ScreenInfo
+TitlebarPixmaps	includes/screen.h	/^} TitlebarPixmaps;$/;"	t	typeref:struct:_TitlebarPixmaps
+Tmp_win	src/events.c	/^TwmWindow *Tmp_win;		\/* the current twm window *\/$/;"	v
+Transient	src/events.c	/^int Transient(Window w, Window *propw) {$/;"	f
+TwmAtoms	src/twm.c	/^Atom TwmAtoms[11];$/;"	v
+TwmColormap	includes/twm.h	/^typedef struct TwmColormap$/;"	s
+TwmColormap	includes/twm.h	/^} TwmColormap;$/;"	t	typeref:struct:TwmColormap
+TwmContext	src/twm.c	/^XContext TwmContext;		\/* context for twm windows *\/$/;"	v
+TwmErrorHandler	src/twm.c	/^static int TwmErrorHandler(Display *dpy, XErrorEvent *event) {$/;"	f	file:
+TwmKeyword	src/parse.c	/^} TwmKeyword;$/;"	t	typeref:struct:_TwmKeyword	file:
+TwmOutput	src/parse.c	/^TwmOutput(int c) {$/;"	f
+TwmRoot	includes/screen.h	/^    TwmWindow TwmRoot;		\/* the head of the twm window list *\/$/;"	m	struct:ScreenInfo
+TwmWindow	includes/twm.h	/^typedef struct TwmWindow$/;"	s
+TwmWindow	includes/twm.h	/^} TwmWindow;$/;"	t	typeref:struct:TwmWindow
+UINT16_MAX	src/lex.c	80;"	d	file:
+UINT32_MAX	src/lex.c	83;"	d	file:
+UINT8_MAX	src/lex.c	77;"	d	file:
+UNMAPPED	includes/menus.h	113;"	d
+UNUSED_PIXEL	src/menus.c	601;"	d	file:
+UnHighLight_win	src/events.c	/^TwmWindow *UnHighLight_win = NULL;$/;"	v
+UninstallRootColormap	src/events.c	/^void UninstallRootColormap() {$/;"	f
+UninstallRootColormapQScanner	src/events.c	/^static Bool UninstallRootColormapQScanner(Display *dpy, XEvent *ev, char *args) {$/;"	f	file:
+UnknownHeight	includes/screen.h	/^    int UnknownHeight;		\/* height of the unknown icon *\/$/;"	m	struct:ScreenInfo
+UnknownPm	includes/screen.h	/^    Pixmap UnknownPm;		\/* the unknown icon pixmap *\/$/;"	m	struct:ScreenInfo
+UnknownWidth	includes/screen.h	/^    int UnknownWidth;		\/* width of the unknown icon *\/$/;"	m	struct:ScreenInfo
+UpdateMenu	src/menus.c	/^void UpdateMenu() {$/;"	f
+UpperLeftCursor	src/twm.c	/^Cursor UpperLeftCursor;		\/* upper Left corner cursor *\/$/;"	v
+UsePPosition	includes/screen.h	/^    short UsePPosition;		\/* what do with PPosition, see values below *\/$/;"	m	struct:ScreenInfo
+Version	src/version.c	/^char *Version = "X Consortium, R6";$/;"	v
+WAIT	includes/gram.h	/^    WAIT = 310,$/;"	e	enum:yytokentype
+WAIT	includes/gram.h	175;"	d
+WAIT	src/gram.c	/^    WAIT = 310,$/;"	e	enum:yytokentype	file:
+WAIT	src/gram.c	261;"	d	file:
+WARPSCREEN_BACK	includes/menus.h	161;"	d
+WARPSCREEN_NEXT	includes/menus.h	159;"	d
+WARPSCREEN_PREV	includes/menus.h	160;"	d
+WARP_CURSOR	includes/gram.h	/^    WARP_CURSOR = 326,$/;"	e	enum:yytokentype
+WARP_CURSOR	includes/gram.h	191;"	d
+WARP_CURSOR	src/gram.c	/^    WARP_CURSOR = 326,$/;"	e	enum:yytokentype	file:
+WARP_CURSOR	src/gram.c	277;"	d	file:
+WINDOW	includes/gram.h	/^    WINDOW = 296,$/;"	e	enum:yytokentype
+WINDOW	includes/gram.h	161;"	d
+WINDOW	src/gram.c	/^    WINDOW = 296,$/;"	e	enum:yytokentype	file:
+WINDOW	src/gram.c	247;"	d	file:
+WINDOW_FUNCTION	includes/gram.h	/^    WINDOW_FUNCTION = 279,$/;"	e	enum:yytokentype
+WINDOW_FUNCTION	includes/gram.h	144;"	d
+WINDOW_FUNCTION	src/gram.c	/^    WINDOW_FUNCTION = 279,$/;"	e	enum:yytokentype	file:
+WINDOW_FUNCTION	src/gram.c	230;"	d	file:
+WINDOW_RING	includes/gram.h	/^    WINDOW_RING = 325,$/;"	e	enum:yytokentype
+WINDOW_RING	includes/gram.h	190;"	d
+WINDOW_RING	src/gram.c	/^    WINDOW_RING = 325,$/;"	e	enum:yytokentype	file:
+WINDOW_RING	src/gram.c	276;"	d	file:
+WList	includes/iconmgr.h	/^typedef struct WList$/;"	s
+WList	includes/iconmgr.h	/^} WList;$/;"	t	typeref:struct:WList
+WaitCursor	includes/screen.h	/^    Cursor WaitCursor;		\/* wait a while cursor *\/$/;"	m	struct:ScreenInfo
+WarpAlongRing	src/menus.c	/^void WarpAlongRing (XButtonEvent *ev, Bool forward) {$/;"	f
+WarpCursor	includes/screen.h	/^    short WarpCursor;		\/* warp cursor on de-iconify ? *\/$/;"	m	struct:ScreenInfo
+WarpCursorL	includes/screen.h	/^    name_list *WarpCursorL;	\/* windows to warp cursor to on deiconify *\/$/;"	m	struct:ScreenInfo
+WarpThere	src/menus.c	/^int WarpThere(TwmWindow* t) {$/;"	f
+WarpToScreen	src/menus.c	/^int WarpToScreen (int n, int inc) {$/;"	f
+WarpToWindow	src/menus.c	/^void WarpToWindow (TwmWindow *t) {$/;"	f
+WarpUnmapped	includes/screen.h	/^    short WarpUnmapped;		\/* allow warping to unmapped windows *\/$/;"	m	struct:ScreenInfo
+White	includes/screen.h	/^    unsigned long White;$/;"	m	struct:ScreenInfo
+WindowFunction	includes/screen.h	/^    MouseButton WindowFunction;$/;"	m	struct:ScreenInfo
+WindowMoved	src/menus.c	/^int WindowMoved = FALSE;$/;"	v
+WindowOfEvent	src/events.c	/^Window WindowOfEvent (XEvent *e) {$/;"	f
+WindowRingL	includes/screen.h	/^    name_list *WindowRingL;	\/* windows in ring *\/$/;"	m	struct:ScreenInfo
+Windows	includes/screen.h	/^    MenuRoot *Windows;		\/* the TwmWindows menu *\/$/;"	m	struct:ScreenInfo
+WithdrawnState	includes/twm.h	78;"	d
+WriteWinConfigEntry	src/session.c	/^int WriteWinConfigEntry (FILE *configFile, TwmWindow *theWindow, char *clientId, char *windowRole) {$/;"	f
+XORvalue	includes/screen.h	/^    unsigned long XORvalue;	\/* number to use when drawing xor'ed *\/$/;"	m	struct:ScreenInfo
+YACC	Makefile	/^YACC      := bison -y$/;"	m
+YFLAGS	Makefile	/^YFLAGS    := -d$/;"	m
+YYABORT	src/gram.c	963;"	d	file:
+YYACCEPT	src/gram.c	962;"	d	file:
+YYBACKUP	src/gram.c	969;"	d	file:
+YYBISON	src/gram.c	44;"	d	file:
+YYBISON_VERSION	src/gram.c	47;"	d	file:
+YYCASE_	src/gram.c	1310;"	d	file:
+YYCASE_	src/gram.c	1320;"	d	file:
+YYCOPY	src/gram.c	531;"	d	file:
+YYCOPY	src/gram.c	534;"	d	file:
+YYCOPY_NEEDED	src/gram.c	506;"	d	file:
+YYDEBUG	includes/gram.h	37;"	d
+YYDEBUG	src/gram.c	123;"	d	file:
+YYDPRINTF	src/gram.c	1000;"	d	file:
+YYDPRINTF	src/gram.c	1115;"	d	file:
+YYEMPTY	src/gram.c	959;"	d	file:
+YYEOF	src/gram.c	960;"	d	file:
+YYERRCODE	src/gram.c	988;"	d	file:
+YYERROR	src/gram.c	964;"	d	file:
+YYERROR_VERBOSE	src/gram.c	111;"	d	file:
+YYERROR_VERBOSE	src/gram.c	112;"	d	file:
+YYERROR_VERBOSE	src/gram.c	114;"	d	file:
+YYFINAL	src/gram.c	547;"	d	file:
+YYFPRINTF	src/gram.c	997;"	d	file:
+YYFREE	src/gram.c	477;"	d	file:
+YYINITDEPTH	src/gram.c	1124;"	d	file:
+YYLAST	src/gram.c	549;"	d	file:
+YYLMAX	src/lex.c	525;"	d	file:
+YYMALLOC	src/gram.c	471;"	d	file:
+YYMAXDEPTH	src/gram.c	1135;"	d	file:
+YYMAXUTOK	src/gram.c	563;"	d	file:
+YYNNTS	src/gram.c	554;"	d	file:
+YYNRULES	src/gram.c	556;"	d	file:
+YYNSTATES	src/gram.c	558;"	d	file:
+YYNTOKENS	src/gram.c	552;"	d	file:
+YYPACT_NINF	src/gram.c	685;"	d	file:
+YYPOPSTACK	src/gram.c	1435;"	d	file:
+YYPULL	src/gram.c	59;"	d	file:
+YYPURE	src/gram.c	53;"	d	file:
+YYPUSH	src/gram.c	56;"	d	file:
+YYRECOVERING	src/gram.c	967;"	d	file:
+YYSIZE_MAXIMUM	src/gram.c	350;"	d	file:
+YYSIZE_T	src/gram.c	339;"	d	file:
+YYSIZE_T	src/gram.c	341;"	d	file:
+YYSIZE_T	src/gram.c	344;"	d	file:
+YYSIZE_T	src/gram.c	346;"	d	file:
+YYSKELETON_NAME	src/gram.c	50;"	d	file:
+YYSTACK_ALLOC	src/gram.c	425;"	d	file:
+YYSTACK_ALLOC	src/gram.c	429;"	d	file:
+YYSTACK_ALLOC	src/gram.c	434;"	d	file:
+YYSTACK_ALLOC	src/gram.c	457;"	d	file:
+YYSTACK_ALLOC_MAXIMUM	src/gram.c	454;"	d	file:
+YYSTACK_ALLOC_MAXIMUM	src/gram.c	460;"	d	file:
+YYSTACK_BYTES	src/gram.c	502;"	d	file:
+YYSTACK_FREE	src/gram.c	448;"	d	file:
+YYSTACK_FREE	src/gram.c	458;"	d	file:
+YYSTACK_GAP_MAXIMUM	src/gram.c	498;"	d	file:
+YYSTACK_RELOCATE	src/gram.c	513;"	d	file:
+YYSTATE	src/lex.c	132;"	d	file:
+YYSTYPE	includes/gram.h	/^typedef union YYSTYPE YYSTYPE;$/;"	t	typeref:union:YYSTYPE
+YYSTYPE	includes/gram.h	/^union YYSTYPE$/;"	u
+YYSTYPE	src/gram.c	/^typedef union YYSTYPE YYSTYPE;$/;"	t	typeref:union:YYSTYPE	file:
+YYSTYPE	src/gram.c	/^union YYSTYPE$/;"	u	file:
+YYSTYPE_IS_DECLARED	includes/gram.h	209;"	d
+YYSTYPE_IS_DECLARED	src/gram.c	295;"	d	file:
+YYSTYPE_IS_TRIVIAL	includes/gram.h	208;"	d
+YYSTYPE_IS_TRIVIAL	src/gram.c	294;"	d	file:
+YYTABLES_NAME	src/lex.c	2005;"	d	file:
+YYTABLE_NINF	src/gram.c	690;"	d	file:
+YYTERROR	src/gram.c	987;"	d	file:
+YYTOKENTYPE	includes/gram.h	45;"	d
+YYTOKENTYPE	src/gram.c	131;"	d	file:
+YYTRANSLATE	src/gram.c	565;"	d	file:
+YYUNDEFTOK	src/gram.c	562;"	d	file:
+YYUSE	src/gram.c	393;"	d	file:
+YYUSE	src/gram.c	395;"	d	file:
+YY_	src/gram.c	356;"	d	file:
+YY_	src/gram.c	360;"	d	file:
+YY_ATTRIBUTE	src/gram.c	368;"	d	file:
+YY_ATTRIBUTE	src/gram.c	370;"	d	file:
+YY_ATTRIBUTE_PURE	src/gram.c	375;"	d	file:
+YY_ATTRIBUTE_UNUSED	src/gram.c	379;"	d	file:
+YY_AT_BOL	src/lex.c	352;"	d	file:
+YY_BREAK	src/lex.c	794;"	d	file:
+YY_BUFFER_EOF_PENDING	src/lex.c	268;"	d	file:
+YY_BUFFER_NEW	src/lex.c	256;"	d	file:
+YY_BUFFER_NORMAL	src/lex.c	257;"	d	file:
+YY_BUFFER_STATE	src/lex.c	/^typedef struct yy_buffer_state *YY_BUFFER_STATE;$/;"	t	typeref:struct:yy_buffer_state	file:
+YY_BUF_SIZE	src/lex.c	149;"	d	file:
+YY_BUF_SIZE	src/lex.c	151;"	d	file:
+YY_CHAR	src/lex.c	/^typedef unsigned char YY_CHAR;$/;"	t	file:
+YY_CURRENT_BUFFER	src/lex.c	284;"	d	file:
+YY_CURRENT_BUFFER_LVALUE	src/lex.c	291;"	d	file:
+YY_DECL	src/lex.c	782;"	d	file:
+YY_DECL_IS_OURS	src/lex.c	778;"	d	file:
+YY_DO_BEFORE_ACTION	src/lex.c	377;"	d	file:
+YY_END_OF_BUFFER	src/lex.c	391;"	d	file:
+YY_END_OF_BUFFER_CHAR	src/lex.c	140;"	d	file:
+YY_EXIT_FAILURE	src/lex.c	1792;"	d	file:
+YY_EXTRA_TYPE	src/lex.c	634;"	d	file:
+YY_FATAL_ERROR	src/lex.c	769;"	d	file:
+YY_FLEX_LEX_COMPAT	src/lex.c	362;"	d	file:
+YY_FLEX_MAJOR_VERSION	src/lex.c	9;"	d	file:
+YY_FLEX_MINOR_VERSION	src/lex.c	10;"	d	file:
+YY_FLEX_SUBMINOR_VERSION	src/lex.c	11;"	d	file:
+YY_FLUSH_BUFFER	src/lex.c	320;"	d	file:
+YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN	src/gram.c	400;"	d	file:
+YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN	src/gram.c	410;"	d	file:
+YY_IGNORE_MAYBE_UNINITIALIZED_END	src/gram.c	404;"	d	file:
+YY_IGNORE_MAYBE_UNINITIALIZED_END	src/gram.c	411;"	d	file:
+YY_INITIAL_VALUE	src/gram.c	407;"	d	file:
+YY_INITIAL_VALUE	src/gram.c	414;"	d	file:
+YY_INPUT	src/lex.c	603;"	d	file:
+YY_INPUT	src/lex.c	604;"	d	file:
+YY_INPUT	src/lex.c	722;"	d	file:
+YY_INT_ALIGNED	src/lex.c	4;"	d	file:
+YY_LESS_LINENO	src/lex.c	179;"	d	file:
+YY_LOCATION_PRINT	src/gram.c	1008;"	d	file:
+YY_MORE_ADJ	src/lex.c	518;"	d	file:
+YY_NEED_STRLEN	src/lex.c	517;"	d	file:
+YY_NEW_FILE	src/lex.c	138;"	d	file:
+YY_NULL	src/lex.c	112;"	d	file:
+YY_NULLPTR	src/gram.c	103;"	d	file:
+YY_NULLPTR	src/gram.c	105;"	d	file:
+YY_NUM_RULES	src/lex.c	390;"	d	file:
+YY_READ_BUF_SIZE	src/lex.c	704;"	d	file:
+YY_READ_BUF_SIZE	src/lex.c	706;"	d	file:
+YY_REDUCE_PRINT	src/gram.c	1105;"	d	file:
+YY_REDUCE_PRINT	src/gram.c	1118;"	d	file:
+YY_RESTORE_YY_MORE_OFFSET	src/lex.c	519;"	d	file:
+YY_RULE_SETUP	src/lex.c	797;"	d	file:
+YY_SC_TO_UI	src/lex.c	119;"	d	file:
+YY_STACK_PRINT	src/gram.c	1074;"	d	file:
+YY_STACK_PRINT	src/gram.c	1117;"	d	file:
+YY_START	src/lex.c	131;"	d	file:
+YY_START_STACK_INCR	src/lex.c	764;"	d	file:
+YY_STATE_BUF_SIZE	src/lex.c	157;"	d	file:
+YY_STATE_EOF	src/lex.c	135;"	d	file:
+YY_STRUCT_YY_BUFFER_STATE	src/lex.c	209;"	d	file:
+YY_SYMBOL_PRINT	src/gram.c	1012;"	d	file:
+YY_SYMBOL_PRINT	src/gram.c	1116;"	d	file:
+YY_TYPEDEF_YY_BUFFER_STATE	src/lex.c	160;"	d	file:
+YY_TYPEDEF_YY_SIZE_T	src/lex.c	204;"	d	file:
+YY_USER_ACTION	src/lex.c	789;"	d	file:
+YY_USE_CONST	src/lex.c	100;"	d	file:
+YY_USE_CONST	src/lex.c	93;"	d	file:
+YY_YY_Y_TAB_H_INCLUDED	includes/gram.h	34;"	d
+YY_YY_Y_TAB_H_INCLUDED	src/gram.c	120;"	d	file:
+ZOOM	includes/gram.h	/^    ZOOM = 280,$/;"	e	enum:yytokentype
+ZOOM	includes/gram.h	145;"	d
+ZOOM	src/gram.c	/^    ZOOM = 280,$/;"	e	enum:yytokentype	file:
+ZOOM	src/gram.c	231;"	d	file:
+ZOOM_NONE	includes/twm.h	141;"	d
+Zoom	src/util.c	/^Zoom(Window wf, Window wt) {$/;"	f
+ZoomCount	includes/screen.h	/^    short ZoomCount;		\/* zoom outline count *\/$/;"	m	struct:ScreenInfo
+_ADD_WINDOW_	includes/add_window.h	65;"	d
+_CursorName	src/cursor.c	/^static struct _CursorName {$/;"	s	file:
+_EVENTS_	includes/events.h	65;"	d
+_GC_	includes/gc.h	65;"	d
+_ICONMGR_	includes/iconmgr.h	38;"	d
+_LIST_	includes/list.h	65;"	d
+_MENUS_	includes/menus.h	65;"	d
+_Noreturn	src/gram.c	385;"	d	file:
+_Noreturn	src/gram.c	387;"	d	file:
+_PARSE_	includes/parse.h	65;"	d
+_POSIX_SOURCE	src/session.c	36;"	d	file:
+_POSIX_SOURCE	src/session.c	38;"	d	file:
+_RESIZE_	includes/resize.h	65;"	d
+_SCREEN_	includes/screen.h	38;"	d
+_SqueezeInfo	includes/twm.h	/^typedef struct _SqueezeInfo {$/;"	s
+_StdCmap	includes/screen.h	/^typedef struct _StdCmap {$/;"	s
+_TBWindow	includes/twm.h	/^typedef struct _TBWindow {$/;"	s
+_TWM_	includes/twm.h	67;"	d
+_TitleButton	includes/twm.h	/^typedef struct _TitleButton {$/;"	s
+_TitlebarPixmaps	includes/screen.h	/^typedef struct _TitlebarPixmaps {$/;"	s
+_TwmKeyword	src/parse.c	/^typedef struct _TwmKeyword {$/;"	s	file:
+_UTIL_	includes/util.h	65;"	d
+_VERSION_	includes/version.h	64;"	d
+_XA_MIT_PRIORITY_COLORS	includes/twm.h	416;"	d
+_XA_SM_CLIENT_ID	includes/twm.h	424;"	d
+_XA_WM_CHANGE_STATE	includes/twm.h	417;"	d
+_XA_WM_CLIENT_LEADER	includes/twm.h	425;"	d
+_XA_WM_COLORMAP_WINDOWS	includes/twm.h	419;"	d
+_XA_WM_DELETE_WINDOW	includes/twm.h	423;"	d
+_XA_WM_PROTOCOLS	includes/twm.h	420;"	d
+_XA_WM_SAVE_YOURSELF	includes/twm.h	422;"	d
+_XA_WM_STATE	includes/twm.h	418;"	d
+_XA_WM_TAKE_FOCUS	includes/twm.h	421;"	d
+_XA_WM_WINDOW_ROLE	includes/twm.h	426;"	d
+__ACCESSIBLE_ADDR_H__	includes/accessible_addr.h	2;"	d
+__STDC_LIMIT_MACROS	src/lex.c	39;"	d	file:
+__XINERAMA_H__	includes/xinerama.h	2;"	d
+_cnode	src/parse.c	/^typedef struct _cnode {$/;"	s	file:
+_min	src/resize.c	630;"	d	file:
+action	includes/menus.h	/^    char *action;		\/* action string (if any) *\/$/;"	m	struct:FuncKey
+action	includes/menus.h	/^    char *action;		\/* action to be performed *\/$/;"	m	struct:MenuItem
+action	includes/twm.h	/^    char *action;			\/* optional action arg *\/$/;"	m	struct:_TitleButton
+action	src/gram.y	/^action		: FKEYWORD	{ $$ = $1; }$/;"	l
+active	includes/iconmgr.h	/^    short active;$/;"	m	struct:WList
+active	includes/iconmgr.h	/^    struct WList *active;		\/* the active entry *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::WList
+alloca	src/gram.c	432;"	d	file:
+appContext	src/twm.c	/^XtAppContext appContext;	\/* Xt application context *\/$/;"	v
+assign_var_savecolor	src/parse.c	/^void assign_var_savecolor() {$/;"	f
+atom	includes/screen.h	/^    Atom atom;				\/* property from which this came *\/$/;"	m	struct:_StdCmap
+atom_names	src/twm.c	/^static char* atom_names[11] = {$/;"	v	file:
+attr	includes/twm.h	/^    XWindowAttributes attr;	\/* the child window attributes *\/$/;"	m	struct:TwmWindow
+auto_raise	includes/twm.h	/^    short auto_raise;		\/* should we auto-raise this window ? *\/$/;"	m	struct:TwmWindow
+back	includes/iconmgr.h	/^    Pixel fore, back, highlight;$/;"	m	struct:WList
+back	includes/menus.h	/^    Pixel back;			\/* background color *\/$/;"	m	struct:MenuItem
+back	includes/twm.h	/^    Pixel fore, back;$/;"	m	struct:ColorPair
+belongs_to_twm_window	src/menus.c	/^static Bool belongs_to_twm_window (register TwmWindow *t, register Window w) {$/;"	f	file:
+bitmap	includes/twm.h	/^    Pixmap bitmap;			\/* image to display in button *\/$/;"	m	struct:_TitleButton
+black	src/twm.c	/^unsigned long black, white;$/;"	v
+border	includes/screen.h	/^	int border;			\/* button border *\/$/;"	m	struct:ScreenInfo::__anon5
+border	includes/twm.h	/^    Pixel border;		\/* border color *\/$/;"	m	struct:TwmWindow
+border_tile	includes/twm.h	/^    ColorPair border_tile;$/;"	m	struct:TwmWindow
+bottom	includes/iconmgr.h	/^    unsigned top, bottom;$/;"	m	struct:WList
+buff	src/parse.c	/^static char buff[BUF_LEN+1];$/;"	v	file:
+button	src/gram.y	/^button		: BUTTON number		{ $$ = $2;$/;"	l
+c	includes/twm.h	/^    Colormap c;			\/* Colormap id *\/$/;"	m	struct:TwmColormap
+chead	src/parse.c	/^Cptr chead = NULL;$/;"	v
+clampBottom	src/resize.c	/^static int clampBottom;$/;"	v	file:
+clampDX	src/resize.c	/^static int clampDX;$/;"	v	file:
+clampDY	src/resize.c	/^static int clampDY;$/;"	v	file:
+clampLeft	src/resize.c	/^static int clampLeft;$/;"	v	file:
+clampRight	src/resize.c	/^static int clampRight;$/;"	v	file:
+clampTop	src/resize.c	/^static int clampTop;$/;"	v	file:
+client_id	includes/twm.h	/^    char *client_id;$/;"	m	struct:TWMWinConfigEntry
+cmapInfo	includes/screen.h	/^    } cmapInfo;$/;"	m	struct:ScreenInfo	typeref:struct:ScreenInfo::__anon3
+cmaps	includes/screen.h	/^      Colormaps *cmaps; 	\/* current list of colormap windows *\/$/;"	m	struct:ScreenInfo::__anon3
+cmaps	includes/twm.h	/^    Colormaps cmaps;		\/* colormaps for this application *\/$/;"	m	struct:TwmWindow
+col	includes/iconmgr.h	/^    int row, col;$/;"	m	struct:WList
+color	src/gram.c	/^static int color;$/;"	v	file:
+color_entries	src/gram.y	/^color_entries	: \/* Empty *\/$/;"	l
+color_entry	src/gram.y	/^color_entry	: CLKEYWORD string	{ if (!do_colorlist_keyword ($1, color,$/;"	l
+color_list	src/gram.y	/^color_list	: LB color_entries RB$/;"	l
+colormap	includes/twm.h	/^    TwmColormap *colormap;	\/* Colormap for this window *\/$/;"	m	struct:ColormapWindow
+columns	includes/iconmgr.h	/^    int columns, cur_rows, cur_columns;$/;"	m	struct:IconMgr
+cont	includes/menus.h	/^    int cont;			\/* context *\/$/;"	m	struct:FuncKey
+cont	src/gram.c	/^static int cont = 0;$/;"	v	file:
+context	src/gram.y	/^context		: WINDOW		{ cont |= C_WINDOW_BIT; }$/;"	l
+contextkey	src/gram.y	/^contextkey	: WINDOW		{ cont |= C_WINDOW_BIT; }$/;"	l
+contextkeys	src/gram.y	/^contextkeys	: \/* Empty *\/$/;"	l
+contexts	src/gram.y	/^contexts	: \/* Empty *\/$/;"	l
+count	includes/iconmgr.h	/^    int count;$/;"	m	struct:IconMgr
+cur_columns	includes/iconmgr.h	/^    int columns, cur_rows, cur_columns;$/;"	m	struct:IconMgr
+cur_rows	includes/iconmgr.h	/^    int columns, cur_rows, cur_columns;$/;"	m	struct:IconMgr
+currentString	src/parse.c	/^static char **stringListSource, *currentString;$/;"	v	file:
+curs_x	includes/twm.h	/^	int curs_x, curs_y;$/;"	m	struct:TwmWindow::__anon1
+curs_y	includes/twm.h	/^	int curs_x, curs_y;$/;"	m	struct:TwmWindow::__anon1
+cursor	src/cursor.c	/^    Cursor		cursor;$/;"	m	struct:_CursorName	file:
+cursor_entries	src/gram.y	/^cursor_entries	: \/* Empty *\/$/;"	l
+cursor_entry	src/gram.y	/^cursor_entry	: FRAME string string {$/;"	l
+cursor_list	src/gram.y	/^cursor_list	: LB cursor_entries RB$/;"	l
+cursor_names	src/cursor.c	/^} cursor_names[] = {$/;"	v	typeref:struct:_CursorName	file:
+cursor_valid	includes/twm.h	/^	Bool cursor_valid;$/;"	m	struct:TwmWindow::__anon1
+cwins	includes/twm.h	/^    ColormapWindow **cwins;	\/* current list of colormap windows *\/$/;"	m	struct:Colormaps
+d_depth	includes/screen.h	/^    int d_depth;		\/* copy of DefaultDepth(dpy, screen) *\/$/;"	m	struct:ScreenInfo
+d_visual	includes/screen.h	/^    Visual *d_visual;		\/* copy of DefaultVisual(dpy, screen) *\/$/;"	m	struct:ScreenInfo
+defTwmrc	src/deftwmrc.c	/^char *defTwmrc[] = {$/;"	v
+denom	includes/twm.h	/^    int denom;				\/* 0 for pix count or denominator *\/$/;"	m	struct:_SqueezeInfo
+do_add_binding	src/add_window.c	/^static void do_add_binding (int button, int context, int modifier, int func) {$/;"	f	file:
+do_auto_clamp	src/resize.c	/^static void do_auto_clamp (TwmWindow *tmp_win, XEvent *evp) {$/;"	f	file:
+do_color_keyword	src/parse.c	/^int do_color_keyword (int keyword, int colormode, char *s) {$/;"	f
+do_colorlist_keyword	src/parse.c	/^name_list **do_colorlist_keyword (int keyword, int colormode, char *s) {$/;"	f
+do_menu	src/events.c	/^static void do_menu (MenuRoot *menu, Window w) {$/;"	f	file:
+do_number_keyword	src/parse.c	/^int do_number_keyword (int keyword, int num) {$/;"	f
+do_single_keyword	src/parse.c	/^int do_single_keyword (int keyword) {$/;"	f
+do_squeeze_entry	src/parse.c	/^int do_squeeze_entry (name_list **list, char *name, int justify, int num, int denom) {$/;"	f
+do_string_keyword	src/parse.c	/^int do_string_keyword (int keyword, char *s) {$/;"	f
+do_string_savecolor	src/parse.c	/^int do_string_savecolor(int colormode, char *s) {$/;"	f
+do_var_savecolor	src/parse.c	/^int do_var_savecolor(int key) {$/;"	f
+doinput	src/lex.c	/^doinput (buf, size)$/;"	f
+doparse	src/parse.c	/^static int doparse (int (*ifunc)(), char *srctypename, char *srcname) {$/;"	f	file:
+down	includes/iconmgr.h	/^    short down;$/;"	m	struct:WList
+dpy	src/twm.c	/^Display *dpy;			\/* which display are we talking to *\/$/;"	v
+dragHeight	src/resize.c	/^static int dragHeight;$/;"	v	file:
+dragWidth	src/resize.c	/^static int dragWidth;$/;"	v	file:
+dragx	src/resize.c	/^static int dragx;       \/* all these variables are used *\/$/;"	v	file:
+dragy	src/resize.c	/^static int dragy;       \/* in resize operations *\/$/;"	v	file:
+dstx	includes/twm.h	/^    int dstx, dsty;			\/* to where to start copying *\/$/;"	m	struct:_TitleButton
+dsty	includes/twm.h	/^    int dstx, dsty;			\/* to where to start copying *\/$/;"	m	struct:_TitleButton
+dumpevent	src/events.c	/^void dumpevent (XEvent *e) {$/;"	f
+enter_flag	src/events.c	/^static int enter_flag;$/;"	v	file:
+enter_win	src/events.c	/^static TwmWindow *enter_win, *raise_win;$/;"	v	file:
+entered	includes/menus.h	/^    short entered;		\/* EnterNotify following pop up *\/$/;"	m	struct:MenuRoot
+enters	src/events.c	/^    Bool enters;	\/* Any EnterNotify event at all *\/$/;"	m	struct:HLNScanArgs	file:
+enters	src/events.c	/^    Bool enters;	\/* Any EnterNotify events with NotifyUngrab *\/$/;"	m	struct:HENScanArgs	file:
+entries	includes/icons.h	/^    struct IconEntry	*entries;$/;"	m	struct:IconRegion	typeref:struct:IconRegion::IconEntry
+event_proc	includes/events.h	/^typedef void (*event_proc)();$/;"	t
+false	src/menus.c	1244;"	d	file:
+feof	src/lex.c	2017;"	d	file:
+feof	src/lex.c	2021;"	d	file:
+first	includes/iconmgr.h	/^    struct WList *first;		\/* first window in the list *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::WList
+first	includes/menus.h	/^    struct MenuItem *first;	\/* first item in menu *\/$/;"	m	struct:MenuRoot	typeref:struct:MenuRoot::MenuItem
+first_req	includes/screen.h	/^      unsigned long first_req;	\/* seq # for first XInstallColormap() req in$/;"	m	struct:ScreenInfo::__anon3
+flex_int16_t	src/lex.c	/^typedef int16_t flex_int16_t;$/;"	t	file:
+flex_int16_t	src/lex.c	/^typedef short int flex_int16_t;$/;"	t	file:
+flex_int32_t	src/lex.c	/^typedef int flex_int32_t;$/;"	t	file:
+flex_int32_t	src/lex.c	/^typedef int32_t flex_int32_t;$/;"	t	file:
+flex_int8_t	src/lex.c	/^typedef int8_t flex_int8_t;$/;"	t	file:
+flex_int8_t	src/lex.c	/^typedef signed char flex_int8_t;$/;"	t	file:
+flex_uint16_t	src/lex.c	/^typedef uint16_t flex_uint16_t;$/;"	t	file:
+flex_uint16_t	src/lex.c	/^typedef unsigned short int flex_uint16_t;$/;"	t	file:
+flex_uint32_t	src/lex.c	/^typedef uint32_t flex_uint32_t;$/;"	t	file:
+flex_uint32_t	src/lex.c	/^typedef unsigned int flex_uint32_t;$/;"	t	file:
+flex_uint8_t	src/lex.c	/^typedef uint8_t flex_uint8_t;$/;"	t	file:
+flex_uint8_t	src/lex.c	/^typedef unsigned char flex_uint8_t; $/;"	t	file:
+flush_expose	src/events.c	/^static void flush_expose (Window w) {$/;"	f	file:
+font	includes/twm.h	/^    XFontStruct *font;		\/* font structure *\/$/;"	m	struct:MyFont
+forced	includes/twm.h	/^    short forced;		\/* has had an icon forced upon it *\/$/;"	m	struct:TwmWindow
+fore	includes/iconmgr.h	/^    Pixel fore, back, highlight;$/;"	m	struct:WList
+fore	includes/menus.h	/^    Pixel fore;			\/* foreground color *\/$/;"	m	struct:MenuItem
+fore	includes/twm.h	/^    Pixel fore, back;$/;"	m	struct:ColorPair
+frame	includes/twm.h	/^    Window frame;		\/* the frame window *\/$/;"	m	struct:TwmWindow
+frame_bw	includes/twm.h	/^    int frame_bw;		\/* borderwidth of frame *\/$/;"	m	struct:TwmWindow
+frame_height	includes/twm.h	/^    int frame_height;		\/* height of frame *\/$/;"	m	struct:TwmWindow
+frame_width	includes/twm.h	/^    int frame_width;		\/* width of frame *\/$/;"	m	struct:TwmWindow
+frame_x	includes/twm.h	/^    int frame_x;		\/* x position of frame *\/$/;"	m	struct:TwmWindow
+frame_y	includes/twm.h	/^    int frame_y;		\/* y position of frame *\/$/;"	m	struct:TwmWindow
+free_cwins	src/events.c	/^void free_cwins (TwmWindow *tmp)$/;"	f
+free_window_names	src/events.c	/^static void free_window_names (TwmWindow *tmp, Bool nukefull, Bool nukename, Bool nukeicon) {$/;"	f	file:
+fromMenu	src/menus.c	/^static Bool fromMenu;$/;"	v	file:
+full	src/gram.y	/^full		: EQUALS keys COLON contexts COLON action  { $$ = $6; }$/;"	l
+full_name	includes/twm.h	/^    char *full_name;		\/* full name of the window *\/$/;"	m	struct:TwmWindow
+fullkey	src/gram.y	/^fullkey		: EQUALS keys COLON contextkeys COLON action  { $$ = $6; }$/;"	l
+fullzoom	src/resize.c	/^fullzoom(TwmWindow *tmp_win, int flag) {$/;"	f
+func	includes/menus.h	/^    int func;			\/* function to perform *\/$/;"	m	struct:FuncKey
+func	includes/menus.h	/^    int func;			\/* the function number *\/$/;"	m	struct:MouseButton
+func	includes/menus.h	/^    short func;			\/* twm built in function *\/$/;"	m	struct:MenuItem
+func	includes/twm.h	/^    int func;				\/* function to execute *\/$/;"	m	struct:_TitleButton
+function	src/gram.y	/^function	: LB function_entries RB$/;"	l
+function_entries	src/gram.y	/^function_entries: \/* Empty *\/$/;"	l
+function_entry	src/gram.y	/^function_entry	: action		{ AddToMenu(root, "", Action, NULLSTR, $1,$/;"	l
+geometry	includes/iconmgr.h	/^    char *geometry;			\/* geometry string *\/$/;"	m	struct:IconMgr
+get_display_number_from_coordinate	src/xinerama.c	/^int get_display_number_from_coordinate(unsigned int x, unsigned int y) {$/;"	f
+get_screen_count	src/xinerama.c	/^int get_screen_count(void) {$/;"	f
+get_screen_height	src/xinerama.c	/^int get_screen_height(int screen_id) {$/;"	f
+get_screen_info	src/xinerama.c	/^XineramaScreenInfo *get_screen_info(void) {$/;"	f
+get_screen_org_x	src/xinerama.c	/^int get_screen_org_x(int screen_id) {$/;"	f
+get_screen_org_y	src/xinerama.c	/^int get_screen_org_y(int screen_id) {$/;"	f
+get_screen_width	src/xinerama.c	/^int get_screen_width(int screen_id) {$/;"	f
+gotFirstSave	src/session.c	/^Bool gotFirstSave = 0;$/;"	v
+grav1	includes/icons.h	/^    int			grav1, grav2;$/;"	m	struct:IconRegion
+grav2	includes/icons.h	/^    int			grav1, grav2;$/;"	m	struct:IconRegion
+gray	includes/twm.h	/^    Pixmap gray;$/;"	m	struct:TwmWindow
+gray_bits	src/add_window.c	/^static char gray_bits[] = {$/;"	v	file:
+gray_height	src/add_window.c	79;"	d	file:
+gray_width	src/add_window.c	78;"	d	file:
+group	includes/twm.h	/^    Window group;		\/* group ID *\/$/;"	m	struct:TwmWindow
+h	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconEntry
+h	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconRegion
+head	includes/screen.h	/^	StdCmap *head, *tail;		\/* list of maps *\/$/;"	m	struct:ScreenInfo::__anon4
+head	includes/screen.h	/^	TitleButton *head;		\/* start of list *\/$/;"	m	struct:ScreenInfo::__anon5
+height	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:IconMgr
+height	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:WList
+height	includes/menus.h	/^    short height;		\/* height of the menu *\/$/;"	m	struct:MenuRoot
+height	includes/twm.h	/^    int height;			\/* height of the font *\/$/;"	m	struct:MyFont
+height	includes/twm.h	/^    unsigned int width, height;		\/* size of pixmap *\/$/;"	m	struct:_TitleButton
+height	includes/twm.h	/^    unsigned short width, height;$/;"	m	struct:TWMWinConfigEntry
+height	includes/xinerama.h	/^  unsigned int width, height;$/;"	m	struct:__anon2
+heightEverChangedByUser	includes/twm.h	/^    Bool heightEverChangedByUser;$/;"	m	struct:TwmWindow
+height_ever_changed_by_user	includes/twm.h	/^    Bool height_ever_changed_by_user;$/;"	m	struct:TWMWinConfigEntry
+hi_back	includes/menus.h	/^    Pixel hi_back;		\/* highlight background *\/$/;"	m	struct:MenuItem
+hi_back	includes/menus.h	/^    Pixel hi_back;		\/* highlight background *\/$/;"	m	struct:MenuRoot
+hi_fore	includes/menus.h	/^    Pixel hi_fore;		\/* highlight foreground *\/$/;"	m	struct:MenuItem
+hi_fore	includes/menus.h	/^    Pixel hi_fore;		\/* highlight foreground *\/$/;"	m	struct:MenuRoot
+highlight	includes/iconmgr.h	/^    Pixel fore, back, highlight;$/;"	m	struct:WList
+highlight	includes/twm.h	/^    short highlight;		\/* should highlight this window *\/$/;"	m	struct:TwmWindow
+highlightx	includes/twm.h	/^    int highlightx;		\/* start of highlight window *\/$/;"	m	struct:TwmWindow
+hilitePm	includes/screen.h	/^    Pixmap hilitePm;		\/* focus highlight window background *\/$/;"	m	struct:ScreenInfo
+hilite_pm_height	includes/screen.h	/^    int hilite_pm_width, hilite_pm_height;  \/* cache the size *\/$/;"	m	struct:ScreenInfo
+hilite_pm_width	includes/screen.h	/^    int hilite_pm_width, hilite_pm_height;  \/* cache the size *\/$/;"	m	struct:ScreenInfo
+hilite_w	includes/twm.h	/^    Window hilite_w;		\/* the hilite window *\/$/;"	m	struct:TwmWindow
+hints	includes/twm.h	/^    XSizeHints hints;		\/* normal hints *\/$/;"	m	struct:TwmWindow
+i	src/parse.c	/^    int i;$/;"	m	struct:_cnode	file:
+iceInputId	src/session.c	/^XtInputId iceInputId;$/;"	v
+icon	includes/iconmgr.h	/^    Window icon;$/;"	m	struct:WList
+icon	includes/twm.h	/^    short icon;			\/* is the window an icon now ? *\/$/;"	m	struct:TwmWindow
+iconHeight	src/icons.c	46;"	d	file:
+iconWidth	src/icons.c	45;"	d	file:
+icon_bm_w	includes/twm.h	/^    Window icon_bm_w;		\/* the icon bitmap window *\/$/;"	m	struct:TwmWindow
+icon_border	includes/twm.h	/^    Pixel icon_border;		\/* border color *\/$/;"	m	struct:TwmWindow
+icon_entries	src/gram.y	/^icon_entries	: \/* Empty *\/$/;"	l
+icon_entry	src/gram.y	/^icon_entry	: string string		{ if (Scr->FirstTime) AddToList(list, $1, $2); }$/;"	l
+icon_height	includes/twm.h	/^    int icon_height;		\/* height of the icon bitmap *\/$/;"	m	struct:TwmWindow
+icon_info_present	includes/twm.h	/^    Bool icon_info_present;$/;"	m	struct:TWMWinConfigEntry
+icon_list	src/gram.y	/^icon_list	: LB icon_entries RB$/;"	l
+icon_moved	includes/twm.h	/^    short icon_moved;		\/* user explicitly moved the icon *\/$/;"	m	struct:TwmWindow
+icon_name	includes/iconmgr.h	/^    char *icon_name;$/;"	m	struct:IconMgr
+icon_name	includes/twm.h	/^    char *icon_name;		\/* name of the icon *\/$/;"	m	struct:TwmWindow
+icon_not_ours	includes/twm.h	/^    short icon_not_ours;	\/* icon pixmap or window supplied to us *\/$/;"	m	struct:TwmWindow
+icon_on	includes/twm.h	/^    short icon_on;		\/* is the icon visible *\/$/;"	m	struct:TwmWindow
+icon_w	includes/twm.h	/^    Window icon_w;		\/* the icon window *\/$/;"	m	struct:TwmWindow
+icon_w_height	includes/twm.h	/^    int icon_w_height;		\/* height of the icon window *\/$/;"	m	struct:TwmWindow
+icon_w_width	includes/twm.h	/^    int icon_w_width;		\/* width of the icon window *\/$/;"	m	struct:TwmWindow
+icon_width	includes/twm.h	/^    int icon_width;		\/* width of the icon bitmap *\/$/;"	m	struct:TwmWindow
+icon_x	includes/twm.h	/^    int icon_x;			\/* icon text x coordinate *\/$/;"	m	struct:TwmWindow
+icon_x	includes/twm.h	/^    short icon_x, icon_y;$/;"	m	struct:TWMWinConfigEntry
+icon_y	includes/twm.h	/^    int icon_y;			\/* icon text y coordiante *\/$/;"	m	struct:TwmWindow
+icon_y	includes/twm.h	/^    short icon_x, icon_y;$/;"	m	struct:TWMWinConfigEntry
+iconc	includes/twm.h	/^    ColorPair iconc;$/;"	m	struct:TwmWindow
+iconified	includes/twm.h	/^    Bool iconified;$/;"	m	struct:TWMWinConfigEntry
+iconified	includes/twm.h	/^    short iconified;		\/* has the window ever been iconified? *\/$/;"	m	struct:TwmWindow
+iconify_by_unmapping	includes/twm.h	/^    short iconify_by_unmapping;	\/* unmap window to iconify it *\/$/;"	m	struct:TwmWindow
+iconifybox_height	src/iconmgr.c	/^int iconifybox_height = siconify_height;$/;"	v
+iconifybox_width	src/iconmgr.c	/^int iconifybox_width = siconify_width;$/;"	v
+iconm_entries	src/gram.y	/^iconm_entries	: \/* Empty *\/$/;"	l
+iconm_entry	src/gram.y	/^iconm_entry	: string string number	{ if (Scr->FirstTime)$/;"	l
+iconm_list	src/gram.y	/^iconm_list	: LB iconm_entries RB$/;"	l
+iconmgr	includes/iconmgr.h	/^    struct IconMgr *iconmgr;$/;"	m	struct:WList	typeref:struct:WList::IconMgr
+iconmgr	includes/screen.h	/^    IconMgr iconmgr;		\/* default icon manager *\/$/;"	m	struct:ScreenInfo
+iconmgr	includes/twm.h	/^    short iconmgr;		\/* this is an icon manager window *\/$/;"	m	struct:TwmWindow
+iconmgr_textx	src/iconmgr.c	/^int iconmgr_textx = siconify_width+11;$/;"	v
+iconmgrp	includes/twm.h	/^    struct IconMgr *iconmgrp;	\/* pointer to it if this is an icon manager *\/$/;"	m	struct:TwmWindow	typeref:struct:TwmWindow::IconMgr
+inferior	src/events.c	/^    Bool inferior;	\/* Was NotifyInferior the mode for LeaveNotify *\/$/;"	m	struct:HENScanArgs	file:
+info	includes/twm.h	/^    TitleButton *info;			\/* description of this window *\/$/;"	m	struct:_TBWindow
+init_xinerama	src/xinerama.c	/^void init_xinerama(void) {$/;"	f
+input	src/lex.c	2015;"	d	file:
+input	src/lex.c	2019;"	d	file:
+install_req	includes/twm.h	/^    unsigned long install_req;	\/* request number which installed it *\/$/;"	m	struct:TwmColormap
+is_accessible_address	src/accessible_addr.c	/^int is_accessible_address(void *p) {$/;"	f
+is_enable_xinerama	src/xinerama.c	/^Bool is_enable_xinerama;$/;"	v
+isokay	src/events.c	707;"	d	file:
+isokay	src/events.c	711;"	d	file:
+item	includes/menus.h	/^    MenuItem *item;		\/* action to perform if func != F_MENU *\/$/;"	m	struct:MouseButton
+item	includes/menus.h	/^    char *item;			\/* the character string displayed *\/$/;"	m	struct:MenuItem
+item_num	includes/menus.h	/^    short item_num;		\/* item number of this menu *\/$/;"	m	struct:MenuItem
+items	includes/menus.h	/^    short items;		\/* number of items in the menu *\/$/;"	m	struct:MenuRoot
+justify	includes/twm.h	/^    int justify;			\/* left, center, right *\/$/;"	m	struct:_SqueezeInfo
+key	src/gram.y	/^key		: META			{ mods |= Mod1Mask; }$/;"	l
+keycode	includes/menus.h	/^    KeyCode keycode;		\/* X keycode *\/$/;"	m	struct:FuncKey
+keys	src/gram.y	/^keys		: \/* Empty *\/$/;"	l
+keysym	includes/menus.h	/^    KeySym keysym;		\/* X keysym *\/$/;"	m	struct:FuncKey
+keytable	src/parse.c	/^static TwmKeyword keytable[] = {$/;"	v	file:
+kw0_AutoRelativeResize	src/parse.c	334;"	d	file:
+kw0_ClientBorderWidth	src/parse.c	350;"	d	file:
+kw0_DecorateTransients	src/parse.c	353;"	d	file:
+kw0_DontMoveOff	src/parse.c	346;"	d	file:
+kw0_ForceIcons	src/parse.c	335;"	d	file:
+kw0_InterpolateMenuColors	src/parse.c	338;"	d	file:
+kw0_NoBackingStore	src/parse.c	347;"	d	file:
+kw0_NoCaseSensitive	src/parse.c	355;"	d	file:
+kw0_NoDefaults	src/parse.c	333;"	d	file:
+kw0_NoGrabServer	src/parse.c	341;"	d	file:
+kw0_NoIconManagers	src/parse.c	336;"	d	file:
+kw0_NoMenuShadows	src/parse.c	342;"	d	file:
+kw0_NoRaiseOnDeiconify	src/parse.c	345;"	d	file:
+kw0_NoRaiseOnMove	src/parse.c	343;"	d	file:
+kw0_NoRaiseOnResize	src/parse.c	344;"	d	file:
+kw0_NoRaiseOnWarp	src/parse.c	356;"	d	file:
+kw0_NoSaveUnders	src/parse.c	348;"	d	file:
+kw0_NoTitleFocus	src/parse.c	351;"	d	file:
+kw0_NoVersion	src/parse.c	339;"	d	file:
+kw0_OpaqueMove	src/parse.c	337;"	d	file:
+kw0_RandomPlacement	src/parse.c	352;"	d	file:
+kw0_RestartPreviousState	src/parse.c	349;"	d	file:
+kw0_ShowIconManager	src/parse.c	354;"	d	file:
+kw0_SortIconManager	src/parse.c	340;"	d	file:
+kw0_WarpUnmapped	src/parse.c	357;"	d	file:
+kwc_DefaultBackground	src/parse.c	393;"	d	file:
+kwc_DefaultForeground	src/parse.c	392;"	d	file:
+kwc_MenuBackground	src/parse.c	395;"	d	file:
+kwc_MenuForeground	src/parse.c	394;"	d	file:
+kwc_MenuShadowColor	src/parse.c	398;"	d	file:
+kwc_MenuTitleBackground	src/parse.c	397;"	d	file:
+kwc_MenuTitleForeground	src/parse.c	396;"	d	file:
+kwc_PointerBackground	src/parse.c	400;"	d	file:
+kwc_PointerForeground	src/parse.c	399;"	d	file:
+kwcl_BorderColor	src/parse.c	380;"	d	file:
+kwcl_BorderTileBackground	src/parse.c	383;"	d	file:
+kwcl_BorderTileForeground	src/parse.c	382;"	d	file:
+kwcl_IconBackground	src/parse.c	387;"	d	file:
+kwcl_IconBorderColor	src/parse.c	388;"	d	file:
+kwcl_IconForeground	src/parse.c	386;"	d	file:
+kwcl_IconManagerBackground	src/parse.c	390;"	d	file:
+kwcl_IconManagerForeground	src/parse.c	389;"	d	file:
+kwcl_IconManagerHighlight	src/parse.c	381;"	d	file:
+kwcl_TitleBackground	src/parse.c	385;"	d	file:
+kwcl_TitleForeground	src/parse.c	384;"	d	file:
+kwn_BorderWidth	src/parse.c	375;"	d	file:
+kwn_ButtonIndent	src/parse.c	374;"	d	file:
+kwn_ConstrainedMoveTime	src/parse.c	369;"	d	file:
+kwn_FramePadding	src/parse.c	372;"	d	file:
+kwn_IconBorderWidth	src/parse.c	376;"	d	file:
+kwn_MoveDelta	src/parse.c	370;"	d	file:
+kwn_Priority	src/parse.c	378;"	d	file:
+kwn_TitleButtonBorderWidth	src/parse.c	377;"	d	file:
+kwn_TitlePadding	src/parse.c	373;"	d	file:
+kwn_XorValue	src/parse.c	371;"	d	file:
+kws_IconDirectory	src/parse.c	366;"	d	file:
+kws_IconFont	src/parse.c	360;"	d	file:
+kws_IconManagerFont	src/parse.c	364;"	d	file:
+kws_MaxWindowSize	src/parse.c	367;"	d	file:
+kws_MenuFont	src/parse.c	362;"	d	file:
+kws_ResizeFont	src/parse.c	361;"	d	file:
+kws_TitleFont	src/parse.c	363;"	d	file:
+kws_UnknownIcon	src/parse.c	365;"	d	file:
+kws_UsePPosition	src/parse.c	359;"	d	file:
+last	includes/iconmgr.h	/^    struct WList *last;			\/* last window in the list *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::WList
+last	includes/menus.h	/^    struct MenuItem *last;	\/* last item in menu *\/$/;"	m	struct:MenuRoot	typeref:struct:MenuRoot::MenuItem
+lastTimestamp	src/events.c	/^Time lastTimestamp = CurrentTime;	\/* until Xlib does this for us *\/$/;"	v
+last_height	src/resize.c	/^static int last_height;$/;"	v	file:
+last_width	src/resize.c	/^static int last_width;$/;"	v	file:
+lasti	includes/iconmgr.h	/^    struct IconMgr *lasti;		\/* pointer to the last icon mgr *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::IconMgr
+leaves	src/events.c	/^    Bool leaves;	\/* Any LeaveNotifies found for this window *\/$/;"	m	struct:HENScanArgs	file:
+leftx	includes/screen.h	/^	int leftx;			\/* start of left buttons *\/$/;"	m	struct:ScreenInfo::__anon5
+len	src/parse.c	/^static int len = 0;$/;"	v	file:
+list	includes/twm.h	/^    struct WList *list;$/;"	m	struct:TwmWindow	typeref:struct:TwmWindow::WList
+list	src/gram.c	/^static name_list **list;$/;"	v	file:
+main	src/twm.c	/^int main(int argc, char **argv, char **environ) {$/;"	f
+makemult	src/resize.c	629;"	d	file:
+mapped	includes/menus.h	/^    short mapped;		\/* NEVER_MAPPED, UNMAPPED, or MAPPED *\/$/;"	m	struct:MenuRoot
+mapped	includes/twm.h	/^    short mapped;		\/* is the window mapped ? *\/$/;"	m	struct:TwmWindow
+maps	includes/screen.h	/^    XStandardColormap *maps;		\/* the actual maps *\/$/;"	m	struct:_StdCmap
+mask	includes/menus.h	/^    int mask;			\/* modifier mask *\/$/;"	m	struct:MouseButton
+matches	src/events.c	/^    Bool matches;	\/* Any matching EnterNotify events *\/$/;"	m	struct:HLNScanArgs	file:
+maxAspectX	src/resize.c	692;"	d	file:
+maxAspectY	src/resize.c	693;"	d	file:
+maxCmaps	includes/screen.h	/^      int maxCmaps;		\/* maximum number of installed colormaps *\/$/;"	m	struct:ScreenInfo::__anon3
+me	includes/iconmgr.h	/^    int me;$/;"	m	struct:WList
+menu	includes/menus.h	/^    MenuRoot *menu;		\/* menu if func is F_MENU *\/$/;"	m	struct:MouseButton
+menu	includes/screen.h	/^    Pixmap menu;$/;"	m	struct:_TitlebarPixmaps
+menu	src/gram.y	/^menu		: LB menu_entries RB$/;"	l
+menuFromFrameOrWindowOrTitlebar	src/menus.c	/^int menuFromFrameOrWindowOrTitlebar = FALSE;$/;"	v
+menu_entries	src/gram.y	/^menu_entries	: \/* Empty *\/$/;"	l
+menu_entry	src/gram.y	/^menu_entry	: string action		{ AddToMenu(root, $1, Action, pull, $2,$/;"	l
+menuroot	includes/twm.h	/^    struct MenuRoot *menuroot;		\/* menu to pop on F_MENU *\/$/;"	m	struct:_TitleButton	typeref:struct:_TitleButton::MenuRoot
+mergeEntries	src/icons.c	/^static void mergeEntries (IconEntry	*old, IconEntry *ie) {$/;"	f	file:
+minAspectX	src/resize.c	694;"	d	file:
+minAspectY	src/resize.c	695;"	d	file:
+mods	includes/menus.h	/^    int mods;			\/* modifiers *\/$/;"	m	struct:FuncKey
+mods	src/gram.c	/^int mods = 0;$/;"	v
+mods_used	src/gram.c	/^unsigned int mods_used = (ShiftMask | ControlMask | Mod1Mask);$/;"	v
+mru	includes/screen.h	/^	StdCmap *mru;			\/* most recently used in list *\/$/;"	m	struct:ScreenInfo::__anon4
+mruindex	includes/screen.h	/^	int mruindex;			\/* index of mru in entry *\/$/;"	m	struct:ScreenInfo::__anon4
+name	includes/iconmgr.h	/^    char *name;$/;"	m	struct:IconMgr
+name	includes/menus.h	/^    char *name;			\/* key name *\/$/;"	m	struct:FuncKey
+name	includes/menus.h	/^    char *name;			\/* name of root *\/$/;"	m	struct:MenuRoot
+name	includes/twm.h	/^    char *name;				\/* bitmap name in case of deferal *\/$/;"	m	struct:_TitleButton
+name	includes/twm.h	/^    char *name;			\/* name of the font *\/$/;"	m	struct:MyFont
+name	includes/twm.h	/^    char *name;			\/* name of the window *\/$/;"	m	struct:TwmWindow
+name	src/cursor.c	/^    char		*name;$/;"	m	struct:_CursorName	file:
+name	src/list.c	/^    char *name;			\/* the name of the window *\/$/;"	m	struct:name_list_struct	file:
+name	src/parse.c	/^    char *name;$/;"	m	struct:_TwmKeyword	file:
+nameChanged	includes/twm.h	/^    Bool nameChanged;	\/* did WM_NAME ever change? *\/$/;"	m	struct:TwmWindow
+name_list	includes/list.h	/^typedef struct name_list_struct name_list;$/;"	t	typeref:struct:name_list_struct
+name_list_struct	src/list.c	/^struct name_list_struct {$/;"	s	file:
+name_width	includes/twm.h	/^    int name_width;		\/* width of name text *\/$/;"	m	struct:TwmWindow
+narg	src/gram.y	/^narg		: NKEYWORD number	{ if (!do_number_keyword ($1, $2)) {$/;"	l
+newhandler	src/twm.c	225;"	d	file:
+newhandler	src/twm.c	233;"	d	file:
+next	includes/iconmgr.h	/^    struct IconMgr *next;		\/* pointer to the next icon manager *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::IconMgr
+next	includes/iconmgr.h	/^    struct WList *next;$/;"	m	struct:WList	typeref:struct:WList::WList
+next	includes/icons.h	/^    struct IconEntry	*next;$/;"	m	struct:IconEntry	typeref:struct:IconEntry::IconEntry
+next	includes/icons.h	/^    struct IconRegion	*next;$/;"	m	struct:IconRegion	typeref:struct:IconRegion::IconRegion
+next	includes/menus.h	/^    struct FuncKey *next;	\/* next in the list of function keys *\/$/;"	m	struct:FuncKey	typeref:struct:FuncKey::FuncKey
+next	includes/menus.h	/^    struct MenuItem *next;	\/* next menu item *\/$/;"	m	struct:MenuItem	typeref:struct:MenuItem::MenuItem
+next	includes/menus.h	/^    struct MenuRoot *next;	\/* next in list of root menus *\/$/;"	m	struct:MenuRoot	typeref:struct:MenuRoot::MenuRoot
+next	includes/screen.h	/^    struct _StdCmap *next;		\/* next link in chain *\/$/;"	m	struct:_StdCmap	typeref:struct:_StdCmap::_StdCmap
+next	includes/twm.h	/^	struct TwmWindow *next, *prev;$/;"	m	struct:TwmWindow::__anon1	typeref:struct:TwmWindow::__anon1::TwmWindow
+next	includes/twm.h	/^    struct TWMWinConfigEntry *next;$/;"	m	struct:TWMWinConfigEntry	typeref:struct:TWMWinConfigEntry::TWMWinConfigEntry
+next	includes/twm.h	/^    struct TwmWindow *next;	\/* next twm window *\/$/;"	m	struct:TwmWindow	typeref:struct:TwmWindow::TwmWindow
+next	includes/twm.h	/^    struct _TitleButton *next;		\/* next link in chain *\/$/;"	m	struct:_TitleButton	typeref:struct:_TitleButton::_TitleButton
+next	src/list.c	/^    name_list *next;		\/* pointer to the next name *\/$/;"	m	struct:name_list_struct	file:
+next	src/parse.c	/^    struct _cnode *next;$/;"	m	struct:_cnode	typeref:struct:_cnode::_cnode	file:
+nleft	includes/screen.h	/^	int nleft, nright;		\/* numbers of buttons in list *\/$/;"	m	struct:ScreenInfo::__anon5
+nmaps	includes/screen.h	/^    int nmaps;				\/* number of maps below *\/$/;"	m	struct:_StdCmap
+noarg	src/gram.y	/^noarg		: KEYWORD		{ if (!do_single_keyword ($1)) {$/;"	l
+nright	includes/screen.h	/^	int nleft, nright;		\/* numbers of buttons in list *\/$/;"	m	struct:ScreenInfo::__anon5
+num	includes/gram.h	/^    int num;$/;"	m	union:YYSTYPE
+num	includes/twm.h	/^    int num;				\/* signed pixel count or numerator *\/$/;"	m	struct:_SqueezeInfo
+num	src/gram.c	/^    int num;$/;"	m	union:YYSTYPE	file:
+number	src/gram.y	/^number		: NUMBER		{ $$ = $1; }$/;"	l
+number_cwins	includes/twm.h	/^    int number_cwins;		\/* number of elements in current list *\/$/;"	m	struct:Colormaps
+numkeywords	src/parse.c	/^static int numkeywords = (sizeof(keytable)\/sizeof(keytable[0]));$/;"	v	file:
+old_bw	includes/twm.h	/^    int old_bw;			\/* border width before reparenting *\/$/;"	m	struct:TwmWindow
+org_x	includes/xinerama.h	/^  unsigned int org_x, org_y;$/;"	m	struct:__anon2
+org_y	includes/xinerama.h	/^  unsigned int org_x, org_y;$/;"	m	struct:__anon2
+origDragX	src/events.c	/^int origDragX;$/;"	v
+origDragY	src/events.c	/^int origDragY;$/;"	v
+origHeight	src/resize.c	/^static int origHeight;$/;"	v	file:
+origWidth	src/resize.c	/^static int origWidth;$/;"	v	file:
+origx	src/resize.c	/^static int origx;$/;"	v	file:
+origy	src/resize.c	/^static int origy;$/;"	v	file:
+output	src/lex.c	2016;"	d	file:
+output	src/lex.c	2020;"	d	file:
+overflowbuff	src/parse.c	/^static char overflowbuff[20];		\/* really only need one *\/$/;"	v	file:
+overflowlen	src/parse.c	/^static int overflowlen;$/;"	v	file:
+pad	includes/screen.h	/^	int pad;			\/* button-padding *\/$/;"	m	struct:ScreenInfo::__anon5
+parse_keyword	src/parse.c	/^int parse_keyword (char *s, int *nump) {$/;"	f
+pixmap_entries	src/gram.y	/^pixmap_entries	: \/* Empty *\/$/;"	l
+pixmap_entry	src/gram.y	/^pixmap_entry	: TITLE_HILITE string { SetHighlightPixmap ($2); }$/;"	l
+pixmap_list	src/gram.y	/^pixmap_list	: LB pixmap_entries RB$/;"	l
+prev	includes/iconmgr.h	/^    struct IconMgr *prev;		\/* pointer to the previous icon mgr *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::IconMgr
+prev	includes/iconmgr.h	/^    struct WList *prev;$/;"	m	struct:WList	typeref:struct:WList::WList
+prev	includes/menus.h	/^    struct MenuItem *prev;	\/* prev menu item *\/$/;"	m	struct:MenuItem	typeref:struct:MenuItem::MenuItem
+prev	includes/menus.h	/^    struct MenuRoot *prev;	\/* previous root menu if pull right *\/$/;"	m	struct:MenuRoot	typeref:struct:MenuRoot::MenuRoot
+prev	includes/twm.h	/^	struct TwmWindow *next, *prev;$/;"	m	struct:TwmWindow::__anon1	typeref:struct:TwmWindow::__anon1::
+prev	includes/twm.h	/^    struct TwmWindow *prev;	\/* previous twm window *\/$/;"	m	struct:TwmWindow	typeref:struct:TwmWindow::TwmWindow
+prevIconEntry	src/icons.c	/^static IconEntry *prevIconEntry (IconEntry	*ie, IconRegion	*ir) {$/;"	f	file:
+protocols	includes/twm.h	/^    unsigned long protocols;	\/* which protocols this window handles *\/$/;"	m	struct:TwmWindow
+ptr	includes/gram.h	/^    char *ptr;$/;"	m	union:YYSTYPE
+ptr	src/gram.c	/^    char *ptr;$/;"	m	union:YYSTYPE	file:
+ptr	src/gram.c	/^static char *ptr;$/;"	v	file:
+ptr	src/list.c	/^    char *ptr;			\/* list dependent data *\/$/;"	m	struct:name_list_struct	file:
+ptr	src/parse.c	/^static int ptr = 0;$/;"	v	file:
+pull	includes/menus.h	/^    short pull;			\/* is there a pull right entry ? *\/$/;"	m	struct:MenuRoot
+pull	src/gram.c	/^static MenuRoot	*root, *pull = NULL;$/;"	v	file:
+pullH	includes/screen.h	/^    int	pullW, pullH;		\/* size of pull right menu icon *\/$/;"	m	struct:ScreenInfo
+pullPm	includes/screen.h	/^    Pixmap pullPm;		\/* pull right menu icon *\/$/;"	m	struct:ScreenInfo
+pullW	includes/screen.h	/^    int	pullW, pullH;		\/* size of pull right menu icon *\/$/;"	m	struct:ScreenInfo
+pushed_window	includes/screen.h	/^      TwmWindow *pushed_window;	\/* saved window to install when pushes drops$/;"	m	struct:ScreenInfo::__anon3
+put_pixel_on_root	src/parse.c	/^void put_pixel_on_root(Pixel pixel) {$/;"	f
+putenv	src/util.c	/^int putenv(char *s) {$/;"	f
+question	includes/screen.h	/^    Pixmap question;$/;"	m	struct:_TitlebarPixmaps
+questionmark_bits	src/util.c	/^static char questionmark_bits[] = {$/;"	v	file:
+questionmark_height	src/util.c	791;"	d	file:
+questionmark_width	src/util.c	790;"	d	file:
+raise_win	src/events.c	/^static TwmWindow *enter_win, *raise_win;$/;"	v	file:
+read_byte	src/session.c	/^int read_byte (FILE *file, unsigned char *bp) {$/;"	f
+read_counted_string	src/session.c	/^int read_counted_string (FILE *file, char **stringp) {$/;"	f
+read_short	src/session.c	/^int read_short (FILE *file, short *shortp) {$/;"	f
+read_ushort	src/session.c	/^int read_ushort (FILE *file, unsigned short *shortp) {$/;"	f
+real_menu	includes/menus.h	/^    short real_menu;		\/* this is a real menu *\/$/;"	m	struct:MenuRoot
+refcnt	includes/twm.h	/^    int refcnt;$/;"	m	struct:ColormapWindow
+refcnt	includes/twm.h	/^    int refcnt;$/;"	m	struct:TwmColormap
+remove_window_from_ring	src/events.c	/^static void remove_window_from_ring (TwmWindow *tmp) {$/;"	f	file:
+resize	includes/screen.h	/^    Pixmap resize;$/;"	m	struct:_TitlebarPixmaps
+resizeFromCenter	src/menus.c	/^void resizeFromCenter(Window w, TwmWindow *tmp_win) {$/;"	f
+rightoff	includes/screen.h	/^	int rightoff;			\/* offset back from right edge *\/$/;"	m	struct:ScreenInfo::__anon5
+rightside	includes/twm.h	/^    Bool rightside;			\/* t: on right, f: on left *\/$/;"	m	struct:_TitleButton
+rightx	includes/twm.h	/^    int rightx;			\/* start of right buttons *\/$/;"	m	struct:TwmWindow
+ring	includes/twm.h	/^    } ring;$/;"	m	struct:TwmWindow	typeref:struct:TwmWindow::__anon1
+root	includes/menus.h	/^    struct MenuRoot *root;	\/* back pointer to my MenuRoot *\/$/;"	m	struct:MenuItem	typeref:struct:MenuItem::MenuRoot
+root	src/gram.c	/^static MenuRoot	*root, *pull = NULL;$/;"	v	file:
+root_pushes	includes/screen.h	/^      int root_pushes;		\/* current push level to install root$/;"	m	struct:ScreenInfo::__anon3
+roundUp	src/icons.c	/^int roundUp (int v, int multiple) {$/;"	f
+row	includes/iconmgr.h	/^    int row, col;$/;"	m	struct:WList
+s_color_entries	src/gram.y	/^s_color_entries : \/* Empty *\/$/;"	l
+s_color_entry	src/gram.y	/^s_color_entry   : string            { do_string_savecolor(color, $1); }$/;"	l
+sarg	src/gram.y	/^sarg		: SKEYWORD string	{ if (!do_string_keyword ($1, $2)) {$/;"	l
+save_color_list	src/gram.y	/^save_color_list : LB s_color_entries RB $/;"	l
+save_frame_height	includes/twm.h	/^    int save_frame_height;	\/* height of frame *\/$/;"	m	struct:TwmWindow
+save_frame_width	includes/twm.h	/^    int save_frame_width;	\/* width of frame *\/$/;"	m	struct:TwmWindow
+save_frame_x	includes/twm.h	/^    int save_frame_x;		\/* x position of frame *\/$/;"	m	struct:TwmWindow
+save_frame_y	includes/twm.h	/^    int save_frame_y;		\/* y position of frame *\/$/;"	m	struct:TwmWindow
+scoreboard	includes/twm.h	/^    char *scoreboard;		\/* conflicts between installable colortables *\/$/;"	m	struct:Colormaps
+scr	includes/iconmgr.h	/^    struct ScreenInfo *scr;		\/* the screen this thing is on *\/$/;"	m	struct:IconMgr	typeref:struct:IconMgr::ScreenInfo
+screen	includes/screen.h	/^    int screen;			\/* the default screen *\/$/;"	m	struct:ScreenInfo
+send_clientmessage	src/menus.c	/^static void send_clientmessage (Window w, Atom a, Time timestamp) {$/;"	f	file:
+sent_save_done	src/session.c	/^Bool sent_save_done = 0;$/;"	v
+shadow	includes/menus.h	/^    Window shadow;		\/* the shadow window *\/$/;"	m	struct:MenuRoot
+shape	src/cursor.c	/^    unsigned int	shape;$/;"	m	struct:_CursorName	file:
+short	src/gram.c	310;"	d	file:
+siconifyPm	includes/screen.h	/^    Pixmap siconifyPm;		\/* the icon manager iconify pixmap *\/$/;"	m	struct:ScreenInfo
+signed_number	src/gram.y	/^signed_number	: number		{ $$ = $1; }$/;"	l
+smcConn	src/session.c	/^SmcConn smcConn = NULL;$/;"	v
+splitEntry	src/icons.c	/^static int splitEntry (IconEntry	*ie, int grav1, int grav2, int w, int h) {$/;"	f	file:
+squeeze	src/gram.y	/^squeeze		: SQUEEZE_TITLE { $/;"	l
+squeeze_info	includes/twm.h	/^    SqueezeInfo *squeeze_info;	\/* should the title be squeezed? *\/$/;"	m	struct:TwmWindow
+srcx	includes/twm.h	/^    int srcx, srcy;			\/* from where to start copying *\/$/;"	m	struct:_TitleButton
+srcy	includes/twm.h	/^    int srcx, srcy;			\/* from where to start copying *\/$/;"	m	struct:_TitleButton
+stackmode	includes/twm.h	/^    short stackmode;		\/* honor stackmode requests *\/$/;"	m	struct:TwmWindow
+state	includes/menus.h	/^    short state;		\/* video state, 0 = normal, 1 = reversed *\/$/;"	m	struct:MenuItem
+state	includes/twm.h	/^    int state;			\/* install(ability) state *\/$/;"	m	struct:TwmColormap
+stepx	includes/icons.h	/^    int			stepx, stepy;	\/* allocation granularity *\/$/;"	m	struct:IconRegion
+stepy	includes/icons.h	/^    int			stepx, stepy;	\/* allocation granularity *\/$/;"	m	struct:IconRegion
+stmt	src/gram.y	/^stmt		: error$/;"	l
+stmts	src/gram.y	/^stmts		: \/* Empty *\/$/;"	l
+string	src/gram.y	/^string		: STRING		{ ptr = (char *)malloc(strlen($1)+1);$/;"	l
+stringListSource	src/parse.c	/^static char **stringListSource, *currentString;$/;"	v	file:
+strlen	includes/menus.h	/^    short strlen;		\/* strlen(item) *\/$/;"	m	struct:MenuItem
+sub	includes/menus.h	/^    struct MenuRoot *sub;	\/* MenuRoot of a pull right menu *\/$/;"	m	struct:MenuItem	typeref:struct:MenuItem::MenuRoot
+subnum	src/parse.c	/^    int subnum;$/;"	m	struct:_TwmKeyword	file:
+system	src/menus.c	2283;"	d	file:
+tag	includes/twm.h	/^    int tag;$/;"	m	struct:TWMWinConfigEntry
+tail	includes/screen.h	/^	StdCmap *head, *tail;		\/* list of maps *\/$/;"	m	struct:ScreenInfo::__anon4
+tbpm	includes/screen.h	/^    TitlebarPixmaps tbpm;	\/* titlebar pixmaps *\/$/;"	m	struct:ScreenInfo
+title	includes/twm.h	/^    ColorPair title;$/;"	m	struct:TwmWindow
+title_height	includes/twm.h	/^    int title_height;		\/* height of the title bar *\/$/;"	m	struct:TwmWindow
+title_w	includes/twm.h	/^    Window title_w;		\/* the title bar window *\/$/;"	m	struct:TwmWindow
+title_width	includes/twm.h	/^    int title_width;		\/* width of the title bar *\/$/;"	m	struct:TwmWindow
+title_x	includes/twm.h	/^    int title_x;$/;"	m	struct:TwmWindow
+title_y	includes/twm.h	/^    int title_y;$/;"	m	struct:TwmWindow
+titlebuttons	includes/twm.h	/^    TBWindow *titlebuttons;$/;"	m	struct:TwmWindow
+titlehighlight	includes/twm.h	/^    short titlehighlight;	\/* should I highlight the title bar *\/$/;"	m	struct:TwmWindow
+titlex	includes/screen.h	/^	int titlex;			\/* start of title string *\/$/;"	m	struct:ScreenInfo::__anon5
+top	includes/iconmgr.h	/^    unsigned top, bottom;$/;"	m	struct:WList
+transient	includes/twm.h	/^    short transient;		\/* this is a transient window *\/$/;"	m	struct:TwmWindow
+transientfor	includes/twm.h	/^    Window transientfor;	\/* window contained in XA_XM_TRANSIENT_FOR *\/$/;"	m	struct:TwmWindow
+true	src/menus.c	1243;"	d	file:
+twm	includes/iconmgr.h	/^    struct TwmWindow *twm;$/;"	m	struct:WList	typeref:struct:WList::TwmWindow
+twmFileInput	src/parse.c	/^static int twmFileInput() {$/;"	f	file:
+twmInputFunc	src/parse.c	/^int (*twmInputFunc)();$/;"	v
+twmStringListInput	src/parse.c	/^static int twmStringListInput() {$/;"	f	file:
+twmUnput	src/parse.c	/^void twmUnput (int c) {$/;"	f
+twm_clientId	src/session.c	/^char *twm_clientId;$/;"	v
+twm_win	includes/iconmgr.h	/^    TwmWindow *twm_win;			\/* back pointer to the new parent *\/$/;"	m	struct:IconMgr
+twm_win	includes/icons.h	/^    TwmWindow		*twm_win;$/;"	m	struct:IconEntry
+twmrc	src/gram.y	/^twmrc		: stmts$/;"	l
+twmrc	src/parse.c	/^static FILE *twmrc;$/;"	v	file:
+twmrc_error_prefix	src/gram.c	/^twmrc_error_prefix ()$/;"	f
+unique_filename	src/session.c	/^static char *unique_filename (char *path, char *prefix) {$/;"	f	file:
+unput	src/lex.c	2014;"	d	file:
+unput	src/lex.c	2018;"	d	file:
+unput	src/lex.c	201;"	d	file:
+used	includes/icons.h	/^    short 		used;$/;"	m	struct:IconEntry
+user_colors	includes/menus.h	/^    short user_colors;		\/* colors were specified *\/$/;"	m	struct:MenuItem
+value	src/parse.c	/^    int value;$/;"	m	struct:_TwmKeyword	file:
+visibility	includes/twm.h	/^    int visibility;		\/* Visibility of this window *\/$/;"	m	struct:ColormapWindow
+w	includes/iconmgr.h	/^    Window w;				\/* this icon manager window *\/$/;"	m	struct:IconMgr
+w	includes/iconmgr.h	/^    Window w;$/;"	m	struct:WList
+w	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconEntry
+w	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconRegion
+w	includes/menus.h	/^    Window w;			\/* the window of the menu *\/$/;"	m	struct:MenuRoot
+w	includes/twm.h	/^    Window w;			\/* Window id *\/$/;"	m	struct:ColormapWindow
+w	includes/twm.h	/^    Window w;			\/* the child window *\/$/;"	m	struct:TwmWindow
+w	includes/twm.h	/^    Window w;			\/* window causing load of color table *\/$/;"	m	struct:TwmColormap
+w	src/events.c	/^    Window w;		\/* The window getting the LeaveNotify *\/$/;"	m	struct:HLNScanArgs	file:
+w	src/events.c	/^    Window w;		\/* Window we are currently entering *\/$/;"	m	struct:HENScanArgs	file:
+wShaped	includes/twm.h	/^    short wShaped;		\/* this window has a bounding shape *\/$/;"	m	struct:TwmWindow
+white	src/twm.c	/^unsigned long black, white;$/;"	v
+width	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:IconMgr
+width	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:WList
+width	includes/menus.h	/^    short width;		\/* width of the menu *\/$/;"	m	struct:MenuRoot
+width	includes/screen.h	/^	int width;			\/* width of single button & border *\/$/;"	m	struct:ScreenInfo::__anon5
+width	includes/twm.h	/^    unsigned int width, height;		\/* size of pixmap *\/$/;"	m	struct:_TitleButton
+width	includes/twm.h	/^    unsigned short width, height;$/;"	m	struct:TWMWinConfigEntry
+width	includes/xinerama.h	/^  unsigned int width, height;$/;"	m	struct:__anon2
+widthEverChangedByUser	includes/twm.h	/^    Bool widthEverChangedByUser;$/;"	m	struct:TwmWindow
+width_ever_changed_by_user	includes/twm.h	/^    Bool width_ever_changed_by_user;$/;"	m	struct:TWMWinConfigEntry
+winConfigHead	src/session.c	/^TWMWinConfigEntry *winConfigHead = NULL;$/;"	v
+win_color_entries	src/gram.y	/^win_color_entries	: \/* Empty *\/$/;"	l
+win_color_entry	src/gram.y	/^win_color_entry	: string string		{ if (Scr->FirstTime &&$/;"	l
+win_color_list	src/gram.y	/^win_color_list	: LB win_color_entries RB$/;"	l
+win_entries	src/gram.y	/^win_entries	: \/* Empty *\/$/;"	l
+win_entry	src/gram.y	/^win_entry	: string		{ if (Scr->FirstTime)$/;"	l
+win_list	src/gram.y	/^win_list	: LB win_entries RB$/;"	l
+win_name	includes/menus.h	/^    char *win_name;		\/* window name (if any) *\/$/;"	m	struct:FuncKey
+win_sqz_entries	src/gram.y	/^win_sqz_entries	: \/* Empty *\/$/;"	l
+window	includes/twm.h	/^    Window window;			\/* which window in this frame *\/$/;"	m	struct:_TBWindow
+window_role	includes/twm.h	/^    char *window_role;$/;"	m	struct:TWMWinConfigEntry
+wm_command	includes/twm.h	/^    char **wm_command;$/;"	m	struct:TWMWinConfigEntry
+wm_command_count	includes/twm.h	/^    int wm_command_count;$/;"	m	struct:TWMWinConfigEntry
+wm_name	includes/twm.h	/^    char *wm_name;$/;"	m	struct:TWMWinConfigEntry
+wmhints	includes/twm.h	/^    XWMHints *wmhints;		\/* WM hints *\/$/;"	m	struct:TwmWindow
+write_byte	src/session.c	/^int write_byte (FILE *file, unsigned char b) {$/;"	f
+write_counted_string	src/session.c	/^int write_counted_string (FILE *file, char *string) {$/;"	f
+write_short	src/session.c	/^int write_short (FILE *file, short s) {$/;"	f
+write_ushort	src/session.c	/^int write_ushort (FILE *file, unsigned short s) {$/;"	f
+x	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:IconMgr
+x	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:WList
+x	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconEntry
+x	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconRegion
+x	includes/menus.h	/^    short x;			\/* x coordinate for text *\/$/;"	m	struct:MenuItem
+x	includes/twm.h	/^    short x, y;$/;"	m	struct:TWMWinConfigEntry
+x	src/menus.c	/^    int x;$/;"	m	struct:__anon6	file:
+xlogo	includes/screen.h	/^    Pixmap xlogo;$/;"	m	struct:_TitlebarPixmaps
+y	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:IconMgr
+y	includes/iconmgr.h	/^    int x, y, width, height;$/;"	m	struct:WList
+y	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconEntry
+y	includes/icons.h	/^    int			x, y, w, h;$/;"	m	struct:IconRegion
+y	includes/twm.h	/^    int y;			\/* Y coordinate to draw characters *\/$/;"	m	struct:MyFont
+y	includes/twm.h	/^    short x, y;$/;"	m	struct:TWMWinConfigEntry
+y	src/menus.c	/^    int y;$/;"	m	struct:__anon6	file:
+yy_accept	src/lex.c	/^static yyconst flex_int16_t yy_accept[34] =$/;"	v	file:
+yy_acclist	src/lex.c	/^static yyconst flex_int16_t yy_acclist[57] =$/;"	v	file:
+yy_at_bol	src/lex.c	/^	int yy_at_bol;$/;"	m	struct:yy_buffer_state	file:
+yy_base	src/lex.c	/^static yyconst flex_int16_t yy_base[36] =$/;"	v	file:
+yy_bs_column	src/lex.c	/^    int yy_bs_column; \/**< The column count. *\/$/;"	m	struct:yy_buffer_state	file:
+yy_bs_lineno	src/lex.c	/^    int yy_bs_lineno; \/**< The line count. *\/$/;"	m	struct:yy_buffer_state	file:
+yy_buf_pos	src/lex.c	/^	char *yy_buf_pos;		\/* current position in input buffer *\/$/;"	m	struct:yy_buffer_state	file:
+yy_buf_size	src/lex.c	/^	yy_size_t yy_buf_size;$/;"	m	struct:yy_buffer_state	file:
+yy_buffer_stack	src/lex.c	/^static YY_BUFFER_STATE * yy_buffer_stack = 0; \/**< Stack as an array. *\/$/;"	v	file:
+yy_buffer_stack_max	src/lex.c	/^static size_t yy_buffer_stack_max = 0; \/**< capacity of stack. *\/$/;"	v	file:
+yy_buffer_stack_top	src/lex.c	/^static size_t yy_buffer_stack_top = 0; \/**< index of top of stack. *\/$/;"	v	file:
+yy_buffer_state	src/lex.c	/^struct yy_buffer_state$/;"	s	file:
+yy_buffer_status	src/lex.c	/^	int yy_buffer_status;$/;"	m	struct:yy_buffer_state	file:
+yy_c_buf_p	src/lex.c	/^static char *yy_c_buf_p = (char *) 0;$/;"	v	file:
+yy_ch_buf	src/lex.c	/^	char *yy_ch_buf;		\/* input buffer *\/$/;"	m	struct:yy_buffer_state	file:
+yy_chk	src/lex.c	/^static yyconst flex_int16_t yy_chk[78] =$/;"	v	file:
+yy_create_buffer	src/lex.c	/^    YY_BUFFER_STATE yy_create_buffer  (FILE * file, int  size )$/;"	f
+yy_def	src/lex.c	/^static yyconst flex_int16_t yy_def[36] =$/;"	v	file:
+yy_delete_buffer	src/lex.c	/^    void yy_delete_buffer (YY_BUFFER_STATE  b )$/;"	f
+yy_did_buffer_switch_on_eof	src/lex.c	/^static int yy_did_buffer_switch_on_eof;$/;"	v	file:
+yy_ec	src/lex.c	/^static yyconst flex_int32_t yy_ec[256] =$/;"	v	file:
+yy_fatal_error	src/lex.c	/^static void yy_fatal_error (yyconst char* msg )$/;"	f	file:
+yy_fill_buffer	src/lex.c	/^	int yy_fill_buffer;$/;"	m	struct:yy_buffer_state	file:
+yy_flex_debug	src/lex.c	/^int yy_flex_debug = 0;$/;"	v
+yy_flex_strlen	src/lex.c	/^static int yy_flex_strlen (yyconst char * s )$/;"	f	file:
+yy_flex_strncpy	src/lex.c	/^static void yy_flex_strncpy (char* s1, yyconst char * s2, int n )$/;"	f	file:
+yy_flush_buffer	src/lex.c	/^    void yy_flush_buffer (YY_BUFFER_STATE  b )$/;"	f
+yy_full_match	src/lex.c	/^static char *yy_full_match;$/;"	v	file:
+yy_get_next_buffer	src/lex.c	/^static int yy_get_next_buffer (void)$/;"	f	file:
+yy_get_previous_state	src/lex.c	/^    static yy_state_type yy_get_previous_state (void)$/;"	f	file:
+yy_hold_char	src/lex.c	/^static char yy_hold_char;$/;"	v	file:
+yy_init	src/lex.c	/^static int yy_init = 0;		\/* whether we need to initialize *\/$/;"	v	file:
+yy_init_buffer	src/lex.c	/^    static void yy_init_buffer  (YY_BUFFER_STATE  b, FILE * file )$/;"	f	file:
+yy_init_globals	src/lex.c	/^static int yy_init_globals (void)$/;"	f	file:
+yy_input_file	src/lex.c	/^	FILE *yy_input_file;$/;"	m	struct:yy_buffer_state	file:
+yy_is_interactive	src/lex.c	/^	int yy_is_interactive;$/;"	m	struct:yy_buffer_state	file:
+yy_is_our_buffer	src/lex.c	/^	int yy_is_our_buffer;$/;"	m	struct:yy_buffer_state	file:
+yy_load_buffer_state	src/lex.c	/^static void yy_load_buffer_state  (void)$/;"	f	file:
+yy_lp	src/lex.c	/^static int yy_lp;$/;"	v	file:
+yy_meta	src/lex.c	/^static yyconst flex_int32_t yy_meta[20] =$/;"	v	file:
+yy_more_offset	src/lex.c	/^static int yy_more_offset = 0;$/;"	v	file:
+yy_n_chars	src/lex.c	/^	int yy_n_chars;$/;"	m	struct:yy_buffer_state	file:
+yy_n_chars	src/lex.c	/^static int yy_n_chars;		\/* number of characters read into yy_ch_buf *\/$/;"	v	file:
+yy_new_buffer	src/lex.c	330;"	d	file:
+yy_nxt	src/lex.c	/^	flex_int32_t yy_nxt;$/;"	m	struct:yy_trans_info	file:
+yy_nxt	src/lex.c	/^static yyconst flex_int16_t yy_nxt[78] =$/;"	v	file:
+yy_prev_more_offset	src/lex.c	/^static int yy_prev_more_offset = 0;$/;"	v	file:
+yy_reduce_print	src/gram.c	/^yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule)$/;"	f	file:
+yy_rule_can_match_eol	src/lex.c	/^static yyconst flex_int32_t yy_rule_can_match_eol[19] =$/;"	v	file:
+yy_scan_buffer	src/lex.c	/^YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )$/;"	f
+yy_scan_bytes	src/lex.c	/^YY_BUFFER_STATE yy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len )$/;"	f
+yy_scan_string	src/lex.c	/^YY_BUFFER_STATE yy_scan_string (yyconst char * yystr )$/;"	f
+yy_set_bol	src/lex.c	342;"	d	file:
+yy_set_interactive	src/lex.c	332;"	d	file:
+yy_size_t	src/lex.c	/^typedef size_t yy_size_t;$/;"	t	file:
+yy_stack_print	src/gram.c	/^yy_stack_print (yytype_int16 *yybottom, yytype_int16 *yytop)$/;"	f	file:
+yy_start	src/lex.c	/^static int yy_start = 0;	\/* start state number *\/$/;"	v	file:
+yy_state_buf	src/lex.c	/^static yy_state_type *yy_state_buf=0, *yy_state_ptr=0;$/;"	v	file:
+yy_state_ptr	src/lex.c	/^static yy_state_type *yy_state_buf=0, *yy_state_ptr=0;$/;"	v	file:
+yy_state_type	src/lex.c	/^typedef int yy_state_type;$/;"	t	file:
+yy_switch_to_buffer	src/lex.c	/^    void yy_switch_to_buffer  (YY_BUFFER_STATE  new_buffer )$/;"	f
+yy_symbol_print	src/gram.c	/^yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)$/;"	f	file:
+yy_symbol_value_print	src/gram.c	/^yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)$/;"	f	file:
+yy_trans_info	src/lex.c	/^struct yy_trans_info$/;"	s	file:
+yy_try_NUL_trans	src/lex.c	/^    static yy_state_type yy_try_NUL_trans  (yy_state_type yy_current_state )$/;"	f	file:
+yy_verify	src/lex.c	/^	flex_int32_t yy_verify;$/;"	m	struct:yy_trans_info	file:
+yyalloc	src/gram.c	/^union yyalloc$/;"	u	file:
+yyalloc	src/lex.c	/^void *yyalloc (yy_size_t  size )$/;"	f
+yychar	src/gram.c	/^int yychar;$/;"	v
+yycheck	src/gram.c	/^static const yytype_int16 yycheck[] =$/;"	v	file:
+yyclearin	src/gram.c	958;"	d	file:
+yyconst	src/lex.c	106;"	d	file:
+yyconst	src/lex.c	108;"	d	file:
+yydebug	src/gram.c	/^int yydebug;$/;"	v
+yydefact	src/gram.c	/^static const yytype_uint8 yydefact[] =$/;"	v	file:
+yydefgoto	src/gram.c	/^static const yytype_int16 yydefgoto[] =$/;"	v	file:
+yydestruct	src/gram.c	/^yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)$/;"	f	file:
+yyensure_buffer_stack	src/lex.c	/^static void yyensure_buffer_stack (void)$/;"	f	file:
+yyerrok	src/gram.c	957;"	d	file:
+yyerror	src/gram.c	/^yyerror(s) char *s;$/;"	f
+yyfree	src/lex.c	/^void yyfree (void * ptr )$/;"	f
+yyget_debug	src/lex.c	/^int yyget_debug  (void)$/;"	f
+yyget_in	src/lex.c	/^FILE *yyget_in  (void)$/;"	f
+yyget_leng	src/lex.c	/^int yyget_leng  (void)$/;"	f
+yyget_lineno	src/lex.c	/^int yyget_lineno  (void)$/;"	f
+yyget_out	src/lex.c	/^FILE *yyget_out  (void)$/;"	f
+yyget_text	src/lex.c	/^char *yyget_text  (void)$/;"	f
+yyin	src/lex.c	/^FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;$/;"	v
+yyinput	src/lex.c	/^    static int yyinput (void)$/;"	f	file:
+yyleng	src/lex.c	/^int yyleng;$/;"	v
+yyless	src/lex.c	1803;"	d	file:
+yyless	src/lex.c	1804;"	d	file:
+yyless	src/lex.c	188;"	d	file:
+yylex_destroy	src/lex.c	/^int yylex_destroy  (void)$/;"	f
+yylineno	src/lex.c	/^int yylineno = 1;$/;"	v
+yylineno	src/lex.c	/^int yylineno;$/;"	v
+yylval	src/gram.c	/^YYSTYPE yylval;$/;"	v
+yymore	src/lex.c	516;"	d	file:
+yynerrs	src/gram.c	/^int yynerrs;$/;"	v
+yyout	src/lex.c	/^FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;$/;"	v
+yypact	src/gram.c	/^static const yytype_int16 yypact[] =$/;"	v	file:
+yypact_value_is_default	src/gram.c	687;"	d	file:
+yyparse	src/gram.c	/^yyparse (void)$/;"	f
+yypgoto	src/gram.c	/^static const yytype_int16 yypgoto[] =$/;"	v	file:
+yypop_buffer_state	src/lex.c	/^void yypop_buffer_state (void)$/;"	f
+yypush_buffer_state	src/lex.c	/^void yypush_buffer_state (YY_BUFFER_STATE new_buffer )$/;"	f
+yyr1	src/gram.c	/^static const yytype_uint8 yyr1[] =$/;"	v	file:
+yyr2	src/gram.c	/^static const yytype_uint8 yyr2[] =$/;"	v	file:
+yyrealloc	src/lex.c	/^void *yyrealloc  (void * ptr, yy_size_t  size )$/;"	f
+yyrestart	src/lex.c	/^    void yyrestart  (FILE * input_file )$/;"	f
+yyrline	src/gram.c	/^static const yytype_uint16 yyrline[] =$/;"	v	file:
+yyset_debug	src/lex.c	/^void yyset_debug (int  bdebug )$/;"	f
+yyset_in	src/lex.c	/^void yyset_in (FILE *  in_str )$/;"	f
+yyset_lineno	src/lex.c	/^void yyset_lineno (int  line_number )$/;"	f
+yyset_out	src/lex.c	/^void yyset_out (FILE *  out_str )$/;"	f
+yyss_alloc	src/gram.c	/^  yytype_int16 yyss_alloc;$/;"	m	union:yyalloc	file:
+yystos	src/gram.c	/^static const yytype_uint8 yystos[] =$/;"	v	file:
+yystpcpy	src/gram.c	/^yystpcpy (char *yydest, const char *yysrc)$/;"	f	file:
+yystpcpy	src/gram.c	1159;"	d	file:
+yystrlen	src/gram.c	/^yystrlen (const char *yystr)$/;"	f	file:
+yystrlen	src/gram.c	1143;"	d	file:
+yysyntax_error	src/gram.c	/^yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,$/;"	f	file:
+yytable	src/gram.c	/^static const yytype_int16 yytable[] =$/;"	v	file:
+yytable_value_is_error	src/gram.c	692;"	d	file:
+yyterminate	src/lex.c	759;"	d	file:
+yytext	src/lex.c	/^char yytext[YYLMAX];$/;"	v
+yytext_ptr	src/lex.c	/^char *yytext_ptr;$/;"	v
+yytname	src/gram.c	/^static const char *const yytname[] =$/;"	v	file:
+yytnamerr	src/gram.c	/^yytnamerr (char *yyres, const char *yystr)$/;"	f	file:
+yytokentype	includes/gram.h	/^  enum yytokentype$/;"	g
+yytokentype	src/gram.c	/^  enum yytokentype$/;"	g	file:
+yytoknum	src/gram.c	/^static const yytype_uint16 yytoknum[] =$/;"	v	file:
+yytranslate	src/gram.c	/^static const yytype_uint8 yytranslate[] =$/;"	v	file:
+yytype_int16	src/gram.c	/^typedef YYTYPE_INT16 yytype_int16;$/;"	t	file:
+yytype_int16	src/gram.c	/^typedef short int yytype_int16;$/;"	t	file:
+yytype_int8	src/gram.c	/^typedef YYTYPE_INT8 yytype_int8;$/;"	t	file:
+yytype_int8	src/gram.c	/^typedef signed char yytype_int8;$/;"	t	file:
+yytype_uint16	src/gram.c	/^typedef YYTYPE_UINT16 yytype_uint16;$/;"	t	file:
+yytype_uint16	src/gram.c	/^typedef unsigned short int yytype_uint16;$/;"	t	file:
+yytype_uint8	src/gram.c	/^typedef YYTYPE_UINT8 yytype_uint8;$/;"	t	file:
+yytype_uint8	src/gram.c	/^typedef unsigned char yytype_uint8;$/;"	t	file:
+yyunput	src/lex.c	/^    static void yyunput (int c, register char * yy_bp )$/;"	f	file:
+yyvs_alloc	src/gram.c	/^  YYSTYPE yyvs_alloc;$/;"	m	union:yyalloc	file:
+yywrap	src/lex.c	/^yywrap() { return(1);}$/;"	f
+zoomed	includes/twm.h	/^    short zoomed;		\/* is the window zoomed? *\/$/;"	m	struct:TwmWindow
