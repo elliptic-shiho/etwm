@@ -1,0 +1,179 @@
+NoGrabServer
+RestartPreviousState
+DecorateTransients
+RandomPlacement "on"
+NoTitle
+
+Color {
+    BorderColor "slategrey"
+    DefaultBackground "blue"
+    DefaultForeground "white"
+    TitleBackground "blue"
+    TitleForeground "white"
+    MenuBackground "blue"
+    MenuForeground "white"
+    MenuTitleBackground "white"
+    MenuTitleForeground "blue"
+    IconBackground "blue"
+    IconForeground "white"
+    IconBorderColor "gray85"
+    IconManagerBackground "rgb:2/a/9"
+    IconManagerForeground "gray85"
+}
+
+MoveDelta 3
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+Button1 = : root : f.menu "main"
+Button2 = : root : f.menu "windowops"
+
+Button1 = m : window|icon : f.function "move-or-lower"
+Button2 = m : window|icon : f.iconify
+Button3 = m : window|icon : f.function "move-or-raise"
+
+Button1 = : title : f.function "move-or-raise"
+Button2 = : title : f.raiselower
+
+Button1 = : icon : f.function "move-or-iconify"
+Button2 = : icon : f.iconify
+
+Button1 = : iconmgr : f.iconify
+Button2 = : iconmgr : f.iconify
+
+RightTitleButton ":delete" = f.delete
+"Tab"   = m     : all : f.raiselower
+"Tab"   = m | s : all : f.raise
+"Up"    = m4    : all : f.fullzoom
+"Left"  = m4    : all : f.leftzoom
+"Right" = m4    : all : f.rightzoom
+"Down"  = m4    : all : f.iconify
+"l"     = m4    : all : f.exec "lxlock &"
+
+"u"    = m4 : all : f.quadzoomlt
+"j"    = m4 : all : f.quadzoomlb
+"i"    = m4 : all : f.quadzoomrt
+"k"    = m4 : all : f.quadzoomrb
+"a"    = m4 : all : f.debug
+
+Button1= m  : all : f.function "move-or-raise"
+Button3= m  : all : f.resize
+Button2= m  : all : f.delete
+
+menu "main" {
+		"Main Menu"		f.title
+		"Applications"		f.menu "/Applications"
+		"---------"	  		f.nop
+		"010Editor"	  		f.exec "010editor &"
+    "PCManFM"         f.exec  "/usr/bin/pcmanfm &"
+		"FireFox"	    		f.exec "firefox &"
+		"Leafpad"	    		f.exec "leafpad &"
+		"XTerm"			      f.exec "xterm &"
+		"Volume Control"	f.exec "pavucontrol &"
+		"RhythmBox"	    		f.exec "rhythmbox &"
+		"---------"			f.nop
+		"Lock"			f.exec "lxlock &"
+		"Exit"			f.menu "Quit-Verify"
+}
+
+menu "Quit-Verify" {
+		"Really quit twm?"	f.title
+		"No, restart twm"	f.restart
+		"Yes, really quit"	f.quit
+}
+
+menu "windowops" {
+		"Window Ops"		f.title
+		""			f.nop
+		"Iconify"		f.iconify
+		"Resize"		f.resize
+		"Move"			f.move
+		"Raise"			f.raise
+		"Lower"			f.lower
+		""			f.nop
+		"Focus"			f.focus
+		"Unfocus"		f.unfocus
+		""			f.nop
+		"Delete"		f.delete
+		"Destroy"		f.destroy
+}
+
+menu "/Applications/Editors" {
+  "Gedit"    f.exec  "/usr/bin/gedit &"
+  "LeafPad"    f.exec  "/usr/bin/leafpad &"
+}
+
+menu "/Applications/Graphics" {
+  "ImageMagick"    f.exec  "/usr/bin/display.im6 logo: &"
+  "LibreOffice Draw"    f.exec  "/usr/bin/libreoffice --draw &"
+  "The GIMP"    f.exec  "/usr/bin/gimp &"
+  "X Window Snapshot"    f.exec  "xwd | xwud &"
+}
+
+menu "/Applications/Network/Monitoring" {
+  "Wireshark"    f.exec  "/usr/bin/wireshark &"
+}
+
+menu "/Applications/Network/Web Browsing" {
+  "w3m"    f.exec  "x-terminal-emulator  -T \"w3m\" -e sh -c \"/usr/bin/w3m /usr/share/doc/w3m/MANUAL.html\" &"
+}
+
+menu "/Applications/Office" {
+  "LibreOffice Calc"    f.exec  "/usr/bin/libreoffice --calc &"
+  "LibreOffice Impress"    f.exec  "/usr/bin/libreoffice --impress &"
+  "LibreOffice Writer"    f.exec  "/usr/bin/libreoffice --writer &"
+}
+
+menu "/Applications/System/Administration" {
+  "DSL/PPPoE configuration tool"    f.exec  "x-terminal-emulator  -T \"DSL/PPPoE configuration tool\" -e sh -c \"/usr/sbin/pppoeconf\" &"
+  "Editres"    f.exec  "editres &"
+  "Openbox Configuration Manager"    f.exec  "/usr/bin/obconf &"
+  "pppconfig"    f.exec  "x-terminal-emulator  -T \"pppconfig\" -e sh -c \"su-to-root -p root -c /usr/sbin/pppconfig\" &"
+  "TeXconfig"    f.exec  "x-terminal-emulator  -T \"TeXconfig\" -e sh -c \"/usr/bin/texconfig\" &"
+  "Xclipboard"    f.exec  "xclipboard &"
+  "Xfontsel"    f.exec  "xfontsel &"
+  "Xkill"    f.exec  "xkill &"
+  "Xrefresh"    f.exec  "xrefresh &"
+}
+
+menu "/Applications/System/Language Environment" {
+  "Input Method Configuration"    f.exec  "x-terminal-emulator  -T \"Input Method Configuration\" -e sh -c \"/usr/bin/im-config\" &"
+}
+
+menu "/Applications/System/Monitoring" {
+  "GNOME system monitor"    f.exec  "/usr/bin/gnome-system-monitor &"
+  "Pstree"    f.exec  "x-terminal-emulator  -T \"Pstree\" -e sh -c \"/usr/bin/pstree.x11\" &"
+  "Top"    f.exec  "x-terminal-emulator  -T \"Top\" -e sh -c \"/usr/bin/top\" &"
+  "Xconsole"    f.exec  "xconsole -file /dev/xconsole &"
+  "Xev"    f.exec  "x-terminal-emulator -e xev &"
+  "Xload"    f.exec  "xload &"
+}
+
+menu "/Applications/System/Package Management" {
+  "Synaptic Package Manager"    f.exec  "x-terminal-emulator -e synaptic-pkexec &"
+}
+
+menu "/Applications/System" {
+  "Administration" f.menu "/Applications/System/Administration"
+  "Language Environment" f.menu "/Applications/System/Language Environment"
+  "Monitoring" f.menu "/Applications/System/Monitoring"
+  "Package Management" f.menu "/Applications/System/Package Management"
+}
+
+menu "/Applications/Viewers" {
+  "Evince"    f.exec  "/usr/bin/evince &"
+  "Eye of GNOME"    f.exec  "/usr/bin/eog &"
+  "Shotwell"    f.exec  "/usr/bin/shotwell &"
+  "Xditview"    f.exec  "xditview &"
+  "XDvi"    f.exec  "/usr/bin/xdvi &"
+}
+
+menu "/Applications" {
+  "Editors" f.menu "/Applications/Editors"
+  "Graphics" f.menu "/Applications/Graphics"
+  "Office" f.menu "/Applications/Office"
+  "System" f.menu "/Applications/System"
+  "Viewers" f.menu "/Applications/Viewers"
+}
+
