@@ -368,7 +368,7 @@ void PaintEntry(MenuRoot *mr, MenuItem *mi, int exposure) {
   if (mi->func != F_TITLE) {
     int x, y;
 
-    if (mi->state) {
+    if (mi->state && mi->func != F_NOP) {
       XSetForeground(dpy, Scr->NormalGC, mi->hi_back);
 
       XFillRectangle(dpy, mr->w, Scr->NormalGC, 0, y_offset,
