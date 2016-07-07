@@ -1,0 +1,23 @@
+次に追加したい機能: リスタートするんじゃなくてモニタの再設定をするようにする
+
+typedef struct Monitor {
+  unsigned int org_x, org_y;
+  unsigned int width, height;
+  unsigned int index;
+  struct Monitor *prev, *next;
+} Monitor;
+
+monitor_***関数群
+
+monitor_add
+monitor_free
+
+point_to_monitor
+
+ウィンドウを出す時の制限とかを何とかする
+→ウィンドウサイズとかは起動毎に取得してるはずだからその周辺を見る
+
+logout機能
+-> Openboxを参考に作る
+
+モニタ毎のウィンドウ幅ショートカットを多くあるがわのモニタからマウスポインタのある側に変更
