@@ -999,7 +999,17 @@ fullzoom(TwmWindow *tmp_win, int flag) {
       tmp_win->zoomed = flag;
     }
 
-    scr_id = get_display_number_from_coordinate(tmp_win->frame_x + tmp_win->frame_width / 2, tmp_win->frame_y + tmp_win->frame_height / 2);
+    Window ret_r_win, ret_c_win;
+    int x, y;
+    int ret_x_win, ret_y_win;
+    unsigned int mask;
+
+    if (!XQueryPointer(dpy, Scr->Root, &ret_r_win, &ret_c_win, &x, &y, &ret_x_win, &ret_y_win, &mask)) {
+      x = tmp_win->frame_x + tmp_win->frame_width / 2;
+      y = tmp_win->frame_y + tmp_win->frame_height / 2;
+    }
+
+    scr_id = get_display_number_from_coordinate(x, y);
     scr_width = get_screen_width(scr_id);
     scr_height = get_screen_height(scr_id);
     scr_org_x = get_screen_org_x(scr_id);
