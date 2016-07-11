@@ -927,5 +927,8 @@ void ConnectToSessionManager (char *previous_id) {
                  (XtPointer) iceConn);
 }
 
-
-
+void session_logout(Bool silent) {
+  if (smcConn != NULL) {
+    SmcRequestSaveYourself(smcConn, SmSaveGlobal, TRUE, (silent?SmInteractStyleNone:SmInteractStyleAny), TRUE, TRUE);
+  }
+}

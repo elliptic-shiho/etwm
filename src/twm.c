@@ -843,7 +843,8 @@ void Reborder (Time time) {
 
 SIGNAL_T Done() {
   Reborder (CurrentTime);
-  XCloseDisplay(dpy);
+  XCloseDisplay(dpy); 
+  session_logout(TRUE);
   exit(0);
   SIGNAL_RETURN;
 }

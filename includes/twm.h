@@ -419,5 +419,6 @@ extern Atom TwmAtoms[];
 #define _XA_WM_WINDOW_ROLE		TwmAtoms[10]
 
 int GetWindowConfig (TwmWindow *, short *, short *, unsigned short *, unsigned short *, Bool *, Bool *, short *, short *, Bool *, Bool *);
+void session_logout(Bool);
 
 #endif /* _TWM_ */
