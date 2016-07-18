@@ -63,6 +63,7 @@ in this Software without prior written authorization from the X Consortium.
  **********************************************************************/
 
 #include <stdio.h>
+#include <stdint.h>
 #include "twm.h"
 #include <X11/Xatom.h>
 #include "add_window.h"
@@ -292,18 +293,18 @@ TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {
   namelen = strlen (tmp_win->name);
 
   tmp_win->highlight = Scr->Highlight &&
-                       (!(short)(ptrdiff_t) LookInList(Scr->NoHighlight, tmp_win->full_name,
+                       (!(short)(intptr_t) LookInList(Scr->NoHighlight, tmp_win->full_name,
                            &tmp_win->class));
 
   tmp_win->stackmode = Scr->StackMode &&
-                       (!(short)(ptrdiff_t) LookInList(Scr->NoStackModeL, tmp_win->full_name,
+                       (!(short)(intptr_t) LookInList(Scr->NoStackModeL, tmp_win->full_name,
                            &tmp_win->class));
 
   tmp_win->titlehighlight = Scr->TitleHighlight &&
-                            (!(short)(ptrdiff_t) LookInList(Scr->NoTitleHighlight, tmp_win->full_name,
+                            (!(short)(intptr_t) LookInList(Scr->NoTitleHighlight, tmp_win->full_name,
                                 &tmp_win->class));
 
-  tmp_win->auto_raise = (short)(ptrdiff_t) LookInList(Scr->AutoRaise,
+  tmp_win->auto_raise = (short)(intptr_t) LookInList(Scr->AutoRaise,
                         tmp_win->full_name,
                         &tmp_win->class);
   if (tmp_win->auto_raise) {
@@ -312,11 +313,11 @@ TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {
   tmp_win->iconify_by_unmapping = Scr->IconifyByUnmapping;
   if (Scr->IconifyByUnmapping) {
     tmp_win->iconify_by_unmapping = iconm ? FALSE :
-                                    !(short)(ptrdiff_t) LookInList(Scr->DontIconify, tmp_win->full_name,
+                                    !(short)(intptr_t) LookInList(Scr->DontIconify, tmp_win->full_name,
                                         &tmp_win->class);
   }
   tmp_win->iconify_by_unmapping |=
-    (short)(ptrdiff_t) LookInList(Scr->IconifyByUn, tmp_win->full_name,
+    (short)(intptr_t) LookInList(Scr->IconifyByUn, tmp_win->full_name,
                                   &tmp_win->class);
 
   if (LookInList(Scr->WindowRingL, tmp_win->full_name, &tmp_win->class)) {
