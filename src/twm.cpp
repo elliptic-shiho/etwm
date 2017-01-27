@@ -119,7 +119,7 @@ XClassHint NoClass;		/* for applications with no class */
 
 XGCValues Gcv;
 
-char *Home;			/* the HOME environment variable */
+const char *Home;			/* the HOME environment variable */
 int HomeLen;			/* length of Home */
 int ParseError;			/* error parsing the .twmrc file */
 
@@ -145,7 +145,7 @@ extern void assign_var_savecolor();
 Atom TwmAtoms[11];
 
 /* don't change the order of these strings */
-static char *atom_names[11] = {
+static const char *atom_names[11] = {
   "_MIT_PRIORITY_COLORS",
   "WM_CHANGE_STATE",
   "WM_STATE",
@@ -166,6 +166,7 @@ static char *atom_names[11] = {
  *
  ***********************************************************************
  */
+extern ColormapWindow *CreateColormapWindow;
 
 int main(int argc, char **argv, char **environ) {
   Window root, parent, *children;
@@ -175,7 +176,6 @@ int main(int argc, char **argv, char **environ) {
   unsigned long valuemask;	/* mask for create windows */
   XSetWindowAttributes attributes;	/* attributes for create windows */
   int numManaged, firstscrn, lastscrn, scrnum;
-  extern ColormapWindow *CreateColormapWindow();
   int zero = 0;
   char *restore_filename = NULL;
   char *client_id = NULL;
@@ -231,12 +231,14 @@ usage:
   }
 
 #define newhandler(sig) \
-    if (signal (sig, SIG_IGN) != SIG_IGN) (void) signal (sig, Done)
+    if (signal (sig, SIG_IGN) != SIG_IGN) {\
+      (void) signal (sig, (__sighandler_t) Done);\
+    }
 
-  newhandler (SIGINT);
-  newhandler (SIGHUP);
-  newhandler (SIGQUIT);
-  newhandler (SIGTERM);
+  newhandler (SIGINT)
+  newhandler (SIGHUP)
+  newhandler (SIGQUIT)
+  newhandler (SIGTERM)
 
 #undef newhandler
 
@@ -268,7 +270,7 @@ usage:
   }
 
   if (restore_filename) {
-    ReadWinConfigFile (restore_filename);
+    ReadWinConfigFile(restore_filename);
   }
 
   HasShape = XShapeQueryExtension (dpy, &ShapeEventBase, &ShapeErrorBase);
@@ -380,20 +382,16 @@ usage:
     XSaveContext (dpy, Scr->Root, ScreenContext, (caddr_t) Scr);
 
     Scr->TwmRoot.cmaps.number_cwins = 1;
-    Scr->TwmRoot.cmaps.cwins =
-      (ColormapWindow **) malloc(sizeof(ColormapWindow *));
-    Scr->TwmRoot.cmaps.cwins[0] =
-      CreateColormapWindow(Scr->Root, True, False);
+    Scr->TwmRoot.cmaps.cwins = (ColormapWindow **) malloc(sizeof(ColormapWindow *));
+    Scr->TwmRoot.cmaps.cwins[0] = CreateColormapWindow(Scr->Root, True, False);
     Scr->TwmRoot.cmaps.cwins[0]->visibility = VisibilityPartiallyObscured;
 
     Scr->cmapInfo.cmaps = NULL;
-    Scr->cmapInfo.maxCmaps =
-      MaxCmapsOfScreen(ScreenOfDisplay(dpy, Scr->screen));
+    Scr->cmapInfo.maxCmaps = MaxCmapsOfScreen(ScreenOfDisplay(dpy, Scr->screen));
     Scr->cmapInfo.root_pushes = 0;
     InstallWindowColormaps(0, &Scr->TwmRoot);
 
-    Scr->StdCmapInfo.head = Scr->StdCmapInfo.tail =
-                              Scr->StdCmapInfo.mru = NULL;
+    Scr->StdCmapInfo.head = Scr->StdCmapInfo.tail = Scr->StdCmapInfo.mru = NULL;
     Scr->StdCmapInfo.mruindex = 0;
     LocateStandardColormaps();
 
@@ -410,14 +408,16 @@ usage:
     Scr->MaxWindowHeight = 32767 - Scr->MyDisplayHeight;
 
     Scr->XORvalue = (((unsigned long) 1) << Scr->d_depth) - 1;
-
+    /*
     if (DisplayCells(dpy, scrnum) < 3) {
       Scr->Monochrome = MONOCHROME;
-    } else if (DefaultVisual(dpy, scrnum)->class == GrayScale) {
+    } else if (DefaultVisual(dpy, scrnum)->_class == GrayScale) {
       Scr->Monochrome = GRAYSCALE;
-    } else {
-      Scr->Monochrome = COLOR;
+    } else {*/
+    Scr->Monochrome = COLOR;
+    /*
     }
+    */
 
     /* setup default colors */
     Scr->FirstTime = TRUE;
@@ -797,27 +797,6 @@ void RestoreWithdrawnLocation (TwmWindow *tmp) {
   }
 }
 
-
-/***********************************************************************
- *
- *  Procedure:
- *	Done - cleanup and exit twm
- *
- *  Returned Value:
- *	none
- *
- *  Inputs:
- *	none
- *
- *  Outputs:
- *	none
- *
- *  Special Considerations:
- *	none
- *
- ***********************************************************************
- */
-
 void Reborder (Time time) {
   TwmWindow *tmp;			/* temp twm window structure */
   int scrnum;
@@ -841,11 +820,31 @@ void Reborder (Time time) {
   SetFocus ((TwmWindow *)NULL, time);
 }
 
+
+/***********************************************************************
+ *
+ *  Procedure:
+ *	Done - cleanup and exit twm
+ *
+ *  Returned Value:
+ *	none
+ *
+ *  Inputs:
+ *	none
+ *
+ *  Outputs:
+ *	none
+ *
+ *  Special Considerations:
+ *	none
+ *
+ ***********************************************************************
+ */
+
 SIGNAL_T Done() {
   Reborder (CurrentTime);
   XCloseDisplay(dpy); 
   session_logout(TRUE);
-  system("killall Xorg");
   exit(0);
   SIGNAL_RETURN;
 }

@@ -642,9 +642,14 @@ int GetFont(MyFont *font) {
  */
 int SetFocus (TwmWindow *tmp_win, Time time) {
   Window w = (tmp_win ? tmp_win->w : PointerRoot);
+  /*
+  fprintf(stderr, "Focus: %s\n", tmp_win ? tmp_win->full_name : "(nil)");
+  fprintf(stderr, "Prev : %s\n", Scr->Focus ? Scr->Focus->full_name : "(nil)");
+  */
 
 #ifdef TRACE
   if (tmp_win) {
+    printf("Focus: %s\n", tmp_win->name);
     printf ("Focusing on window \"%s\"\n", tmp_win->full_name);
   } else {
     printf ("Unfocusing; Scr->Focus was \"%s\"\n",

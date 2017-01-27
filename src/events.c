@@ -2177,14 +2177,7 @@ void HandleEnterNotify() {
               InstallWindowColormaps (EnterNotify,	/* 2 */
                                       &Scr->TwmRoot);
             SetBorder (Tmp_win, True);			/* 3 */
-            if (Tmp_win->title_w && Scr->TitleFocus &&	/* 4 */
-                Tmp_win->wmhints && Tmp_win->wmhints->input) {
-              SetFocus (Tmp_win, ewp->time);
-            }
-            if (Scr->NoTitlebar && Scr->TitleFocus &&	/*4a */
-                Tmp_win->wmhints && Tmp_win->wmhints->input) {
-              SetFocus (Tmp_win, ewp->time);
-            }
+            SetFocus (Tmp_win, ewp->time);
             if (Tmp_win->protocols & DoesWmTakeFocus) {	/* 5 */
               SendTakeFocusMessage (Tmp_win, ewp->time);
             }
