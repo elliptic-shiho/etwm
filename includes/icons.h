@@ -36,6 +36,7 @@ in this Software without prior written authorization from the X Consortium.
 
 #ifndef ICONS_H
 #define ICONS_H
+#include "twm.h"
 
 typedef struct IconRegion {
   struct IconRegion	*next;
@@ -51,5 +52,10 @@ typedef struct IconEntry {
   TwmWindow		*twm_win;
   short 		used;
 } IconEntry;
+
+extern void IconDown(TwmWindow*);
+extern void IconUp (TwmWindow*);
+extern void CreateIconWindow(TwmWindow*, int, int);
+extern void AddIconRegion(char*, int, int, int, int);
 
 #endif /* ICONS_H */

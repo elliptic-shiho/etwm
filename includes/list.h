@@ -63,6 +63,7 @@ in this Software without prior written authorization from the X Consortium.
 
 #ifndef _LIST_
 #define _LIST_
+#include "twm.h"
 
 typedef struct name_list_struct name_list;
 

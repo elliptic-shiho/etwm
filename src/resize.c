@@ -66,6 +66,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "parse.h"
 #include "util.h"
 #include "resize.h"
+#include "events.h"
 #include "add_window.h"
 #include "screen.h"
 #include "xinerama.h"

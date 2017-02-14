@@ -64,6 +64,8 @@ in this Software without prior written authorization from the X Consortium.
 #ifndef _ADD_WINDOW_
 #define _ADD_WINDOW_
 
+#include "twm.h"
+
 extern char NoName[];
 
 extern TwmWindow *AddWindow();
@@ -77,6 +79,12 @@ extern int AddingX;
 extern int AddingY;
 extern int AddingW;
 extern int AddingH;
+extern void GetGravityOffsets(TwmWindow*, int*, int*);
+extern void FetchWmColormapWindows(TwmWindow*);
+extern void FetchWmProtocols(TwmWindow*);
+extern void AddDefaultBindings();
+extern void FetchWmColormapWindows(TwmWindow*);
+extern void SetHighlightPixmap(char *);
 
 #endif /* _ADD_WINDOW_ */
 

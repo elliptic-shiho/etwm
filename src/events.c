@@ -75,6 +75,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "util.h"
 #include "screen.h"
 #include "iconmgr.h"
+#include "icons.h"
 #include "version.h"
 #include "accessible_addr.h"
 
@@ -1814,7 +1815,6 @@ static void do_menu (MenuRoot *menu, Window w) {
 void HandleButtonPress() {
   unsigned int modifier;
   Cursor cur;
-
   if (Event.xbutton.button > MAX_BUTTONS) {
     return;
   }

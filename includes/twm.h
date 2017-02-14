@@ -418,7 +418,23 @@ extern Atom TwmAtoms[];
 #define _XA_WM_CLIENT_LEADER		TwmAtoms[9]
 #define _XA_WM_WINDOW_ROLE		TwmAtoms[10]
 
-int GetWindowConfig (TwmWindow *, short *, short *, unsigned short *, unsigned short *, Bool *, Bool *, short *, short *, Bool *, Bool *);
-void session_logout(Bool);
+extern int GetWindowConfig (TwmWindow *, short *, short *, unsigned short *, unsigned short *, Bool *, Bool *, short *, short *, Bool *, Bool *);
+extern void session_logout(Bool);
+extern void RestoreWithdrawnLocation(TwmWindow*);
+extern void CreateFonts();
+extern void InitVariables();
+extern void MakeMenus();
+
+/* gram.y */
+extern void twmrc_error_prefix();
+
+/* session.c */
+extern void ConnectToSessionManager(char*);
+extern void ReadWinConfigFile (char*);
+
+/* cursor.c */
+extern void NewBitmapCursor(Cursor*, char*, char*);
+
+
 
 #endif /* _TWM_ */

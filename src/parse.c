@@ -1130,7 +1130,7 @@ static int ParseUsePPosition (register char *s) {
 }
 
 
-int do_squeeze_entry (name_list **list, char *name, int justify, int num, int denom) {
+void do_squeeze_entry (name_list **list, char *name, int justify, int num, int denom) {
   int absnum = (num < 0 ? -num : num);
 
   if (denom < 0) {
@@ -1158,7 +1158,7 @@ int do_squeeze_entry (name_list **list, char *name, int justify, int num, int de
 
     if (!sinfo) {
       twmrc_error_prefix();
-      fprintf (stderr, "unable to allocate %d bytes for squeeze info\n",
+      fprintf (stderr, "unable to allocate %lu bytes for squeeze info\n",
                sizeof(SqueezeInfo));
       return;
     }

@@ -72,9 +72,7 @@ int yylineno;
 
 #undef YY_INPUT
 #define YY_INPUT(buf,result,size) ((result) = doinput((buf),(size)))
-doinput (buf, size)
-char *buf;
-{
+int doinput (char *buf, size_t size) {
 	int c;
 
 	if (size == 0)
@@ -133,7 +131,7 @@ number				[0-9]+
 				}
 %%
 #ifndef yywrap
-yywrap() { return(1);}
+int yywrap() { return(1);}
 #endif
 
 #undef unput

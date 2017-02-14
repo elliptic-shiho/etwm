@@ -72,9 +72,13 @@ extern void EndResize();
 extern void AddEndResize();
 extern void SetupWindow();
 extern void SetupFrame();
+extern int SetFrameShape(TwmWindow*);
 
 extern void fullzoom();
 
 extern int ConstrainSize(TwmWindow *, int *, int *);
+extern void MenuStartResize(TwmWindow*, int, int, int, int);
+extern void MenuEndResize(TwmWindow*);
+extern void MenuDoResize(int, int, TwmWindow*);
 
 #endif /* _RESIZE_ */

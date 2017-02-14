@@ -80,6 +80,7 @@ in this Software without prior written authorization from the X Consortium.
 #include <X11/Xatom.h>
 #include <X11/SM/SMlib.h>
 #include <X11/Xmu/Error.h>
+#include <X11/extensions/sync.h>
 
 XtAppContext appContext;	/* Xt application context */
 
@@ -845,8 +846,6 @@ SIGNAL_T Done() {
   Reborder (CurrentTime);
   XCloseDisplay(dpy); 
   session_logout(TRUE);
-  system("killall Xorg");
-  exit(0);
   SIGNAL_RETURN;
 }
 

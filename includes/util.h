@@ -63,6 +63,7 @@ in this Software without prior written authorization from the X Consortium.
 
 #ifndef _UTIL_
 #define _UTIL_
+#include "twm.h"
 
 extern void	Zoom();
 extern void	MoveOutline();
@@ -70,7 +71,13 @@ extern Pixmap	GetBitmap(), FindBitmap();
 extern void	GetUnknownIcon();
 extern char 	*ExpandFilename();
 extern int	GetColor();
+extern int SetFocus(TwmWindow*, Time);
 
 extern int HotX, HotY;
+extern int InsertRGBColormap (Atom, XStandardColormap*, int, Bool);
+extern int RemoveRGBColormap(Atom);
+extern int GetColorValue(int, XColor*, char*);
+extern int GetFont(MyFont*);
+extern int LocateStandardColormaps();
 
 #endif /* _UTIL_ */

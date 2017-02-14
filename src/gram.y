@@ -67,11 +67,14 @@ in this Software without prior written authorization from the X Consortium.
 #include <stdio.h>
 #include <ctype.h>
 #include "twm.h"
+#include "add_window.h"
 #include "menus.h"
 #include "list.h"
 #include "util.h"
 #include "screen.h"
 #include "parse.h"
+#include "lex.h"
+#include "icons.h"
 #include <X11/Xos.h>
 #include <X11/Xmu/CharSet.h>
 
@@ -652,18 +655,16 @@ number		: NUMBER		{ $$ = $1; }
 		;
 
 %%
-yyerror(s) char *s;
-{
+void yyerror(char *s) {
     twmrc_error_prefix();
     fprintf (stderr, "error in input file:  %s\n", s ? s : "");
     ParseError = 1;
 }
-RemoveDQuote(str)
-char *str;
-{
-    register char *i, *o;
-    register n;
-    register count;
+
+void RemoveDQuote(char *str) {
+    char *i, *o;
+    int n;
+    int count;
 
     for (i=str+1, o=str; *i && *i != '\"'; o++)
     {
@@ -742,10 +743,7 @@ char *str;
     *o = '\0';
 }
 
-static MenuRoot *GetRoot(name, fore, back)
-char *name;
-char *fore, *back;
-{
+static MenuRoot *GetRoot(char *name, char *fore, char *back) {
     MenuRoot *tmp;
 
     tmp = FindMenuRoot(name);
@@ -766,9 +764,7 @@ char *fore, *back;
     return tmp;
 }
 
-static void GotButton(butt, func)
-int butt, func;
-{
+static void GotButton(int butt, int func) {
     int i;
 
     for (i = 0; i < NUM_CONTEXTS; i++)
@@ -796,10 +792,7 @@ int butt, func;
     mods = 0;
 }
 
-static void GotKey(key, func)
-char *key;
-int func;
-{
+static void GotKey(char *key, int func) {
     int i;
 
     for (i = 0; i < NUM_CONTEXTS; i++)
@@ -818,11 +811,7 @@ int func;
 }
 
 
-static void GotTitleButton (bitmapname, func, rightside)
-    char *bitmapname;
-    int func;
-    Bool rightside;
-{
+static void GotTitleButton (char *bitmapname, int func, Bool rightside) {
     if (!CreateTitleButton (bitmapname, func, Action, pull, rightside, True)) {
 	twmrc_error_prefix();
 	fprintf (stderr, 
@@ -833,9 +822,7 @@ static void GotTitleButton (bitmapname, func, rightside)
     pull = NULL;
 }
 
-static Bool CheckWarpScreenArg (s)
-    register char *s;
-{
+static Bool CheckWarpScreenArg (char *s) {
     XmuCopyISOLatin1Lowered (s, s);
 
     if (strcmp (s,  WARPSCREEN_NEXT) == 0 ||
@@ -848,9 +835,7 @@ static Bool CheckWarpScreenArg (s)
 }
 
 
-static Bool CheckWarpRingArg (s)
-    register char *s;
-{
+static Bool CheckWarpRingArg (char *s) {
     XmuCopyISOLatin1Lowered (s, s);
 
     if (strcmp (s,  WARPSCREEN_NEXT) == 0 ||
@@ -861,9 +846,7 @@ static Bool CheckWarpRingArg (s)
 }
 
 
-static Bool CheckColormapArg (s)
-    register char *s;
-{
+static Bool CheckColormapArg (char *s) {
     XmuCopyISOLatin1Lowered (s, s);
 
     if (strcmp (s, COLORMAP_NEXT) == 0 ||
@@ -875,7 +858,7 @@ static Bool CheckColormapArg (s)
 }
 
 
-twmrc_error_prefix ()
+void twmrc_error_prefix ()
 {
     fprintf (stderr, "%s:  line %d:  ", ProgramName, yylineno);
 }

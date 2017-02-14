@@ -68,6 +68,8 @@ in this Software without prior written authorization from the X Consortium.
 #include "menus.h"
 #include "resize.h"
 #include "events.h"
+#include "icons.h"
+#include "add_window.h"
 #include "util.h"
 #include "parse.h"
 #include "gram.h"

@@ -63,12 +63,16 @@ in this Software without prior written authorization from the X Consortium.
 
 #ifndef _PARSE_
 #define _PARSE_
+#include "list.h"
 
 extern int ParseTwmrc();
 extern int ParseStringList();
 extern int (*twmInputFunc)();
 extern void twmUnput();
 extern void TwmOutput();
+extern int do_var_savecolor(int);
+extern void do_squeeze_entry(name_list**, char*, int, int, int);
+extern int parse_keyword(char*, int*);
 
 #define F_NOP			0
 #define F_BEEP			1

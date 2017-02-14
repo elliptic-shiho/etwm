@@ -66,6 +66,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "twm.h"
 #include "screen.h"
 #include "gram.h"
+#include "util.h"
 
 struct name_list_struct {
   name_list *next;		/* pointer to the next name */
