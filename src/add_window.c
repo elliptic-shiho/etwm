@@ -463,7 +463,7 @@ TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {
   }
   tmp_win->iconify_by_unmapping |=
     (short)(intptr_t) LookInList(Scr->IconifyByUn, tmp_win->full_name,
-                                  &tmp_win->class);
+                                 &tmp_win->class);
 
   if (LookInList(Scr->WindowRingL, tmp_win->full_name, &tmp_win->class)) {
     if (Scr->Ring) {

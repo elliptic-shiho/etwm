@@ -79,11 +79,11 @@ extern int AddingX;
 extern int AddingY;
 extern int AddingW;
 extern int AddingH;
-extern void GetGravityOffsets(TwmWindow*, int*, int*);
-extern void FetchWmColormapWindows(TwmWindow*);
-extern void FetchWmProtocols(TwmWindow*);
+extern void GetGravityOffsets(TwmWindow *, int *, int *);
+extern void FetchWmColormapWindows(TwmWindow *);
+extern void FetchWmProtocols(TwmWindow *);
 extern void AddDefaultBindings();
-extern void FetchWmColormapWindows(TwmWindow*);
+extern void FetchWmColormapWindows(TwmWindow *);
 extern void SetHighlightPixmap(char *);
 
 extern void FetchWmProtocols(TwmWindow *);

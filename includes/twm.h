@@ -420,7 +420,7 @@ extern Atom TwmAtoms[];
 
 extern int GetWindowConfig (TwmWindow *, short *, short *, unsigned short *, unsigned short *, Bool *, Bool *, short *, short *, Bool *, Bool *);
 extern void session_logout(Bool);
-extern void RestoreWithdrawnLocation(TwmWindow*);
+extern void RestoreWithdrawnLocation(TwmWindow *);
 extern void CreateFonts();
 extern void InitVariables();
 extern void MakeMenus();
@@ -429,11 +429,11 @@ extern void MakeMenus();
 extern void twmrc_error_prefix();
 
 /* session.c */
-extern void ConnectToSessionManager(char*);
-extern void ReadWinConfigFile (char*);
+extern void ConnectToSessionManager(char *);
+extern void ReadWinConfigFile (char *);
 
 /* cursor.c */
-extern void NewBitmapCursor(Cursor*, char*, char*);
+extern void NewBitmapCursor(Cursor *, char *, char *);
 
 
 

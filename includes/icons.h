@@ -53,9 +53,9 @@ typedef struct IconEntry {
   short 		used;
 } IconEntry;
 
-extern void IconDown(TwmWindow*);
-extern void IconUp (TwmWindow*);
-extern void CreateIconWindow(TwmWindow*, int, int);
-extern void AddIconRegion(char*, int, int, int, int);
+extern void IconDown(TwmWindow *);
+extern void IconUp (TwmWindow *);
+extern void CreateIconWindow(TwmWindow *, int, int);
+extern void AddIconRegion(char *, int, int, int, int);
 
 #endif /* ICONS_H */

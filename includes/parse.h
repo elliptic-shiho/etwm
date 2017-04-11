@@ -71,8 +71,8 @@ extern int (*twmInputFunc)();
 extern void twmUnput();
 extern void TwmOutput();
 extern int do_var_savecolor(int);
-extern void do_squeeze_entry(name_list**, char*, int, int, int);
-extern int parse_keyword(char*, int*);
+extern void do_squeeze_entry(name_list **, char *, int, int, int);
+extern int parse_keyword(char *, int *);
 
 #define F_NOP			0
 #define F_BEEP			1

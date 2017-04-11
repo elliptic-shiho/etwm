@@ -71,13 +71,13 @@ extern Pixmap	GetBitmap(), FindBitmap();
 extern void	GetUnknownIcon();
 extern char 	*ExpandFilename();
 extern int	GetColor();
-extern int SetFocus(TwmWindow*, Time);
+extern int SetFocus(TwmWindow *, Time);
 
 extern int HotX, HotY;
-extern int InsertRGBColormap (Atom, XStandardColormap*, int, Bool);
+extern int InsertRGBColormap (Atom, XStandardColormap *, int, Bool);
 extern int RemoveRGBColormap(Atom);
-extern int GetColorValue(int, XColor*, char*);
-extern int GetFont(MyFont*);
+extern int GetColorValue(int, XColor *, char *);
+extern int GetFont(MyFont *);
 extern int LocateStandardColormaps();
 
 #endif /* _UTIL_ */

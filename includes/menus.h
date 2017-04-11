@@ -174,17 +174,17 @@ extern void FocusOnRoot();
 
 extern void SetBorder (TwmWindow *, Bool);
 extern void ReGrab(void);
-extern int SetMapStateProp(TwmWindow*, int);
-extern void PaintEntry(MenuRoot*, MenuItem*, int);
-extern void SendTakeFocusMessage(TwmWindow*, Time);
+extern int SetMapStateProp(TwmWindow *, int);
+extern void PaintEntry(MenuRoot *, MenuItem *, int);
+extern void SendTakeFocusMessage(TwmWindow *, Time);
 extern void UpdateMenu();
 extern void PopDownMenu();
-extern void PaintMenu(MenuRoot*, XEvent*);
-extern int DeIconify(TwmWindow*);
-extern int Iconify(TwmWindow*, int, int);
+extern void PaintMenu(MenuRoot *, XEvent *);
+extern int DeIconify(TwmWindow *);
+extern int Iconify(TwmWindow *, int, int);
 extern int HideIconManager();
 extern int WarpToScreen (int, int);
-extern int BumpWindowColormap (TwmWindow*, int);
-extern int CreateTitleButton (char*, int, char*, MenuRoot*, Bool, Bool);
+extern int BumpWindowColormap (TwmWindow *, int);
+extern int CreateTitleButton (char *, int, char *, MenuRoot *, Bool, Bool);
 
 #endif /* _MENUS_ */
