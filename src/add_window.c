@@ -89,23 +89,168 @@ int AddingH;
 
 static int PlaceX = 50;
 static int PlaceY = 50;
-static void CreateWindowTitlebarButtons();
-void FetchWmProtocols(TwmWindow *);
-void FetchWmColormapWindows(TwmWindow *);
-void GetWindowSizeHints (TwmWindow *);
-ColormapWindow *CreateColormapWindow(Window, Bool, Bool);
-TwmColormap *CreateTwmColormap(Colormap);
-void SetHighlightPixmap(char *);
-void ComputeTitleLocation(TwmWindow *);
-void ComputeWindowTitleOffsets(TwmWindow *, int, Bool);
-void ComputeCommonTitleOffsets();
-int MappedNotOverride(Window);
-void AddDefaultBindings();
-void GrabButtons(TwmWindow *);
-void GrabKeys(TwmWindow *);
-static Window CreateHighlightWindow (TwmWindow *);
 
 char NoName[] = "Untitled"; /* name if no name is specified */
+
+/***********************************************************************
+ *
+ *  Procedure:
+ *      AddDefaultBindings - attach default bindings so that naive users
+ *      don't get messed up if they provide a minimal twmrc.
+ */
+static void do_add_binding (int button, int context, int modifier, int func) {
+  MouseButton *mb = &Scr->Mouse[button][context][modifier];
+
+  if (mb->func) {
+    return;  /* already defined */
+  }
+
+  mb->func = func;
+  mb->item = NULL;
+}
+
+static Window CreateHighlightWindow (TwmWindow *tmp_win) {
+  XSetWindowAttributes attributes;	/* attributes for create windows */
+  Pixmap pm = None;
+  GC gc;
+  XGCValues gcv;
+  unsigned long valuemask;
+  int h = (Scr->TitleHeight - 2 * Scr->FramePadding);
+  Window w;
+
+
+  /*
+   * If a special highlight pixmap was given, use that.  Otherwise,
+   * use a nice, even gray pattern.  The old horizontal lines look really
+   * awful on interlaced monitors (as well as resembling other looks a
+   * little bit too closely), but can be used by putting
+   *
+   *                 Pixmaps { TitleHighlight "hline2" }
+   *
+   * (or whatever the horizontal line bitmap is named) in the startup
+   * file.  If all else fails, use the foreground color to look like a
+   * solid line.
+   */
+  if (!Scr->hilitePm) {
+    Scr->hilitePm = XCreateBitmapFromData (dpy, tmp_win->title_w,
+                                           gray_bits, gray_width,
+                                           gray_height);
+    Scr->hilite_pm_width = gray_width;
+    Scr->hilite_pm_height = gray_height;
+  }
+  if (Scr->hilitePm) {
+    pm = XCreatePixmap (dpy, tmp_win->title_w,
+                        Scr->hilite_pm_width, Scr->hilite_pm_height,
+                        Scr->d_depth);
+    gcv.foreground = tmp_win->title.fore;
+    gcv.background = tmp_win->title.back;
+    gcv.graphics_exposures = False;
+    gc = XCreateGC (dpy, pm,
+                    (GCForeground|GCBackground|GCGraphicsExposures),
+                    &gcv);
+    if (gc) {
+      XCopyPlane (dpy, Scr->hilitePm, pm, gc, 0, 0,
+                  Scr->hilite_pm_width, Scr->hilite_pm_height,
+                  0, 0, 1);
+      XFreeGC (dpy, gc);
+    } else {
+      XFreePixmap (dpy, pm);
+      pm = None;
+    }
+  }
+  if (pm) {
+    valuemask = CWBackPixmap;
+    attributes.background_pixmap = pm;
+  } else {
+    valuemask = CWBackPixel;
+    attributes.background_pixel = tmp_win->title.fore;
+  }
+
+  w = XCreateWindow (dpy, tmp_win->title_w, 0, Scr->FramePadding,
+                     (unsigned int) Scr->TBInfo.width, (unsigned int) h,
+                     (unsigned int) 0,
+                     Scr->d_depth, (unsigned int) CopyFromParent,
+                     Scr->d_visual, valuemask, &attributes);
+  if (pm) {
+    XFreePixmap (dpy, pm);
+  }
+  return w;
+}
+
+static void CreateWindowTitlebarButtons (TwmWindow *tmp_win) {
+  unsigned long valuemask;		/* mask for create windows */
+  XSetWindowAttributes attributes;	/* attributes for create windows */
+  int leftx, rightx, y;
+  TitleButton *tb;
+  int nb;
+
+  if (tmp_win->title_height == 0) {
+    tmp_win->hilite_w = 0;
+    return;
+  }
+
+
+  /*
+   * create the title bar windows; let the event handler deal with painting
+   * so that we don't have to spend two pixmaps (or deal with hashing)
+   */
+  ComputeWindowTitleOffsets (tmp_win, tmp_win->attr.width, False);
+
+  leftx = y = Scr->TBInfo.leftx;
+  rightx = tmp_win->rightx;
+
+  attributes.win_gravity = NorthWestGravity;
+  attributes.background_pixel = tmp_win->title.back;
+  attributes.border_pixel = tmp_win->title.fore;
+  attributes.event_mask = (ButtonPressMask | ButtonReleaseMask |
+                           ExposureMask);
+  attributes.cursor = Scr->ButtonCursor;
+  valuemask = (CWWinGravity | CWBackPixel | CWBorderPixel | CWEventMask |
+               CWCursor);
+
+  tmp_win->titlebuttons = NULL;
+  nb = Scr->TBInfo.nleft + Scr->TBInfo.nright;
+  if (nb > 0) {
+    tmp_win->titlebuttons = (TBWindow *) malloc (nb * sizeof(TBWindow));
+    if (!tmp_win->titlebuttons) {
+      fprintf (stderr, "%s:  unable to allocate %d titlebuttons\n",
+               ProgramName, nb);
+    } else {
+      TBWindow *tbw;
+      int boxwidth = (Scr->TBInfo.width + Scr->TBInfo.pad);
+      unsigned int h = (Scr->TBInfo.width - Scr->TBInfo.border * 2);
+
+      for (tb = Scr->TBInfo.head, tbw = tmp_win->titlebuttons; tb;
+           tb = tb->next, tbw++) {
+        int x;
+        if (tb->rightside) {
+          x = rightx;
+          rightx += boxwidth;
+          attributes.win_gravity = NorthEastGravity;
+        } else {
+          x = leftx;
+          leftx += boxwidth;
+          attributes.win_gravity = NorthWestGravity;
+        }
+        tbw->window = XCreateWindow (dpy, tmp_win->title_w, x, y, h, h,
+                                     (unsigned int) Scr->TBInfo.border,
+                                     0, (unsigned int) CopyFromParent,
+                                     (Visual *) CopyFromParent,
+                                     valuemask, &attributes);
+        tbw->info = tb;
+      }
+    }
+  }
+
+  tmp_win->hilite_w = (tmp_win->titlehighlight
+                       ? CreateHighlightWindow (tmp_win) : None);
+
+  XMapSubwindows(dpy, tmp_win->title_w);
+  if (tmp_win->hilite_w) {
+    XUnmapWindow(dpy, tmp_win->hilite_w);
+  }
+  return;
+}
 
 
 /************************************************************************
@@ -1011,23 +1156,6 @@ int MappedNotOverride(Window w) {
 }
 
 
-/***********************************************************************
- *
- *  Procedure:
- *      AddDefaultBindings - attach default bindings so that naive users
- *      don't get messed up if they provide a minimal twmrc.
- */
-static void do_add_binding (int button, int context, int modifier, int func) {
-  MouseButton *mb = &Scr->Mouse[button][context][modifier];
-
-  if (mb->func) {
-    return;  /* already defined */
-  }
-
-  mb->func = func;
-  mb->item = NULL;
-}
-
 void AddDefaultBindings () {
   /*
    * The bindings are stored in Scr->Mouse, indexed by
@@ -1139,75 +1267,6 @@ void GrabKeys(TwmWindow *tmp_win) {
   }
 }
 
-static Window CreateHighlightWindow (TwmWindow *tmp_win) {
-  XSetWindowAttributes attributes;	/* attributes for create windows */
-  Pixmap pm = None;
-  GC gc;
-  XGCValues gcv;
-  unsigned long valuemask;
-  int h = (Scr->TitleHeight - 2 * Scr->FramePadding);
-  Window w;
-
-
-  /*
-   * If a special highlight pixmap was given, use that.  Otherwise,
-   * use a nice, even gray pattern.  The old horizontal lines look really
-   * awful on interlaced monitors (as well as resembling other looks a
-   * little bit too closely), but can be used by putting
-   *
-   *                 Pixmaps { TitleHighlight "hline2" }
-   *
-   * (or whatever the horizontal line bitmap is named) in the startup
-   * file.  If all else fails, use the foreground color to look like a
-   * solid line.
-   */
-  if (!Scr->hilitePm) {
-    Scr->hilitePm = XCreateBitmapFromData (dpy, tmp_win->title_w,
-                                           gray_bits, gray_width,
-                                           gray_height);
-    Scr->hilite_pm_width = gray_width;
-    Scr->hilite_pm_height = gray_height;
-  }
-  if (Scr->hilitePm) {
-    pm = XCreatePixmap (dpy, tmp_win->title_w,
-                        Scr->hilite_pm_width, Scr->hilite_pm_height,
-                        Scr->d_depth);
-    gcv.foreground = tmp_win->title.fore;
-    gcv.background = tmp_win->title.back;
-    gcv.graphics_exposures = False;
-    gc = XCreateGC (dpy, pm,
-                    (GCForeground|GCBackground|GCGraphicsExposures),
-                    &gcv);
-    if (gc) {
-      XCopyPlane (dpy, Scr->hilitePm, pm, gc, 0, 0,
-                  Scr->hilite_pm_width, Scr->hilite_pm_height,
-                  0, 0, 1);
-      XFreeGC (dpy, gc);
-    } else {
-      XFreePixmap (dpy, pm);
-      pm = None;
-    }
-  }
-  if (pm) {
-    valuemask = CWBackPixmap;
-    attributes.background_pixmap = pm;
-  } else {
-    valuemask = CWBackPixel;
-    attributes.background_pixel = tmp_win->title.fore;
-  }
-
-  w = XCreateWindow (dpy, tmp_win->title_w, 0, Scr->FramePadding,
-                     (unsigned int) Scr->TBInfo.width, (unsigned int) h,
-                     (unsigned int) 0,
-                     Scr->d_depth, (unsigned int) CopyFromParent,
-                     Scr->d_visual, valuemask, &attributes);
-  if (pm) {
-    XFreePixmap (dpy, pm);
-  }
-  return w;
-}
-
-
 void ComputeCommonTitleOffsets () {
   int buttonwidth = (Scr->TBInfo.width + Scr->TBInfo.pad);
 
@@ -1300,81 +1359,6 @@ void ComputeTitleLocation (TwmWindow *tmp) {
 
     tmp->title_x = basex - tmp->frame_bw;
   }
-}
-
-static void CreateWindowTitlebarButtons (TwmWindow *tmp_win) {
-  unsigned long valuemask;		/* mask for create windows */
-  XSetWindowAttributes attributes;	/* attributes for create windows */
-  int leftx, rightx, y;
-  TitleButton *tb;
-  int nb;
-
-  if (tmp_win->title_height == 0) {
-    tmp_win->hilite_w = 0;
-    return;
-  }
-
-
-  /*
-   * create the title bar windows; let the event handler deal with painting
-   * so that we don't have to spend two pixmaps (or deal with hashing)
-   */
-  ComputeWindowTitleOffsets (tmp_win, tmp_win->attr.width, False);
-
-  leftx = y = Scr->TBInfo.leftx;
-  rightx = tmp_win->rightx;
-
-  attributes.win_gravity = NorthWestGravity;
-  attributes.background_pixel = tmp_win->title.back;
-  attributes.border_pixel = tmp_win->title.fore;
-  attributes.event_mask = (ButtonPressMask | ButtonReleaseMask |
-                           ExposureMask);
-  attributes.cursor = Scr->ButtonCursor;
-  valuemask = (CWWinGravity | CWBackPixel | CWBorderPixel | CWEventMask |
-               CWCursor);
-
-  tmp_win->titlebuttons = NULL;
-  nb = Scr->TBInfo.nleft + Scr->TBInfo.nright;
-  if (nb > 0) {
-    tmp_win->titlebuttons = (TBWindow *) malloc (nb * sizeof(TBWindow));
-    if (!tmp_win->titlebuttons) {
-      fprintf (stderr, "%s:  unable to allocate %d titlebuttons\n",
-               ProgramName, nb);
-    } else {
-      TBWindow *tbw;
-      int boxwidth = (Scr->TBInfo.width + Scr->TBInfo.pad);
-      unsigned int h = (Scr->TBInfo.width - Scr->TBInfo.border * 2);
-
-      for (tb = Scr->TBInfo.head, tbw = tmp_win->titlebuttons; tb;
-           tb = tb->next, tbw++) {
-        int x;
-        if (tb->rightside) {
-          x = rightx;
-          rightx += boxwidth;
-          attributes.win_gravity = NorthEastGravity;
-        } else {
-          x = leftx;
-          leftx += boxwidth;
-          attributes.win_gravity = NorthWestGravity;
-        }
-        tbw->window = XCreateWindow (dpy, tmp_win->title_w, x, y, h, h,
-                                     (unsigned int) Scr->TBInfo.border,
-                                     0, (unsigned int) CopyFromParent,
-                                     (Visual *) CopyFromParent,
-                                     valuemask, &attributes);
-        tbw->info = tb;
-      }
-    }
-  }
-
-  tmp_win->hilite_w = (tmp_win->titlehighlight
-                       ? CreateHighlightWindow (tmp_win) : None);
-
-  XMapSubwindows(dpy, tmp_win->title_w);
-  if (tmp_win->hilite_w) {
-    XUnmapWindow(dpy, tmp_win->hilite_w);
-  }
-  return;
 }
 
 void SetHighlightPixmap (char *filename) {

@@ -86,5 +86,19 @@ extern void AddDefaultBindings();
 extern void FetchWmColormapWindows(TwmWindow*);
 extern void SetHighlightPixmap(char *);
 
+extern void FetchWmProtocols(TwmWindow *);
+extern void FetchWmColormapWindows(TwmWindow *);
+extern void GetWindowSizeHints (TwmWindow *);
+extern ColormapWindow *CreateColormapWindow(Window, Bool, Bool);
+extern TwmColormap *CreateTwmColormap(Colormap);
+extern void SetHighlightPixmap(char *);
+extern void ComputeTitleLocation(TwmWindow *);
+extern void ComputeWindowTitleOffsets(TwmWindow *, int, Bool);
+extern void ComputeCommonTitleOffsets();
+extern int MappedNotOverride(Window);
+extern void AddDefaultBindings();
+extern void GrabButtons(TwmWindow *);
+extern void GrabKeys(TwmWindow *);
+
 #endif /* _ADD_WINDOW_ */
 
