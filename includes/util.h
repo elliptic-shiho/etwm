@@ -70,14 +70,14 @@ extern void	MoveOutline();
 extern Pixmap	GetBitmap(), FindBitmap();
 extern void	GetUnknownIcon();
 extern char 	*ExpandFilename();
-extern int	GetColor();
-extern int SetFocus(TwmWindow *, Time);
+extern void GetColor(int, Pixel *, char *);
+extern void SetFocus(TwmWindow *, Time);
 
 extern int HotX, HotY;
-extern int InsertRGBColormap (Atom, XStandardColormap *, int, Bool);
-extern int RemoveRGBColormap(Atom);
-extern int GetColorValue(int, XColor *, char *);
-extern int GetFont(MyFont *);
-extern int LocateStandardColormaps();
+extern void InsertRGBColormap (Atom, XStandardColormap *, int, Bool);
+extern void RemoveRGBColormap(Atom);
+extern void GetColorValue(int, XColor *, char *);
+extern void GetFont(MyFont *);
+extern void LocateStandardColormaps();
 
 #endif /* _UTIL_ */
