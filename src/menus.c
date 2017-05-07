@@ -122,7 +122,7 @@ static void Identify();
 
 #define SHADOWWIDTH 5			/* in pixels */
 
-
+
 
 /***********************************************************************
  *
@@ -159,7 +159,7 @@ InitMenus() {
 
 }
 
-
+
 
 /***********************************************************************
  *
@@ -279,7 +279,7 @@ int CreateTitleButton (char *name, int func, char *action, MenuRoot *menuroot, B
   return 1;
 }
 
-
+
 
 /*
  * InitTitlebarButtons - Do all the necessary stuff to load in a titlebar
@@ -354,7 +354,7 @@ void InitTitlebarButtons () {
   }
 }
 
-
+
 
 void PaintEntry(MenuRoot *mr, MenuItem *mi, int exposure) {
   int y_offset;
@@ -436,7 +436,7 @@ void PaintEntry(MenuRoot *mr, MenuItem *mi, int exposure) {
   }
 }
 
-
+
 
 void PaintMenu(MenuRoot *mr, XEvent *e) {
   MenuItem *mi;
@@ -587,7 +587,7 @@ void UpdateMenu() {
 
 }
 
-
+
 
 /***********************************************************************
  *
@@ -644,7 +644,7 @@ MenuRoot *NewMenuRoot(char *name) {
   return (tmp);
 }
 
-
+
 
 /***********************************************************************
  *
@@ -726,7 +726,7 @@ MenuItem *AddToMenu(MenuRoot *menu, char *item, char *action, MenuRoot *sub, int
   return (tmp);
 }
 
-
+
 void MakeMenu(MenuRoot *);
 
 void MakeMenus() {
@@ -741,7 +741,7 @@ void MakeMenus() {
   }
 }
 
-
+
 
 void MakeMenu(MenuRoot *mr) {
   MenuItem *start, *end, *cur, *tmp;
@@ -922,7 +922,7 @@ void MakeMenu(MenuRoot *mr) {
   }
 }
 
-
+
 
 /***********************************************************************
  *
@@ -1063,7 +1063,7 @@ Bool PopUpMenu (MenuRoot *menu, int x, int y, Bool center) {
   return True;
 }
 
-
+
 
 /***********************************************************************
  *
@@ -1104,7 +1104,7 @@ void PopDownMenu() {
   }
 }
 
-
+
 
 /***********************************************************************
  *
@@ -1131,7 +1131,7 @@ MenuRoot *FindMenuRoot(char *name) {
   return NULL;
 }
 
-
+
 
 static Bool belongs_to_twm_window (register TwmWindow *t, register Window w) {
   if (!t) {
@@ -1155,7 +1155,7 @@ static Bool belongs_to_twm_window (register TwmWindow *t, register Window w) {
   return False;
 }
 
-
+
 
 
 /***********************************************************************
@@ -1256,7 +1256,7 @@ void resizeFromCenter(Window w, TwmWindow *tmp_win) {
   }
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2278,7 +2278,7 @@ int ExecuteFunction(int func, char *action, Window w, TwmWindow *tmp_win, XEvent
   return do_next_action;
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2310,7 +2310,7 @@ Bool DeferExecution(int context, int func, Cursor cursor) {
   return (FALSE);
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2327,7 +2327,7 @@ void ReGrab(void) {
                Scr->Root, LastCursor, CurrentTime);
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2376,7 +2376,7 @@ Bool NeedToDefer(MenuRoot *root) {
   return FALSE;
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2446,7 +2446,7 @@ void Execute(char *s) {
   }
 }
 
-
+
 
 /***********************************************************************
  *
@@ -2544,7 +2544,7 @@ int DeIconify(TwmWindow *tmp_win) {
   XSync (dpy, 0);
 }
 
-
+
 
 int Iconify(TwmWindow *tmp_win, int def_x, int def_y) {
   TwmWindow *t;
@@ -2636,7 +2636,7 @@ int Iconify(TwmWindow *tmp_win, int def_x, int def_y) {
   XSync (dpy, 0);
 }
 
-
+
 
 static void Identify (TwmWindow *t) {
   int i, n, twidth, width, height;
@@ -2712,7 +2712,7 @@ static void Identify (TwmWindow *t) {
   InfoLines = n;
 }
 
-
+
 
 int SetMapStateProp(TwmWindow *tmp_win, int state) {
   unsigned long data[2];		/* "suggested" by ICCCM version 1 */
@@ -2725,7 +2725,7 @@ int SetMapStateProp(TwmWindow *tmp_win, int state) {
                    PropModeReplace, (unsigned char *) data, 2);
 }
 
-
+
 
 Bool GetWMState (Window w, int *statep, Window *iwp) {
   Atom actual_type;
@@ -2750,7 +2750,7 @@ Bool GetWMState (Window w, int *statep, Window *iwp) {
   return retval;
 }
 
-
+
 
 int WarpToScreen (int n, int inc) {
   Window dumwin;
@@ -2792,7 +2792,7 @@ int WarpToScreen (int n, int inc) {
 }
 
 
-
+
 
 /*
  * BumpWindowColormap - rotate our internal copy of WM_COLORMAP_WINDOWS
@@ -2845,7 +2845,7 @@ int BumpWindowColormap (TwmWindow *tmp, int inc) {
   }
 }
 
-
+
 
 int HideIconManager () {
   SetMapStateProp (Scr->iconmgr.twm_win, WithdrawnState);
@@ -2858,7 +2858,7 @@ int HideIconManager () {
 }
 
 
-
+
 
 void SetBorder (TwmWindow *tmp, Bool onoroff) {
   if (tmp->highlight) {
@@ -2876,7 +2876,7 @@ void SetBorder (TwmWindow *tmp, Bool onoroff) {
   }
 }
 
-
+
 
 void DestroyMenu (MenuRoot *menu) {
   MenuItem *item;
@@ -2897,7 +2897,7 @@ void DestroyMenu (MenuRoot *menu) {
   }
 }
 
-
+
 
 /*
  * warping routines
@@ -2949,7 +2949,7 @@ void WarpAlongRing (XButtonEvent *ev, Bool forward) {
   }
 }
 
-
+
 
 void WarpToWindow (TwmWindow *t) {
   int x, y;
@@ -2968,7 +2968,7 @@ void WarpToWindow (TwmWindow *t) {
 }
 
 
-
+
 
 /*
  * ICCCM Client Messages - Section 4.2.8 of the ICCCM dictates that all

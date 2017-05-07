@@ -194,7 +194,7 @@ StartResize(XEvent *evp, TwmWindow *tmp_win, Bool fromtitlebar) {
                tmp_win->frame_bw, tmp_win->title_height);
 }
 
-
+
 
 void
 MenuStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {
@@ -263,7 +263,7 @@ AddStartResize(TwmWindow *tmp_win, int x, int y, int w, int h) {
   DisplaySize(tmp_win, origWidth, origHeight);
 }
 
-
+
 
 void
 MenuDoResize(int x_root, int y_root, TwmWindow *tmp_win) {
@@ -602,7 +602,7 @@ MenuEndResize(TwmWindow *tmp_win) {
   SetupWindow (tmp_win, AddingX, AddingY, AddingW, AddingH, -1);
 }
 
-
+
 
 /***********************************************************************
  *

@@ -66,7 +66,7 @@ Bool sent_save_done = 0;
 #define SAVEFILE_VERSION 2
 
 
-
+
 char *GetClientID (Window window) {
   char *client_id = NULL;
   Window client_leader;
@@ -100,7 +100,7 @@ char *GetClientID (Window window) {
 }
 
 
-
+
 char *GetWindowRole (Window window) {
   XTextProperty tp;
 
@@ -114,7 +114,7 @@ char *GetWindowRole (Window window) {
 }
 
 
-
+
 int write_byte (FILE *file, unsigned char b) {
   if (fwrite ((char *) &b, 1, 1, file) != 1) {
     return 0;
@@ -165,7 +165,7 @@ int write_counted_string (FILE *file, char *string) {
 }
 
 
-
+
 int read_byte (FILE *file, unsigned char *bp) {
   return (fread ((char *) bp, 1, 1, file) != 1) ? 0 : 1;
 }
@@ -219,7 +219,7 @@ int read_counted_string (FILE *file, char **stringp) {
 }
 
 
-
+
 /*
  * An entry in the saved window config file looks like this:
  *
@@ -535,7 +535,7 @@ void ReadWinConfigFile (char *filename) {
 }
 
 
-
+
 int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *width, unsigned short *height,
                      Bool *iconified, Bool *icon_info_present, short *icon_x, short *icon_y,
                      Bool *width_ever_changed_by_user, Bool *height_ever_changed_by_user) {
@@ -655,7 +655,7 @@ int GetWindowConfig (TwmWindow *theWindow, short *x, short *y, unsigned short *w
 }
 
 
-
+
 static char *unique_filename (char *path, char *prefix) {
   char tempFile[PATH_MAX];
   char *tmp;
@@ -672,7 +672,7 @@ static char *unique_filename (char *path, char *prefix) {
 }
 
 
-
+
 void SaveYourselfPhase2CB (SmcConn smcConn, SmPointer clientData) {
   int scrnum;
   ScreenInfo *theScreen;
@@ -838,7 +838,7 @@ bad:
 }
 
 
-
+
 void SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool shutdown, int interactStyle, Bool fast) {
   if (!SmcRequestSaveYourselfPhase2 (smcConn, SaveYourselfPhase2CB, NULL)) {
     SmcSaveYourselfDone (smcConn, False);
@@ -849,7 +849,7 @@ void SaveYourselfCB (SmcConn smcConn, SmPointer clientData, int saveType, Bool s
 }
 
 
-
+
 void DieCB (SmcConn smcConn, SmPointer clientData) {
   SmcCloseConnection (smcConn, 0, NULL);
   XtRemoveInput (iceInputId);
@@ -857,14 +857,14 @@ void DieCB (SmcConn smcConn, SmPointer clientData) {
 }
 
 
-
+
 void SaveCompleteCB (SmcConn smcConn, SmPointer clientData) {
   // do nothing...
   ;
 }
 
 
-
+
 void ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
   if (!sent_save_done) {
     SmcSaveYourselfDone (smcConn, False);
@@ -873,14 +873,14 @@ void ShutdownCancelledCB (SmcConn smcConn, SmPointer clientData) {
 }
 
 
-
+
 void ProcessIceMsgProc (XtPointer client_data, int *source, XtInputId *id) {
   IceConn	ice_conn = (IceConn) client_data;
   IceProcessMessages (ice_conn, NULL, NULL);
 }
 
 
-
+
 void ConnectToSessionManager (char *previous_id) {
   char errorMsg[256];
   unsigned long mask;
