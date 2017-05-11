@@ -12,6 +12,8 @@ MV				:= mv
 RM				:= rm
 ASTYLE    := astyle
 
+PREFIX    := /usr/local/bin
+
 vpath %.c src/
 vpath %.y src/
 vpath %.l src/
@@ -60,3 +62,7 @@ clean:
 .PHONY: format
 format:
 	$(ASTYLE) --mode=c -s2 -n -j -W3 -k3 -A2 src/*.c includes/*.h
+
+.PHONY: install
+install:
+	cp bin/$(TARGET) $(PREFIX)/$(TARGET)
