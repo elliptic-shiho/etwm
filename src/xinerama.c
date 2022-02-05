@@ -4,90 +4,37 @@
 
 Bool is_enable_xinerama;
 
-int get_display_number_from_coordinate(unsigned int x, unsigned int y) {
-  int i, ret = -1;
+Monitor *xinerama_get_monitor(unsigned int x, unsigned int y) {
+  Monitor *ret = NULL;
+
   if (is_enable_xinerama) {
-    XineramaScreenInfo *info = get_screen_info();
-    int n = get_screen_count();
-    for (i = 0; i < n; i++) {
-      XineramaScreenInfo *inf = &info[i];
-      if ((x - inf->x_org) < inf->width && (y - inf->y_org) < inf->height) {
-        ret = i;
+    int n;
+    XineramaScreenInfo *info = XineramaQueryScreens(dpy, &n);
+    for (int i = 0; i < n; i++) {
+      if ((x - info[i].x_org) < info[i].width && (y - info[i].y_org) < info[i].height) {
+        ret = monitor_alloc();
+        ret->width = info[i].width;
+        ret->height = info[i].height;
+        ret->x = info[i].x_org;
+        ret->y = info[i].y_org;
         break;
       }
     }
     XFree(info);
   }
+
   return ret;
 }
 
-int get_screen_width(int screen_id) {
-  int n, i, ret = -1;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info = get_screen_info();
-    ret = info[screen_id].width;
-    XFree(info);
-  }
-  return ret;
-}
-
-int get_screen_height(int screen_id) {
-  int n, i, ret = -1;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info = get_screen_info();
-    ret = info[screen_id].height;
-    XFree(info);
-  }
-  return ret;
-}
-
-int get_screen_org_x(int screen_id) {
-  int n, i, ret = -1;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info = get_screen_info();
-    ret = info[screen_id].x_org;
-    XFree(info);
-  }
-  return ret;
-}
-
-int get_screen_org_y(int screen_id) {
-  int n, i, ret = -1;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info = get_screen_info();
-    ret = info[screen_id].y_org;
-    XFree(info);
-  }
-  return ret;
-}
-
-int get_screen_count(void) {
-  int n;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info;
-    XineramaQueryScreens(dpy, &n);
-    return n;
-  }
-  return -1;
-}
-
-XineramaScreenInfo *get_screen_info(void) {
-  int n;
-  if (is_enable_xinerama) {
-    XineramaScreenInfo *info;
-    return XineramaQueryScreens(dpy, &n);
-  }
-  return NULL;
-}
-
-void init_xinerama(void) {
+Bool xinerama_init(void) {
   if (XineramaIsActive(dpy)) {
     int major, minor;
     XineramaQueryVersion(dpy, &major, &minor);
-    fprintf(stderr, "[+] Xinerama is active: version %d.%d\n", major, minor);
+    fprintf(stderr, "[+] Xinerama is enabled: version %d.%d\n", major, minor);
     is_enable_xinerama = True;
   } else {
-    fprintf(stderr, "[-] Xinerama is not active\n");
     is_enable_xinerama = False;
   }
+
+  return is_enable_xinerama;
 }

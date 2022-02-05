@@ -70,6 +70,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "add_window.h"
 #include "screen.h"
 #include "xinerama.h"
+#include "xrandr.h"
 
 #define MINHEIGHT 0     /* had been 32 */
 #define MINWIDTH 0      /* had been 60 */
@@ -1010,13 +1011,26 @@ fullzoom(TwmWindow *tmp_win, int flag) {
       y = tmp_win->frame_y + tmp_win->frame_height / 2;
     }
 
-    scr_id = get_display_number_from_coordinate(x, y);
-    scr_width = get_screen_width(scr_id);
-    scr_height = get_screen_height(scr_id);
-    scr_org_x = get_screen_org_x(scr_id);
-    scr_org_y = get_screen_org_y(scr_id);
-    basex += scr_org_x;
-    basey += scr_org_y;
+    Monitor *monitor = NULL;
+
+    if (is_enable_xrandr) {
+      monitor = xrandr_get_monitor(x, y);
+    } else if (is_enable_xinerama) {
+      monitor = xinerama_get_monitor(x, y);
+    }
+
+    if (monitor != NULL) {
+      scr_width = monitor->width;
+      scr_height = monitor->height;
+      scr_org_x = monitor->x;
+      scr_org_y = monitor->y;
+      basex += scr_org_x;
+      basey += scr_org_y;
+      monitor_free(monitor);
+    } else {
+      scr_width = Scr->MyDisplayWidth;
+      scr_height = Scr->MyDisplayHeight;
+    }
 
     frame_bw_times_2 = 2*tmp_win->frame_bw;
 

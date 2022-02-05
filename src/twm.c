@@ -76,6 +76,7 @@ in this Software without prior written authorization from the X Consortium.
 #include "screen.h"
 #include "iconmgr.h"
 #include "xinerama.h"
+#include "xrandr.h"
 #include <X11/Xproto.h>
 #include <X11/Xatom.h>
 #include <X11/SM/SMlib.h>
@@ -588,7 +589,11 @@ usage:
   RestartPreviousState = False;
   HandlingEvents = TRUE;
   InitEvents();
-  init_xinerama();
+  if (!xrandr_init()) {
+    if (!xinerama_init()) {
+      fprintf(stderr, "[-] Neither XRandR nor Xinerama is supported on this computer, disabled multi-monitor extension\n");
+    }
+  }
   HandleEvents();
 }
 

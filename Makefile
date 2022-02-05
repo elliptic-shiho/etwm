@@ -4,10 +4,10 @@ YACC      := bison -y
 LEX       := flex -l
 DFLAGS    := -g -O2 -fno-strict-aliasing 
 YFLAGS    := -d
-LDFLAGS   := -lXmu -lXt -lSM -lICE -lXext -lX11 -lXt -lSM -lICE -lXext -lX11 -lXinerama
+LDFLAGS   := -lXmu -lXt -lSM -lICE -lXext -lX11 -lXt -lSM -lICE -lXext -lX11 -lXinerama -lXrandr
 CFLAGS    := -Dlinux -D__amd64__ -D_POSIX_C_SOURCE=199309L -D_POSIX_SOURCE -D_XOPEN_SOURCE -D_BSD_SOURCE -D_SVID_SOURCE -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DFUNCPROTO=15 -DNARROWPROTO -std=c11 -Iincludes/
 TARGET    := twm
-OBJS      := gram.o lex.o deftwmrc.o add_window.o gc.o list.o twm.o parse.o menus.o events.o resize.o util.o version.o iconmgr.o cursor.o icons.o session.o accessible_addr.o xinerama.o
+OBJS      := gram.o lex.o deftwmrc.o add_window.o gc.o list.o twm.o parse.o menus.o events.o resize.o util.o version.o iconmgr.o cursor.o icons.o session.o accessible_addr.o xinerama.o xrandr.o monitor.o
 MV				:= mv
 RM				:= rm
 ASTYLE    := astyle
