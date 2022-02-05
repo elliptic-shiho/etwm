@@ -36,10 +36,9 @@ Bool xrandr_init(void) {
     int major, minor;
     XRRScreenResources *res;
     if (XRRQueryVersion(dpy, &major, &minor)) {
-      fprintf(stderr, "[+] XRandR is active: version %d.%d\n", major, minor);
+      fprintf(stderr, "[+] XRandR is enabled: version %d.%d\n", major, minor);
       is_enable_xrandr = TRUE;
     } else {
-      fprintf(stderr, "[-] XRandR is not active\n");
       is_enable_xrandr = FALSE;
     }
 
