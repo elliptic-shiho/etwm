@@ -12,7 +12,7 @@ MV				:= mv
 RM				:= rm
 ASTYLE    := astyle
 
-PREFIX    := /usr/local/bin
+PREFIX    := /usr/local/
 
 vpath %.c src/
 vpath %.y src/
@@ -65,4 +65,4 @@ format:
 
 .PHONY: install
 install:
-	cp bin/$(TARGET) $(PREFIX)/$(TARGET)
+	install bin/$(TARGET) $(PREFIX)/bin/$(TARGET)

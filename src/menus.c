@@ -1342,7 +1342,7 @@ int ExecuteFunction(int func, char *action, Window w, TwmWindow *tmp_win, XEvent
           }
           XRRFreeOutputInfo(info);
         }
-        XRRFreeScreenConfigInfo(res);
+        XRRFreeScreenResources(res);
       }
     } else {
       fprintf(stderr, "[-] XRandR is not active\n");

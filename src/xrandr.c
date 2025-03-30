@@ -27,7 +27,7 @@ Monitor *xrandr_get_monitor(unsigned int x, unsigned int y) {
         break;
       }
     }
-    XRRFreeScreenConfigInfo(res);
+    XRRFreeScreenResources(res);
   }
   return ret;
 }
