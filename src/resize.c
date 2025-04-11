@@ -799,7 +799,7 @@ int ConstrainSize (TwmWindow *tmp_win, int *widthp, int *heightp) {
  */
 
 void SetupWindow (TwmWindow *tmp_win, int x, int y, int w, int h, int bw) {
-  SetupFrame (tmp_win, x, y, w, h, bw, False);
+  SetupFrame (tmp_win, x, y, w, h, bw, True);
 }
 
 void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool sendEvent) {
