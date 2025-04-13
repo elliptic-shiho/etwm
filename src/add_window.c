@@ -564,7 +564,15 @@ TwmWindow *AddWindow(Window w, int iconm, IconMgr *iconp) {
       ((tmp_win->hints.flags & PPosition) && Scr->UsePPosition &&
        (Scr->UsePPosition == PPOS_ON ||
         tmp_win->attr.x != 0 || tmp_win->attr.y != 0))) {
-    ask_user = FALSE;
+      ask_user = FALSE;
+      XSizeHints size_hints;
+      long sh_flags = 0;
+      XGetWMNormalHints(dpy, tmp_win->w, &size_hints, &sh_flags);
+
+      if (tmp_win->transient && (sh_flags & (USPosition | PPosition)) && (size_hints.x == 0 && size_hints.y == 0)) {
+        fputs(stderr, "BUG: Race condition detected when reading WM_TRANSIENT_FOR");
+        ask_user = TRUE;
+      }
   }
 
   /*
