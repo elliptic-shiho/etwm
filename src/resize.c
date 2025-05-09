@@ -895,6 +895,8 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
   XMoveResizeWindow (dpy, tmp_win->w, 0, tmp_win->title_height,
                      w, h - tmp_win->title_height);
 
+  XSync(dpy, False);
+
   /*
    * fix up frame and assign size/location values in tmp_win
    */
@@ -950,6 +952,7 @@ void SetupFrame (TwmWindow *tmp_win, int x, int y, int w, int h, int bw, Bool se
     client_event.xconfigure.above = tmp_win->frame;
     client_event.xconfigure.override_redirect = False;
     XSendEvent(dpy, tmp_win->w, False, StructureNotifyMask, &client_event);
+    XSync(dpy, False);
   }
 }
 
